@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react'
 import { DEFAULT_MEDIA_CONFIG, MediaConfigState } from './config/mediaConfig'
 import { MediaConfigModal } from './components/MediaConfigModal'
 import { ResolutionOverlay, CardOverlay } from './components/ResolutionOverlay'
+import { BLineCatalogSection } from './components/BLineCatalogSection'
 import { useDevMode } from './devMode'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -44,6 +45,36 @@ export default function App() {
   const rightVideo = useRef<HTMLVideoElement>(null)
   const cards = useRef<Array<HTMLDivElement | null>>([])
   
+  const [currentView, setCurrentView] = useState<'archive' | 'catalog'>(() => {
+    if (typeof window !== 'undefined') {
+      const h = window.location.hash.toLowerCase()
+      if (h === '#catalog' || h === '#bline' || window.location.pathname.startsWith('/catalog')) {
+        return 'catalog'
+      }
+    }
+    return 'archive'
+  })
+
+  useEffect(() => {
+    const handleHash = () => {
+      const h = window.location.hash.toLowerCase()
+      if (h === '#catalog' || h === '#bline') {
+        setCurrentView('catalog')
+      } else if (h === '#archive' || h === '') {
+        setCurrentView('archive')
+      }
+    }
+    window.addEventListener('hashchange', handleHash)
+    return () => window.removeEventListener('hashchange', handleHash)
+  }, [])
+
+  const setView = (v: 'archive' | 'catalog') => {
+    setCurrentView(v)
+    if (typeof window !== 'undefined') {
+      window.location.hash = v === 'catalog' ? 'catalog' : 'archive'
+    }
+  }
+
   const [mediaConfig, setMediaConfig] = useState<MediaConfigState>(() => {
     const saved = localStorage.getItem('smg_media_config')
     if (saved) {
@@ -155,6 +186,22 @@ export default function App() {
 
   const ready = () => setLoaded(value => Math.min(2, value + 1))
 
+  if (currentView === 'catalog') {
+    return (
+      <div className={`bline-page-wrapper ${isConfigOpen ? 'modal-is-open' : ''}`}>
+        <BLineCatalogSection onBackToArchive={() => setView('archive')} />
+        <MediaConfigModal
+          isOpen={devMode && isConfigOpen}
+          onClose={() => setIsConfigOpen(false)}
+          config={mediaConfig}
+          onChangeConfig={handleConfigChange}
+          showOverlay={showOverlay}
+          onToggleOverlay={setShowOverlay}
+        />
+      </div>
+    )
+  }
+
   return (
     <div id="scroll-spacer" ref={root} className={`page-root ${isConfigOpen ? 'modal-is-open' : ''}`}>
       <ResolutionOverlay show={devMode && showOverlay} />
@@ -172,8 +219,18 @@ export default function App() {
 
       <motion.header initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .15 }}>
         <nav className="header-nav">
-          <span className="about">ABOUT</span>
-          <a className="nav-link" href="/catalog/">CATALOG</a>
+          <button
+            className="nav-link active"
+            onClick={() => setView('archive')}
+          >
+            ARCHIVE
+          </button>
+          <button
+            className="nav-link"
+            onClick={() => setView('catalog')}
+          >
+            B—LINE CATALOG
+          </button>
         </nav>
         <div className="header-tools">
           {devMode && (
@@ -215,7 +272,7 @@ export default function App() {
       </div>
 
       <div id="outro-overlay" />
-      <div id="outro-buy">NEXT</div>
+      <div id="outro-buy" onClick={() => setView('catalog')}>EXPLORE CATALOG →</div>
       <footer id="outro-footer">
         <span>SMART-GIFT (R) 2026</span>
         <span>PRIVACY POLICY</span>
