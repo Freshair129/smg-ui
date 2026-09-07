@@ -11,13 +11,16 @@
 import {
   CatalogItem,
   CatalogItemSeed,
+  INTEREST_THEMES,
   finalizeItem,
   productFamily,
   standardCategory
 } from './catalogTaxonomy'
-import { CORE_ITEMS } from './catalogItems.generated'
+import { CORE_ITEMS, SUPPLIER_LAYER_META } from './catalogItems.generated'
 import { CORE_MEDIA } from './coreMedia'
 import { BLINE_PRODUCTS } from './unifiedBLineCatalog'
+
+export { SUPPLIER_LAYER_META }
 
 function withMedia(seed: CatalogItemSeed): CatalogItemSeed {
   const media = CORE_MEDIA[seed.code]
@@ -102,6 +105,51 @@ export function categoryLabel(slug: string): string {
 
 export function formatBaht(n: number): string {
   return `฿${Math.round(n).toLocaleString('en-US')}`
+}
+
+// ---------------------------------------------------------------------------
+// Search — one lowercase haystack per item (code, names, families + aliases, copy)
+// ---------------------------------------------------------------------------
+
+const haystacks = new WeakMap<CatalogItem, string>()
+
+export function searchHaystack(item: CatalogItem): string {
+  const cached = haystacks.get(item)
+  if (cached) return cached
+  const familyTerms = item.families.flatMap(f => {
+    const fam = productFamily(f)
+    return fam ? [fam.slug, fam.name_th, fam.name_en, ...fam.aliases_th, ...fam.aliases_en] : [f]
+  })
+  const theme = INTEREST_THEMES.find(t => t.slug === item.theme)
+  const text = [
+    item.code,
+    item.name_th,
+    item.name_en,
+    item.description_th,
+    item.unboxing_th,
+    item.tier,
+    theme?.short_th,
+    theme?.short_en,
+    standardCategory(item.standard_category)?.name_th,
+    ...familyTerms,
+    ...(item.contains ?? []).map(c => `${c.product_code} ${c.name_th ?? ''}`),
+    ...(item.colors ?? []),
+    item.branding,
+    item.designer
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase()
+  haystacks.set(item, text)
+  return text
+}
+
+/** Every whitespace-separated token must appear somewhere in the item's haystack. */
+export function matchesQuery(item: CatalogItem, query: string): boolean {
+  const tokens = query.toLowerCase().split(/\s+/).filter(Boolean)
+  if (!tokens.length) return true
+  const hay = searchHaystack(item)
+  return tokens.every(t => hay.includes(t))
 }
 
 export function imageStatusLabel(status: CatalogItem['image_status']): string {

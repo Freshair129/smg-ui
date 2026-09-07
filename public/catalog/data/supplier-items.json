@@ -1,6 +1,6 @@
 {
  "schema": "smartgift-catalog-items/1",
- "generated_at": "2026-09-07T11:52:05.470Z",
+ "generated_at": "2026-09-07T12:20:59.534Z",
  "source": {
   "file": "data-pipeline/02_prepared/pricelist_master.json",
   "schema_version": "1.3.0b",
@@ -24,6 +24,16 @@
    "image": "/catalog/assets/catalog-media/source-offer-BW00-0.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 450ml, 304 stainless steel liner, temperature display • Colors: Blue, silver, black, red, gold, pink, orange, light blue",
+   "colors": [
+    "Blue",
+    "silver",
+    "black",
+    "red",
+    "gold",
+    "pink",
+    "orange",
+    "light blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -69,6 +79,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-FXD00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Sports bag: 42*23*20cm, waterproof fabric, one big pocket + separate pocket for shoes, can be single-shoulder bag, hand carry bag • Pen: 14*0.8cm, metal, round, black gel ink • Colors: Red, blue, orange",
+   "colors": [
+    "Red",
+    "blue",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -108,6 +123,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-FXD05-0.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 450ml, 304+ PP silicon material, temperature display, one button open design, 67*205mm • Neck massager: 4 massage modes & 15 levels, low pulse, 42℃ hot compress, 2.5W, 150*145*45mm • Colors: Blue, pink, red, orange",
+   "colors": [
+    "Blue",
+    "pink",
+    "red",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -165,6 +186,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-FXD19-5.jpg",
    "image_status": "source_verified",
    "description_th": "Briefcase: Polyster, with zipper & handle, inner big pocket & 2 small side pockets, outside one pocket for file + one pocket for phone • Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Colors: Black, red, blue, gold, gr",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -197,6 +225,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-FXD22-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Neck massage: 15 levels, low pulse, 2.5W, 150*145*45mm, arms are stretchable • Colors: Black, white, red, blue",
+   "colors": [
+    "Black",
+    "white",
+    "red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -236,6 +270,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-FXD32-3.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Fan: ABS material, 3 wind speeds, 64*35*133mm, with light indicator • Colors: Blue, white, orange, red",
+   "colors": [
+    "Blue",
+    "white",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -269,6 +309,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-FXD35-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 450ml, 304+ PP silicon material, temperature display, one button open design, 67*205mm • Neck Fan: 455*55*48mm, 1000mah, 3W, 3.7V, 170g • Colors: Blue, pink, red, orange",
+   "colors": [
+    "Blue",
+    "pink",
+    "red",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -308,6 +354,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-FXD37-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 450ml, 304+ PP silicon material, temperature display, one button open design, 67*205mm • Neck massager: 15 levels, low pulse, 2.5W, 150*145*45mm • Colors: Blue, pink, red, orange",
+   "colors": [
+    "Blue",
+    "pink",
+    "red",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -341,6 +393,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-FXD66-2.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Fan: 1200mAh, 95*45*200mm, ABS, 5 wind speeds, remaining battery percentage display, can fold at 90 degrees • Colors: Orange, red, gray, blue (The fan is in white color only)",
+   "colors": [
+    "Orange",
+    "red",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -380,6 +437,11 @@
    "image": "/catalog/assets/catalog-media/set-FXD66-3.webp",
    "image_status": "generated_from_source",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Power bank: 10000mAh, 68*147*20mm, with phone stand & lanyard & screen indication; • input: USB cable, type-c & micro usb port; • output: iPhone, Type-C & Andorid cables, 2 USB ",
+   "colors": [
+    "Orange",
+    "red",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -497,6 +559,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-MC00-1.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 450ml, 304 stainless steel liner • Pen: Metal, round, black gel ink • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -554,6 +623,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-MC00-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 450ml, 304 stainless steel liner • Pen: Metal, round, black gel ink • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -587,6 +663,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-MZA02-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum bottle: 450ml, wood + stainless steel material, 6.8*20.8cm • USB flash drive: 16G • Colors: As picture",
+   "colors": [
+    "As picture"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -626,6 +705,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-MZA02-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 450ml, 304 stainless steel liner, temperature display • Pen: 14*1.3cm, metal, round, black gel ink • Colors: Orange, red, black, pink, blue (notebook is in 2 designs, kindly contact for picture)",
+   "colors": [
+    "Orange",
+    "red",
+    "black",
+    "pink"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -670,6 +755,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-MZB00-4.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, plain, elastic buckle closure, with card slots in inner left • Keychain: 20*90mm • Colors: Black, red",
+   "colors": [
+    "Black",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -709,6 +798,14 @@
    "image": "/catalog/assets/catalog-media/source-offer-QZA00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, plain, magnetic buckle closure • Refill: 1 pc 0.5mm • Colors: Black, blue, coffee, gray, green, red",
+   "colors": [
+    "Black",
+    "blue",
+    "coffee",
+    "gray",
+    "green",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -748,6 +845,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-QZA01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, plain, magnetic buckle closure • Refill: 1 pc 0.5mm • Colors: Green, red, orange, gray, blue",
+   "colors": [
+    "Green",
+    "red",
+    "orange",
+    "gray",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -787,6 +891,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-QZA02-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, plain, magnetic buckle closure • Refill: 1 pc 0.5mm • Colors: Green, red, orange, gray, blue",
+   "colors": [
+    "Green",
+    "red",
+    "orange",
+    "gray",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -826,6 +937,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-QZA03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, plain, magnetic buckle closure • Refill: 1 pc 0.5mm • Colors: Green, red, brown, gray, blue",
+   "colors": [
+    "Green",
+    "red",
+    "brown",
+    "gray",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -906,6 +1024,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBF6034.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Pen: Metal, dragon clip, black gel ink • Colors: Red, black",
+   "colors": [
+    "Red",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -945,6 +1067,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBF7033.png",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • USB cable: 6*2.5cm, iPhone, Android & Type-C ports, retractable line, with phone stand • Colors: Red, black",
+   "colors": [
+    "Red",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1011,6 +1137,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBH00-4.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Black, white",
+   "colors": [
+    "Black",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1089,6 +1219,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBH00-6.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Smart bracelet: Test health datas, 90mAh, message vibration reminder, IP65 waterproof • Colors: Black, white",
+   "colors": [
+    "Black",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1144,6 +1278,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBH01-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Black, white",
+   "colors": [
+    "Black",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1204,6 +1342,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBH01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Black, white",
+   "colors": [
+    "Black",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1248,6 +1390,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBH01-4.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Smart bracelet: Test health datas, 90mAh, message vibration reminder, IP65 waterproof • Colors: Black, white",
+   "colors": [
+    "Black",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1287,6 +1433,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBH03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Smart bracelet: Test health datas, 90mAh, message vibration reminder, IP65 waterproof • Colors: Black, white, red",
+   "colors": [
+    "Black",
+    "white",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1342,6 +1493,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBH05-2.jpg",
    "image_status": "source_verified",
    "description_th": "6 in 1 charging stand: Charging for Smart Watch, Earphone, iPhone, Android, Type-C phones; Support QI wireless charging; Input voltage: 5V-2A; Output power: 10-15W; Size: 230*90*57mm; Net weight: 205g. • Earbuds: Wireless, bluetooth, with charging stand, 56*44",
+   "colors": [
+    "Black",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1403,6 +1558,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBJ03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Black, white",
+   "colors": [
+    "Black",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1458,6 +1617,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBP1512.jpg",
    "image_status": "source_verified",
    "description_th": "Car sunshade umbrella: Material:Titanium silver pongee fabric; Size: 62*113cm; Triple-folding; With storage bag • Parking number plate: Size: 120*49*28mm, material: PC/ABS, with 6 sets of 0-9 digital numbers, can press the top to hide the numbers, weight: 58g ",
+   "colors": [
+    "As picture"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1513,6 +1675,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBP1612.jpg",
    "image_status": "source_verified",
    "description_th": "Car sunshade umbrella: Material:Titanium silver pongee fabric; Size: 62*113cm; Triple-folding; With storage bag • Car phone holder: Material:ABS+PC; Size:93*85*66mm; Support size of the phone:4.6-7 inch • Colors: As picture",
+   "colors": [
+    "As picture"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1575,6 +1740,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBP1613.jpg",
    "image_status": "source_verified",
    "description_th": "Car sunshade umbrella: Material:Titanium silver pongee fabric; Size: 62*113cm; Triple-folding; With storage bag • USB cable: PC+tpe material, output port: iPhone, micro USB, Type-C; length can extend to 120cm • Colors: As picture",
+   "colors": [
+    "As picture"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1631,6 +1799,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBP1712.jpg",
    "image_status": "source_verified",
    "description_th": "Car sunshade umbrella: Material:Titanium silver pongee fabric; Size: 62*113cm; Triple-folding; With storage bag • Power bank: 10000mAh, 68*147*20mm, with phone stand & lanyard & screen indication; • input: USB cable, type-c & micro usb port; • output: iPhone, ",
+   "colors": [
+    "As picture"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1693,6 +1864,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBP1713.jpg",
    "image_status": "source_verified",
    "description_th": "Car sunshade umbrella: Material:Titanium silver pongee fabric; Size: 62*113cm; Triple-folding; With storage bag • Power bank: 10000mAh, 68*147*20mm, with phone stand & lanyard & screen indication; • input: USB cable, type-c & micro usb port; • output: iPhone, ",
+   "colors": [
+    "As picture"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1749,6 +1923,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBS01.jpg",
    "image_status": "source_verified",
    "description_th": "Bottle: 450ml, 23*6.4cm, seperate tea leaves storage holder • Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Colors: Blue, brown",
+   "colors": [
+    "Blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1805,6 +1983,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBS01-2.jpg",
    "image_status": "source_verified",
    "description_th": "Bottle: Glass, 350ml, 20*6.5cm, temperature display • Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Colors: Black, red",
+   "colors": [
+    "Black",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1861,6 +2043,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBS02.jpg",
    "image_status": "source_verified",
    "description_th": "Bottle: 450ml, 23*6.4cm, seperate tea leaves storage holder • Notebook: A5, PU, long silver buckle, pen loop in the back • Colors: Blue, brown",
+   "colors": [
+    "Blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1917,6 +2103,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBS02-2.jpg",
    "image_status": "source_verified",
    "description_th": "Bottle: Glass, 350ml, 20*6.5cm, temperature display • Notebook: A5, PU, long silver buckle, pen loop in the back • Colors: Black, red, gray",
+   "colors": [
+    "Black",
+    "red",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -1979,6 +2170,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBS02-3.jpg",
    "image_status": "source_verified",
    "description_th": "Bottle: Glass, 350ml, 20*6.5cm, temperature display • Notebook: A5, PU, long silver buckle, pen loop in the back • Colors: Black, red, gray",
+   "colors": [
+    "Black",
+    "red",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2047,6 +2243,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBS02-4.jpg",
    "image_status": "source_verified",
    "description_th": "Bottle: Glass, 350ml, 20*6.5cm, temperature display • Notebook: A5, PU, long silver buckle, pen loop in the back • Colors: Black, red, gray",
+   "colors": [
+    "Black",
+    "red",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2121,6 +2322,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBS02-5.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Bottle: Glass, 350ml, 20*6.5cm, temperature display • Colors: Black, red, gray",
+   "colors": [
+    "Black",
+    "red",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2201,6 +2407,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBS02-6.jpg",
    "image_status": "source_verified",
    "description_th": "Bottle: Glass, 350ml, 20*6.5cm, temperature display • Notebook: A5, PU, long silver buckle, pen loop in the back • Colors: Black, red, gray",
+   "colors": [
+    "Black",
+    "red",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2240,6 +2451,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TBT10-3.jpg",
    "image_status": "source_verified",
    "description_th": "Pen: Metal, thick, black gel ink • Vacuum cup: 450ml, 304 stainless steel liner, temperature display • Colors: Blue, black, red, gold",
+   "colors": [
+    "Blue",
+    "black",
+    "red",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2296,6 +2513,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TCH00-2.jpg",
    "image_status": "source_verified",
    "description_th": "Hair dryer: 23*12*7cm, strong / soft / cold wind switch, 50HZ, 220V, 1000W, 1.8m power cord • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Red, black, blue",
+   "colors": [
+    "Red",
+    "black",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2352,6 +2574,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TCH01-2.jpg",
    "image_status": "source_verified",
    "description_th": "Hair dryer: 23*12*7cm, strong / soft / cold wind switch, 50HZ, 220V, 1000W, 1.8m power cord • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Red, blue, black (Neck massager is in white & r",
+   "colors": [
+    "Red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2414,6 +2640,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TCH01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Hair dryer: 23*12*7cm, strong / soft / cold wind switch, 50HZ, 220V, 1000W, 1.8m power cord • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Red, blue, black (Neck massager is in white & r",
+   "colors": [
+    "Red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2447,6 +2677,14 @@
    "image": "/catalog/assets/catalog-media/source-offer-TCS20-2.jpg",
    "image_status": "source_verified",
    "description_th": "Power bank: 10000mAh, 68*147*20mm, with phone stand & lanyard & screen indication; • input: USB cable, type-c & micro usb port; • output: iPhone, Type-C & Andorid cables, 2 USB ports • Umbrella: 8K, automatic open & close, unfolded size: 108*53.5cm • Colors: W",
+   "colors": [
+    "White",
+    "pink",
+    "black",
+    "orange",
+    "red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2486,6 +2724,14 @@
    "image": "/catalog/assets/catalog-media/source-offer-TCS30-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: White, pink, black, orange, red, blue",
+   "colors": [
+    "White",
+    "pink",
+    "black",
+    "orange",
+    "red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2525,6 +2771,14 @@
    "image": "/catalog/assets/catalog-media/source-offer-TCS40-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Power bank: 10000mAh, 68*147*20mm, with phone stand & lanyard & screen indication; • input: USB cable, type-c & micro usb port; • output: iPhone, Type-C & Andorid cables, 2 USB ports • Color",
+   "colors": [
+    "White",
+    "pink",
+    "black",
+    "orange",
+    "red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2564,6 +2818,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TCW0013.jpg",
    "image_status": "source_verified",
    "description_th": "Auspicious cloud: Metal • USB flash drive: 32G, retro design Ruyi shape • Colors: Gold",
+   "colors": [
+    "Gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2602,6 +2859,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TCZ0033.jpg",
    "image_status": "source_verified",
    "description_th": "Plug: Input: 220V AC, 50-60Hz; Output: 5.0V=2.0A • USB cable: PC+tpe material, output port: iPhone, micro USB, Type-C; length can extend to 120cm • Colors: Red",
+   "colors": [
+    "Red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2702,6 +2962,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TDS01-2.jpg",
    "image_status": "source_verified",
    "description_th": "Hair dryer: 23*12*7cm, strong / soft / cold wind switch, 50HZ, 220V, 1000W, 1.8m power cord • Electric toothbrush: 3.7V, 0.7W, 500mAh, 22.8*2.3cm, 6 modes, smart stop, waterproof, type-c charging • Colors: Red, black",
+   "colors": [
+    "Red",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2757,6 +3021,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TDS02-2.jpg",
    "image_status": "source_verified",
    "description_th": "Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Electric toothbrush: 3.7V, 0.7W, 500mAh, 22.8*2.3cm, 6 modes, smart stop, waterproof, type-c charging • Colors: Red, black, white, orange",
+   "colors": [
+    "Red",
+    "black",
+    "white",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2818,6 +3088,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TDS02-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum bottle: 304 stainless steel liner, temperature display, 450ml • Electric toothbrush: 3.7V, 0.7W, 500mAh, 22.8*2.3cm, 6 modes, smart stop, waterproof, type-c charging • Colors: Red, black",
+   "colors": [
+    "Red",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2873,6 +3147,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TDS03-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum bottle: 304 stainless steel liner, temperature display, 450ml • Electric toothbrush: 3.7V, 0.7W, 500mAh, 22.8*2.3cm, 6 modes, smart stop, waterproof, type-c charging • Colors: Red, black, white, orange",
+   "colors": [
+    "Red",
+    "black",
+    "white",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -2934,6 +3214,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TDS03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum bottle: 304 stainless steel liner, temperature display, 450ml • Electric toothbrush: 3.7V, 0.7W, 500mAh, 22.8*2.3cm, 6 modes, smart stop, waterproof, type-c charging • Colors: Red, black, orange",
+   "colors": [
+    "Red",
+    "black",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3015,6 +3300,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TDS04-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum bottle: 304 stainless steel liner, temperature display, 450ml • Electric toothbrush: 3.7V, 0.7W, 500mAh, 22.8*2.3cm, 6 modes, smart stop, waterproof, type-c charging • Colors: Red, black, white, orange",
+   "colors": [
+    "Red",
+    "black",
+    "white",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3072,6 +3363,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TDS07-2.jpg",
    "image_status": "source_verified",
    "description_th": "Electric toothbrush: 3.7V, 0.7W, 500mAh, 22.8*2.3cm, 6 modes, smart stop, waterproof, type-c charging • Oral irrigator: 200ML, ABS+PP, 1200mAh, rechargeable, with 4 kinds nozzle. • Colors: Red, black, white (Oral irrigator is in white color only)",
+   "colors": [
+    "Red",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3123,6 +3418,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TGC04-5.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3156,6 +3458,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TGC08-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Notebook: A5, 22*15cm, button closure • Colors: Black, red, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3195,6 +3503,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TGC09-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Pen: 13.5*1.2cm, metal, black gel ink • Colors: Black, red, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3234,6 +3548,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TGC10-3.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, unfolded size: 108*53.5cm • Pen: 13.5*1.2cm, metal, black gel ink • Colors: Black, red, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3334,6 +3654,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TGC21-2.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, 22*15cm, auspicious clouds buckle closure • Pen: 13.5*1.2cm, metal, black gel ink • Colors: Black, blue, orange, red",
+   "colors": [
+    "Black",
+    "blue",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3373,6 +3699,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TGC21-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Pen: 13.5*1.2cm, metal, black gel ink • Colors: Black, blue, orange, red",
+   "colors": [
+    "Black",
+    "blue",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3418,6 +3750,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TGC21-4.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Pen: 13.5*1.2cm, metal, black gel ink • Colors: Black, blue, orange, red",
+   "colors": [
+    "Black",
+    "blue",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3469,6 +3807,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TGC21-5.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • USB flash drive: 32G, dual-use for Type-C and PC • Colors: Black, blue, orange, red",
+   "colors": [
+    "Black",
+    "blue",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3524,6 +3868,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-THB03-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum jug: 316 SUS, 1000ml, 166*99*118mm, food grade PP+stainless steel, ,temperature display • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Black, red, white, orange (neck massage is in",
+   "colors": [
+    "Black",
+    "red",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3563,6 +3912,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-THY00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Notebook: A5, PU, loose leaf, big silver buckle closure • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3602,6 +3957,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-THY01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, loose leaf, big silver buckle closure • USB flash drive: 32G, dual-use for Type-C phone and PC • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3635,6 +3996,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TJL3042.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, unfolded size: 108*53.5cm • Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Colors: Green",
+   "colors": [
+    "Green"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3674,6 +4038,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TJL3143.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Pen: 13.5*1.2cm, metal, black gel ink • Colors: Green",
+   "colors": [
+    "Green"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3735,6 +4102,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TJM03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Massage gun: 132*134*50mm(excluding massage tool), four kinds of massage tools, 1800mAh, Type-C input port • Vacuum bottle: 450ml, 304 stainless steel liner, temperature display • Colors: Black, red, orange, blue (Neck massager is in white & red color only)",
+   "colors": [
+    "Black",
+    "red",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3803,6 +4175,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TMQ1832.jpg",
    "image_status": "source_verified",
    "description_th": "Hair dryer: 23*12*7cm, strong / soft / cold wind switch, 50HZ, 220V, 1000W, 1.8m power cord • Air cushion comb: Material: ABS + TPR + Nylon, 25*7cm, hangable • Colors: Red",
+   "colors": [
+    "Red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3864,6 +4239,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TNB01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Black, white, red, blue",
+   "colors": [
+    "Black",
+    "white",
+    "red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -3932,6 +4313,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TNN03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Power bank notebook: A5, wireless charging, light up logo, 10000mAh, with 2 usb outputs, 1 micro usb input, 4 lights power indicator, 32G USB flash drive • Vacuum flask: 304 stainless steel liner, 450ml • Colors: Red, gray, black, blue, orange",
+   "colors": [
+    "Red",
+    "gray",
+    "black",
+    "blue",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4000,6 +4388,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TNR01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Power bank notebook: A5, 10000mAh, with 2 usb outputs, 1 micro usb input, 4 lights power indicator, 32G USB flash drive • Vacuum flask: 304 stainless steel liner, 450ml • Colors: Blue, gold, brown, black",
+   "colors": [
+    "Blue",
+    "gold",
+    "brown",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4063,6 +4457,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC00-2.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, long silver buckle, pen loop in the back • Pen: Plastic, rollerball, 0.5 refill, black • Colors: Grey, black, brown, blue, red",
+   "colors": [
+    "Grey",
+    "black",
+    "brown",
+    "blue",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4102,6 +4503,14 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, long silver buckle, pen loop in the back • Pen: Metal, round, black gel ink • Colors: Grey, black, brown, blue, red; Packing box: Black, red",
+   "colors": [
+    "Grey",
+    "black",
+    "brown",
+    "blue",
+    "red; Packing box: Black",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4141,6 +4550,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, long silver buckle, pen loop in the back • Pen: Metal, round, black gel ink • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4186,6 +4602,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC03-4.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, long silver buckle, pen loop in the back • Pen: Metal, round, black gel ink • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4225,6 +4648,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC11-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, long silver buckle, pen loop in the back • Pen: Metal, round, black gel ink • Colors: Black, brown, blue, red, gray; Packing box: beige",
+   "colors": [
+    "Black",
+    "brown",
+    "blue",
+    "red",
+    "gray; Packing box: beige"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4276,6 +4706,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC13-5.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4339,6 +4776,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC13-7.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4384,6 +4828,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC14-4.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4441,6 +4892,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPC16-6.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Colors: Black, red, gray, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4474,6 +4932,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPD00-2.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: PU, A5, elastic band closure • Pen: Plastic, 0.5 refill, black • Colors: Yellow, red, black, blue, gold",
+   "colors": [
+    "Yellow",
+    "red",
+    "black",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4507,6 +4972,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPD01-2.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: PU, A6, elastic band closure • Pen: Plastic, 0.5 refill, black • Colors: Yellow, red, black, blue, gold",
+   "colors": [
+    "Yellow",
+    "red",
+    "black",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4540,6 +5012,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPF09-2.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, retro buckle closure • Pen: Brass wood body, metal cap, black gel ink • Colors: Black, red, blue, gold, gray",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4579,6 +5058,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPF09-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, retro buckle closure • Pen: Brass wood body, metal cap, black gel ink • Colors: Black, red, blue, gold, gray",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4618,6 +5104,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPF19-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Pen: Brass wood body, metal cap, black gel ink • Colors: Black, red, blue, gold, gray",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4657,6 +5150,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPF29-3.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Pen: Brass wood body, metal cap, black gel ink • Colors: Black, red, blue, gold, gray",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4702,6 +5202,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPF7034.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, retro buckle closure • USB cable: 6*2.5cm, iPhone, Android & Type-C ports, retractable line, with phone stand • Colors: Red, black",
+   "colors": [
+    "Red",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4747,6 +5251,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPH00-4.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Notebook: A5, magnetic mirror buckle closure • Colors: Black, red, gray, gold, blue",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "gold",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4798,6 +5309,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPH00-5.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Colors: Black, red, gray, gold, blue",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "gold",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4888,6 +5406,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPH00-7.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Colors: Black, red, gray, gold, blue",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "gold",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4927,6 +5452,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPH01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Pen: Metal, round, black gel ink • Colors: Black, red, gray, gold, blue",
+   "colors": [
+    "Black",
+    "red",
+    "gray",
+    "gold",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4960,6 +5492,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPJ00-2.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: PU, A5, metal silver buckle closure, card slots in cover • Pen: Metal, round, black gel ink • Colors: Gold, gray, red, black, blue",
+   "colors": [
+    "Gold",
+    "gray",
+    "red",
+    "black",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -4999,6 +5538,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPJ00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: PU, A5, metal silver buckle closure, card slots in cover • Pen: Metal, round, black gel ink • Colors: Gold, gray, red, black, blue",
+   "colors": [
+    "Gold",
+    "gray",
+    "red",
+    "black",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5038,6 +5584,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPJ01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: PU, A5, metal silver buckle closure, card slots in cover • Pen: Metal, round, black gel ink • Colors: Gold, gray, red, black, blue",
+   "colors": [
+    "Gold",
+    "gray",
+    "red",
+    "black",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5077,6 +5630,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPM00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 304 stainless steel liner, 450ml, temperature display • Notebook: A5, PU, plain, magnetic buckle with mirror surface • Colors: Black, red, blue, gold, gray",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5116,6 +5676,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPM01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Notebook: A5, PU, plain, magnetic buckle with mirror surface • Colors: Black, red, blue, gold, gray",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5149,6 +5716,16 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPP00-2.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, metal plate on the cover • Pen: Plastic, 0.5 refill, black • Colors: Black, red, yellow, gold, orange, blue, green, light blue, silver, brown",
+   "colors": [
+    "Black",
+    "red",
+    "yellow",
+    "gold",
+    "orange",
+    "blue",
+    "green",
+    "light blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5188,6 +5765,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPS03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5 (without usb), PU, storage pocket in cover, card slots in cover's inner • Pen: Metal, round, black gel ink • Colors: Black, brown, blue, red, gray; Packing box: Beige",
+   "colors": [
+    "Black",
+    "brown",
+    "blue",
+    "red",
+    "gray; Packing box: Beige"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5221,6 +5805,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPT00-2.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: PU, A5, gold loop closure • Pen: Plastic, rollerball, 0.5 refill, black • Colors: Red, gold, black, blue",
+   "colors": [
+    "Red",
+    "gold",
+    "black",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5260,6 +5850,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPT03-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: PU, A5, gold loop closure • Pen: Metal, thick, black gel ink • Colors: Black, red, gold, blue",
+   "colors": [
+    "Black",
+    "red",
+    "gold",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5305,6 +5901,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPT03-4.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: PU, A5, gold loop closure • USB flash drive: 32G, dual-use for Type-C phone and PC • Colors: Black, red, gold, blue",
+   "colors": [
+    "Black",
+    "red",
+    "gold",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5368,6 +5970,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPT10-7.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Colors: Black, red, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5413,6 +6021,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPT12-4.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 450ml, 304 stainless steel liner, temperature display • Notebook: PU, A5, gold loop closure • Colors: Light gold, black, red, blue",
+   "colors": [
+    "Light gold",
+    "black",
+    "red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5452,6 +6066,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPY00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Pen: Metal, thick, black gel ink • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5509,6 +6129,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPY00-6.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • USB flash drive: 32G, dual-use for Type-C phone and PC • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5572,6 +6198,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPY00-7.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, plain, big silver buckle closure • Bookmark: Metal • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5611,6 +6243,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPY01-3.jpg",
    "image_status": "source_verified",
    "description_th": "Notebook: A5, PU, plain, big silver buckle closure • USB flash drive: 32G, dual-use for Type-C phone and PC • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5668,6 +6306,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPY01-6.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Pen: Metal, thick, black gel ink • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5725,6 +6369,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPY02-6.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • USB flash drive: 32G, dual-use for Type-C phone and PC • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5788,6 +6438,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TPY10-7.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Colors: Black, gray, blue, brown",
+   "colors": [
+    "Black",
+    "gray",
+    "blue",
+    "brown"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5838,6 +6494,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TRJ00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: 450ml, 304 stainless steel liner, temperature display • Earphone: Wireless • Colors: Black, red, gold, blue",
+   "colors": [
+    "Black",
+    "red",
+    "gold",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5871,6 +6533,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSB02-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 350ml, 304 stainless steel liner, 18.5*6.5cm, temperature display • Umbrella: 5-fold manual open, UV-blocking fabric + black vinyl backing, folding length: 19cm; open diameter: 92cm • Colors: Pink, red, blue, light green",
+   "colors": [
+    "Pink",
+    "red",
+    "blue",
+    "light green"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5904,6 +6572,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSB03-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 350ml, 304 stainless steel liner, 18.5*6.5cm, temperature display • Fan: ABS material, 3 wind speeds, 64*35*133mm, with light indicator • Colors: Pink, red, blue, light green",
+   "colors": [
+    "Pink",
+    "red",
+    "blue",
+    "light green"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -5965,6 +6639,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSPB2-2.jpg",
    "image_status": "source_verified",
    "description_th": "Power bank notebook: Big writing screen notepad, wireless & cable charging, LED lamp, storage， 12000mah • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Black, beige",
+   "colors": [
+    "Black",
+    "beige"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6026,6 +6704,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSPS2-2.jpg",
    "image_status": "source_verified",
    "description_th": "Power bank notebook: Small writing screen notepad, wireless & cable charging, LED lamp, calculator,storage, 12000mah • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Blue, gray",
+   "colors": [
+    "Blue",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6065,6 +6747,10 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSPS3-2.jpg",
    "image_status": "source_verified",
    "description_th": "Power bank notebook: Small writing screen notepad, wireless & cable charging, LED lamp, calculator,storage, 12000mah • Massage gun: 132*134*50mm(excluding massage tool), four kinds of massage tools, 1800mAh, Type-C input port • Colors: Blue, gray",
+   "colors": [
+    "Blue",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6146,6 +6832,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSQ04-3.jpg",
    "image_status": "source_verified",
    "description_th": "Light humidifier: 400ml, 7 colors LED light, Type-C charging port, Size: 172*68*68mm • Vacuum flask: 450ml, 304 stainless steel liner, temperature display • Colors: White, orange, blue, red",
+   "colors": [
+    "White",
+    "orange",
+    "blue",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6229,6 +6921,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSQ06-4.jpg",
    "image_status": "source_verified",
    "description_th": "Light humidifier: 400ml, 7 colors LED light, Type-C charging port, Size: 172*68*68mm • Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Colors: Orange, blue, red",
+   "colors": [
+    "Orange",
+    "blue",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6262,6 +6959,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSS01-2.jpg",
    "image_status": "source_verified",
    "description_th": "Umbrella: 5-fold manual open, UV-blocking fabric + black vinyl backing, folding length: 19cm; open diameter: 92cm • Fan: ABS material, 3 wind speeds, 64*35*133mm, with light indicator • Colors: Pink, red, blue, light green",
+   "colors": [
+    "Pink",
+    "red",
+    "blue",
+    "light green"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6282,6 +6985,14 @@
    "image": "/catalog/assets/catalog-media/source-offer-TSX00-1.jpg",
    "image_status": "source_verified",
    "description_th": "Capacity: 10000mAh, 68*147*20mm, with phone stand & lanyard & screen indication; • input: USB cable, type-c & micro usb port; • output: iPhone, Type-C & Andorid cables, 2 USB ports • Size: 14.7*6.8cm • Colors: Black, blue, red, orange, pink, white",
+   "colors": [
+    "Black",
+    "blue",
+    "red",
+    "orange",
+    "pink",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6321,6 +7032,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT00-3.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: One button to open, 316 stainless steel liner, 450ml, temperature display • Pen: Metal, round, black gel ink • Colors: Black, red, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6366,6 +7083,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT00-4.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: One button to open, 316 stainless steel liner, 450ml, temperature display • Pen: Metal, round, black gel ink • Colors: Black, red, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6417,6 +7140,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT00-5.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: One button to open, 316 stainless steel liner, 450ml, temperature display • Pen: Metal, round, black gel ink • Colors: Black, red, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6462,6 +7191,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT01-4.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum cup: One button to open, 316 stainless steel liner, 450ml, temperature display • Pen: Metal, round, black gel ink • Colors: Black, red, blue, gold",
+   "colors": [
+    "Black",
+    "red",
+    "blue",
+    "gold"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6495,6 +7230,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT02-2.jpg",
    "image_status": "source_verified",
    "description_th": "Vacuum flask: 316L, 350ml, 22*6.5cm, temperature display, with Tea Infuser • Umbrella: 10K, 105*62cm, automatic open & close, stainless steel stand • Colors: Black, red, blue",
+   "colors": [
+    "Black",
+    "red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6534,6 +7274,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT05-3.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Blue, white, black, orange, red",
+   "colors": [
+    "Blue",
+    "white",
+    "black",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6567,6 +7314,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT06-2.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Blue, white, orange, red",
+   "colors": [
+    "Blue",
+    "white",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6606,6 +7359,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT06-3.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Blue, white, orange, red",
+   "colors": [
+    "Blue",
+    "white",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6651,6 +7410,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT07-4.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Blue, white, orange",
+   "colors": [
+    "Blue",
+    "white",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6702,6 +7466,12 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT07-5.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Blue, white, black, orange",
+   "colors": [
+    "Blue",
+    "white",
+    "black",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6735,6 +7505,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT13-2.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Power bank: 5000mAh, 97*65*16mm, wireless, magnetic (for magnet-compatible phones only) • Colors: Blue, white, black, orange, red",
+   "colors": [
+    "Blue",
+    "white",
+    "black",
+    "orange",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6774,6 +7551,13 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT15-3.jpg",
    "image_status": "source_verified",
    "description_th": "Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Power bank: 5000mAh, 97*65*16mm, wireless, magnetic (for magnet-compatible phones only) • Colors: Headset.Red, blue, black, silver; Power bank: Red, blue, black, gray; • Mug: Re",
+   "colors": [
+    "Headset.Red",
+    "blue",
+    "black",
+    "silver; Power bank: Red",
+    "gray;"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6806,6 +7590,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT17-2.jpg",
    "image_status": "source_verified",
    "description_th": "Coffee mug: Around 510ml, 90*170*70mm, SUS304+PP silicon, temperature display lid • 6 in 1 charging stand: Charging for Smart Watch, Earphone, iPhone, Android, Type-C phones; Support QI wireless charging; Input voltage: 5V-2A; Output power: 10-15W; Size: 230*9",
+   "colors": [
+    "White",
+    "black",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6838,6 +7627,11 @@
    "image": "/catalog/assets/catalog-media/source-offer-TTT18-2.jpg",
    "image_status": "source_verified",
    "description_th": "Coffee mug: Around 510ml, 90*170*70mm, SUS304+PP silicon, temperature display lid • Phone holder: Foldable, ABS+silicon, folding size: 110*70*39mm, expand size: 116*70*125mm (can extend 30mm higher) • Colors: White, black, red, blue (phone holder in blue set i",
+   "colors": [
+    "White",
+    "black",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6893,6 +7687,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TYD0162.jpg",
    "image_status": "source_verified",
    "description_th": "Clothes steamer: 12.8*6.2*8.4cm, dry and wet ironing, 170℃ constant temperature, voltage:220V, 50Hz. Power supply: Plug-in use. • Vacuum flask: 450ml, 304 stainless steel liner, temperature display • Colors: White",
+   "colors": [
+    "White"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -6962,6 +7759,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TYD0262.jpg",
    "image_status": "source_verified",
    "description_th": "Clothes steamer: 12.8*6.2*8.4cm, dry and wet ironing, 170℃ constant temperature, voltage:220V, 50Hz. Power supply: Plug-in use. • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: White",
+   "colors": [
+    "White"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -7020,6 +7820,9 @@
    "image": "/catalog/assets/catalog-media/source-offer-TYD0363.jpg",
    "image_status": "source_verified",
    "description_th": "Clothes steamer: 12.8*6.2*8.4cm, dry and wet ironing, 170℃ constant temperature, voltage:220V, 50Hz. Power supply: Plug-in use. • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: White",
+   "colors": [
+    "White"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -7408,6 +8211,10 @@
    ],
    "image_status": "missing",
    "description_th": "Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Tea mug: 350ml, 14*10.5cm, ceramic & wood, with tea infuser • Colors: Red, blue, black (Neck massager is in white color only)",
+   "colors": [
+    "Red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -7557,6 +8364,10 @@
    ],
    "image_status": "missing",
    "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Smart bracelet: Test health datas, 90mAh, message vibration reminder, IP65 waterproof • Colors: Black, white",
+   "colors": [
+    "Black",
+    "white"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -7648,6 +8459,9 @@
    ],
    "image_status": "missing",
    "description_th": "6 in 1 charging stand: Charging for Smart Watch, Earphone, iPhone, Android, Type-C phones; Support QI wireless charging; Input voltage: 5V-2A; Output power: 10-15W; Size: 230*90*57mm; Net weight: 205g. • Neck massager: 4 massage modes & 15 levels, low pulse, c",
+   "colors": [
+    "Black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -7708,6 +8522,9 @@
    ],
    "image_status": "missing",
    "description_th": "6 in 1 charging stand: Charging for Smart Watch, Earphone, iPhone, Android, Type-C phones; Support QI wireless charging; Input voltage: 5V-2A; Output power: 10-15W; Size: 230*90*57mm; Net weight: 205g. • Earbuds: Wireless, bluetooth, with charging stand, 56*44",
+   "colors": [
+    "Black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -7762,6 +8579,9 @@
    ],
    "image_status": "missing",
    "description_th": "6 in 1 charging stand: Charging for Smart Watch, Earphone, iPhone, Android, Type-C phones; Support QI wireless charging; Input voltage: 5V-2A; Output power: 10-15W; Size: 230*90*57mm; Net weight: 205g. • Smart bracelet: Test health datas, 90mAh, message vibrat",
+   "colors": [
+    "Black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -7821,6 +8641,9 @@
    ],
    "image_status": "missing",
    "description_th": "Car sunshade umbrella: Material:Titanium silver pongee fabric; Size: 62*113cm; Triple-folding; With storage bag • Car phone holder: Material:ABS+PC; Size:93*85*66mm; Support size of the phone:4.6-7 inch • Colors: As picture",
+   "colors": [
+    "As picture"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -7888,6 +8711,11 @@
    ],
    "image_status": "missing",
    "description_th": "Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Bottle: Glass, 350ml, 20*6.5cm, temperature display • Colors: Black, red, gray",
+   "colors": [
+    "Black",
+    "red",
+    "gray"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8296,6 +9124,10 @@
    ],
    "image_status": "missing",
    "description_th": "Hair dryer: 23*12*7cm, strong / soft / cold wind switch, 50HZ, 220V, 1000W, 1.8m power cord • Oral irrigator: 200ML, ABS+PP, 1200mAh, rechargeable, with 4 kinds nozzle. • Colors: Red, black, blue (Oral irrigator is in white color only)",
+   "colors": [
+    "Red",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8353,6 +9185,10 @@
    ],
    "image_status": "missing",
    "description_th": "Electric toothbrush: 3.7V, 0.7W, 500mAh, 22.8*2.3cm, 6 modes, smart stop, waterproof, type-c charging • Oral irrigator: 200ML, ABS+PP, 1200mAh, rechargeable, with 4 kinds nozzle. • Colors: Red, black, white (Oral irrigator is in white color only)",
+   "colors": [
+    "Red",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8444,6 +9280,11 @@
    ],
    "image_status": "missing",
    "description_th": "Massage gun: 132*134*50mm(excluding massage tool), four kinds of massage tools, 1800mAh, Type-C input port • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Black, red, orange, blue (Neck ma",
+   "colors": [
+    "Black",
+    "red",
+    "orange"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8581,6 +9422,12 @@
    "moq": 100,
    "image_status": "missing",
    "description_th": "Mug: Ceramic, 350ml, 8*8cm • Heating pad: Can heat to onstant temperature around 55℃, 220V, 50Hz, 16W, toughened glass panel • Colors: White, pink, red, green",
+   "colors": [
+    "White",
+    "pink",
+    "red",
+    "green"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8648,6 +9495,12 @@
    ],
    "image_status": "missing",
    "description_th": "Power bank notebook: A5, wireless charging, 10000mAh, with 2 usb outputs, 1 micro usb input, 4 lights power indicator, 32G USB flash drive • Vacuum flask: 304 stainless steel liner, 450ml • Colors: Blue, gold, brown, black",
+   "colors": [
+    "Blue",
+    "gold",
+    "brown",
+    "black"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8782,6 +9635,10 @@
    ],
    "image_status": "missing",
    "description_th": "Power bank notebook: A5, wireless charging, 8000mAh, light up logo, with 3 outputs, 1 usb input, led light indicator, 32G USB flash drive • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: No",
+   "colors": [
+    "Notebook: Black",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8842,6 +9699,13 @@
    ],
    "image_status": "missing",
    "description_th": "Power bank notebook: Wireless & cable charging, storage, 8000mah, 32gb usb flash drive • Neck massage: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Notebook: Red, light blue, gray, light green, pink, o",
+   "colors": [
+    "Notebook: Red",
+    "light blue",
+    "gray",
+    "light green",
+    "pink"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8917,6 +9781,12 @@
    ],
    "image_status": "missing",
    "description_th": "Light humidifier: 400ml, 7 colors LED light, Type-C charging port, Size: 172*68*68mm • Vacuum flask: 450ml, 304 stainless steel liner, temperature display • Colors: White, orange, blue, red",
+   "colors": [
+    "White",
+    "orange",
+    "blue",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -8972,6 +9842,11 @@
    ],
    "image_status": "missing",
    "description_th": "Light humidifier: 400ml, 7 colors LED light, Type-C charging port, Size: 172*68*68mm • Umbrella: 8K, automatic open & close, stainless steel stand, unfolded size: 108*53.5cm • Colors: Orange, blue, red",
+   "colors": [
+    "Orange",
+    "blue",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -9027,6 +9902,11 @@
    ],
    "image_status": "missing",
    "description_th": "Light humidifier: 400ml, 7 colors LED light, Type-C charging port, Size: 172*68*68mm • Massage gun: 132*134*50mm(excluding massage tool), four kinds of massage tools, 1800mAh, Type-C input port • Colors: Orange, blue, red",
+   "colors": [
+    "Orange",
+    "blue",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -9308,6 +10188,10 @@
    ],
    "image_status": "missing",
    "description_th": "Sport bottle: Polypropylene, 450ml, direct drinking, U shape lock, with sling • Towel: 100% cotton, 27*110cm, 130g • Colors: Blue, pink",
+   "colors": [
+    "Blue",
+    "pink"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -9362,6 +10246,10 @@
    ],
    "image_status": "missing",
    "description_th": "Clothes steamer: 12.8*6.2*8.4cm, dry and wet ironing, 170℃ constant temperature, voltage:220V, 50Hz. Power supply: Plug-in use. • Massage gun: 132*134*50mm(excluding massage tool), four kinds of massage tools, 1800mAh, Type-C input port • Colors: Black, red",
+   "colors": [
+    "Black",
+    "red"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
@@ -9416,6 +10304,11 @@
    ],
    "image_status": "missing",
    "description_th": "Clothes steamer: 12.8*6.2*8.4cm, dry and wet ironing, 170℃ constant temperature, voltage:220V, 50Hz. Power supply: Plug-in use. • Hair dryer: 23*12*7cm, strong / soft / cold wind switch, 50HZ, 220V, 1000W, 1.8m power cord • Colors: Black, red, blue",
+   "colors": [
+    "Black",
+    "red",
+    "blue"
+   ],
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",

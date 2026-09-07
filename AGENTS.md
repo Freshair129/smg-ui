@@ -142,12 +142,12 @@ ITEM POOL  src/data/catalogItems.ts  (CatalogItem[])
 │   ├── 16 PM singles  PM-BOTTLE-LED PM-FAN PM-TMB PM-UMB (eco-friendly) · PM-FLASH PM-PEN PM-TEA-INF (classic-oriental)
 │   │                  PM-AROMA PM-CFMUG PM-CUTLERY PM-MSG PM-MUG-HEAT (novelty-self-care) · PM-DESK-MAT PM-NB PM-PB10K PM-SPK (executive-smart-tech)
 │   └── 6 core sets    TDD03-2 (Select) · TGC06-4 (Signature) · TMK0215 (Signature) · TWL01-8 (Select) · XMAS-2026 / NY-2027 (Reach, no price yet)
-├── supplier layer (public/catalog/data/supplier-items.json, lazy) — 216 public-eligible offers of 1,110
+├── supplier layer (public/catalog/data/supplier-items.json, lazy) — 216 public-eligible offers of 1,110; counts in SUPPLIER_LAYER_META
 └── partner layer  B—Line design pieces (unifiedBLineCatalog.ts) — shown only under #bline
 
 Lens A  #catalog            เริ่มจากผู้รับ : gifting brief ?recipient=&occasion=&tier=&qty= (ให้ใคร→เพื่ออะไร→ระดับไหน→จำนวน) → recommended sets → singles by theme
 Lens B  #catalog/category   หมวดหมู่สินค้า : 7 standard categories (L1) → 35 product families (L2)
-Views   grid (default) · list (?view=list, spec table) · index (category / theme sections)
+Views   grid (default) · list (?view=list, spec table) · index (category / theme sections) · search (?q=, all layers)
 Deep link  #catalog/item/<code>   Partner  #bline
 ```
 

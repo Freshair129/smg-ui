@@ -196,6 +196,14 @@ for (const l of pricelist.offer_product_links) {
 
 const clean = s => (s ?? '').replace(/\s*\n+\s*/g, ' • ').replace(/\s+/g, ' ').trim()
 
+/** "Colors: Green, pink, gray" as written in supplier descriptions → ['Green', 'pink', 'gray'] */
+const parseColors = s => {
+  const m = /colou?rs?\s*:\s*([^•\n]+)/i.exec(s ?? '')
+  if (!m) return undefined
+  const list = [...new Set(m[1].split(/[,/]/).map(c => c.trim()).filter(c => c && c.length <= 24))].slice(0, 8)
+  return list.length ? list : undefined
+}
+
 let supplierSkippedNotPublic = 0
 const supplierItems = []
 for (const o of pricelist.catalog_offers) {
@@ -228,6 +236,7 @@ for (const o of pricelist.catalog_offers) {
     image,
     image_status,
     description_th: description ? description.slice(0, 260) : undefined,
+    colors: parseColors(o.description),
     branding: o.branding || undefined,
     provenance: { source_file: 'data-pipeline/02_prepared/pricelist_master.json', source_key: o.code }
   }
@@ -242,13 +251,26 @@ supplierItems.sort((a, b) => (a.image_status === 'missing') - (b.image_status ==
 const stamp = new Date().toISOString()
 const strip = items => items.map(i => { const o = { ...i }; for (const k of Object.keys(o)) if (o[k] === undefined) delete o[k]; return o })
 
+const count = (arr, f) => arr.filter(f).length
+const supplierMeta = {
+  count: supplierItems.length,
+  with_image: count(supplierItems, i => i.image_status !== 'missing'),
+  priced: count(supplierItems, i => i.price_status === 'tiered'),
+  source_total: pricelist.catalog_offers.length,
+  generated_at: stamp
+}
+
 const header = `/**
  * GENERATED FILE — do not edit by hand. Run: npm run build:catalog
  * Source: ${PRICELIST.replace(/\\\\/g, '/')} (schema ${pricelist.metadata?.schema_version ?? '?'}, run ${pricelist.metadata?.source_run?.run_id ?? '?'})
  * Generated: ${stamp}
  * Core layer only: ${coreSingles.length} PM singles + ${coreSetItems.length} core sets. Media is overlaid from coreMedia.ts.
+ * The supplier layer lives in public/catalog/data/supplier-items.json; its counts are exported here so the UI can
+ * advertise it before loading it.
  */
 import type { CatalogItemSeed } from './catalogTaxonomy'
+
+export const SUPPLIER_LAYER_META = ${JSON.stringify(supplierMeta, null, 2)} as const
 
 export const CORE_ITEMS: CatalogItemSeed[] = ${JSON.stringify(strip([...coreSingles, ...coreSetItems]), null, 2)}
 `
@@ -269,7 +291,6 @@ await writeFile(OUT_SUPPLIER, JSON.stringify({
   items: strip(supplierItems)
 }, null, 1), 'utf8')
 
-const count = (arr, f) => arr.filter(f).length
 console.log(`core singles      ${coreSingles.length}`)
 console.log(`core sets         ${coreSetItems.length}  (priced ${count(coreSetItems, i => i.price_status === 'tiered')})`)
 console.log(`supplier eligible ${supplierItems.length} / ${pricelist.catalog_offers.length}  (image ${count(supplierItems, i => i.image_status !== 'missing')}, priced ${count(supplierItems, i => i.price_status === 'tiered')}, skipped ${supplierSkippedNotPublic})`)

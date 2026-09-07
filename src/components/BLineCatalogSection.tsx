@@ -30,7 +30,9 @@ import {
   familyLabel,
   categoryLabel,
   formatBaht,
-  imageStatusLabel
+  imageStatusLabel,
+  matchesQuery,
+  SUPPLIER_LAYER_META
 } from '../data/catalogItems'
 import { BLINE_PRODUCTS, BLineProduct } from '../data/unifiedBLineCatalog'
 
@@ -141,6 +143,7 @@ function matchesFilters(item: CatalogItem, filters: Record<string, string> | und
   }
   if (filters.tier && item.kind !== 'single' && item.tier?.toLowerCase() !== filters.tier.toLowerCase()) return false
   if (filters.occasion && occasionActive && !(item.occasions ?? []).includes(filters.occasion as OccasionSlug)) return false
+  if (filters.q && !matchesQuery(item, filters.q)) return false
   return true
 }
 
@@ -263,6 +266,15 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
   const supplierOn = filters?.supplier === '1'
   const brief = useMemo(() => briefOf(filters), [filters])
 
+  // Search box: the draft is local; the committed query lives in the hash (?q=) after a short pause.
+  const query = filters?.q ?? ''
+  const searching = query.length > 0
+  const [qDraft, setQDraft] = useState(query)
+  const qTimer = useRef<number | undefined>(undefined)
+  useEffect(() => {
+    setQDraft(query)
+  }, [query])
+
   useEffect(() => {
     if (!supplierOn || supplierItems || supplierLoading) return
     setSupplierLoading(true)
@@ -288,7 +300,8 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
   const visible = useMemo(() => routed.filter(item => matchesFilters(item, filters, occasionActive)), [routed, filters, occasionActive])
 
   const isIndex = !listRoute.partner && !listRoute.value && (listRoute.axis === undefined || listRoute.axis === 'category')
-  const view: CatalogView = listRoute.view ?? (isIndex ? 'index' : 'grid')
+  const view: CatalogView = listRoute.view ?? (isIndex && !searching ? 'index' : 'grid')
+  const supplierVisible = useMemo(() => visible.filter(i => i.layer === 'supplier'), [visible])
 
   // ---- deep link: open the modal for #catalog/item/CODE --------------------
   useEffect(() => {
@@ -450,7 +463,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
     if (lens !== 'recipient' || !isIndex) return []
     const occ = brief.occasion as OccasionSlug | undefined
     return visible
-      .filter(i => i.kind !== 'single')
+      .filter(i => i.kind !== 'single' && i.layer === 'core')
       .sort((a, b) => {
         const ao = occ && (a.occasions ?? []).includes(occ) ? 0 : 1
         const bo = occ && (b.occasions ?? []).includes(occ) ? 0 : 1
@@ -472,6 +485,11 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
   // ---- handlers ------------------------------------------------------------------
   const setView = (v: CatalogView) => navigate({ ...listRoute, view: v === 'grid' ? undefined : v })
   const toggleFilter = (key: string, on: boolean, value = '1') => navigate(withFilter(listRoute, key, on ? value : null))
+  const onQueryChange = (v: string) => {
+    setQDraft(v)
+    window.clearTimeout(qTimer.current)
+    qTimer.current = window.setTimeout(() => navigate(withFilter(listRoute, 'q', v.trim() || null)), 350)
+  }
   const setBrief = (key: (typeof BRIEF_KEYS)[number], value: string | null) => navigate(withFilter(listRoute, key, value))
   const clearBrief = () => {
     let r = listRoute
@@ -540,6 +558,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
           </span>
         )}
         {item.layer === 'supplier' && <span className="bline-layer-tag">ผู้ผลิต</span>}
+        {item.image && item.image_status === 'generated_from_source' && <span className="bline-img-tag">ภาพสร้างสรรค์</span>}
       </div>
       <div className="bline-card-meta">
         <div className="bline-card-text">
@@ -706,7 +725,30 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
     </section>
   )
 
-  const supplierCount = supplierItems ? supplierItems.filter(isPublicItem).length : null
+  const supplierCount = supplierItems ? supplierItems.filter(isPublicItem).length : SUPPLIER_LAYER_META.count
+
+  const renderEmpty = () => (
+    <p className="bline-empty">
+      ไม่มีรายการที่ตรงกับตัวกรอง
+      {!supplierOn && !listRoute.partner && (
+        <>
+          {' — '}
+          <button className="bline-link-btn" onClick={() => toggleFilter('supplier', true)}>
+            ลองรวมแคตตาล็อกผู้ผลิต ({SUPPLIER_LAYER_META.count})
+          </button>
+        </>
+      )}
+    </p>
+  )
+
+  const renderSupplierBanner = () => (
+    <div className="bline-supplier-banner">
+      <span>
+        แคตตาล็อกผู้ผลิต: อีก <b>{SUPPLIER_LAYER_META.count}</b> รายการจาก {SUPPLIER_LAYER_META.source_total.toLocaleString('en-US')} (ภาพต้นฉบับ {SUPPLIER_LAYER_META.with_image} · ราคาอ้างอิง {SUPPLIER_LAYER_META.priced}) — ยังไม่ผ่านการยืนยันเป็นสินค้า core
+      </span>
+      <button className="pill-btn" onClick={() => toggleFilter('supplier', true)}>แสดงรวม</button>
+    </div>
+  )
 
   return (
     <section className={`bline-section ${dark ? 'dark-theme' : 'light-theme'}`}>
@@ -770,6 +812,22 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
           {supplierLoading && <em className="bline-loading"> · กำลังโหลดแคตตาล็อกผู้ผลิต…</em>}
         </span>
         <div className="bline-filter-pills">
+          {!listRoute.partner && (
+            <span className="bline-search">
+              <input
+                type="search"
+                value={qDraft}
+                onChange={e => onQueryChange(e.target.value)}
+                placeholder="ค้นหา รหัส / ชื่อ / ประเภท"
+                aria-label="ค้นหาในแคตตาล็อก"
+              />
+              {qDraft && (
+                <button type="button" aria-label="ล้างคำค้น" onClick={() => onQueryChange('')}>
+                  ×
+                </button>
+              )}
+            </span>
+          )}
           {lens === 'recipient' && !isIndex && (
             <>
               <span className="pill-label">ระดับ:</span>
@@ -842,7 +900,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                 onClick={() => toggleFilter('supplier', !supplierOn)}
                 title="รวมรายการจากแคตตาล็อกผู้ผลิตที่มีภาพต้นฉบับหรือราคาอ้างอิง"
               >
-                แคตตาล็อกผู้ผลิต{supplierCount !== null ? ` (${supplierCount})` : ''}
+                แคตตาล็อกผู้ผลิต ({supplierCount})
               </button>
             </>
           )}
@@ -874,6 +932,8 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
             </span>
           </div>
         )}
+
+        {!listRoute.partner && !supplierOn && (lens === 'standard' || searching) && renderSupplierBanner()}
 
         {view === 'index' && isIndex ? (
           <>
@@ -910,14 +970,28 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                 <div className="bline-grid">{group.items.slice(0, 4).map(renderCard)}</div>
               </section>
             ))}
-            {indexGroups.length === 0 && recommendedSets.length === 0 && <p className="bline-empty">ไม่มีรายการที่ตรงกับตัวกรอง</p>}
+            {lens === 'recipient' && supplierOn && supplierVisible.length > 0 && (
+              <section className="bline-index-section">
+                <div className="bline-index-head">
+                  <div>
+                    <h3>จากแคตตาล็อกผู้ผลิต</h3>
+                    <p>รายการที่มีภาพต้นฉบับหรือราคาอ้างอิง ยังไม่ผ่านการยืนยันเป็นสินค้า core — เหมาะกับการเริ่มคุยหรือขอตัวอย่าง</p>
+                  </div>
+                  <button className="bline-index-more" onClick={() => navigate({ lens: 'standard', axis: 'category', partner: false, filters })}>
+                    ดูในหมวดหมู่สินค้า ({supplierVisible.length}) →
+                  </button>
+                </div>
+                <div className="bline-grid">{supplierVisible.slice(0, 8).map(renderCard)}</div>
+              </section>
+            )}
+            {indexGroups.length === 0 && recommendedSets.length === 0 && supplierVisible.length === 0 && renderEmpty()}
           </>
         ) : view === 'list' ? (
-          visible.length ? renderList(visible) : <p className="bline-empty">ไม่มีรายการที่ตรงกับตัวกรอง</p>
+          visible.length ? renderList(visible) : renderEmpty()
         ) : (
           <>
             <div className="bline-grid">{visible.map(renderCard)}</div>
-            {visible.length === 0 && <p className="bline-empty">ไม่มีรายการที่ตรงกับตัวกรอง</p>}
+            {visible.length === 0 && renderEmpty()}
           </>
         )}
       </main>
@@ -1050,6 +1124,14 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                 </p>
               )}
               {selected.branding && <p className="bline-modal-desc bline-modal-branding">วิธีใส่โลโก้: {selected.branding.replace(/,/g, ' · ')}</p>}
+              {selected.colors && selected.colors.length > 0 && (
+                <div className="bline-chip-row" aria-label="สีที่มี">
+                  <span className="pill-label">สี:</span>
+                  {selected.colors.map(c => (
+                    <span key={c} className="bline-chip">{c}</span>
+                  ))}
+                </div>
+              )}
 
               {(selected.dimensions_cm || selected.unit_weight_kg || selected.lead_time_days) && (
                 <div className="bline-specs-row">
@@ -1099,6 +1181,9 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                           </span>
                         ))}
                       </div>
+                      {selected.layer === 'supplier' && (
+                        <div className="bline-calc-note">ราคาอ้างอิงจากรายการราคาผู้ผลิต ยังไม่ผ่านการยืนยัน — ใบเสนอราคาจะยืนยันอีกครั้ง</div>
+                      )}
                     </>
                   ) : (
                     <div className="bline-calc-result-row">

@@ -2,7 +2,7 @@
 **Project:** SmartGift Web UI (`web-ui-smg`)  
 **Machine-readable companion:** [`src/data/catalogTaxonomy.ts`](../src/data/catalogTaxonomy.ts)  
 **Sources:** `business-01-smart-gift/data-pipeline/02_prepared/{smartgift_catalog_master, pricelist_master, ProductMaster, CatalogOffer, BundleOffer}.json`, `docs/business/SMARTGIFT-PRODUCT-TAXONOMY-OFFER-RULES-2026-08.md`, `docs/business/2026-09-07-catalog-listing.md`, `PRODUCT.md`  
-**Version:** `1.2.0` · **Date:** 2026-09-07 · **Status:** P0–P3 implemented (taxonomy, generator, lens toggle, routes, index/L1/L2, list view, gifting brief, set cards/BOM); supplier layer wired as a preview toggle
+**Version:** `1.3.0` · **Date:** 2026-09-07 · **Status:** P0–P4 implemented (taxonomy, generator, lens toggle, routes, index/L1/L2, list view, gifting brief, set cards/BOM, supplier layer with search)
 
 ---
 
@@ -207,6 +207,7 @@ UI: หน้า `#catalog/category/gift-sets` มี pill "มีในชุ�
 | `grid` (default) | ทุกคน | `.bline-card` 4:3: ภาพ → ชื่อไทย → บรรทัดรอง (family · "เริ่ม ฿185 @1,000" หรือ "สอบถามราคา") · badge 3D/ชุด/ภาพสร้างสรรค์ |
 | `list` | ผู้จัดซื้อ / ฝ่ายขาย | ตาราง: รหัส · ชื่อ · หมวด/กลุ่ม · ขนาด · น้ำหนัก · ราคา @10 / @100 / @1000 · MOQ · lead time · ภาพ (สถานะ) — ใช้ `overflow-x:auto`, `tabular-nums` |
 | `index` | ผู้ที่ยังไม่รู้จะเริ่มจากไหน | ทุก L1 (หรือทุก tier ใน Lens A) แสดง 4 ชิ้นแรก + "ดูทั้งหมด (n)" |
+| ค้นหา (`?q=`) | ทุกคน | ช่องค้นหาในแถบ section label ค้นทุก token ใน haystack (รหัส ชื่อไทย/อังกฤษ คำอธิบาย หมวด กลุ่ม + alias สี ชิ้นในชุด) ผลลัพธ์แสดงเป็น grid ข้าม lens; ถ้าไม่พบและยังไม่เปิด supplier จะชวนเปิด |
 
 ---
 
@@ -250,7 +251,7 @@ src/data/catalogTaxonomy.ts (มือ, เขียนแล้ว)  +  catalog
 | Core singles (16) | `srp_reference_products` / `canonical_products` | ✓ | ราคา 8 ขั้นจาก SSOT เท่านั้น |
 | Core sets (6) | `seasonal_offers` | ✓ | ราคา 3 ขั้น + BOM |
 | Bundles (11 PKG) | `pkg` | เฉพาะ `quote_ready` (วันนี้ = 0) | แสดงเป็น "โครงแพ็กเกจ" ไม่มีราคา ถ้าจะโชว์ต้องติด "ยังไม่ยืนยันราคา" |
-| Supplier singles (30) / sets (1,080) | `catalog_offers` + `offer_product_links` | ซ่อนหลัง toggle "แคตตาล็อกผู้ผลิต" | ผ่าน `isPublicItem()`; 143 รายการมีภาพต้นฉบับใน `public/catalog/assets/catalog-media` |
+| Supplier singles (30) / sets (1,080) | `catalog_offers` + `offer_product_links` → `public/catalog/data/supplier-items.json` (216 รายการ) | ซ่อนหลัง toggle "แคตตาล็อกผู้ผลิต"; banner ชวนเปิดใน Lens B และตอนค้นหา | gate ในตัว generator: ภาพต้นฉบับ (152) หรือราคาอ้างอิง (107); `SUPPLIER_LAYER_META` ใน generated file ให้ UI แสดงจำนวนก่อนโหลด |
 
 **ห้าม** import `pricelist_master.json` ทั้งไฟล์ (6.4 MB มี cost) เข้า bundle — generate เฉพาะฟิลด์สาธารณะ
 
@@ -283,7 +284,7 @@ src/data/catalogTaxonomy.ts (มือ, เขียนแล้ว)  +  catalog
 | **P1 ✅** | `scripts/build-catalog-items.mjs` (`npm run build:catalog`) → `src/data/catalogItems.generated.ts` (core) + `public/catalog/data/supplier-items.json` (supplier, public-eligible); `catalogItems.ts` = pool; media แยกไว้ใน `coreMedia.ts`; `smartGiftCatalogData.ts` กลายเป็น adapter ไม่มีราคาพิมพ์มือ | ข้อมูลถูกต้อง 16 + 6 |
 | **P2 ✅** | Lens toggle ใน `.bline-nav`, route prefix match ใน `App.tsx`, หน้า `#catalog/category` (index) และ L1/L2, view `list`, deep link `#catalog/item/<code>` | **ดูแบบหมวดหมู่มาตรฐานได้** |
 | **P3 ✅** | Gifting brief 4 ข้อบน Lens A index (ให้ใคร→เพื่ออะไร→ระดับไหน→จำนวน) เก็บใน hash, ชุดที่เข้ากับโจทย์เรียงก่อน, composition chips บนการ์ดชุด, BOM/reverse BOM ใน modal, brief แนบใน modal + คัดลอกสรุป | ขายเป็น "ชุด" ได้ |
-| **P4 (preview)** | Supplier layer หลัง pill "แคตตาล็อกผู้ผลิต" — lazy fetch, 216 รายการที่มีภาพต้นฉบับหรือราคาอ้างอิง, สถานะภาพ + "สอบถามราคา" | ใช้ catalog 1,110 รายการที่มีอยู่ (ที่เหลือ 894 ยังไม่ผ่าน gate) |
+| **P4 ✅** | Supplier layer หลัง pill "แคตตาล็อกผู้ผลิต (216)" — lazy fetch, gate = ภาพต้นฉบับหรือราคาอ้างอิง (894 รายการยังไม่ผ่าน), banner แนะนำใน Lens B และตอนค้นหา, section "จากแคตตาล็อกผู้ผลิต" ใน Lens A, ช่องค้นหา `?q=` ครอบคลุมรหัส/ชื่อ/กลุ่มสินค้า/alias/สี/ส่วนประกอบ, ป้าย "ภาพสร้างสรรค์" บนการ์ด, สีจาก description, หมายเหตุราคาอ้างอิงยังไม่ยืนยันใน modal | ใช้ catalog 1,110 รายการที่มีอยู่ |
 | **P5** | Bundle builder จาก PKG (เมื่อ quote_ready) + brief form ส่งไป CRM ฝั่ง zuri-ai | ปิด loop ขอใบเสนอราคา |
 
 ---
@@ -305,6 +306,7 @@ src/data/catalogTaxonomy.ts (มือ, เขียนแล้ว)  +  catalog
 
 | Version | Date | Summary | Agent |
 |---|---|---|---|
+| 1.3.0 | 2026-09-07 | P4: supplier layer surfaced (banner, Lens A section, meta counts), search `?q=`, image tags, colors, reference-price note | Claude |
 | 1.2.0 | 2026-09-07 | P3: gifting brief (recipient/occasion/tier/qty in hash), recommended sets, set composition chips, brief handoff via clipboard | Claude |
 | 1.1.0 | 2026-09-07 | P1+P2 implemented: generator, item pool, lens toggle, routes, index/L1/L2, list view, deep links, supplier preview toggle | Claude |
 | 1.0.0 | 2026-09-07 | โครงสร้าง two-lens; ตาราง L1/L2 พร้อมจำนวนจาก pricelist_master; กติกา derive; item model; routes/views; pipeline; migration + ความคลาดเคลื่อนราคา 8 รายการ | Claude |
