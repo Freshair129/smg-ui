@@ -2756,3 +2756,8 @@ header,
 .collection span { font-family: var(--sg-font-display); }
 .header-quote-btn { background: transparent; border: 1.5px solid currentColor; color: inherit; padding: 4px 12px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; font-family: var(--sg-font-body); }
 .header-quote-btn:hover { background: currentColor; color: #000; }
+
+/* v2 hero: white ground, centred box — keep the ledger below the tray's travel (box spans y 260-820 at 1080p) */
+#outro-info { bottom: 24px; }
+#outro-info strong { font-size: 64px; }
+.collection { font-size: 24px; margin-bottom: 22px; }

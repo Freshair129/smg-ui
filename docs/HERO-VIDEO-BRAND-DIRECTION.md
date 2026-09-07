@@ -2,7 +2,7 @@
 **Project:** SmartGift Web UI (`web-ui-smg`)  
 **Companion to:** [`docs/HERO-VIDEO-SPEC.md`](HERO-VIDEO-SPEC.md) (กลไก scrub, encoding, ffmpeg) — เอกสารนี้เป็นชั้น *creative direction* ที่วางทับสเปกทางเทคนิค  
 **Sources analysed:** `business-01-smart-gift/data-pipeline/02_prepared/*.json`, `output/pdf/smartgift-catalog-adcreative-proof-v0.2.pdf`, `PRODUCT.md`, `docs/business/*`, `logo-smg.jpg`  
-**Version:** `1.0.0` · **Date:** 2026-09-07 · **Status:** design proposal (ยังไม่มีการเปลี่ยนโค้ดหรือวิดีโอในรอบนี้)
+**Version:** `1.3.0b` · **Date:** 2026-09-07 · **Status:** beta — v3 ผลิตและตรวจ local deployment แล้ว; ข้อจำกัด mobile layout บันทึกใน §11.7
 
 ---
 
@@ -304,9 +304,134 @@ Image-to-video, provided frame is the exact first frame. Single continuous later
 2. คุณภาพ: Wan 2.2 14B I2V (ต้อง VRAM มากกว่านี้หรือใช้ Comfy Cloud / partner API หลัง login) หรือ render 1080p แท้
 3. SG-3 Twin Orbit เมื่อ `.glb` ผ่าน owner_approved
 
+## 10. Production log — v2 "drawer box" (2026-09-07, composited, deployed)
+
+Boss brief หลังดู v1: พื้นหลังขาว · กล่อง SmartGift อยู่กลางจอ · เลื่อนซ้าย = ถาดเลื่อนออกทางซ้ายเผยของด้านใน (สุดแค่ครึ่งกล่อง) · เลื่อนขวา = เหมือนกันแต่ของด้านในเป็น mockup ของแบรนด์ลูกค้า · ขอ refinement
+
+| รายการ | ค่าที่ใช้จริง |
+|---|---|
+| วิธีผลิต | **Composite แบบ deterministic** (`scripts/drawer_v2.py`, PIL + ffmpeg) ไม่ใช้ generative video — ควบคุมได้ 100% ว่าของในถาดคือสินค้าจริง, ระยะเลื่อนพอดีครึ่งกล่อง, เฟรมแรกเหมือนกันทุกพิกเซล, motion linear ตรงกับ scrubber |
+| กล่อง (sleeve) | สร้างจากสีส้มที่วัดจากภาพ ad creative (median RGB 235,76,3) + gradient แสง, grain, vignette, ขอบหนา, sheen และ **เดบอส tone-on-tone "SG / SmartGift / THE RIGHT GIFT. THE RIGHT IMPACT."** — พิมพ์บนกล่องเป็น option ปกติของงานจริง |
+| ถาด W (คนรับ/ของจริง) | crop ส่วนในของกล่องจาก `FXD66-3-adcreative-v1.png` (ทัมเบลอร์ + พาวเวอร์แบงก์ + พัดลม) — ครึ่งที่โผล่คือ ทัมเบลอร์ + พาวเวอร์แบงก์ |
+| ถาด E (ลูกค้า) | 4 ช่อง: `udtrucks`, `gmmtv_pb` (ซ่อน) · `gmmtv_tmb`, `truepride` (โผล่) — cut out จาก `public/assets/smartgift/mockups/` ด้วย rembg 2.0.83 วางบนพื้นถาดสีเดียวกัน พร้อม contact shadow |
+| การเคลื่อนไหว | progress 0 → 1 = ถาดออก 0 → 50 % ของความกว้างกล่อง, linear, 120 เฟรม @30 fps = 4.0 s; เงาถาด + เงาขอบ sleeve ทาบบนถาด |
+| Conform | เข้า `scripts/conform.py` เหมือน v1: 1920×1080, `-g 15`, ไม่มีเสียง, faststart; เฟรมแรก mean diff = 0 (ภาพเดียวกันโดยสร้าง) |
+| Deploy | `public/assets/videos/hero_west_receive.mp4`, `hero_east_discover.mp4`, `hero_frame0_poster.jpg` (ทับ v1) · container 8080 rebuild |
+
+### 10.1 ข้อควรระวังเรื่องแบรนด์ลูกค้า
+
+mockup ทั้งชุดเป็น **ภาพจำลอง AI** ไม่ใช่ภาพงานจริง; ตามเอกสาร `docs/business/2026-09-07-client-work-evidence-and-mockups.md` มีหลักฐานงานจริงเฉพาะ UD Trucks และ CP/True ส่วน GMMTV เป็นลูกค้าอันดับ 1 ตามยอดวางบิลแต่ยังไม่มีรูปงาน — v2 จึงเลือกเฉพาะ 3 แบรนด์นี้ และไม่ใช้ Starbucks / One Bangkok / One31 / Iconsiam ที่ยังไม่มีหลักฐานความสัมพันธ์ในระบบ การใช้โลโก้แบรนด์อื่นบนหน้าเว็บสาธารณะควรมีสิทธิ์/หลักฐานก่อน (Taxonomy §9 "Media asset: public-approved")
+
+### 10.2 ปรับต่อได้ทันที (แก้ค่าใน `drawer_v2.py` แล้วรัน ~40 วินาที)
+
+- เปลี่ยนชุดสินค้าในถาด W: ชี้ `AD` ไปยัง ad creative ชุดอื่น (TMK00-4 / FXD6064 / TGC09-3)
+- เปลี่ยนแบรนด์ในถาด E: แก้ `CLIENT_MOCKUPS` (ต้อง cut out ไฟล์ใหม่ด้วย rembg ก่อน)
+- ระยะเลื่อนสูงสุด: ตัวคูณ `0.5` ใน `render_frame()`
+- v1 (Wan 2.2 คลิปมือรับ/push-in) ยังเก็บไว้ที่ `outputs/conformed/` และ `outputs/preview/*_sheet.jpg` เผื่อต้องการสลับกลับ
+
+## 11. Production log — v3
+
+**Revision:** `1.3.0b` · **Updated:** `2026-09-07T22:14:56+07:00,RWANG` · **Status:** beta / approved and locally verified
+
+**Complexity:** C-2 (documentation-driven implementation) · **Risk:** MEDIUM (renderer, media artifacts, local Docker deployment)
+
+**Current result:** ต่อยอด renderer v2, ผลิต MP4 สองคลิปและ poster v3, conform/ตรวจไฟล์, build และ Docker deploy ที่ localhost:8080 แล้ว ตรวจ desktop สองขนาดและ touch/reduced-motion emulation ผ่าน; มีข้อจำกัด layout มือถือเดิมตาม §11.7
+
+### 11.1 Scope and authority
+
+บรีฟเจ้าของแบรนด์รอบ v3 เป็นข้อกำหนดของรอบนี้: พื้นขาวล้วน กล่องปิดกึ่งกลาง ถาดเลื่อนซ้าย/ขวาเพียงครึ่งกล่อง ใช้ภาพที่ระบุเท่านั้น จึงแทนข้อเสนอเก่าเรื่องพื้นมืด/หิน มือยกของ กล้องเคลื่อน และการ rename slot ใน §2–8 เฉพาะงานนี้ ส่วนกลไก scrub และ encoding ยังคงตาม `HERO-VIDEO-SPEC.md` และค่าที่เข้มงวดกว่าในบรีฟ
+
+**[ASSUMPTIONS] — อนุมัติแล้วด้วยข้อความ `approve` ใน task นี้**
+
+1. ใช้ deterministic compositing ต่อยอด `business-01-smart-gift/comfy-hero-video/scripts/drawer_v2.py` ตามเดิม เพิ่มมุมมองและความหนากล่องโดยไม่สร้างภาพสินค้าใหม่
+2. ใช้ตรากล่อง SG พร้อมโบว์ที่ตัดจาก `public/logo-smg.jpg` เป็นเดบอส tone-on-tone กลางฝา ไม่พิมพ์ข้อความ/tagline เพิ่มในวิดีโอ; โลโก้ที่ติดอยู่บนภาพ mockup เดิมคงไว้
+3. คง FXD66-3 และ mockup 4 ชิ้นตามค่าตั้งต้นในบรีฟ ไม่มีการเปลี่ยนแบรนด์หรือชุดสินค้า
+4. ความสูงไม่เกิน 560 px หมายถึงตัวกล่องรวมขอบ/ผนังที่ฉายลงเฟรม ไม่ใช่เฉพาะพื้นผิวฝา; จุดกึ่งกลางของกล่องปิดอยู่ที่ (960, 540) และ sleeve อยู่ตำแหน่งเดิมตลอด
+
+### 11.2 Evidence and proposed visual refinement
+
+ตรวจ `drawer_v2.py` และ `outputs/preview/v2_stills.jpg` พบว่า sleeve เป็นระนาบสี่เหลี่ยมหน้าตรง มีแถบขอบ 8 px และเดบอสจากข้อความฟอนต์ (`SG`, `SmartGift`, tagline); ยังไม่มีการอ่าน `logo-smg.jpg` หรือการฉาย perspective กล่องจริงในสคริปต์ นี่คือฐานของ refinement รอบนี้ ไม่ใช่ข้อสรุปว่า encoding หรือ scrubber เสีย
+
+| ส่วน | v2 ที่ตรวจพบ | ข้อเสนอ v3 |
+|---|---|---|
+| กล้องและรูปทรง | top-down หน้าตรง พื้นผิวระนาบเดียว | near top-down เอียงเล็กน้อยประมาณ 8–10° เห็นผนังหน้าและรอยต่อฝา; ใช้การฉายแบบ orthographic/affine คงที่เพื่อรักษาการเลื่อนเชิงเส้นบนจอ |
+| ขนาด | `BOX_H = 560` สำหรับฝา | ลดขนาดระนาบฝาเท่าที่ต้องใช้เพื่อรวมความหนาแล้วสูง ≤560 px และตรวจเงา/ถาดกับ ledger ในหน้าเว็บ |
+| วัสดุ | gradient, grain, sheen | แลคเกอร์ด้านสีส้มฐาน RGB (235,76,3), highlight กว้างและเบา, microtexture คงที่ทุกเฟรม, bevel แคบ มีน้ำหนักแต่ไม่เงาเหมือนพลาสติก |
+| แบรนด์ | ตัว SG พิมพ์ด้วยฟอนต์ | mask จากตรากล่อง/โบว์จริงใน `logo-smg.jpg`, ขอบรับแสงและเงาร่องเดบอสสัมพันธ์กับแสงซ้ายบน |
+| เงา | เงาสี่เหลี่ยมเบลอและแถบ shadow | เงาสัมผัสฐานกล่อง + เงาทอดบนพื้นขาว + เงาถาดที่เลื่อนตามถาด + เงาปาก sleeve ที่ยึดกับช่องเปิด; ไม่ให้ผลิตภัณฑ์ดูเหมือนลอย |
+| การจัดสินค้า | crop FXD66-3 และ mockup 4 ช่อง | คงแหล่งภาพเดิม, ใช้ transform ร่วมกับพื้นถาดอย่างระมัดระวัง, ตรวจขอบ alpha และความอ่านออกของโลโก้ที่ความละเอียดส่งมอบ |
+
+พื้นนอกวัตถุและเงาต้องเป็น RGB (255,255,255) ในภาพต้นทาง ไม่มี gradient พื้นหลัง, prop, ราคา, คำบรรยาย, เสียง หรือการเคลื่อนกล้อง
+
+### 11.3 Asset and motion contract
+
+| คลิป | เมาส์ / config | ภาพในถาด | ปลายทาง |
+|---|---|---|---|
+| `hero_west_receive.mp4` | ซ้าย / `videoRightUrl` | crop เฉพาะส่วนในกล่องของ `output/catalog-internal/artwork/FXD66-3-adcreative-v1.png`; ต้นฉบับประกอบด้วยทัมเบลอร์ไอวอรี พาวเวอร์แบงก์ส้ม พัดลมขาว | ถาดเลื่อนซ้าย; เห็นสินค้าตามพื้นที่ที่เปิดโดยไม่เปลี่ยนสัดส่วนเพื่อบังคับให้เห็นครบทุกชิ้น |
+| `hero_east_discover.mp4` | ขวา / `videoLeftUrl` | `assets/mockups_cut/udtrucks.png`, `gmmtv_pb.png` อยู่ครึ่งซ่อน; `gmmtv_tmb.png`, `truepride.png` อยู่ครึ่งเปิด ตรวจเทียบ JPG ชื่อเดียวกันในเว็บ | ถาดเลื่อนขวา; ที่ progress=1 ต้องเห็น GMMTV tumbler และ True card holder ชัดเจนทั้งสองชิ้น |
+
+ที่ progress=0 ใช้ภาพกล่องปิดร่วมกันทุกพิกเซล และซ่อนสินค้า/เงาที่อาจทำให้สองคลิปต่างกัน สูตรเลื่อนคือ `dx = sign × 0.5 × box_width × progress` โดย sign=-1 สำหรับ west และ +1 สำหรับ east; ระยะนี้วัดในระนาบกล่องก่อนฉายภาพและตรวจระยะบนจอด้วย ไม่มี easing หรือการเคลื่อนย้อนกลับ
+
+ใช้ 120 เฟรม โดย `progress = frame_index / 119` เพื่อให้เฟรมสุดท้ายถึงระยะครึ่งกล่อง เฟรมสุดท้ายมี PTS 119/30 ≈3.9667 s และ container ยาว 4.0 s ตามสเปก
+
+**Provenance:** ภาพ west เป็น approved ad creative ตามบรีฟ; east ทุกไฟล์เป็นภาพจำลอง AI ไม่ใช่ภาพถ่ายงานส่งมอบ เอกสารหลักฐานลูกค้าปัจจุบันมีภาคผนวกใหม่กว่า §10.1 รวมทั้ง ONE BANGKOK/ICONSIAM และสถานะ CP ที่ต่างจากข้อความสรุปเดิม แต่รอบนี้ยังใช้เฉพาะชุดที่เจ้าของระบุ ไม่ขยายแบรนด์และไม่อ้างว่า mockup เป็นหลักฐานงานจริง
+
+### 11.4 Implementation and impact boundary after approval
+
+1. ปรับ `drawer_v2.py` ต่อจากโครงเดิม แยก output v3 ที่ `comfy-hero-video/outputs/v3/`; เก็บ v2 และสำรองไฟล์เป้าหมายเดิมก่อนแทนที่ เพราะทั้งสอง repository มีงานค้างอยู่แล้ว
+2. ผลิตภาพตรวจ 0%, 50%, 100% เพื่อทบทวนวัสดุ เดบอส การบังสินค้า และพื้นที่ ledger ก่อน render ทั้งคู่; ปรับภาพจนผ่านเกณฑ์ก่อน encode
+3. Encode และตรวจ raw v3 ก่อนเรียก `python scripts/conform.py <west.mp4> <east.mp4>` จาก `comfy-hero-video`; สคริปต์เดิม re-encode และ copy ไปเว็บอัตโนมัติ จึงต้องมี backup และตรวจผล conformed ซ้ำก่อน deploy
+4. สร้าง poster JPG 1920×1080 จากเฟรมแรกของวิดีโอ conformed และ copy ไป `web-ui-smg/public/assets/videos/hero_frame0_poster.jpg`
+5. ใช้ Git Bash โดยตรงสำหรับ `npm run build` แล้ว `docker compose up -d --build` ตามคำสั่งเจ้าของรอบนี้ ซึ่งแทนคำแนะนำ `cmd /c` ใน playbook เดิม
+6. ตรวจ HTTP และหน้าเว็บจริง ส่ง contact sheet สองภาพในบทสนทนาก่อนสรุป แล้วเติมผลที่วัดได้และเส้นทางหลักฐานลง §11 นี้
+
+ขอบเขตไฟล์ implementation คือ renderer, output/หลักฐานตรวจรับที่เกี่ยวข้อง, วิดีโอและ poster 3 ไฟล์ในเว็บ และเอกสารนี้ คงชื่อ config และกลไก React เดิม ไม่แก้ `data-pipeline/` หรือรวมงานค้างของผู้ใช้อื่นเข้า scope
+
+### 11.5 Acceptance and exit criteria — verified results
+
+- [x] ภาพ: พื้นต้นทางขาว RGB 255, sleeve bounds (699,319)–(1221,761) สูง **442 px** กึ่งกลาง (960,540); ผนังหน้าและรอยต่อ, เดบอสจากตรากล่อง SG/โบว์จริง; east เห็น GMMTV และ True ชัดเมื่อเปิดสุด
+- [x] Motion: render schedule 120 เฟรมใช้ linear progress และปัดตำแหน่งระดับ pixel, ระยะสูงสุด **251 px = 50% ของ box width 502 px**; ตรวจภาพ decoded ของขอบถาดที่พ้นเงา sleeve แล้ว (เฟรม 48–119) เคลื่อนทิศเดียวทั้งคู่ ความคลาดจากเส้นตรงสูงสุด **0.496 px**; frame0 ต้นทางเท่ากันทุกพิกเซล
+- [x] Media: FFmpeg decode/showinfo ยืนยัน H.264 High, 1920×1080, yuv420p, 30 fps CFR, 120 เฟรม, 4.0 s, ไม่มี audio; I-frame 8 เฟรมที่ 0,15,…,105; ตรวจ MP4 atoms พบ moov ก่อน mdat
+- [x] Parity: conform รายงาน `frame0_parity_ok = true`, `iframes = 8` ทั้งคู่, JPG grayscale MAD **0.089/255**; decoded RGB lossless MAD **0.103831/255** (<3/255)
+- [x] Poster: JPG 1920×1080 จาก decoded frame0 ของ conformed west, **41,608 bytes**
+- [x] Review: `west_contact_sheet.jpg` / `east_contact_sheet.jpg` จาก conformed MP4 ที่เวลา 0,0.5,1,1.5,2,2.5,3,3.5,3.95 s; จุดสุดท้ายเลือก frame119 / PTS3.9667 s; มี PNG ความละเอียดเต็มทุกจุด
+- [x] Deploy: local `npm run build` และ Docker rebuild/start ผ่าน; GET วิดีโอและ poster HTTP200/hash ตรง; range วิดีโอ HTTP206
+- [x] Browser: scrub ซ้าย/ขวา กลางทาง ขอบ deadzone และ poster รวม 14 จุดที่ 1920×1080/1366×768 ผ่าน; ถาดพ้น ledger ทั้งสองขนาด; touch autoplay สลับคู่และ reduced-motion หยุดนิ่งผ่าน CDP emulation ดูข้อจำกัด §11.7
+- [x] Evidence: `outputs/v3/verification_raw.json`, `verification_conformed.json`, `conform.log`, `delivery_verification.json`, `browser-touch-cdp.json`, `build.log`, `docker-build.log`, contact sheets และ screenshots; เก็บสำเนาไฟล์ส่งมอบสุดท้ายที่ `outputs/v3/delivery/`
+
+**ข้อจำกัดที่ต้องตรวจ ไม่ใช่งานแก้เพิ่ม:** `nginx.conf` cache `/assets/` แบบ immutable หนึ่งปีแม้ชื่อวิดีโอคงเดิม จึงตรวจรับด้วย browser session ใหม่/ปิด cache และเทียบ hash ผ่าน HTTP; browser ที่เคย cache v2 อาจต้อง hard reload ส่วน desktop `onMove` เดิม return ใน deadzone และไม่บังคับ rewind จึงไม่รับรองว่ากระโดดเมาส์เข้ากลางจอแล้วจะกลับ frame0 เสมอ งานนี้ไม่เปลี่ยน interaction
+
+### 11.6 Version diff and execution record
+
+**Approved:** เจ้าของตอบ `approve` ให้ดำเนินการตาม §11 ใน task นี้แล้ว
+
+**Implementation finding:** conform เดิมทำ 120 → 119 เฟรมบน FFmpeg 7.1 เมื่อ scale อยู่ก่อน fps; การทดลองสลับ fps มาก่อน scale ได้ครบ 120 เฟรม จึงเพิ่มการแก้เฉพาะ `conform.py` (LOW) เพื่อรักษาข้อกำหนด 4.0 s และตรวจจำนวนเฟรม/I-frame/parity ก่อน copy หลักฐานและ RCA: `business-01-smart-gift/.brain/rca/2026-09-07-hero-conform-final-frame.md`
+
+`1.2.0 → 1.3.0b`: เพิ่มข้อเสนอ refinement v3, แหล่ง asset, geometry/motion contract และเกณฑ์ตรวจรับ; ปรับ version/status ด้านบนให้ตรง revision ปัจจุบัน คงประวัติ §9–10 ไว้
+
+| Gate | Status | Evidence |
+|---|---|---|
+| Documentation approval | Approved | เจ้าของตอบ `approve` |
+| Renderer / media production | Passed | `outputs/v3/render.log`, source parity/geometry ใน verification JSON |
+| Conform / verification / contact sheets | Passed | 120 frames, 8 I-frames, MAD <3; guard tests ปฏิเสธ frame119, I-frame7 และ parity fail ก่อน copy |
+| Build / Docker / browser | Passed locally, mobile layout limitation | `build.log`, `docker-build.log`, `delivery_verification.json`, `browser-touch-cdp.json` |
+
+### 11.7 Final production notes and limitations
+
+- **ขนาดรอบสุดท้าย:** ภาพทดลองสูง 530 px แตะสัญลักษณ์ SG เหนือ ledger บน 1366×768 จึงลดระนาบฝาจาก 510 เป็น 420 px รวมผนังและการฉายได้ 442 px โดยคงกึ่งกลางเดิม; ตรวจ screenshot ของทั้งสองขนาดซ้ำแล้ว ขอบถาดสุดท้ายอยู่เหนือ ledger
+- **ไฟล์ส่งมอบ:** west **327,408 bytes**, east **322,807 bytes**, poster **41,608 bytes**; bitrate ต่ำกว่า target band เก่าเนื่องจากภาพพื้นขาวและกล้องนิ่ง ใช้ CRF20 หลัง conform ไม่มีการเพิ่ม bitrate เปล่า; ตรวจภาพ decoded แล้ว
+- **Renderer:** คง measure/crop จาก v2 และแถวสินค้าเดิม เพิ่ม affine camera คงที่ (`SHEAR=.045`, `FORESHORTEN=.985`), ผนัง28px, matte microtexture คงที่, logo mask จาก crop (112,182,590,723) ของโลโก้ที่ระบุ, silhouette/contact/cast shadows; ไม่มีโมเดล generative ใหม่หรือสินค้าใหม่
+- **Touch verification:** `agent-browser set device` เปลี่ยน viewport แต่รอบตรวจพบ pointer ยังเป็น fine จึงใช้ Chrome CDP `Emulation.setTouchEmulationEnabled` แล้ว reload; ยืนยัน `(pointer: coarse)=true` และเห็นทั้งสองคลิป autoplay สลับกันภายใน 9 samples ก่อนทดสอบ reduced-motion หยุดที่ frame0; ไม่มี Runtime exception ระหว่างการทดสอบนี้ เป็น browser emulation ไม่ใช่การทดสอบบน iPhone จริง
+- **Mobile layout นอก scope:** CSS เดิมใช้ object-fit cover ในกรอบแนวตั้ง และ ledger ตำแหน่งล่าง จึง crop สินค้าด้านข้าง/ซ้อนกล่องบางส่วนบน viewport 393×852; ไม่รับรอง mobile composition ว่าสมบูรณ์ และไม่ได้แก้ React/CSS ในรอบนี้ หลักฐาน `browser-mobile.png`
+- **Build:** มี warning bundle JS >500 kB เดิม แต่ TypeScript/Vite และ Docker build สำเร็จ; ไม่เปลี่ยน bundle splitting ในงานวิดีโอ
+- **Scope preserved:** ไม่แก้ `data-pipeline/`, config slot, ชื่อไฟล์, React/CSS หรืองานค้างเดิม; สำรอง renderer/conform/เอกสารและไฟล์เว็บก่อนแก้ที่ `outputs/v3/backup-before-v3/`
+- **Version diff:** `1.2.0 → 1.3.0b` เพิ่ม §11 production v3 และหลักฐานตรวจรับ; `drawer_v2.py` v2 → v3 refinement; `conform.py` เปลี่ยนลำดับ fps/scale และกั้น copy เมื่อเฟรม/keyframes/parity ไม่ผ่าน; เปลี่ยนเฉพาะวิดีโอและ poster 3 ไฟล์ในเว็บ
+
 ## CHANGELOG
 
 | Version | Date | Summary | Agent |
 |---|---|---|---|
+| 1.3.0b | 2026-09-07 | Approved and locally deployed v3: source-logo deboss, shallow geometry, matte material/shadows, 442px box, conform final-frame correction; media/HTTP/desktop/touch checks passed, mobile layout caveat recorded | RWANG |
+| 1.2.0 | 2026-09-07 | Production log v2: composited drawer-box clips (white ground, centred box, half-slide reveal, client-mockup tray) replace v1 on the site; brand-evidence caveat | Claude |
 | 1.1.0 | 2026-09-07 | Production log v1: SG-1 rendered locally with Wan 2.2 5B from the approved ad-creative frame; deviations and v2 path recorded | Claude |
 | 1.0.0 | 2026-09-07 | Brand analysis จาก 02_prepared + creative proof PDF; แนวคิด Giving Axis; storyboard SG-1; visual spec; pipeline product-faithful; prompt library SG-1/SG-2/SG-3 | Claude |
