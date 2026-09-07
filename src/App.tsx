@@ -87,8 +87,9 @@ export default function App() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved) as MediaConfigState
-        // A config saved while the template clips were the default keeps pointing at them; move it to the brand clips.
+        // Upgrade saved default hero paths as well as the original template clips; preserve custom media.
         const legacy = (url: string) => typeof url !== 'string' || url.includes(LEGACY_VIDEO_HOST)
+          || /^\/assets\/videos\/hero_(east_discover|west_receive)\.mp4(?:\?.*)?$/.test(url)
         return {
           ...DEFAULT_MEDIA_CONFIG,
           ...parsed,
@@ -184,7 +185,11 @@ export default function App() {
       cancelAnimationFrame(frame)
       frame = requestAnimationFrame(() => {
         const width = innerWidth, dead = Math.max(30, width * .05), center = width / 2
-        if (Math.abs(event.clientX - center) <= dead) return
+        if (Math.abs(event.clientX - center) <= dead) {
+          left.currentTime = 0
+          right.currentTime = 0
+          return
+        }
         active = event.clientX < center - dead ? 'right' : 'left'
         const shown = active === 'left' ? left : right
         const hidden = active === 'left' ? right : left

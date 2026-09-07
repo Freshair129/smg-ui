@@ -62,21 +62,20 @@ export const GALLERY_SLOT_SPEC: MediaSlotInfo = {
 }
 
 /**
- * Hero clips (docs/HERO-VIDEO-BRAND-DIRECTION.md, preset SG-1). Both start from the same frame
- * (the approved FXD66-3 ad creative), which is also the poster shown before the clips load.
- *   mouse RIGHT half → videoLeftUrl  = east clip "ของ"    (camera pushes in on the open box)
- *   mouse LEFT  half → videoRightUrl = west clip "คนรับ"  (hands enter and lift the tumbler)
+ * v4 hinged gift-box clips share a closed gold-foil master and linear opening motion.
+ *   mouse RIGHT half → videoLeftUrl  = east clip (ONE BANGKOK / ICONSIAM)
+ *   mouse LEFT  half → videoRightUrl = west clip (UD Trucks / True)
  * The slot names are inverted relative to the mouse side — see App.tsx onMove.
  */
-export const HERO_POSTER_URL = '/assets/videos/hero_frame0_poster.jpg'
+export const HERO_POSTER_URL = '/assets/videos/hero_frame0_poster.jpg?v=5'
 
 /** Template-era placeholder clips; a saved config still pointing here is migrated to the defaults. */
 export const LEGACY_VIDEO_HOST = 'd8j0ntlcm91z4.cloudfront.net'
 
 export const DEFAULT_MEDIA_CONFIG: MediaConfigState = {
   logoUrl: '/logo-smg.jpg',
-  videoLeftUrl: '/assets/videos/hero_east_discover.mp4',
-  videoRightUrl: '/assets/videos/hero_west_receive.mp4',
+  videoLeftUrl: '/assets/videos/hero_east_discover.mp4?v=5',
+  videoRightUrl: '/assets/videos/hero_west_receive.mp4?v=5',
   galleryUrls: [
     'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_104530_521b2f85-c0f3-4d0e-9704-b578315b4cb9.png&w=1920&q=85',
     'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103711_76ccdb8b-5043-4f47-9c54-4379713393ea.png&w=1920&q=85',

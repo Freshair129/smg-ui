@@ -2761,3 +2761,10 @@ header,
 #outro-info { bottom: 24px; }
 #outro-info strong { font-size: 64px; }
 .collection { font-size: 24px; margin-bottom: 22px; }
+
+/* v4: fit the complete lid sweep between the fixed logo and portfolio ledger. */
+#main-canvas { background: #fff; }
+#main-canvas video { top: 50%; left: 50%; right: auto; bottom: auto; width: min(100%, 1016px); height: auto; max-height: 100%; aspect-ratio: 16 / 9; transform: translate(-50%, -50%); object-fit: contain; mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent), linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); mask-composite: intersect; }
+@media (max-width: 1023px) {
+  #main-canvas { top: 220px; bottom: 230px; height: auto; }
+}

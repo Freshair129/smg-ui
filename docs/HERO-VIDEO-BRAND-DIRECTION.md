@@ -2,7 +2,7 @@
 **Project:** SmartGift Web UI (`web-ui-smg`)  
 **Companion to:** [`docs/HERO-VIDEO-SPEC.md`](HERO-VIDEO-SPEC.md) (กลไก scrub, encoding, ffmpeg) — เอกสารนี้เป็นชั้น *creative direction* ที่วางทับสเปกทางเทคนิค  
 **Sources analysed:** `business-01-smart-gift/data-pipeline/02_prepared/*.json`, `output/pdf/smartgift-catalog-adcreative-proof-v0.2.pdf`, `PRODUCT.md`, `docs/business/*`, `logo-smg.jpg`  
-**Version:** `1.5.1b` · **Date:** 2026-09-07 · **Status:** draft — tall gift-box previews in §12.9 plus exterior gold-foil material revision in §12.10; deployed v3 remains unchanged
+**Version:** `1.8.0b` · **Date:** 2026-09-08 · **Status:** beta — v5 direction approved; implementation and verification in progress; v4 remains deployed (§12.14)
 
 ---
 
@@ -572,10 +572,114 @@ New common closed master: `business-01-smart-gift/comfy-hero-video/outputs/v4-pr
 
 The user explicitly instructed “สร้างvdoเลย” after the r3 foil preview: the latest direction and implementation plan are authorized. Execute C-2 / MEDIUM risk production in the isolated v4 output directory. Use a deterministic Blender scene for the rigid deep shell, rear hinge, shared moving camera, material-based foil highlights and depth-tested reference product insert compositing. First inspect endpoint renders, then render A/B120-frame sequences and encode4-second videos. Verify exact source/decoded closed-frame identity, shared early visibility, linear angles, camera endpoints, foil attachment, encoding and reverse scrubbing. Preserve original previews; report differences between generated art-direction stills and calibrated production renders. Deliver reviewable videos before replacing website assets; this turn's explicit request is video creation.
 
+### 12.12 v4 video delivery and verification
+
+Created two independent videos under `business-01-smart-gift/comfy-hero-video/outputs/v4/` following the user's explicit production instruction. The box/hinge/camera/lighting use a deterministic Blender4.5.9 Cycles scene,48 samples, GPU rendering. The portable renderer archive was downloaded from Blender's official distribution and its SHA-256 matched the official manifest.
+
+| Artifact | Result |
+|---|---|
+| `hero_west_receive.mp4` — A | UD Trucks tumbler + True card holder;1,205,431 bytes |
+| `hero_east_discover.mp4` — B | ONE BANGKOK tote + ICONSIAM foam light stick;1,268,883 bytes |
+| Both video streams |1920×1080,30fps CFR,120frames,4.000s,H.264 High,yuv420p,no audio,faststart |
+| Keyframes | Exactly0,15,30,45,60,75,90,105; no B-frames |
+| Closed master | `frame0_closed_master.png`; one shared source, plus `hero_frame0_poster.jpg` derived from decoded A frame0 |
+| Exact decoded parity | All RGB pixels equal for frames0–22, including frame0; insert first becomes depth-visible at frame23 /0.7667s |
+| Camera and lid | Elevation80°→50°; orthographic view width7.2→12.2 scene units; rear-hinge angle `105*i/119`; physical base and hinge location constant |
+| Composition | Geometric sweep stays in frame; minimum margins L/T/R/B approximately431/94/431/60px at1920×1080 |
+| Browser playback | Chromium native playback advances; reverse seeks119→60→18→0 reach3.966666→2→0.6→0seconds on both clips; closed-frame canvas comparison has0 differing channels; no media/runtime errors |
+| Review transport | Local range server returns206 and correct Content-Range; initial Python static server's seek failure is corrected and documented in `.brain/rca/2026-09-08-hero-review-http-range.md` |
+
+The final B video uses the common A scene pixels outside the rendered, depth-tested insert mask. A/B share frames0–22 by construction because the insert visibility mask is zero throughout that prefix. This avoids independent render noise on the common shell and ground. Constant-QP20, disabled lookahead/AQ/mbtree and fixed GOP preserve the shared prefix through encoding. Actual file-average rates are approximately2.41/2.54Mbps, below the handbook's3.5–5.5Mbps target; this is an explicit encoding tradeoff, with decoded visual review and exact parity checks passing.
+
+Gold foil uses the original logo artwork as a metallic material mask on the lid surface, with paper microtexture, shallow deboss normal detail and angle-dependent studio reflections. There is no screen-space shine sweep or floating logo animation. The colored inner-lid logo is retained. Reference images for the photographic insert textures were prepared with built-in `image_gen`; prompts are in `comfy-hero-video/assets/v4/prompts.json`. The products are reference-composited plates in the depth-tested3D box, **not full volumetric product models**. The calibrated production frames are newly rendered from the approved direction, not pixel-identical copies of the earlier generative stills. Product provenance/order limitations in §12.3 remain applicable.
+
+Source and review artifacts:
+
+- `scripts/hinged_v4.py`: shared scene and calibrated pose generation; `smartgift_hinged_v4.blend` contains packed image references. Recreate motion with the script; the saved scene is the closed pose.
+- `scripts/finish_hinged_v4.py`: common-exterior masked video compositing, deterministic encoding and verification.
+- `scene_contract.json`, `projection_bounds.json`, `verification.json`, `browser-audit.json`: scene, framing, stream/pixel and browser evidence.
+- `contact_A.jpg`, `contact_B.jpg`: decoded contact sheets at frames0,15,30,45,60,75,90,105,119 (PTS0,.5,1,1.5,2,2.5,3,3.5,3.9667s).
+- `decoded_A_*.png`, `decoded_B_*.png`: selected decoded comparison frames; `browser-closed.png`, `browser-open.png`: browser review captures.
+- `review.html` and `scripts/serve_hinged_review.py`: local review with shared forward/reverse slider, served at `http://127.0.0.1:8777/review.html` while the local server runs.
+
+Visual verification covered closed, early, midpoint and fully open states, including both complete sets. An insert material seam found during full-resolution review was corrected by blending empty foam margins into the common material; RCA is recorded in `.brain/rca/2026-09-07-hero-v4-insert-material-seam.md`.
+
+This delivery creates the videos and local review. Public website assets, media config, application code and Docker deployment are unchanged. The new composition has not passed the deployed site's ledger-clearance/mobile layout gates and must not be described as deployed or as satisfying the old560px object-envelope constraint. No changes were made under `data-pipeline/`.
+
+**Version diff:** `1.5.1b → 1.6.0b`: still/material direction becomes two rendered, encoded and browser-verified4-second video artifacts; adds packed scene, shared-prefix pixel proof, contact sheets and local scrub review. Website replacement remains separate from this video delivery.
+
+### 12.13 Deployment authorization
+
+The user explicitly instructed “deployเลย”. Deploy the verified v4 A/B videos and decoded poster to the existing Docker service on port8080. C-2 / MEDIUM risk. Preserve the current media in a rollback directory; retain existing slot mapping. Add a v4 URL revision because stable public video names are currently cached immutable, and migrate only saved default hero paths so returning users receive this release while custom URLs remain intact. Verify build, served hashes, HTTP206 ranges, real mouse scrub and desktop/mobile framing. Any hero-only fitting adjustment needed to avoid clipping or ledger overlap is within this deployment integration; preserve the rendered files and unrelated catalog layout.
+
+### 12.14 Local deployment completed
+
+The approved v4 videos and poster now replace the three files under `public/assets/videos/` in the existing `web-ui-smg` Docker service, accessible at `http://localhost:8080/#archive`. Previous public media are preserved in `business-01-smart-gift/comfy-hero-video/outputs/rollback-before-v4-deploy/`. This is the existing local Docker deployment, not a new external/cloud publication.
+
+Integration changes:
+
+- Video and poster URLs use `?v=4` to bypass cached immutable earlier files. Saved default relative hero URLs upgrade to this revision; explicitly customized URLs remain intact, verified in the browser.
+- Hero video display uses contain fitting with a1016px maximum width, limiting the projected full-sweep object envelope to approximately560px. Narrow layouts reserve space above/below for the logo and portfolio ledger. A short edge mask blends only the empty studio-image border into the page; source videos and their encoded pixels are unchanged.
+- Pointer entry into the center deadzone now resets both clips to0. Previously an edge-to-center jump retained the open frame because the handler returned without seeking. Both findings and fixes are documented in `.brain/rca/2026-09-08-v4-hero-framing.md`.
+
+Verification completed:
+
+| Check | Result |
+|---|---|
+| TypeScript/Vite build and Docker rebuild | PASS; container recreated and running |
+| Served A/B/poster | HTTP200; byte-for-byte equal to verified production artifacts |
+| Video/poster byte ranges | HTTP206 with correct100-byte range response |
+| HTML cache contract | Retains both `max-age=0` and `no-cache, no-store, must-revalidate` headers |
+|1920×1080,1366×768,390×844 | Mouse-left opens A, mouse-right opens B, center resets both to0; browser closed-frame comparison has0 differing channels |
+| Full-sweep framing | Projected object bounds stay clear of logo and ledger at all three tested viewport sizes |
+| Saved configuration | Old default URL upgraded to v4; custom absolute URL preserved |
+| Reduced-motion emulation | Both videos remain paused at0 on load |
+| Browser/runtime and diff checks | No runtime errors observed; `git diff --check` passes |
+
+Evidence: `comfy-hero-video/outputs/v4/deploy-http.json`, `deploy-1366.json`, `deploy-1920.json`, `deploy-390.json`, `deploy-desktop-1366.png`, `deploy-mobile-390.png`. Mobile sizing was tested in Chromium emulation. The available device emulation still reported `pointer:coarse=false`, so physical touch autoplay is not claimed as verified; its existing behavior was not changed. The pre-existing narrow header spacing and large-bundle build warning remain outside this hero deployment scope. Product-compositing/provenance limitations in §12.12 remain in force.
+
+**Version diff:** `1.6.0b → 1.7.0b`: deploy verified v4 media, refresh cached default URLs, fit the larger composition into the live hero, and ensure the center axis closes both clips. No catalog, pipeline or external hosting changes.
+
+### 13. v5 proposal — fixed composition and volumetric products
+
+The user requests no scale change, only opening/closing the lid, and realistic product-launch presentation. This supersedes the v4 moving camera and zoom direction. Complexity C-2; risk MEDIUM because product geometry, rendering and shared A/B visibility require new verification. This section is a proposal, not an implementation or deployment claim.
+
+**Proposed framing assumption for approval:** lock the camera at 50° elevation for the entire clip, using the previous open composition as the starting framing reference. Lock its position, target and orthographic scale; reserve room for the entire lid sweep from frame0. The base remains the same screen size and position throughout. This changes the previous 80° closed view; it exposes product side surfaces and thickness better. No camera interpolation, zoom, animated CSS scale or product movement.
+
+- Retain the tall navy gift box, ivory lining, rear hinge, inner SmartGift branding and integrated metallic gold exterior stamp. Lid angle remains strictly linear from0° to105° over4seconds, with no hold or easing. Only the lid moves; reflections and shadows respond physically to its rotation.
+- Retain A: UD Trucks handled tumbler and True card holder; B: folded ONE BANGKOK tote and ICONSIAM foam light stick. The evidence limitations in §12.3 remain applicable. Do not substitute unrelated catalog models or invent products.
+- Reconstruct actual product volume from the references: rounded tumbler body, handle and lid; layered leather card holder with edge thickness; folded fabric tote with seams and folds; cylindrical foam light stick and clear handle. Reference artwork can supply surface graphics, but cannot supply the entire object on a flat image plane. Unknown dimensions remain approximations, not verified CAD.
+- Model corresponding insert recesses with depth, edge bevels and contact shadows. Keep each item seated and stationary. Use full volumetric geometry for shadows, occlusion and material reflections.
+- Product-launch treatment: clean light studio background, broad soft key light, restrained edge highlights, distinct matte coating/leather/fabric/foam/plastic responses and readable contact shadows. Keep lighting fixed. No Apple branding, added titles, floating products, cuts, glow or decorative effects.
+- Preserve a common closed master with pixel-identical decoded A/B frame0. Reverify early product occlusion from the new fixed view. Variant reflections must not create a visible difference before product reveal. Do not reuse the old insert-only composite mask if it removes real product shadows or reflections; the shared exterior and lighting contract must still be verified.
+
+**Execution after approval:** create isolated v5 scene and product models; inspect closed, half-open and fully open A/B proof renders before rendering all120frames per clip. Correct silhouettes, material depth and insert fit in this proof stage. Then encode and verify4s/1080p/30fps/no-audio files, constant camera/base projection, linear hinge, shared decoded frame0, early visibility, reverse scrub and deployed desktop/mobile framing. Keep the v4 media available for rollback. No renderer, video or deployment changes are part of this proposal turn.
+
+Root-cause evidence is recorded in [the v4 product-depth RCA](../.brain/rca/2026-09-08-v4-flat-products.md). Parent creative requirements and peer scrub/encoding requirements in `HERO-VIDEO-SPEC.md` were reviewed; the interaction contract stays unchanged.
+
+**Version diff:** `1.7.0b → 1.8.0b`: proposes a constant50° camera and constant scale, replaces flat photographic product plates with volumetric products and fitted cavities, and adds proof-render gates before video production. Approval pending.
+
+### 13.1 Approval and implementation
+
+The user explicitly replied “approve” to the v5 specification, including the constant50° camera. Proceed with the C-2 / MEDIUM implementation, proof renders, two video encodes and local website update already requested in this session. No additional direction approval is required. Preserve the existing deployed assets for rollback and do not modify `data-pipeline/`.
+
+### 13.2 Production geometry and material checks
+
+Implemented isolated `hinged_v5.py` and `hinged_v5_products.py` with a constant50° orthographic camera, width11.6 scene units, and only the rear hinge rotating. The shared lid has fitted external cap returns overlapping the upper base by0.75 scene units; their clearance preserves early occlusion at the new view. Both variants use the same cap, shell, lighting and foil material. Full-sweep geometry margins at1080p are approximately630/56/630/65px (L/T/R/B).
+
+Products are now volumetric: lathed tapered tumbler with separate rim/lid/handle, layered stitched card holder, folded cloth mesh with fabric thickness/handles, and cylindrical foam light stick with clear grip. Boolean insert recesses provide physical cavity edges and contact shadows. Original transparent artwork files from `comfy-3d-products/assets/logos/` supply the client print masks; monochrome ink colours match the references. The tote print is part of its actual cloth material and follows its surface. No photographic product plate remains.
+
+Full-resolution proof inspection caught baked-photo brightness entering the tumbler print mask and a separate print mesh intersecting the cloth. Replaced photo-derived masks with the existing transparent artwork and applied tote ink directly to the cloth material. RCA records the evidence and prevention. Original product photos remain shape references, with reconstruction/provenance limits retained.
+
+Depth-mask checks show frame18/0.6s still concealed; the rendered A sequence first exposes variant geometry at frame23/0.7667s. Final encoded parity and both complete sequences remain pending. Early frames use one common master sequence; after reveal, full independent renders retain actual global illumination and product-dependent reflections, instead of masking B back onto a flat insert region. Shared physical exterior geometry, materials and lights remain constant; natural indirect colour and sampling differences after reveal are not claimed to be pixel-identical.
+
 ## CHANGELOG
 
 | Version | Date | Summary | Agent |
 |---|---|---|---|
+| 1.8.0b | 2026-09-08 | Draft v5: fixed50° view and scale, full product volume and insert cavities, physical material lighting; approval pending | RWANG |
+| 1.7.0b | 2026-09-08 | Deploy v4 locally on8080; revisioned media URLs, responsive hero fit and center reset; served hashes/ranges and three viewport browser checks pass | RWANG |
+| 1.6.0b | 2026-09-08 | Deliver v4 hinged gift-box A/B videos with shared decoded frames0–22, gold foil,80°→50° camera,120frames/4s, contact sheets and browser reverse-scrub verification; website unchanged | RWANG |
 | 1.5.1b | 2026-09-07 | Exterior gold-foil SmartGift closed-frame preview; paper-integrated stamp and motion-dependent physical reflections specified | RWANG |
 | 1.5.0b | 2026-09-07 | Revised still previews: taller gift box, SmartGift inner-lid logo, 80° start to50° end with zoom-out; supersedes briefcase/fixed-camera direction | RWANG |
 | 1.4.1b | 2026-09-07 | Lock strict linear motion; produce closed/A-open/B-open still previews from delegated client-work references, with order-evidence and generative-geometry limits recorded | RWANG |
