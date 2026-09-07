@@ -6,6 +6,8 @@
 
 ---
 
+> **Brand direction (added 2026-09-07):** creative direction, storyboard, brand-correct palette (warm charcoal + brass + SmartGift orange, no cyan) and the product-faithful pipeline live in [`HERO-VIDEO-BRAND-DIRECTION.md`](HERO-VIDEO-BRAND-DIRECTION.md). Where §5.1 rule 4 or the §6 presets conflict with that document, the brand direction wins.
+
 ## 1. Executive Summary & Purpose
 
 This document is the canonical technical specification and prompt engineering manual for the **Dual-Video Interactive Hero Section** in the SmartGift web application.
