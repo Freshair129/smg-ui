@@ -1,0 +1,9 @@
+services:
+  web-ui-smg:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web-ui-smg
+    ports:
+      - "8080:80"
+    restart: always

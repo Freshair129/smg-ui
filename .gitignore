@@ -1,0 +1,8 @@
+node_modules
+dist
+.vercel
+*.log
+
+# Staged from the SmartGift catalog repo by scripts/build_site.py over there —
+# generated, not authored here.
+public/catalog/
