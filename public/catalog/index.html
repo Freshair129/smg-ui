@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>SmartGift Thailand — สินค้าและชุดของขวัญองค์กร</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --orange-50: #FFF4EB;
+    --orange-100: #FFE5D1;
+    --orange-200: #FFC69E;
+    --orange-300: #FFA161;
+    --orange-400: #FF7B28;
+    --orange-500: #FC6203;
+    --orange-600: #D94E00;
+    --orange-700: #AD3C00;
+    --orange-800: #842F05;
+    --orange-900: #642608;
+    --orange-950: #361104;
+    --gold-50: #FCF8EB;
+    --gold-100: #F7EDC8;
+    --gold-200: #EEDC92;
+    --gold-300: #E4C65D;
+    --gold-400: #D99F48;
+    --gold-500: #C78A25;
+    --gold-600: #A96B19;
+    --gold-700: #875016;
+    --gold-800: #6E4018;
+    --gold-900: #5D3519;
+    --gold-950: #351B0B;
+    --cocoa-50: #F7F5F3;
+    --cocoa-100: #ECE8E4;
+    --cocoa-200: #D9D0C9;
+    --cocoa-300: #BBAEA3;
+    --cocoa-400: #968475;
+    --cocoa-500: #786453;
+    --cocoa-600: #685544;
+    --cocoa-700: #574638;
+    --cocoa-800: #493B30;
+    --cocoa-900: #3E332A;
+    --cocoa-950: #211A15;
+    --neutral-0: #FFFFFF;
+    --neutral-50: #FEFEFE;
+    --neutral-100: #F9F6F3;
+    --neutral-200: #EEE9E4;
+    --neutral-300: #D9D2CC;
+    --neutral-400: #AAA099;
+    --neutral-500: #7A7069;
+    --neutral-600: #5F5650;
+    --neutral-700: #48413C;
+    --neutral-800: #302C29;
+    --neutral-900: #211E1C;
+    --neutral-950: #12100F;
+
+    --paper: #FFFFFF;
+    --ground: #FEFEFE;
+    --surface: #FFFFFF;
+    --sunk: #F9F6F3;
+    --stage: #3E332A;
+    --ink: #3E332A;
+    --muted: #7A7069;
+    --line: #EEE9E4;
+    --line-strong: #D9D2CC;
+    --brand: #FC6203;
+    --brand-deep: #AD3C00;
+    --brand-wash: #FFF4EB;
+    --brown: #685544;
+    --brown-deep: #3E332A;
+    --gold: #D99F48;
+    --gold-deep: #A96B19;
+    --gold-wash: #FCF8EB;
+    --bar: #FFC69E;
+    --bar-lead: #FC6203;
+    --flag-ink: #875016;
+    --flag-wash: #F7EDC8;
+    --action-bg: #AD3C00;
+    --action-bg-hover: #842F05;
+    --on-brand: #FFFFFF;
+    --focus: #AD3C00;
+    --grad-orange: linear-gradient(135deg, #FF7B28 0%, #FC6203 52%, #D94E00 100%);
+    --grad-gold: linear-gradient(90deg, #A96B19 0%, #E4C65D 48%, #C78A25 100%);
+    --shadow: 0 1px 2px rgba(33, 26, 21, 0.08);
+    --shadow-lift: 0 10px 30px rgba(33, 26, 21, 0.14);
+    --display: "IBM Plex Sans Thai", "Noto Sans Thai", system-ui, sans-serif;
+    --body: "Noto Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+
+
+  /* B · Warm Festive — แดงเทศกาล + ทอง (ธีมแคมเปญ ไม่ใช่สีแบรนด์ที่ sample มา) */
+  :root[data-palette="b"] {
+    --ground: #fdfaf8; --sunk: #f8efea; --ink: #2d1a19; --muted: #7d605c;
+    --line: #eeddd7; --line-strong: #ddc5bd; --stage: #35201d;
+    --brand: #c0392f; --brand-deep: #8e2119; --brand-wash: #fceeec;
+    --brown: #6b4038; --brown-deep: #35201d;
+    --gold: #d4af37; --gold-deep: #96761a; --gold-wash: #fbf3d8;
+    --bar: #eab9b3; --bar-lead: #c0392f;
+    --flag-ink: #875016; --flag-wash: #f7edc8;
+    --action-bg: #8e2119; --action-bg-hover: #6f180f; --focus: #8e2119;
+  }
+
+  /* C · Modern Teal — teal + เทาฟ้า (ธีมแคมเปญ ไม่ใช่สีแบรนด์ที่ sample มา) */
+  :root[data-palette="c"] {
+    --ground: #f8fbfa; --sunk: #eaf3f1; --ink: #16292b; --muted: #5f7b7c;
+    --line: #dcebe8; --line-strong: #bfd6d2; --stage: #1d3335;
+    --brand: #17857f; --brand-deep: #0b5b56; --brand-wash: #e3f3f0;
+    --brown: #40595a; --brown-deep: #1d3335;
+    --gold: #d0a54e; --gold-deep: #9c762c; --gold-wash: #f8f0dd;
+    --bar: #96c8c2; --bar-lead: #17857f;
+    --flag-ink: #875016; --flag-wash: #f7edc8;
+    --action-bg: #0b5b56; --action-bg-hover: #084441; --focus: #0b5b56;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #12100F;
+      --surface: #211A15;
+      --sunk: #3E332A;
+      --stage: #12100F;
+      --ink: #F9F6F3;
+      --muted: #BBAEA3;
+      --line: #493B30;
+      --line-strong: #574638;
+      --brand: #FF7B28;
+      --brand-deep: #FFA161;
+      --brand-wash: #361104;
+      --brown: #BBAEA3;
+      --brown-deep: #ECE8E4;
+      --gold: #E4C65D;
+      --gold-deep: #EEDC92;
+      --gold-wash: #351B0B;
+      --bar: #842F05;
+      --bar-lead: #FF7B28;
+      --flag-ink: #EEDC92;
+      --flag-wash: #351B0B;
+      --action-bg-hover: #D94E00;
+      --focus: #FF7B28;
+      --shadow: 0 1px 2px rgba(18, 16, 15, 0.5);
+      --shadow-lift: 0 10px 30px rgba(18, 16, 15, 0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #12100F;
+    --surface: #211A15;
+    --sunk: #3E332A;
+    --stage: #12100F;
+    --ink: #F9F6F3;
+    --muted: #BBAEA3;
+    --line: #493B30;
+    --line-strong: #574638;
+    --brand: #FF7B28;
+    --brand-deep: #FFA161;
+    --brand-wash: #361104;
+    --brown: #BBAEA3;
+    --brown-deep: #ECE8E4;
+    --gold: #E4C65D;
+    --gold-deep: #EEDC92;
+    --gold-wash: #351B0B;
+    --bar: #842F05;
+    --bar-lead: #FF7B28;
+    --flag-ink: #EEDC92;
+    --flag-wash: #351B0B;
+    --action-bg-hover: #D94E00;
+    --focus: #FF7B28;
+    --shadow: 0 1px 2px rgba(18, 16, 15, 0.5);
+    --shadow-lift: 0 10px 30px rgba(18, 16, 15, 0.6);
+  }
+
+  .sg-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+  .sg-mark { width: 58px; height: auto; flex: none; }
+  .sg-bow { stroke: var(--gold); }
+  .sg-knot { fill: var(--gold-deep); }
+  .sg-top, .sg-left { fill: var(--brand); }
+  .sg-right { fill: var(--brown); }
+  .sg-cross { stroke: var(--surface); }
+  .sg-letter { font-family: var(--display); font-weight: 800; fill: var(--surface); }
+  .sg-bar { width: 1.5px; align-self: stretch; min-height: 46px; background: var(--gold); flex: none; }
+  .sg-word { display: grid; gap: 3px; line-height: 1; }
+  .sg-w1 { font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .3em; color: var(--brown); }
+  .sg-w2 { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: .13em; color: var(--brand); }
+  .sg-w3 { display: flex; align-items: center; gap: 7px; font-family: var(--display); font-weight: 600; font-size: 8px; letter-spacing: .34em; color: var(--gold-deep); margin-top: 2px; }
+  .sg-w3 i { flex: 1; min-width: 9px; height: 1px; background: var(--grad-gold); }
+  .sg-tagline { font-size: 12.5px; color: var(--brown); letter-spacing: .01em; }
+  .sg-tagline b { color: var(--brand-deep); font-weight: 600; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font: 400 16px/1.65 var(--body); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+  button, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 3px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* header */
+  .top { background: var(--surface); border-bottom: 1px solid var(--line); }
+  .top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px 28px; flex-wrap: wrap; padding-block: 18px; }
+  .top-left { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .palette { display: flex; gap: 6px; align-items: center; }
+  .palette-lab { font-size: 12px; color: var(--muted); margin-inline-end: 4px; }
+  .sw { width: 40px; height: 30px; padding: 0; border: 1px solid var(--line-strong); border-radius: 6px; display: flex; overflow: hidden; }
+  .sw i { flex: 1; }
+  .sw[aria-pressed="true"] { border-color: var(--brand); box-shadow: 0 0 0 2px var(--brand-wash); }
+
+  /* search */
+  .searchbar { display: flex; align-items: center; gap: 10px; margin-top: 30px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 10px; padding: 0 16px; box-shadow: var(--shadow); }
+  .searchbar svg { flex: none; color: var(--muted); }
+  .searchbar input { flex: 1; min-width: 0; border: 0; background: none; padding: 15px 0; outline: none; }
+  .searchbar input::placeholder { color: var(--muted); }
+
+  .ftitle { font-size: 14px; font-weight: 600; color: var(--brown); margin: 24px 0 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 9px 16px; min-height: 44px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: 14px; }
+  .chip:hover { border-color: var(--brand); color: var(--brand-deep); }
+  .chip[aria-pressed="true"] { background: var(--action-bg); border-color: var(--action-bg); color: var(--on-brand); font-weight: 600; }
+
+  .tabs { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px 24px; flex-wrap: wrap; border-bottom: 1px solid var(--line); margin-top: 26px; }
+  .tabgroup { display: flex; gap: 26px; }
+  .tab { padding: 10px 0 12px; min-height: 46px; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted); font-size: 15px; }
+  .tab[aria-pressed="true"] { color: var(--brand-deep); border-bottom-color: var(--brand); font-weight: 700; }
+  .tab .n { font-family: var(--mono); font-size: 13px; margin-inline-start: 6px; }
+  .count { font-size: 13px; color: var(--muted); padding-bottom: 12px; font-variant-numeric: tabular-nums; }
+
+  /* carousel */
+  .rail-wrap { position: relative; margin-top: 20px; }
+  .rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; list-style: none; margin: 0; padding: 4px 2px 14px; }
+  .rail::-webkit-scrollbar { height: 8px; }
+  .rail::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+  .rail > li { flex: 0 0 268px; scroll-snap-align: start; display: flex; }
+  .rail-nav { position: absolute; top: calc(50% - 26px); width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--surface); color: var(--brand-deep); font-size: 20px; line-height: 1; display: grid; place-items: center; box-shadow: var(--shadow-lift); z-index: 2; }
+  .rail-nav[disabled] { opacity: .35; cursor: default; }
+  .rail-prev { inset-inline-start: -18px; }
+  .rail-next { inset-inline-end: -18px; }
+
+  .card { display: flex; flex-direction: column; width: 100%; text-align: start; gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; box-shadow: var(--shadow); }
+  .card:hover, .card[aria-pressed="true"] { border-color: var(--brand); }
+  .card[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--brand-wash), var(--shadow); }
+  .plate { background: var(--sunk); border: 1px dashed var(--line-strong); border-radius: 8px; aspect-ratio: 4 / 3; display: grid; place-content: center; text-align: center; gap: 4px; padding: 12px; margin-bottom: 12px; }
+  .plate b { font-family: var(--display); font-size: 13px; color: var(--brown); }
+  .plate span { font-size: 11px; color: var(--muted); }
+  .card-code { font-family: var(--mono); font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; }
+  .card-name { font-size: 15.5px; font-weight: 600; line-height: 1.45; margin-top: 6px; text-wrap: pretty; }
+  .card-cat { font-size: 12.5px; color: var(--muted); margin-top: 5px; }
+  .card-price { margin-top: auto; padding-top: 12px; font-family: var(--mono); font-size: 17px; font-variant-numeric: tabular-nums; }
+  .card-price small { font-family: var(--body); font-size: 11.5px; color: var(--muted); margin-inline-start: 5px; }
+  .card-price.quote { font-family: var(--body); font-size: 14px; font-weight: 600; color: var(--brand-deep); }
+  .flag { display: inline-block; font-size: 10.5px; padding: 2px 7px; border-radius: 4px; background: var(--flag-wash); color: var(--flag-ink); margin-inline-start: 6px; }
+  .flag-tier { background: var(--gold-wash); color: var(--gold-deep); font-weight: 600; }
+
+  /* detail */
+  .detail { margin-top: 8px; background: var(--surface); border: 1px solid var(--brand); border-radius: 12px; box-shadow: var(--shadow-lift); overflow: hidden; }
+  .detail-in { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 26px; padding: 24px; }
+  .detail-close { position: absolute; inset-block-start: 14px; inset-inline-end: 14px; width: 36px; height: 36px; border: 0; border-radius: 8px; background: var(--sunk); font-size: 17px; }
+  .detail-head { position: relative; }
+  .detail h3 { font-size: 21px; font-weight: 600; line-height: 1.4; padding-inline-end: 46px; }
+  .detail-code { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin: 8px 0 0; }
+  .sub-h { font-size: 13px; font-weight: 700; color: var(--brown); margin: 20px 0 10px; }
+  .parts { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; list-style: none; margin: 0; padding: 0; }
+  .parts li { display: flex; flex-direction: column; gap: 4px; width: 132px; background: var(--sunk); border-radius: 8px; padding: 10px; font-size: 12px; }
+  .parts .q { font-family: var(--mono); font-size: 11.5px; color: var(--brand-deep); }
+  .parts .pn { line-height: 1.45; }
+  .plus { align-self: center; color: var(--muted); font-size: 18px; }
+  .specs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
+  .specs div { background: var(--sunk); border-radius: 8px; padding: 9px 13px; }
+  .specs dt { font-size: 11.5px; color: var(--muted); }
+  .specs dd { margin: 2px 0 0; font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; }
+  .note { background: var(--sunk); border-radius: 8px; padding: 12px 14px; font-size: 14px; color: var(--muted); margin: 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 24px 22px; }
+  .btn { flex: 1 1 180px; min-height: 48px; padding: 12px 18px; border-radius: 8px; border: 1px solid transparent; font-weight: 600; font-size: 15px; text-align: center; }
+  .btn-primary { background: var(--action-bg); color: var(--on-brand); }
+  .btn-primary:hover { background: var(--action-bg-hover); }
+  .btn-brown { background: var(--brown); color: var(--on-brand); }
+  .btn-brown:hover { background: var(--brown-deep); }
+  .btn-ghost { background: var(--surface); border-color: var(--brand); color: var(--brand-deep); }
+  .btn-ghost:hover { background: var(--brand-wash); }
+
+  /* ladder */
+  .ladder { margin-top: 4px; }
+  .bars { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; align-items: end; height: 46px; }
+  .bar { background: var(--bar); border-radius: 3px 3px 0 0; min-height: 3px; }
+  .bar.lead { background: var(--bar-lead); }
+  .qtys { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: center; margin-top: 5px; font-variant-numeric: tabular-nums; }
+
+  /* compare tray */
+  .compare { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+  .compare h2 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+  .tray { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
+  .tray-item { display: flex; align-items: center; gap: 10px; background: var(--sunk); border-radius: 8px; padding: 9px 10px 9px 13px; font-size: 13px; max-width: 260px; }
+  .tray-item span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tray-x { border: 0; background: none; color: var(--muted); font-size: 15px; padding: 4px 6px; border-radius: 6px; flex: none; }
+  .tray-x:hover { background: var(--brand-wash); color: var(--brand-deep); }
+  .tray-cta { min-height: 44px; padding: 10px 18px; border-radius: 8px; border: 1px solid var(--brand); background: var(--surface); color: var(--brand-deep); font-weight: 600; font-size: 14px; margin-inline-start: auto; }
+  .tray-cta:hover { background: var(--brand-wash); }
+
+  /* dialogs */
+  dialog { padding: 0; border: 0; border-radius: 14px; background: var(--surface); color: var(--ink); width: min(880px, calc(100vw - 28px)); max-height: 88dvh; overflow: auto; box-shadow: 0 20px 60px rgba(40, 24, 14, .34); }
+  dialog::backdrop { background: rgba(38, 24, 16, .6); }
+  .d-bar { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 22px; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .d-bar h2 { font-size: 16px; font-weight: 700; }
+  .d-close { min-height: 44px; padding: 8px 15px; border: 0; border-radius: 8px; background: var(--sunk); }
+  .d-body { padding: 22px; display: grid; gap: 18px; }
+  .tbl-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { padding: 10px 13px; border-bottom: 1px solid var(--line); text-align: start; font-size: 14px; vertical-align: top; }
+  thead th { font-size: 12px; font-weight: 700; color: var(--brown); background: var(--sunk); }
+  tbody th { font-weight: 500; color: var(--muted); font-size: 13px; white-space: nowrap; }
+  td { font-family: var(--mono); }
+  td.txt { font-family: var(--body); }
+  .qty-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .qty-row label { font-size: 14px; color: var(--muted); }
+  .qty-row input { width: 130px; padding: 11px 13px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .quote-sum { background: var(--brand-wash); border-radius: 10px; padding: 16px 18px; display: grid; gap: 6px; }
+  .quote-sum b { font-family: var(--mono); font-size: 22px; font-variant-numeric: tabular-nums; }
+  .quote-sum span { font-size: 13px; color: var(--muted); }
+  .ok { font-size: 13px; color: var(--brand-deep); min-height: 20px; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 44px; padding-block: 24px 36px; color: var(--muted); font-size: 13px; }
+  footer p { margin: 0 0 7px; max-width: 78ch; }
+  footer a { color: var(--brand-deep); }
+
+  @media (max-width: 860px) { .detail-in { grid-template-columns: 1fr; gap: 18px; } }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .rail > li { flex-basis: 78vw; }
+    .rail-prev, .rail-next { display: none; }
+    .tray-cta { margin-inline-start: 0; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <div class="top-left">
+      <span class="sg-lockup"><svg class="sg-mark" viewBox="0 -20 120 120" role="img" aria-label="SmartGift Thailand">
+  <g class="sg-bow" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 14C46 0 28-6 24 2c-4 8 14 14 36 12Z"/>
+    <path d="M60 14c14-14 32-20 36-12 4 8-14 14-36 12Z"/>
+  </g>
+  <rect class="sg-knot" x="54" y="6" width="12" height="15" rx="2.5"/>
+  <path class="sg-top" d="M60 16 100 36 60 56 20 36Z"/>
+  <path class="sg-left" d="M20 36 60 56v40L20 76Z"/>
+  <path class="sg-right" d="M100 36 60 56v40l40-20Z"/>
+  <path class="sg-cross" d="M40 26 80 46M80 26 40 46" stroke-width="5.5"/>
+  <text class="sg-letter" transform="matrix(1 .5 0 1 20 36)" x="20" y="30" text-anchor="middle" font-size="40">S</text>
+  <text class="sg-letter" transform="matrix(1 -.5 0 1 60 56)" x="20" y="30" text-anchor="middle" font-size="40">G</text>
+</svg>
+<span class="sg-bar" aria-hidden="true"></span>
+<span class="sg-word">
+  <span class="sg-w1">SMART</span>
+  <span class="sg-w2">GIFT</span>
+  <span class="sg-w3"><i></i>THAILAND<i></i></span>
+</span></span>
+      <p class="sg-tagline">The Right Gift. The Right <b>Impact.</b></p>
+    </div>
+    <div class="palette" role="group" aria-label="ธีมสี">
+      <span class="palette-lab">ธีมสี</span>
+      <button class="sw" type="button" data-p="a" title="A · Smart Orange" aria-label="ธีม A Smart Orange"><i style="background:#f26522"></i><i style="background:#5c5149"></i><i style="background:#d3ab63"></i></button>
+      <button class="sw" type="button" data-p="b" title="B · Warm Festive" aria-label="ธีม B Warm Festive"><i style="background:#a52a32"></i><i style="background:#c9a227"></i><i style="background:#5a3b34"></i></button>
+      <button class="sw" type="button" data-p="c" title="C · Modern Teal" aria-label="ธีม C Modern Teal"><i style="background:#12736e"></i><i style="background:#3f5b5c"></i><i style="background:#d0a54e"></i></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1 class="ftitle" style="font-size:26px;color:var(--ink);margin:30px 0 0;">สินค้าและชุดของขวัญองค์กร</h1>
+  <p id="scope" class="note" style="margin-top:12px;max-width:70ch;"></p>
+
+  <div class="searchbar">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+    <input id="q" type="search" placeholder="ค้นหาชื่อสินค้า ชุดของขวัญ หรือรหัส" aria-label="ค้นหา">
+  </div>
+
+  <h2 class="ftitle">หมวดสินค้า</h2>
+  <div class="chips" role="group" aria-label="หมวดสินค้า" id="cats"></div>
+
+  <div class="tabs">
+    <div class="tabgroup" role="group" aria-label="ชนิดรายการ" id="kinds"></div>
+    <p class="count" id="count"></p>
+  </div>
+
+  <div class="rail-wrap">
+    <button class="rail-nav rail-prev" type="button" id="prev" aria-label="เลื่อนไปทางซ้าย">‹</button>
+    <ul class="rail" id="rail"></ul>
+    <button class="rail-nav rail-next" type="button" id="next" aria-label="เลื่อนไปทางขวา">›</button>
+  </div>
+
+  <section class="detail" id="detail" hidden aria-live="polite"></section>
+
+  <section class="compare" id="compare" hidden>
+    <h2 id="cmp-title"></h2>
+    <div class="tray" id="tray"></div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>ราคาต่อชิ้น/ต่อชุดผูกกับจำนวนสั่งซื้อขั้นต่ำเสมอ ราคาที่ 10 ชุดไม่ใช่ราคาสำหรับ 1 ชิ้น รายการที่ยังยืนยันราคาไม่ได้แสดง “สอบถามราคา”</p>
+  <p>รายการในรอบนี้ยังไม่มีภาพสินค้าที่ตรวจรหัสกับต้นฉบับแล้ว จึงไม่แสดงภาพแทนหรือภาพที่สร้างขึ้น</p>
+  <p><a href="./catalog-offline">เปิดแคตตาล็อกแบบออฟไลน์ (flipbook)</a> · <a href="./internal">แดชบอร์ดภายใน</a></p>
+  <p id="foot-meta"></p>
+</footer>
+
+<dialog id="cmp-dlg" aria-labelledby="cmp-h">
+  <div class="d-bar"><h2 id="cmp-h">เปรียบเทียบรายการ</h2><button class="d-close" type="button" data-close>ปิด</button></div>
+  <div class="d-body"><div class="tbl-wrap" id="cmp-body"></div></div>
+</dialog>
+
+<dialog id="q-dlg" aria-labelledby="q-h">
+  <div class="d-bar"><h2 id="q-h">ขอใบเสนอราคา</h2><button class="d-close" type="button" data-close>ปิด</button></div>
+  <div class="d-body" id="q-body"></div>
+</dialog>
+
+<script>
+(function () {
+  'use strict';
+  var DATA = {"catalogVersion": "v1.3.0-2026.09.02-b6b899f8", "generatedAt": "2026-09-07", "totalAll": 1129, "categories": [{"slug": "eco-friendly", "name": "รักษ์โลก"}, {"slug": "executive-smart-tech", "name": "เทคโนโลยีและการทำงาน"}, {"slug": "classic-oriental", "name": "ศิลปะและวัฒนธรรม"}, {"slug": "novelty-self-care", "name": "ไลฟ์สไตล์และการดูแลตัวเอง"}], "contact": {"email": "", "line": "", "tel": ""}, "items": [{"code": "PM-TMB", "kind": "single", "name": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)", "nameEn": "Thermal Tumbler SUS316", "cat": "eco-friendly", "group": "แก้วและกระบอกน้ำ", "dims": [8.0, 8.0, 21.0], "weight": 0.35, "tiers": [{"min_qty": 1, "unit_price": 320.0}, {"min_qty": 10, "unit_price": 290.0}, {"min_qty": 20, "unit_price": 270.0}, {"min_qty": 50, "unit_price": 250.0}, {"min_qty": 100, "unit_price": 230.0}, {"min_qty": 300, "unit_price": 215.0}, {"min_qty": 500, "unit_price": 200.0}, {"min_qty": 1000, "unit_price": 185.0}], "hasImage": false}, {"code": "PM-UMB", "kind": "single", "name": "ร่มพับออโต้ 6 ตอน เคลือบซิลิโคนกันแดด UPF50+", "nameEn": "Auto 6-Fold UPF50+ Umbrella", "cat": "eco-friendly", "group": "ของใช้นอกบ้าน", "dims": [28.0, 5.5, 5.5], "weight": 0.38, "tiers": [{"min_qty": 1, "unit_price": 250.0}, {"min_qty": 10, "unit_price": 220.0}, {"min_qty": 20, "unit_price": 200.0}, {"min_qty": 50, "unit_price": 185.0}, {"min_qty": 100, "unit_price": 170.0}, {"min_qty": 300, "unit_price": 155.0}, {"min_qty": 500, "unit_price": 140.0}, {"min_qty": 1000, "unit_price": 130.0}], "hasImage": false}, {"code": "PM-BOTTLE-LED", "kind": "single", "name": "กระบอกน้ำสแตนเลสบอกอุณหภูมิหน้าจอ Smart LED", "nameEn": "Smart LED Temperature Thermos Bottle", "cat": "eco-friendly", "group": "แก้วและกระบอกน้ำ", "dims": [7.0, 7.0, 23.0], "weight": 0.32, "tiers": [{"min_qty": 1, "unit_price": 290.0}, {"min_qty": 10, "unit_price": 260.0}, {"min_qty": 20, "unit_price": 240.0}, {"min_qty": 50, "unit_price": 220.0}, {"min_qty": 100, "unit_price": 200.0}, {"min_qty": 300, "unit_price": 185.0}, {"min_qty": 500, "unit_price": 170.0}, {"min_qty": 1000, "unit_price": 155.0}], "hasImage": false}, {"code": "PM-FAN", "kind": "single", "name": "พัดลมพกพาดีไซน์มินิมอลหน้าจอดิจิทัลแบต 4000mAh", "nameEn": "Digital Display Mini Handheld Fan", "cat": "eco-friendly", "group": "ของใช้รักษ์โลก", "dims": [19.5, 9.0, 4.5], "weight": 0.21, "tiers": [{"min_qty": 1, "unit_price": 260.0}, {"min_qty": 10, "unit_price": 230.0}, {"min_qty": 20, "unit_price": 210.0}, {"min_qty": 50, "unit_price": 195.0}, {"min_qty": 100, "unit_price": 175.0}, {"min_qty": 300, "unit_price": 160.0}, {"min_qty": 500, "unit_price": 148.0}, {"min_qty": 1000, "unit_price": 138.0}], "hasImage": false}, {"code": "PM-SPK", "kind": "single", "name": "ลำโพงบลูทูธสเตอริโอคู่พรีเมียม (Bluetooth Speaker 5W)", "nameEn": "Dual Stereo Bluetooth Speaker", "cat": "executive-smart-tech", "group": "เครื่องเสียง", "dims": [12.0, 8.5, 6.5], "weight": 0.42, "tiers": [{"min_qty": 1, "unit_price": 480.0}, {"min_qty": 10, "unit_price": 440.0}, {"min_qty": 20, "unit_price": 410.0}, {"min_qty": 50, "unit_price": 380.0}, {"min_qty": 100, "unit_price": 350.0}, {"min_qty": 300, "unit_price": 320.0}, {"min_qty": 500, "unit_price": 295.0}, {"min_qty": 1000, "unit_price": 275.0}], "hasImage": false}, {"code": "PM-PB10K", "kind": "single", "name": "พาวเวอร์แบงก์แม่เหล็กไร้สาย 10,000mAh (MagSafe & Stand)", "nameEn": "MagSafe Wireless Powerbank 10000mAh", "cat": "executive-smart-tech", "group": "พลังงานและการชาร์จ", "dims": [10.5, 6.8, 1.6], "weight": 0.22, "tiers": [{"min_qty": 1, "unit_price": 690.0}, {"min_qty": 10, "unit_price": 620.0}, {"min_qty": 20, "unit_price": 580.0}, {"min_qty": 50, "unit_price": 540.0}, {"min_qty": 100, "unit_price": 490.0}, {"min_qty": 300, "unit_price": 450.0}, {"min_qty": 500, "unit_price": 420.0}, {"min_qty": 1000, "unit_price": 390.0}], "hasImage": false}, {"code": "PM-NB", "kind": "single", "name": "สมุดโน้ตหนัง PU อัจฉริยะฝังพาวเวอร์แบงก์ชาร์จไร้สาย", "nameEn": "Smart Leather Powerbank Notebook", "cat": "executive-smart-tech", "group": "อุปกรณ์โต๊ะทำงาน", "dims": [24.0, 18.0, 3.0], "weight": 0.72, "tiers": [{"min_qty": 1, "unit_price": 750.0}, {"min_qty": 10, "unit_price": 680.0}, {"min_qty": 20, "unit_price": 630.0}, {"min_qty": 50, "unit_price": 590.0}, {"min_qty": 100, "unit_price": 540.0}, {"min_qty": 300, "unit_price": 490.0}, {"min_qty": 500, "unit_price": 450.0}, {"min_qty": 1000, "unit_price": 420.0}], "hasImage": false}, {"code": "PM-DESK-MAT", "kind": "single", "name": "แผ่นรองโต๊ะทำงานหนัง Vegan Leather พร้อมที่ชาร์จไว", "nameEn": "Wireless Charging Vegan Desk Mat", "cat": "executive-smart-tech", "group": "อุปกรณ์โต๊ะทำงาน", "dims": [80.0, 40.0, 0.4], "weight": 0.55, "tiers": [{"min_qty": 1, "unit_price": 590.0}, {"min_qty": 10, "unit_price": 530.0}, {"min_qty": 20, "unit_price": 490.0}, {"min_qty": 50, "unit_price": 450.0}, {"min_qty": 100, "unit_price": 410.0}, {"min_qty": 300, "unit_price": 375.0}, {"min_qty": 500, "unit_price": 345.0}, {"min_qty": 1000, "unit_price": 320.0}], "hasImage": false}, {"code": "PM-PEN", "kind": "single", "name": "ปากกาเจลบอดี้ไม้แท้หัวทองเหลือง (Brass Wood Signature)", "nameEn": "Solid Walnut Brass Gel Pen", "cat": "classic-oriental", "group": "เครื่องเขียนงานคราฟต์", "dims": [14.5, 1.4, 1.4], "weight": 0.045, "tiers": [{"min_qty": 1, "unit_price": 190.0}, {"min_qty": 10, "unit_price": 160.0}, {"min_qty": 20, "unit_price": 145.0}, {"min_qty": 50, "unit_price": 130.0}, {"min_qty": 100, "unit_price": 120.0}, {"min_qty": 300, "unit_price": 110.0}, {"min_qty": 500, "unit_price": 100.0}, {"min_qty": 1000, "unit_price": 90.0}], "hasImage": false}, {"code": "PM-FLASH", "kind": "single", "name": "แฟลชไดรฟ์โลหะหมุน Dual Interface (Type-C / USB 3.0)", "nameEn": "Dual Interface Metal Flash Drive", "cat": "classic-oriental", "group": "อุปกรณ์เก็บข้อมูล", "dims": [6.5, 1.8, 0.9], "weight": 0.035, "tiers": [{"min_qty": 1, "unit_price": 220.0}, {"min_qty": 10, "unit_price": 190.0}, {"min_qty": 20, "unit_price": 175.0}, {"min_qty": 50, "unit_price": 160.0}, {"min_qty": 100, "unit_price": 145.0}, {"min_qty": 300, "unit_price": 135.0}, {"min_qty": 500, "unit_price": 125.0}, {"min_qty": 1000, "unit_price": 115.0}], "hasImage": false}, {"code": "PM-TEA-INF", "kind": "single", "name": "กระบอกชงชาแก้ว Borosilicate สองชั้นแยกกากชา", "nameEn": "Double Wall Borosilicate Tea Infuser", "cat": "classic-oriental", "group": "แก้วและกระบอกน้ำ", "dims": [7.5, 7.5, 20.0], "weight": 0.45, "tiers": [{"min_qty": 1, "unit_price": 360.0}, {"min_qty": 10, "unit_price": 320.0}, {"min_qty": 20, "unit_price": 300.0}, {"min_qty": 50, "unit_price": 280.0}, {"min_qty": 100, "unit_price": 255.0}, {"min_qty": 300, "unit_price": 235.0}, {"min_qty": 500, "unit_price": 220.0}, {"min_qty": 1000, "unit_price": 205.0}], "hasImage": false}, {"code": "PM-CFMUG", "kind": "single", "name": "แก้วกาแฟพกพาสแตนเลส 316 พร้อมฝา 3 ระบบ", "nameEn": "Stainless Coffee Mug 3-Way Lid", "cat": "novelty-self-care", "group": "แก้วและกระบอกน้ำ", "dims": [9.0, 9.0, 14.5], "weight": 0.28, "tiers": [{"min_qty": 1, "unit_price": 299.0}, {"min_qty": 10, "unit_price": 270.0}, {"min_qty": 20, "unit_price": 250.0}, {"min_qty": 50, "unit_price": 230.0}, {"min_qty": 100, "unit_price": 210.0}, {"min_qty": 300, "unit_price": 195.0}, {"min_qty": 500, "unit_price": 180.0}, {"min_qty": 1000, "unit_price": 165.0}], "hasImage": false}, {"code": "PM-MSG", "kind": "single", "name": "เครื่องนวดคอพกพาคลื่นความถี่ต่ำ Low Pulse & ประคบร้อน", "nameEn": "Portable Low Pulse Neck Massager", "cat": "novelty-self-care", "group": "สุขภาพและการผ่อนคลาย", "dims": [18.0, 16.0, 6.0], "weight": 0.32, "tiers": [{"min_qty": 1, "unit_price": 850.0}, {"min_qty": 10, "unit_price": 780.0}, {"min_qty": 20, "unit_price": 720.0}, {"min_qty": 50, "unit_price": 660.0}, {"min_qty": 100, "unit_price": 600.0}, {"min_qty": 300, "unit_price": 550.0}, {"min_qty": 500, "unit_price": 500.0}, {"min_qty": 1000, "unit_price": 460.0}], "hasImage": false}, {"code": "PM-MUG-HEAT", "kind": "single", "name": "ชุดแก้วเซรามิกพร้อมแท่นอุ่นอุณหภูมิคงที่ 55°C", "nameEn": "Ceramic Mug with 55C Heating Base", "cat": "novelty-self-care", "group": "แก้วและกระบอกน้ำ", "dims": [16.0, 14.0, 12.0], "weight": 0.65, "tiers": [{"min_qty": 1, "unit_price": 350.0}, {"min_qty": 10, "unit_price": 310.0}, {"min_qty": 20, "unit_price": 290.0}, {"min_qty": 50, "unit_price": 270.0}, {"min_qty": 100, "unit_price": 245.0}, {"min_qty": 300, "unit_price": 225.0}, {"min_qty": 500, "unit_price": 210.0}, {"min_qty": 1000, "unit_price": 195.0}], "hasImage": false}, {"code": "PM-CUTLERY", "kind": "single", "name": "ชุดช้อนส้อมมีดสแตนเลสฟู้ดเกรดพกพา", "nameEn": "Portable Stainless Steel Cutlery Set", "cat": "novelty-self-care", "group": "ของใช้รักษ์โลก", "dims": [21.0, 6.0, 3.0], "weight": 0.18, "tiers": [{"min_qty": 1, "unit_price": 165.0}, {"min_qty": 10, "unit_price": 140.0}, {"min_qty": 20, "unit_price": 130.0}, {"min_qty": 50, "unit_price": 120.0}, {"min_qty": 100, "unit_price": 110.0}, {"min_qty": 300, "unit_price": 100.0}, {"min_qty": 500, "unit_price": 92.0}, {"min_qty": 1000, "unit_price": 85.0}], "hasImage": false}, {"code": "PM-AROMA", "kind": "single", "name": "เครื่องกระจายกลิ่นอโรมาอัลตราโซนิกเปลวไฟแสงไฟ Ambient", "nameEn": "Ultrasonic Flame Aroma Diffuser", "cat": "novelty-self-care", "group": "สุขภาพและการผ่อนคลาย", "dims": [17.5, 10.5, 8.0], "weight": 0.48, "tiers": [{"min_qty": 1, "unit_price": 550.0}, {"min_qty": 10, "unit_price": 490.0}, {"min_qty": 20, "unit_price": 460.0}, {"min_qty": 50, "unit_price": 420.0}, {"min_qty": 100, "unit_price": 380.0}, {"min_qty": 300, "unit_price": 350.0}, {"min_qty": 500, "unit_price": 320.0}, {"min_qty": 1000, "unit_price": 295.0}], "hasImage": false}, {"code": "TDD03-2", "kind": "set", "name": "ชุดของขวัญ Pastel Series (ร่มพาสเทล + สมุด Skin-touch + กระบอกน้ำสุญญากาศ)", "cat": "eco-friendly", "giftTier": "Select", "giftTierTh": "Select — คัดสรร", "unboxing": "การคุมโทนสีฟ้าพาสเทลและสัมผัส Skin-touch อ่อนหวาน ละมุน บรรจุในกล่องฝาสวมพรีเมียม", "components": [{"product_code": "PM-UMB", "qty": 1, "name_th": "ร่มพับออโต้ 6 ตอน เคลือบซิลิโคนกันแดด UPF50+", "unit_srp_qty1": 250.0}, {"product_code": "PM-BOTTLE-LED", "qty": 1, "name_th": "กระบอกน้ำสแตนเลสบอกอุณหภูมิหน้าจอ Smart LED", "unit_srp_qty1": 290.0}, {"product_code": "PM-TMB", "qty": 1, "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)", "unit_srp_qty1": 320.0}], "componentsConfirmed": true, "tiers": [{"min_qty": 10, "unit_price": 550.0}, {"min_qty": 50, "unit_price": 490.0}, {"min_qty": 100, "unit_price": 440.0}], "hasImage": false}, {"code": "TGC06-4", "kind": "set", "name": "ชุดของขวัญ Executive Smart Tech (Smart Notebook + Power Bank + Metal Pen)", "cat": "executive-smart-tech", "giftTier": "Signature", "giftTierTh": "Signature — ชูภาพลักษณ์", "unboxing": "กล่องแม่เหล็กพรีเมียมบุโฟม EVA กำมะหยี่สีดำ พร้อมสมุดอัจฉริยะฝังพาวเวอร์แบงก์ชาร์จไร้สายในตัว", "components": [{"product_code": "PM-NB", "qty": 1, "name_th": "สมุดโน้ตหนัง PU อัจฉริยะฝังพาวเวอร์แบงก์ชาร์จไร้สาย", "unit_srp_qty1": 750.0}, {"product_code": "PM-PB10K", "qty": 1, "name_th": "พาวเวอร์แบงก์แม่เหล็กไร้สาย 10,000mAh (MagSafe & Stand)", "unit_srp_qty1": 690.0}, {"product_code": "PM-PEN", "qty": 1, "name_th": "ปากกาเจลบอดี้ไม้แท้หัวทองเหลือง (Brass Wood Signature)", "unit_srp_qty1": 190.0}], "componentsConfirmed": true, "tiers": [{"min_qty": 10, "unit_price": 930.0}, {"min_qty": 50, "unit_price": 880.0}, {"min_qty": 100, "unit_price": 820.0}], "hasImage": false}, {"code": "TMK0215", "kind": "set", "name": "ชุดของขวัญ Classic Oriental (สมุดคลิปโลหะ + ปากกาไม้แท้ + ที่คั่นหนังสือเมฆมงคล)", "cat": "classic-oriental", "giftTier": "Signature", "giftTierTh": "Signature — ชูภาพลักษณ์", "unboxing": "ดีไซน์สไตล์จีนคลาสสิกร่วมสมัย พร้อมลวดลายเมฆมงคลและพู่ไหม สัมผัสทรงคุณค่าและประณีต", "components": [{"product_code": "PM-PEN", "qty": 1, "name_th": "ปากกาเจลบอดี้ไม้แท้หัวทองเหลือง (Brass Wood Signature)", "unit_srp_qty1": 190.0}, {"product_code": "PM-FLASH", "qty": 1, "name_th": "แฟลชไดรฟ์โลหะหมุน Dual Interface (Type-C / USB 3.0)", "unit_srp_qty1": 220.0}, {"product_code": "PM-TEA-INF", "qty": 1, "name_th": "กระบอกชงชาแก้ว Borosilicate สองชั้นแยกกากชา", "unit_srp_qty1": 360.0}], "componentsConfirmed": true, "tiers": [{"min_qty": 10, "unit_price": 850.0}, {"min_qty": 50, "unit_price": 790.0}, {"min_qty": 100, "unit_price": 730.0}], "hasImage": false}, {"code": "TWL01-8", "kind": "set", "name": "ชุดของขวัญ Novelty & Self-Care (เทียนหอมอโรมา + แก้วอเนกประสงค์ + สบู่กุหลาบ)", "cat": "novelty-self-care", "giftTier": "Select", "giftTierTh": "Select — คัดสรร", "unboxing": "ชุดผ่อนคลายอโรมาเธอราพี ให้ความรู้สึกอบอุ่น ใส่ใจ เหมาะสำหรับแคมเปญสุขภาพและ Wellness", "components": [{"product_code": "PM-AROMA", "qty": 1, "name_th": "เครื่องกระจายกลิ่นอโรมาอัลตราโซนิกเปลวไฟแสงไฟ Ambient", "unit_srp_qty1": 550.0}, {"product_code": "PM-CFMUG", "qty": 1, "name_th": "แก้วกาแฟพกพาสแตนเลส 316 พร้อมฝา 3 ระบบ", "unit_srp_qty1": 299.0}, {"product_code": "PM-MSG", "qty": 1, "name_th": "เครื่องนวดคอพกพาคลื่นความถี่ต่ำ Low Pulse & ประคบร้อน", "unit_srp_qty1": 850.0}], "componentsConfirmed": true, "tiers": [{"min_qty": 10, "unit_price": 680.0}, {"min_qty": 50, "unit_price": 620.0}, {"min_qty": 100, "unit_price": 570.0}], "hasImage": false}, {"code": "SG-OFFER-XMAS-2026-REACH-OPS", "kind": "set", "name": "ชุดส่งต่อความอบอุ่นสำหรับทีมปฏิบัติการ", "cat": "eco-friendly", "giftTier": "Reach", "giftTierTh": "Reach — ส่งถึงวงกว้าง", "unboxing": "โทนอบอุ่น ใช้จริงในชีวิตประจำวัน พร้อมข้อความขอบคุณทีมงาน", "components": [{"product_code": "PM-UMB", "qty": 1, "name_th": "ร่มพับออโต้ 6 ตอน เคลือบซิลิโคนกันแดด UPF50+", "unit_srp_qty1": 250.0}, {"product_code": "PM-BOTTLE-LED", "qty": 1, "name_th": "กระบอกน้ำสแตนเลสบอกอุณหภูมิหน้าจอ Smart LED", "unit_srp_qty1": 290.0}, {"product_code": "PM-TMB", "qty": 1, "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)", "unit_srp_qty1": 320.0}], "componentsConfirmed": true, "tiers": [], "hasImage": false}, {"code": "SG-OFFER-NY-2027-REACH-OPS", "kind": "set", "name": "ชุด Fresh Start Essentials สำหรับทีมปฏิบัติการ", "cat": "eco-friendly", "giftTier": "Reach", "giftTierTh": "Reach — ส่งถึงวงกว้าง", "unboxing": "โทนสะอาดและสดใหม่ อุปกรณ์ที่หยิบใช้ได้ตั้งแต่วันแรกของปี", "components": [{"product_code": "PM-TMB", "qty": 1, "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)", "unit_srp_qty1": 320.0}, {"product_code": "PM-BOTTLE-LED", "qty": 1, "name_th": "กระบอกน้ำสแตนเลสบอกอุณหภูมิหน้าจอ Smart LED", "unit_srp_qty1": 290.0}], "componentsConfirmed": true, "tiers": [], "hasImage": false}]};
+  var KINDS = [{ id: 'single', label: 'สินค้ารายชิ้น' }, { id: 'set', label: 'ชุดของขวัญ' }];
+  var state = { cat: 'all', kind: 'single', q: '', open: null, compare: [] };
+  var byCode = {};
+  DATA.items.forEach(function (i) { byCode[i.code] = i; });
+
+  var num = function (n) { return Number(n).toLocaleString('th-TH', { maximumFractionDigits: 0 }); };
+  var qs = function (id) { return document.getElementById(id); };
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function catName(slug) {
+    for (var i = 0; i < DATA.categories.length; i++) if (DATA.categories[i].slug === slug) return DATA.categories[i].name;
+    return slug;
+  }
+  /* ราคาต่อหน่วยที่จำนวน qty — ใช้ขั้นสูงสุดที่ไม่เกิน qty */
+  function priceAt(item, qty) {
+    var hit = null;
+    for (var i = 0; i < item.tiers.length; i++) if (qty >= item.tiers[i].min_qty) hit = item.tiers[i];
+    return hit;
+  }
+
+  /* ---------- theme ---------- */
+  var pal = document.querySelectorAll('.sw');
+  function setPalette(p) {
+    document.documentElement.setAttribute('data-palette', p);
+    try { localStorage.setItem('sg-palette', p); } catch (e) {}
+    Array.prototype.forEach.call(pal, function (b) { b.setAttribute('aria-pressed', String(b.dataset.p === p)); });
+  }
+  Array.prototype.forEach.call(pal, function (b) {
+    b.addEventListener('click', function () { setPalette(b.dataset.p); });
+  });
+  var saved = 'a';
+  try { saved = localStorage.getItem('sg-palette') || 'a'; } catch (e) {}
+  setPalette(saved);
+
+  /* ---------- header copy ---------- */
+  var nS = DATA.items.filter(function (i) { return i.kind === 'single'; }).length;
+  qs('scope').textContent = 'รอบนี้แสดง ' + DATA.items.length + ' รายการที่ยืนยันราคาตามขั้นจำนวนและส่วนประกอบครบแล้ว — '
+    + 'สินค้ารายชิ้น ' + nS + ' · ชุดของขวัญ ' + (DATA.items.length - nS)
+    + ' จากทั้งแคตตาล็อก ' + num(DATA.totalAll) + ' รายการ ส่วนที่เหลืออยู่ระหว่างยืนยันราคา ภาพ และส่วนประกอบ';
+  qs('foot-meta').textContent = 'อ้างอิงแคตตาล็อก ' + DATA.catalogVersion + ' · จัดทำรายการ ' + DATA.generatedAt;
+
+  /* ---------- filters ---------- */
+  var cats = qs('cats');
+  [{ slug: 'all', name: 'ทุกหมวด' }].concat(DATA.categories).forEach(function (c) {
+    var b = el('button', 'chip', c.name);
+    b.type = 'button'; b.dataset.cat = c.slug;
+    b.addEventListener('click', function () { state.cat = c.slug; state.open = null; render(); });
+    cats.appendChild(b);
+  });
+  var kinds = qs('kinds');
+  KINDS.forEach(function (k) {
+    var b = el('button', 'tab');
+    b.type = 'button'; b.dataset.kind = k.id;
+    b.appendChild(document.createTextNode(k.label));
+    b.appendChild(el('span', 'n'));
+    b.addEventListener('click', function () { state.kind = k.id; state.open = null; render(); });
+    kinds.appendChild(b);
+  });
+  qs('q').addEventListener('input', function (e) { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+  function match(i) {
+    if (i.kind !== state.kind) return false;
+    if (state.cat !== 'all' && i.cat !== state.cat) return false;
+    if (!state.q) return true;
+    return (i.name + ' ' + i.code + ' ' + (i.nameEn || '') + ' ' + (i.group || '')).toLowerCase().indexOf(state.q) >= 0;
+  }
+
+  /* ---------- ladder ---------- */
+  function ladder(item) {
+    var box = el('div', 'ladder');
+    if (item.tiers.length < 2) return box;
+    var max = Math.max.apply(null, item.tiers.map(function (t) { return t.unit_price; }));
+    var first = item.tiers[0], last = item.tiers[item.tiers.length - 1];
+    var bars = el('div', 'bars');
+    bars.setAttribute('role', 'img');
+    bars.setAttribute('aria-label', 'ราคาต่อหน่วยลดจาก ' + num(first.unit_price) + ' บาทที่ ' + num(first.min_qty)
+      + ' ชิ้น เหลือ ' + num(last.unit_price) + ' บาทที่ ' + num(last.min_qty) + ' ชิ้น');
+    var qtys = el('div', 'qtys');
+    qtys.setAttribute('aria-hidden', 'true');
+    item.tiers.forEach(function (t, idx) {
+      var b = el('div', 'bar' + (idx === item.tiers.length - 1 ? ' lead' : ''));
+      b.style.height = Math.round(t.unit_price / max * 100) + '%';
+      bars.appendChild(b);
+      qtys.appendChild(el('div', null, t.min_qty >= 1000 ? (t.min_qty / 1000) + 'K' : String(t.min_qty)));
+    });
+    box.appendChild(bars); box.appendChild(qtys);
+    return box;
+  }
+
+  /* ---------- cards ---------- */
+  function card(item) {
+    var li = el('li');
+    var b = el('button', 'card');
+    b.type = 'button';
+    b.setAttribute('aria-pressed', String(state.open === item.code));
+
+    var plate = el('div', 'plate');
+    plate.appendChild(el('b', null, 'ยังไม่มีภาพสินค้า'));
+    plate.appendChild(el('span', null, 'ขอภาพจริงได้จากทีมขาย'));
+    b.appendChild(plate);
+
+    var codeLine = el('p', 'card-code');
+    codeLine.appendChild(document.createTextNode(item.code));
+    if (item.giftTier) codeLine.appendChild(el('span', 'flag flag-tier', item.giftTier));
+    b.appendChild(codeLine);
+
+    b.appendChild(el('h3', 'card-name', item.name));
+    b.appendChild(el('p', 'card-cat', catName(item.cat) + ' · '
+      + (item.kind === 'single' ? (item.group || 'สินค้ารายชิ้น') : item.components.length + ' ชิ้นในชุด')));
+
+    if (item.tiers.length) {
+      var p = el('p', 'card-price', num(item.tiers[0].unit_price) + ' ฿');
+      p.appendChild(el('small', null, item.tiers[0].min_qty === 1 ? 'ต่อชิ้น' : 'ที่ ' + num(item.tiers[0].min_qty) + '+'));
+      b.appendChild(p);
+    } else {
+      b.appendChild(el('p', 'card-price quote', 'สอบถามราคา'));
+    }
+
+    b.addEventListener('click', function () {
+      state.open = state.open === item.code ? null : item.code;
+      render();
+      if (state.open) qs('detail').scrollIntoView({ block: 'nearest' });
+    });
+    li.appendChild(b);
+    return li;
+  }
+
+  /* ---------- detail ---------- */
+  function detail(item) {
+    var sec = qs('detail');
+    sec.textContent = '';
+    sec.hidden = false;
+
+    var inner = el('div', 'detail-in');
+
+    var left = el('div');
+    var plate = el('div', 'plate');
+    plate.style.aspectRatio = '1 / 1';
+    plate.appendChild(el('b', null, 'ยังไม่มีภาพสินค้า'));
+    plate.appendChild(el('span', null, 'ยังไม่มีภาพที่ตรวจรหัสกับต้นฉบับแล้วสำหรับรายการนี้'));
+    left.appendChild(plate);
+    if (item.tiers.length > 1) {
+      left.appendChild(el('p', 'sub-h', 'ราคาต่อหน่วยตามจำนวน'));
+      left.appendChild(ladder(item));
+    }
+    inner.appendChild(left);
+
+    var right = el('div', 'detail-head');
+    var x = el('button', 'detail-close', '✕');
+    x.type = 'button';
+    x.setAttribute('aria-label', 'ปิดรายละเอียด');
+    x.addEventListener('click', function () { state.open = null; render(); });
+    right.appendChild(x);
+    right.appendChild(el('p', 'card-cat', catName(item.cat) + (item.giftTierTh ? ' · ' + item.giftTierTh : '')));
+    right.appendChild(el('h3', null, item.name));
+    if (item.nameEn) right.appendChild(el('p', 'card-cat', item.nameEn));
+    right.appendChild(el('p', 'detail-code', 'รหัสสำหรับคุยกับทีมขาย: ' + item.code));
+
+    if (item.kind === 'set') {
+      right.appendChild(el('p', 'sub-h', 'ในชุดประกอบด้วย'));
+      if (item.componentsConfirmed && item.components.length) {
+        var ul = el('ul', 'parts');
+        item.components.forEach(function (c, idx) {
+          if (idx) { var pl = el('li', 'plus', '+'); pl.style.background = 'none'; pl.style.width = 'auto'; ul.appendChild(pl); }
+          var li = el('li');
+          li.appendChild(el('span', 'q', '×' + c.qty + ' · ' + c.product_code));
+          li.appendChild(el('span', 'pn', c.name_th || c.product_code));
+          ul.appendChild(li);
+        });
+        right.appendChild(ul);
+      } else {
+        right.appendChild(el('p', 'note', 'รายละเอียดชุดอยู่ระหว่างยืนยัน'));
+      }
+      if (item.unboxing) {
+        right.appendChild(el('p', 'sub-h', 'ประสบการณ์เปิดกล่อง'));
+        right.appendChild(el('p', 'note', item.unboxing));
+      }
+    } else {
+      right.appendChild(el('p', 'sub-h', 'รายละเอียด'));
+      var dl = el('dl', 'specs');
+      var rows = [];
+      if (item.group) rows.push(['กลุ่มสินค้า', item.group]);
+      if (item.dims) rows.push(['ขนาด (ซม.)', item.dims.join(' × ')]);
+      if (item.weight) rows.push(['น้ำหนักต่อชิ้น', item.weight + ' กก.']);
+      rows.forEach(function (r) {
+        var d = el('div');
+        d.appendChild(el('dt', null, r[0]));
+        d.appendChild(el('dd', null, r[1]));
+        dl.appendChild(d);
+      });
+      right.appendChild(rows.length ? dl : el('p', 'note', 'ยังไม่มีสเปกที่ยืนยันเพิ่มเติม'));
+    }
+    inner.appendChild(right);
+    sec.appendChild(inner);
+
+    var acts = el('div', 'actions');
+    var bDetail = el('button', 'btn btn-primary', item.tiers.length ? 'ดูตารางราคาทุกขั้น' : 'ดูรายละเอียดทั้งหมด');
+    bDetail.type = 'button';
+    bDetail.addEventListener('click', function () { openCompare([item.code]); });
+    var inTray = state.compare.indexOf(item.code) >= 0;
+    var bCmp = el('button', 'btn btn-brown', inTray ? 'อยู่ในรายการเปรียบเทียบแล้ว' : 'เปรียบเทียบ');
+    bCmp.type = 'button';
+    bCmp.disabled = inTray;
+    if (inTray) bCmp.style.opacity = '.6';
+    bCmp.addEventListener('click', function () {
+      if (state.compare.length >= 4) { alert('เปรียบเทียบได้สูงสุด 4 รายการ'); return; }
+      state.compare.push(item.code); render();
+    });
+    var bQ = el('button', 'btn btn-ghost', 'ขอใบเสนอราคา');
+    bQ.type = 'button';
+    bQ.addEventListener('click', function () { openQuote([item.code]); });
+    acts.appendChild(bDetail); acts.appendChild(bCmp); acts.appendChild(bQ);
+    sec.appendChild(acts);
+  }
+
+  /* ---------- compare ---------- */
+  function renderTray() {
+    var box = qs('compare'), tray = qs('tray');
+    if (!state.compare.length) { box.hidden = true; return; }
+    box.hidden = false;
+    qs('cmp-title').textContent = 'เปรียบเทียบ (' + state.compare.length + ')';
+    tray.textContent = '';
+    state.compare.forEach(function (code) {
+      var item = byCode[code];
+      var chip = el('div', 'tray-item');
+      var x = el('button', 'tray-x', '✕');
+      x.type = 'button';
+      x.setAttribute('aria-label', 'เอา ' + item.name + ' ออกจากการเปรียบเทียบ');
+      x.addEventListener('click', function () {
+        state.compare = state.compare.filter(function (c) { return c !== code; });
+        render();
+      });
+      chip.appendChild(x);
+      chip.appendChild(el('span', null, item.name));
+      tray.appendChild(chip);
+    });
+    var cta = el('button', 'tray-cta', 'ดูรายละเอียดการเปรียบเทียบ');
+    cta.type = 'button';
+    cta.addEventListener('click', function () { openCompare(state.compare); });
+    tray.appendChild(cta);
+  }
+
+  var QTY_LABELS = [1, 10, 20, 50, 100, 300, 500, 1000];
+  function openCompare(codes) {
+    var items = codes.map(function (c) { return byCode[c]; });
+    var body = qs('cmp-body');
+    body.textContent = '';
+    var t = el('table');
+    var thead = el('thead'), htr = el('tr');
+    htr.appendChild(el('th', null, ''));
+    items.forEach(function (i) { htr.appendChild(el('th', null, i.name)); });
+    thead.appendChild(htr); t.appendChild(thead);
+    var tb = el('tbody');
+    function row(label, fn, cls) {
+      var tr = el('tr');
+      tr.appendChild(el('th', null, label));
+      items.forEach(function (i) { tr.appendChild(el('td', cls || null, fn(i))); });
+      tb.appendChild(tr);
+    }
+    row('รหัส', function (i) { return i.code; });
+    row('หมวด', function (i) { return catName(i.cat); }, 'txt');
+    row('ประเภท', function (i) { return i.kind === 'single' ? 'สินค้ารายชิ้น' : 'ชุดของขวัญ'; }, 'txt');
+    row('กลุ่ม / ในชุด', function (i) {
+      return i.kind === 'single' ? (i.group || '—')
+        : i.components.map(function (c) { return c.name_th || c.product_code; }).join(' + ');
+    }, 'txt');
+    row('ขนาด (ซม.)', function (i) { return i.dims ? i.dims.join(' × ') : '—'; });
+    row('น้ำหนัก (กก.)', function (i) { return i.weight != null ? String(i.weight) : '—'; });
+    QTY_LABELS.forEach(function (q) {
+      var any = items.some(function (i) { return priceAt(i, q); });
+      if (!any) return;
+      row('ราคาที่ ' + num(q) + ' ชิ้น', function (i) {
+        var hit = priceAt(i, q);
+        return hit ? num(hit.unit_price) + ' ฿' : 'สอบถามราคา';
+      });
+    });
+    t.appendChild(tb);
+    var wrap = el('div', 'tbl-wrap');
+    wrap.appendChild(t);
+    body.appendChild(wrap);
+    var n = el('p', 'note', 'ช่องที่ขึ้น “สอบถามราคา” คือขั้นจำนวนที่ยังไม่มีราคายืนยันสำหรับรายการนั้น ไม่ใช่ราคา 0 บาท');
+    body.appendChild(n);
+    qs('cmp-dlg').showModal();
+  }
+
+  /* ---------- quote ---------- */
+  function openQuote(codes) {
+    var items = codes.map(function (c) { return byCode[c]; });
+    var body = qs('q-body');
+    body.textContent = '';
+
+    var qtyRow = el('div', 'qty-row');
+    var lab = el('label', null, 'จำนวนที่ต้องการ (ชิ้น/ชุด)');
+    lab.htmlFor = 'q-qty';
+    var input = document.createElement('input');
+    input.id = 'q-qty'; input.type = 'number'; input.min = '1'; input.step = '1'; input.value = '100';
+    qtyRow.appendChild(lab); qtyRow.appendChild(input);
+    body.appendChild(qtyRow);
+
+    var sum = el('div', 'quote-sum');
+    body.appendChild(sum);
+
+    var listWrap = el('div', 'tbl-wrap');
+    body.appendChild(listWrap);
+
+    var ok = el('p', 'ok', '');
+    var acts = el('div', 'actions');
+    acts.style.padding = '0';
+
+    function summary() {
+      var qty = Math.max(1, parseInt(input.value, 10) || 1);
+      sum.textContent = ''; listWrap.textContent = '';
+      var total = 0, allPriced = true;
+      var t = el('table'), thead = el('thead'), htr = el('tr');
+      ['รายการ', 'รหัส', 'ราคาต่อหน่วย', 'รวม'].forEach(function (h) { htr.appendChild(el('th', null, h)); });
+      thead.appendChild(htr); t.appendChild(thead);
+      var tb = el('tbody');
+      items.forEach(function (i) {
+        var hit = priceAt(i, qty);
+        var tr = el('tr');
+        tr.appendChild(el('td', 'txt', i.name));
+        tr.appendChild(el('td', null, i.code));
+        tr.appendChild(el('td', null, hit ? num(hit.unit_price) + ' ฿ (ขั้น ' + num(hit.min_qty) + '+)' : 'สอบถามราคา'));
+        tr.appendChild(el('td', null, hit ? num(hit.unit_price * qty) + ' ฿' : '—'));
+        if (hit) total += hit.unit_price * qty; else allPriced = false;
+        tb.appendChild(tr);
+      });
+      t.appendChild(tb); listWrap.appendChild(t);
+
+      if (allPriced) {
+        sum.appendChild(el('b', null, num(total) + ' ฿'));
+        sum.appendChild(el('span', null, 'ประมาณการรวมที่ ' + num(qty) + ' ชิ้น/ชุด ตามขั้นราคาที่ยืนยันแล้ว ยังไม่รวมค่าสกรีนโลโก้ บรรจุภัณฑ์พิเศษ และค่าจัดส่ง'));
+      } else {
+        sum.appendChild(el('b', null, 'สอบถามราคา'));
+        sum.appendChild(el('span', null, 'มีบางรายการที่ยังไม่มีราคาผูกกับขั้นจำนวน ทีมขายจะยืนยันกลับ'));
+      }
+      return { qty: qty, total: total, allPriced: allPriced };
+    }
+
+    function text() {
+      var s = summary();
+      var lines = ['ขอใบเสนอราคา SmartGift', 'จำนวน: ' + num(s.qty) + ' ชิ้น/ชุด', ''];
+      items.forEach(function (i) {
+        var hit = priceAt(i, s.qty);
+        lines.push('- ' + i.code + ' ' + i.name + ' — ' + (hit ? num(hit.unit_price) + ' ฿/หน่วย' : 'สอบถามราคา'));
+      });
+      if (s.allPriced) lines.push('', 'ประมาณการรวม: ' + num(s.total) + ' ฿');
+      lines.push('', 'อ้างอิงแคตตาล็อก ' + DATA.catalogVersion);
+      return lines.join('\n');
+    }
+
+    var copy = el('button', 'btn btn-primary', 'คัดลอกรายการเพื่อส่งให้ทีมขาย');
+    copy.type = 'button';
+    copy.addEventListener('click', function () {
+      var body = text();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(body).then(function () { ok.textContent = 'คัดลอกแล้ว วางในอีเมลหรือแชตส่งทีมขายได้เลย'; },
+          function () { ok.textContent = 'คัดลอกไม่สำเร็จ กดค้างที่ตารางด้านบนเพื่อเลือกข้อความแทน'; });
+      } else { ok.textContent = 'เบราว์เซอร์นี้คัดลอกอัตโนมัติไม่ได้ กดค้างที่ตารางเพื่อเลือกข้อความ'; }
+    });
+    acts.appendChild(copy);
+
+    if (DATA.contact.email) {
+      var mail = document.createElement('a');
+      mail.className = 'btn btn-ghost';
+      mail.textContent = 'ส่งอีเมลหาทีมขาย';
+      mail.addEventListener('click', function () {
+        mail.href = 'mailto:' + DATA.contact.email + '?subject=' + encodeURIComponent('ขอใบเสนอราคา SmartGift')
+          + '&body=' + encodeURIComponent(text());
+      });
+      mail.href = '#';
+      acts.appendChild(mail);
+    }
+    if (DATA.contact.line) {
+      var ln = document.createElement('a');
+      ln.className = 'btn btn-ghost';
+      ln.href = DATA.contact.line;
+      ln.target = '_blank'; ln.rel = 'noopener';
+      ln.textContent = 'ทักทีมขายทาง LINE';
+      acts.appendChild(ln);
+    }
+    body.appendChild(acts);
+    body.appendChild(ok);
+    if (!DATA.contact.email && !DATA.contact.line) {
+      body.appendChild(el('p', 'note', 'ยังไม่ได้ตั้งค่าอีเมล/LINE ของทีมขาย ปุ่มคัดลอกรายการใช้งานได้ทันที '
+        + 'เมื่อใส่ช่องทางติดต่อใน scripts/brand_kit.py แล้ว ปุ่มส่งตรงจะขึ้นเพิ่ม'));
+    }
+
+    input.addEventListener('input', summary);
+    summary();
+    qs('q-dlg').showModal();
+  }
+
+  /* ---------- render ---------- */
+  var rail = qs('rail');
+  function render() {
+    Array.prototype.forEach.call(cats.children, function (b) { b.setAttribute('aria-pressed', String(b.dataset.cat === state.cat)); });
+    Array.prototype.forEach.call(kinds.children, function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.kind === state.kind));
+      b.querySelector('.n').textContent = DATA.items.filter(function (i) {
+        var k = state.kind; state.kind = b.dataset.kind;
+        var m = match(i); state.kind = k; return m;
+      }).length;
+    });
+
+    var visible = DATA.items.filter(match);
+    qs('count').textContent = visible.length + ' รายการ';
+    rail.textContent = '';
+    if (!visible.length) {
+      var li = el('li');
+      li.style.flex = '1';
+      li.appendChild(el('p', 'note', 'ไม่พบรายการที่ตรงกับเงื่อนไขนี้ ลองล้างคำค้นหรือเลือกหมวดอื่น'));
+      rail.appendChild(li);
+    } else {
+      visible.forEach(function (i) { rail.appendChild(card(i)); });
+    }
+
+    if (state.open && visible.some(function (i) { return i.code === state.open; })) detail(byCode[state.open]);
+    else { state.open = null; qs('detail').hidden = true; qs('detail').textContent = ''; }
+
+    renderTray();
+    updateNav();
+  }
+
+  /* ---------- rail nav ---------- */
+  function updateNav() {
+    var max = rail.scrollWidth - rail.clientWidth - 2;
+    qs('prev').disabled = rail.scrollLeft <= 2;
+    qs('next').disabled = rail.scrollLeft >= max;
+  }
+  qs('prev').addEventListener('click', function () { rail.scrollBy({ left: -rail.clientWidth * 0.8 }); });
+  qs('next').addEventListener('click', function () { rail.scrollBy({ left: rail.clientWidth * 0.8 }); });
+  rail.addEventListener('scroll', updateNav);
+  window.addEventListener('resize', updateNav);
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-close]'), function (b) {
+    b.addEventListener('click', function () { b.closest('dialog').close(); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('dialog'), function (d) {
+    d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

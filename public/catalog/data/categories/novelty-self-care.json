@@ -1,0 +1,314 @@
+{
+  "category_meta": {
+    "slug": "novelty-self-care",
+    "name_th": "ชุด Novelty & Self-Care",
+    "name_en": "Novelty & Self-Care (Warm & Wellness)",
+    "vibe": "ผ่อนคลาย อบอุ่น ใส่ใจ",
+    "target_recipient": "กลุ่มผู้หญิง, พนักงานสาย Wellness",
+    "guardrail": "ห้ามเคลมสรรพคุณ Medical โดยไม่มีหลักฐาน",
+    "core_signatures": [
+      "เทียนหอมอโรมา",
+      "แก้วน้ำอเนกประสงค์",
+      "ตุ๊กตาผ้าขนหนู",
+      "สบู่ธรรมชาติกลิ่นกุหลาบ"
+    ]
+  },
+  "total_products": 5,
+  "products": [
+    {
+      "code": "PM-CFMUG",
+      "name_th": "แก้วกาแฟพกพาสแตนเลส 316 พร้อมฝา 3 ระบบ",
+      "name_en": "Stainless Coffee Mug 3-Way Lid",
+      "category": "Novelty & Self-Care (Warm & Wellness)",
+      "category_slug": "novelty-self-care",
+      "product_family": "PF-DRINKWARE",
+      "material": "generic",
+      "color": "unspecified",
+      "dimensions_cm": {
+        "length": 9.0,
+        "width": 9.0,
+        "height": 14.5
+      },
+      "unit_weight_kg": 0.28,
+      "srp_price": 299.0,
+      "price_tiers": [
+        {
+          "min_qty": 1,
+          "unit_price": 299.0
+        },
+        {
+          "min_qty": 10,
+          "unit_price": 270.0
+        },
+        {
+          "min_qty": 20,
+          "unit_price": 250.0
+        },
+        {
+          "min_qty": 50,
+          "unit_price": 230.0
+        },
+        {
+          "min_qty": 100,
+          "unit_price": 210.0
+        },
+        {
+          "min_qty": 300,
+          "unit_price": 195.0
+        },
+        {
+          "min_qty": 500,
+          "unit_price": 180.0
+        },
+        {
+          "min_qty": 1000,
+          "unit_price": 165.0
+        }
+      ],
+      "image_info": {
+        "code": "PM-CFMUG",
+        "title": "แก้วกาแฟพกพาสแตนเลส 316 พร้อมฝา 3 ระบบ",
+        "image_url": "/assets/catalog-media/hero-fxd66-3-generated.webp",
+        "visual_status": "fallback-placeholder",
+        "is_hero": false,
+        "generated_from_catalog": false
+      }
+    },
+    {
+      "code": "PM-MSG",
+      "name_th": "เครื่องนวดคอพกพาคลื่นความถี่ต่ำ Low Pulse & ประคบร้อน",
+      "name_en": "Portable Low Pulse Neck Massager",
+      "category": "Novelty & Self-Care (Warm & Wellness)",
+      "category_slug": "novelty-self-care",
+      "product_family": "PF-WELLNESS-HEALTH",
+      "material": "generic",
+      "color": "unspecified",
+      "dimensions_cm": {
+        "length": 18.0,
+        "width": 16.0,
+        "height": 6.0
+      },
+      "unit_weight_kg": 0.32,
+      "srp_price": 850.0,
+      "price_tiers": [
+        {
+          "min_qty": 1,
+          "unit_price": 850.0
+        },
+        {
+          "min_qty": 10,
+          "unit_price": 780.0
+        },
+        {
+          "min_qty": 20,
+          "unit_price": 720.0
+        },
+        {
+          "min_qty": 50,
+          "unit_price": 660.0
+        },
+        {
+          "min_qty": 100,
+          "unit_price": 600.0
+        },
+        {
+          "min_qty": 300,
+          "unit_price": 550.0
+        },
+        {
+          "min_qty": 500,
+          "unit_price": 500.0
+        },
+        {
+          "min_qty": 1000,
+          "unit_price": 460.0
+        }
+      ],
+      "image_info": {
+        "code": "PM-MSG",
+        "title": "เครื่องนวดคอพกพาคลื่นความถี่ต่ำ Low Pulse & ประคบร้อน",
+        "image_url": "/assets/catalog-media/hero-fxd66-3-generated.webp",
+        "visual_status": "fallback-placeholder",
+        "is_hero": false,
+        "generated_from_catalog": false
+      }
+    },
+    {
+      "code": "PM-MUG-HEAT",
+      "name_th": "ชุดแก้วเซรามิกพร้อมแท่นอุ่นอุณหภูมิคงที่ 55°C",
+      "name_en": "Ceramic Mug with 55C Heating Base",
+      "category": "Novelty & Self-Care (Warm & Wellness)",
+      "category_slug": "novelty-self-care",
+      "product_family": "PF-DRINKWARE",
+      "material": "generic",
+      "color": "unspecified",
+      "dimensions_cm": {
+        "length": 16.0,
+        "width": 14.0,
+        "height": 12.0
+      },
+      "unit_weight_kg": 0.65,
+      "srp_price": 350.0,
+      "price_tiers": [
+        {
+          "min_qty": 1,
+          "unit_price": 350.0
+        },
+        {
+          "min_qty": 10,
+          "unit_price": 310.0
+        },
+        {
+          "min_qty": 20,
+          "unit_price": 290.0
+        },
+        {
+          "min_qty": 50,
+          "unit_price": 270.0
+        },
+        {
+          "min_qty": 100,
+          "unit_price": 245.0
+        },
+        {
+          "min_qty": 300,
+          "unit_price": 225.0
+        },
+        {
+          "min_qty": 500,
+          "unit_price": 210.0
+        },
+        {
+          "min_qty": 1000,
+          "unit_price": 195.0
+        }
+      ],
+      "image_info": {
+        "code": "PM-MUG-HEAT",
+        "title": "ชุดแก้วเซรามิกพร้อมแท่นอุ่นอุณหภูมิคงที่ 55°C",
+        "image_url": "/assets/catalog-media/hero-fxd66-3-generated.webp",
+        "visual_status": "fallback-placeholder",
+        "is_hero": false,
+        "generated_from_catalog": false
+      }
+    },
+    {
+      "code": "PM-CUTLERY",
+      "name_th": "ชุดช้อนส้อมมีดสแตนเลสฟู้ดเกรดพกพา",
+      "name_en": "Portable Stainless Steel Cutlery Set",
+      "category": "Novelty & Self-Care (Warm & Wellness)",
+      "category_slug": "novelty-self-care",
+      "product_family": "PF-ECO-LIFESTYLE",
+      "material": "generic",
+      "color": "unspecified",
+      "dimensions_cm": {
+        "length": 21.0,
+        "width": 6.0,
+        "height": 3.0
+      },
+      "unit_weight_kg": 0.18,
+      "srp_price": 165.0,
+      "price_tiers": [
+        {
+          "min_qty": 1,
+          "unit_price": 165.0
+        },
+        {
+          "min_qty": 10,
+          "unit_price": 140.0
+        },
+        {
+          "min_qty": 20,
+          "unit_price": 130.0
+        },
+        {
+          "min_qty": 50,
+          "unit_price": 120.0
+        },
+        {
+          "min_qty": 100,
+          "unit_price": 110.0
+        },
+        {
+          "min_qty": 300,
+          "unit_price": 100.0
+        },
+        {
+          "min_qty": 500,
+          "unit_price": 92.0
+        },
+        {
+          "min_qty": 1000,
+          "unit_price": 85.0
+        }
+      ],
+      "image_info": {
+        "code": "PM-CUTLERY",
+        "title": "ชุดช้อนส้อมมีดสแตนเลสฟู้ดเกรดพกพา",
+        "image_url": "/assets/catalog-media/hero-fxd66-3-generated.webp",
+        "visual_status": "fallback-placeholder",
+        "is_hero": false,
+        "generated_from_catalog": false
+      }
+    },
+    {
+      "code": "PM-AROMA",
+      "name_th": "เครื่องกระจายกลิ่นอโรมาอัลตราโซนิกเปลวไฟแสงไฟ Ambient",
+      "name_en": "Ultrasonic Flame Aroma Diffuser",
+      "category": "Novelty & Self-Care (Warm & Wellness)",
+      "category_slug": "novelty-self-care",
+      "product_family": "PF-WELLNESS-HEALTH",
+      "material": "generic",
+      "color": "unspecified",
+      "dimensions_cm": {
+        "length": 17.5,
+        "width": 10.5,
+        "height": 8.0
+      },
+      "unit_weight_kg": 0.48,
+      "srp_price": 550.0,
+      "price_tiers": [
+        {
+          "min_qty": 1,
+          "unit_price": 550.0
+        },
+        {
+          "min_qty": 10,
+          "unit_price": 490.0
+        },
+        {
+          "min_qty": 20,
+          "unit_price": 460.0
+        },
+        {
+          "min_qty": 50,
+          "unit_price": 420.0
+        },
+        {
+          "min_qty": 100,
+          "unit_price": 380.0
+        },
+        {
+          "min_qty": 300,
+          "unit_price": 350.0
+        },
+        {
+          "min_qty": 500,
+          "unit_price": 320.0
+        },
+        {
+          "min_qty": 1000,
+          "unit_price": 295.0
+        }
+      ],
+      "image_info": {
+        "code": "PM-AROMA",
+        "title": "เครื่องกระจายกลิ่นอโรมาอัลตราโซนิกเปลวไฟแสงไฟ Ambient",
+        "image_url": "/assets/catalog-media/hero-fxd66-3-generated.webp",
+        "visual_status": "fallback-placeholder",
+        "is_hero": false,
+        "generated_from_catalog": false
+      }
+    }
+  ]
+}
