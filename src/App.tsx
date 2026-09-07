@@ -48,7 +48,7 @@ export default function App() {
   const [currentView, setCurrentView] = useState<'archive' | 'catalog'>(() => {
     if (typeof window !== 'undefined') {
       const h = window.location.hash.toLowerCase()
-      if (h === '#catalog' || h === '#bline' || window.location.pathname.startsWith('/catalog')) {
+      if (h.startsWith('#catalog') || h.startsWith('#bline') || window.location.pathname.startsWith('/catalog')) {
         return 'catalog'
       }
     }
@@ -58,7 +58,7 @@ export default function App() {
   useEffect(() => {
     const handleHash = () => {
       const h = window.location.hash.toLowerCase()
-      if (h === '#catalog' || h === '#bline') {
+      if (h.startsWith('#catalog') || h.startsWith('#bline')) {
         setCurrentView('catalog')
       } else if (h === '#archive' || h === '') {
         setCurrentView('archive')
@@ -71,6 +71,9 @@ export default function App() {
   const setView = (v: 'archive' | 'catalog') => {
     setCurrentView(v)
     if (typeof window !== 'undefined') {
+      const h = window.location.hash.toLowerCase()
+      const alreadyCatalog = h.startsWith('#catalog') || h.startsWith('#bline')
+      if (v === 'catalog' && alreadyCatalog) return
       window.location.hash = v === 'catalog' ? 'catalog' : 'archive'
     }
   }

@@ -43,8 +43,10 @@ graph TD
 | Route / Hash | View State | Surface Name | Component | Access | Description |
 |---|---|---|---|---|---|
 | `http://localhost:8080/` | `currentView === 'archive'` | **Archive Showcase** | `<App />` | Public | Fullscreen dual-video canvas with mouse cursor scrubbing timeline and GSAP ScrollTrigger pinned archive lookbook gallery. |
-| `http://localhost:8080/#bline` | `currentView === 'catalog'` | **B—Line / SmartGift Catalog** | `<BLineCatalogSection />` | Public | 100% faithful B—Line layout with Light/Dark theme switching, colossal wordmark, 27 products mapped across 5 Gift Tiers. |
-| `http://localhost:8080/#catalog` | `currentView === 'catalog'` | **B—Line / SmartGift Catalog** | `<BLineCatalogSection />` | Public | Semantic alias for `/#bline`. |
+| `http://localhost:8080/#bline` | `currentView === 'catalog'` | **B—Line design partner** | `<BLineCatalogSection />` | Public | Same B—Line layout showing the 12 Italian design pieces (partner layer, not SmartGift SKUs). |
+| `http://localhost:8080/#catalog` | `currentView === 'catalog'` | **SmartGift Catalog — Lens A (เริ่มจากผู้รับ)** | `<BLineCatalogSection />` | Public | Index by interest theme with a Gift Tier strip; `#catalog/theme/<slug>`, `#catalog/tier/<tier>`, `#catalog/occasion/<slug>`, `#catalog/kind/single|set`. |
+| `http://localhost:8080/#catalog/category` | `currentView === 'catalog'` | **SmartGift Catalog — Lens B (หมวดหมู่สินค้า)** | `<BLineCatalogSection />` | Public | Standard-category index; `#catalog/category/<L1>` and `#catalog/category/<L1>/<family>`; `?view=list` spec table; `?supplier=1` adds the supplier layer. |
+| `http://localhost:8080/#catalog/item/<code>` | `currentView === 'catalog'` | **Item deep link** | `<BLineCatalogSection />` | Public | Opens the detail modal for a PM / set / supplier code; closing returns to the list route. |
 | `http://localhost:8080/#archive` | `currentView === 'archive'` | **Archive Showcase** | `<App />` | Public | Explicit anchor navigating back to the archive lookbook. |
 | `?dev=1` (Query Param) | `devMode === true` | **Operator Tools Enabled** | `<MediaConfigModal />` + `<ResolutionOverlay />` | Operator | Enables `[ ⚙️ MEDIA CONFIG ]` drawer button and `[ 📐 GRID OVERLAY ]` blueprint toggle button in the header. |
 
@@ -122,38 +124,15 @@ graph TD
 
 ---
 
-## 4. Product & Gift Tier Mapping Matrix
+## 4. Catalog Item Pool (generated from the SSOT)
 
-| Gift Tier | Canonical Products | SKU / ID | Key Features & Form Factor | 3D Twin | Client Showcase |
-|---|---|---|---|:---:|:---:|
-| **🌿 Eco-Friendly** | Smart LED Vacuum Bottle 500ml | `PM-BOTTLE-LED` | Temp display lid, 304 stainless, 18-24h heat retention | ✅ | One Bangkok, Starbucks |
-| | Double Wall Stainless Coffee Mug 380ml | `PM-CFMUG` | Leak-proof lid, ergonomic handle, insulated | ✅ | Starbucks |
-| | Ceramic Coffee Tumbler with Lid 450ml | `PM-TMB` | Matte ceramic body, splash-proof slider | ✅ | Starbucks, True |
-| | Organic Cotton Canvas Tote Bag | `PM-CANVAS` | Heavyweight 14oz organic cotton, reinforced straps | ❌ | One Bangkok |
-| **🏮 Classic Oriental** | Imperial Ceramic Tea Infuser Set | `PM-TEA-SET` | Celadon glazed ceramic, precision infuser, gift box | ❌ | Corporate VIP |
-| | Mulberry Paper & Bamboo Folding Fan | `PM-SILK-FAN` | Handcrafted Thai mulberry paper, natural bamboo ribs | ❌ | Cultural Gift |
-| | Artisanal Ceramic Incense Burner | `PM-INCENSE` | Lotus petal motif, brass censer fitting | ❌ | Wellness & Spa |
-| | Hand-Carved Teakwood Keepsake Box | `PM-WOOD-BOX` | FSC-certified plantation teak, brass latch | ❌ | Executive Gift |
-| **🕯️ Novelty & Care** | Ultrasonic Aroma Mist Diffuser | `PM-DIFFUSER` | 300ml tank, whisper-quiet ultrasonic, warm ambient LED | ❌ | Home & Office |
-| | Hand-Poured Botanical Soy Wax Candle | `PM-CANDLE` | 100% natural soy wax, essential oil aromatherapy | ❌ | Hospitality |
-| | Electric Shiatsu Neck Massager | `PM-MSG` | Ergonomic memory foam, 3-speed kneading, Type-C | ✅ | Wellness Gift |
-| | Pure Mulberry Silk Contoured Eye Mask | `PM-SLEEP-SET` | 100% 22-momme Grade 6A mulberry silk | ❌ | Travel Set |
-| **⚡ Smart Tech** | 10,000mAh Magnetic Power Bank | `PM-PB10K` | 15W Qi wireless, 20W PD Type-C, aluminum casing | ✅ | True, One31 |
-| | High-Speed USB 3.2 Flash Drive 64GB | `PM-FLASH` | Zinc alloy unibody, read up to 130MB/s, laser logo | ✅ | GMMTV |
-| | Smart Thermostatic Mug + Wireless Warmer | `PM-MUG-HEAT` | Constant 55°C beverage warmer + 15W Qi phone charger | ✅ | Executive Gift |
-| | Hardcover Executive Notebook & Pen Set | `PM-NB` | Premium PU leather, 100gsm acid-free paper, metal pen | ✅ | GMMTV |
-| | Automatic Inverted Windproof Umbrella | `PM-UMB` | Reverse folding, Teflon coating, fiberglass ribs | ✅ | Iconsiam |
-| **✨ Bespoke (B-Line)** | Boby Storage Unit | `boby` | Joe Colombo (1970) · Iconic ABS mobile storage tower | ❌ | Museum Classic |
-| | Spinny Drawer Unit | `spinny` | Marc Sadler (2003) · Rotating cantilever drawers | ❌ | Architectural Piece |
-| | Ring Container | `ring` | Marc Sadler (2005) · Modular container system | ❌ | Modernist Object |
-| | Linea Stool | `linea` | Marc Newson (2012) · Sculptural minimalist stool | ❌ | Iconic Seating |
-| | Arco Floor Lamp | `arco` | Michele De Lucchi (2015) · Minimalist arc lighting | ❌ | Bauhaus Inspired |
-| | Polo Stool | `polo` | Alberto Meda (2018) · Precision die-cast aluminum stool | ❌ | Industrial Design |
-| | Cento Chair | `cento` | Jasper Morrison (2019) · Pure monolithic lounge chair | ❌ | Contemporary Masterpiece |
-| | Orbita Table Lamp | `orbita` | Ferruccio Laviani (2020) · Reflected ambient light sphere | ❌ | Lighting Design |
-| | Kilo Low Table | `kilo` | Stefan Diez (2021) · Powder-coated sheet steel table | ❌ | Minimalist Table |
-| | Uno Chair | `uno` | Ronan Bouroullec (2022) · Organic bentwood chair | ❌ | Scandinavian Minimal |
-| | Nova Desk Lamp | `nova` | Patricia Urquiola (2023) · Directional LED task lamp | ❌ | Milan Design Week |
+The product list is no longer maintained in this document. It is generated by `npm run build:catalog` from `business-01-smart-gift/data-pipeline/02_prepared/` into `src/data/catalogItems.generated.ts` (core: 16 PM singles + 6 sets) and `public/catalog/data/supplier-items.json` (216 public-eligible supplier offers). Structure, categories and routes: [`docs/CATALOG-STRUCTURE-SPEC.md`](CATALOG-STRUCTURE-SPEC.md).
+
+| Layer | Items | Where | Shown |
+|---|---|---|---|
+| core | 16 singles + 6 sets | `catalogItems.generated.ts` + `coreMedia.ts` | always |
+| supplier | 216 of 1,110 offers | `public/catalog/data/supplier-items.json` | behind the "แคตตาล็อกผู้ผลิต" pill |
+| partner | 12 B—Line pieces | `unifiedBLineCatalog.ts` | `#bline` only |
 
 ---
 

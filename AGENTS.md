@@ -94,6 +94,8 @@ web-ui-smg/
 ├── docs/
 │   ├── INTERFACE-INVENTORY.md   # Complete UI component & media slot audit
 │   ├── HERO-VIDEO-SPEC.md       # Video mechanics, GOP requirements, prompt handbook
+│   ├── HERO-VIDEO-BRAND-DIRECTION.md # Brand analysis, Giving-Axis storyboard, SG-1/2/3 prompts
+│   ├── CATALOG-STRUCTURE-SPEC.md # Two-lens IA: recipient-first + standard categories (L1/L2)
 │   └── SITEMAP.md               # Visual hierarchy, URL hashes, and component tree
 ├── public/
 │   ├── assets/
@@ -112,8 +114,12 @@ web-ui-smg/
 │   ├── config/
 │   │   └── mediaConfig.ts               # Default media URLs, slot specs, state types
 │   ├── data/
-│   │   ├── smartGiftCatalogData.ts      # 16 SmartGift corporate products + categories
-│   │   └── unifiedBLineCatalog.ts       # Unified dataset: 16 corporate + 11 B-Line items
+│   │   ├── smartGiftCatalogData.ts      # Adapter for SmartGiftCatalogSection (derived from the pool)
+│   ├── catalogTaxonomy.ts           # Themes, tiers, 7 standard categories, 35 families, routes (hand-authored)
+│   ├── catalogItems.generated.ts    # GENERATED core layer (16 PM + 6 sets) — npm run build:catalog
+│   ├── catalogItems.ts              # Item pool: core + partner + lazy supplier layer, display helpers
+│   ├── coreMedia.ts                 # Hand-curated images / 3D / mockups / copy per PM
+│   │   └── unifiedBLineCatalog.ts       # B—Line partner pieces only (not SmartGift SKUs)
 │   ├── App.tsx                          # Root application, view state, GSAP timeline
 │   ├── index.css                        # Design tokens, B-Line styles, media overlays
 │   └── main.tsx                         # React entry point
@@ -126,46 +132,26 @@ web-ui-smg/
 
 ---
 
-## 5. Catalog Architecture & Gift Tier Mapping
+## 5. Catalog Architecture — Two Lenses, One Item Pool
 
-The application unifies 27 products across 5 canonical Gift Tiers:
+Spec: [`docs/CATALOG-STRUCTURE-SPEC.md`](file:///c:/Users/pc/workspace/web-ui-smg/docs/CATALOG-STRUCTURE-SPEC.md). Gift Tiers (Reach / Select / Signature / Bespoke) are levels of treatment, **not** product categories.
 
 ```
-UNIFIED CATALOG (27 Items)
-├── 🌿 Eco-Friendly (4 Items)
-│   ├── PM-BOTTLE-LED   (Smart LED Vacuum Bottle 500ml · One Bangkok / Starbucks) [3D]
-│   ├── PM-CFMUG        (Double Wall Stainless Coffee Mug 380ml · Starbucks) [3D]
-│   ├── PM-TMB          (Ceramic Coffee Tumbler with Lid 450ml · Starbucks / True) [3D]
-│   └── PM-CANVAS       (Organic Cotton Canvas Tote Bag)
-├── 🏮 Classic Oriental (4 Items)
-│   ├── PM-TEA-SET      (Imperial Ceramic Tea Infuser Set)
-│   ├── PM-SILK-FAN     (Mulberry Paper & Bamboo Folding Fan)
-│   ├── PM-INCENSE      (Artisanal Ceramic Incense Burner)
-│   └── PM-WOOD-BOX     (Hand-Carved Teakwood Keepsake Box)
-├── 🕯️ Novelty & Care (4 Items)
-│   ├── PM-DIFFUSER     (Ultrasonic Aroma Mist Diffuser)
-│   ├── PM-CANDLE       (Hand-Poured Botanical Soy Wax Candle)
-│   ├── PM-MSG          (Electric Shiatsu Neck Massager) [3D]
-│   └── PM-SLEEP-SET    (Pure Mulberry Silk Contoured Eye Mask)
-├── ⚡ Smart Tech (4 Items)
-│   ├── PM-PB10K        (10,000mAh Magnetic Power Bank · True / One31) [3D]
-│   ├── PM-FLASH        (High-Speed USB 3.2 Flash Drive 64GB · GMMTV) [3D]
-│   ├── PM-MUG-HEAT     (Smart Thermostatic Mug with Wireless Heating) [3D]
-│   ├── PM-NB           (Hardcover Notebook & Ballpoint Pen Set · GMMTV) [3D]
-│   └── PM-UMB          (Automatic Inverted Umbrella · Iconsiam) [3D]
-└── ✨ Bespoke (B-Line) (11 Items)
-    ├── boby            (Boby Storage · Joe Colombo, 1970)
-    ├── spinny          (Spinny Stool · Marc Sadler, 2003)
-    ├── ring            (Ring Lamp · Marc Sadler, 2005)
-    ├── linea           (Linea Stool · Marc Newson, 2012)
-    ├── arco            (Arco Lamp · Michele De Lucchi, 2015)
-    ├── polo            (Polo Stool · Alberto Meda, 2018)
-    ├── cento           (Cento Chair · Jasper Morrison, 2019)
-    ├── orbita          (Orbita Lamp · Ferruccio Laviani, 2020)
-    ├── kilo            (Kilo Stool · Stefan Diez, 2021)
-    ├── uno             (Uno Chair · Ronan Bouroullec, 2022)
-    └── nova            (Nova Lamp · Patricia Urquiola, 2023)
+ITEM POOL  src/data/catalogItems.ts  (CatalogItem[])
+├── core layer (GENERATED from the SSOT by `npm run build:catalog`)
+│   ├── 16 PM singles  PM-BOTTLE-LED PM-FAN PM-TMB PM-UMB (eco-friendly) · PM-FLASH PM-PEN PM-TEA-INF (classic-oriental)
+│   │                  PM-AROMA PM-CFMUG PM-CUTLERY PM-MSG PM-MUG-HEAT (novelty-self-care) · PM-DESK-MAT PM-NB PM-PB10K PM-SPK (executive-smart-tech)
+│   └── 6 core sets    TDD03-2 (Select) · TGC06-4 (Signature) · TMK0215 (Signature) · TWL01-8 (Select) · XMAS-2026 / NY-2027 (Reach, no price yet)
+├── supplier layer (public/catalog/data/supplier-items.json, lazy) — 216 public-eligible offers of 1,110
+└── partner layer  B—Line design pieces (unifiedBLineCatalog.ts) — shown only under #bline
+
+Lens A  #catalog            เริ่มจากผู้รับ : occasion → tier → theme (4 themes)
+Lens B  #catalog/category   หมวดหมู่สินค้า : 7 standard categories (L1) → 35 product families (L2)
+Views   grid (default) · list (?view=list, spec table) · index (category / theme sections)
+Deep link  #catalog/item/<code>   Partner  #bline
 ```
+
+3D `.glb` twins exist for 9 PMs but all 16 are still `held` in the SSOT coverage report — the UI labels them **3D · DRAFT**. Client mockups are concept renders, labelled "ภาพจำลอง", never evidence of delivered work.
 
 ---
 
@@ -186,13 +172,12 @@ cmd /c "docker ps"
 cmd /c "docker logs --tail 30 web-ui-smg"
 ```
 
-### 6.2 Adding or Updating Catalog Products
-1. Open [`src/data/unifiedBLineCatalog.ts`](file:///c:/Users/pc/workspace/web-ui-smg/src/data/unifiedBLineCatalog.ts).
-2. Add the item to `smartGiftUnified` or `UNIFIED_CATALOG_ITEMS`.
-3. If the product has a 3D model:
-   - Ensure the `.glb` file is in `public/assets/smartgift/3d/`.
-   - Set `model3d_url: '/assets/smartgift/3d/<SKU>.glb'`.
-4. Rebuild: `cmd /c "npm run build" && cmd /c "docker compose up -d --build"`.
+### 6.2 Updating Catalog Data (never hand-type prices)
+1. Facts (names, prices, dimensions, BOM) come from the SmartGift SSOT: `../business-01-smart-gift/data-pipeline/02_prepared/`.
+2. Regenerate the pool: `cmd /c "npm run build:catalog"` (add `-- --from <path>` if the SSOT repo lives elsewhere). This rewrites `src/data/catalogItems.generated.ts` and `public/catalog/data/supplier-items.json`.
+3. Media for a PM (plate, `.glb`, mockups, copy) lives in [`src/data/coreMedia.ts`](file:///c:/Users/pc/workspace/web-ui-smg/src/data/coreMedia.ts). Only use a plate that shows the same product type; otherwise leave `image` unset and the card renders a placeholder.
+4. New product family or standard category → edit [`src/data/catalogTaxonomy.ts`](file:///c:/Users/pc/workspace/web-ui-smg/src/data/catalogTaxonomy.ts) (`PRODUCT_FAMILIES`, `PM_FAMILY`) — the generator reads these tables.
+5. Rebuild: `cmd /c "npm run build" && cmd /c "docker compose up -d --build"`.
 
 ### 6.3 Updating Hero Videos
 - Refer strictly to [`docs/HERO-VIDEO-SPEC.md`](file:///c:/Users/pc/workspace/web-ui-smg/docs/HERO-VIDEO-SPEC.md).
