@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { DEFAULT_MEDIA_CONFIG, MediaConfigState } from './config/mediaConfig'
+import { DEFAULT_MEDIA_CONFIG, HERO_POSTER_URL, LEGACY_VIDEO_HOST, MediaConfigState } from './config/mediaConfig'
 import { MediaConfigModal } from './components/MediaConfigModal'
 import { ResolutionOverlay, CardOverlay } from './components/ResolutionOverlay'
 import { BLineCatalogSection } from './components/BLineCatalogSection'
@@ -85,7 +85,17 @@ export default function App() {
   const [mediaConfig, setMediaConfig] = useState<MediaConfigState>(() => {
     const saved = localStorage.getItem('smg_media_config')
     if (saved) {
-      try { return JSON.parse(saved) } catch { /* ignore */ }
+      try {
+        const parsed = JSON.parse(saved) as MediaConfigState
+        // A config saved while the template clips were the default keeps pointing at them; move it to the brand clips.
+        const legacy = (url: string) => typeof url !== 'string' || url.includes(LEGACY_VIDEO_HOST)
+        return {
+          ...DEFAULT_MEDIA_CONFIG,
+          ...parsed,
+          videoLeftUrl: legacy(parsed.videoLeftUrl) ? DEFAULT_MEDIA_CONFIG.videoLeftUrl : parsed.videoLeftUrl,
+          videoRightUrl: legacy(parsed.videoRightUrl) ? DEFAULT_MEDIA_CONFIG.videoRightUrl : parsed.videoRightUrl
+        }
+      } catch { /* ignore */ }
     }
     return DEFAULT_MEDIA_CONFIG
   })
@@ -193,7 +203,7 @@ export default function App() {
   if (currentView === 'catalog') {
     return (
       <div className={`bline-page-wrapper ${isConfigOpen ? 'modal-is-open' : ''}`}>
-        <BLineCatalogSection onBackToArchive={() => setView('archive')} showPartner={devMode} />
+        <BLineCatalogSection onBackToArchive={() => setView('archive')} showPartner />
         <MediaConfigModal
           isOpen={devMode && isConfigOpen}
           onClose={() => setIsConfigOpen(false)}
@@ -213,8 +223,8 @@ export default function App() {
       <div ref={cursor} className="cursor"><span>↗</span></div>
       
       <section id="main-canvas" className={loaded >= 1 ? 'loaded' : ''}>
-        <video key={mediaConfig.videoLeftUrl} ref={leftVideo} src={mediaConfig.videoLeftUrl} muted playsInline preload="auto" onLoadedData={ready} />
-        <video key={mediaConfig.videoRightUrl} ref={rightVideo} src={mediaConfig.videoRightUrl} muted playsInline preload="auto" onLoadedData={ready} />
+        <video key={mediaConfig.videoLeftUrl} ref={leftVideo} src={mediaConfig.videoLeftUrl} poster={HERO_POSTER_URL} muted playsInline preload="auto" onLoadedData={ready} />
+        <video key={mediaConfig.videoRightUrl} ref={rightVideo} src={mediaConfig.videoRightUrl} poster={HERO_POSTER_URL} muted playsInline preload="auto" onLoadedData={ready} />
       </section>
 
       <motion.div className="logo" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>

@@ -240,13 +240,14 @@ async function copyText(text: string): Promise<boolean> {
 interface SectionProps {
   onBackToArchive: () => void
   /**
-   * Show the B—Line design-reference section (#bline). "B—Line" is the Italian furniture site whose
-   * layout this catalog borrows; its pieces are not SmartGift products, so the link is dev-only.
+   * Show the B—Line collection link (#bline). B—Line S.r.l. is the Italian design house whose site
+   * layout this catalog borrows; its pieces are shown as a partner collection / Bespoke inspiration,
+   * clearly labelled as not SmartGift products.
    */
   showPartner?: boolean
 }
 
-export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, showPartner = false }) => {
+export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, showPartner = true }) => {
   const [dark, setDark] = useState(true)
   const [route, setRoute] = useState<UiRoute>(readRoute)
   const [supplierItems, setSupplierItems] = useState<CatalogItem[] | null>(null)
@@ -435,7 +436,7 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
   const containsFilter = (filters?.contains ?? '').split(',').filter(Boolean)
 
   const breadcrumb = useMemo(() => {
-    if (listRoute.partner) return 'Design reference / B—Line (internal) — ไม่ใช่สินค้า SmartGift'
+    if (listRoute.partner) return 'B—Line / Italian design collection — แรงบันดาลใจระดับ Bespoke (ชิ้นงานของ B—Line S.r.l. ไม่ใช่สินค้า SmartGift)'
     if (lens === 'standard') {
       const cat = listRoute.value ? categoryLabel(listRoute.value) : null
       const fam = listRoute.family ? familyLabel(listRoute.family) : null
@@ -800,7 +801,7 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
           <button className="bline-back-btn" onClick={onBackToArchive}>
             ← HOME
           </button>
-          <span className="bline-brand-sub">{listRoute.partner ? 'DESIGN REFERENCE · B—LINE (INTERNAL)' : 'SMARTGIFT · CORPORATE GIFT PORTFOLIO'}</span>
+          <span className="bline-brand-sub">{listRoute.partner ? 'SMARTGIFT × B—LINE · ITALIAN DESIGN COLLECTION' : 'SMARTGIFT · CORPORATE GIFT PORTFOLIO'}</span>
           {listRoute.partner ? (
             <button className="bline-category-btn" onClick={() => navigate({ lens: 'recipient', partner: false })}>
               ← SmartGift catalog
@@ -818,8 +819,8 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
           ))}
           {!listRoute.partner && showPartner && (
             <li>
-              <button className="bline-category-btn bline-partner-link" title="Design reference (dev only)" onClick={() => navigate({ lens: 'recipient', partner: true })}>
-                Design ref
+              <button className="bline-category-btn bline-partner-link" title="B—Line · Italian design collection (partner, not SmartGift products)" onClick={() => navigate({ lens: 'recipient', partner: true })}>
+                B—Line
               </button>
             </li>
           )}

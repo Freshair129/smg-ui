@@ -278,8 +278,35 @@ Image-to-video, provided frame is the exact first frame. Single continuous later
 
 ---
 
+## 9. Production log — v1 (2026-09-07, local ComfyUI)
+
+| รายการ | ค่าที่ใช้จริง |
+|---|---|
+| โครงการ | `business-01-smart-gift/comfy-hero-video/` (comfy project/1: `assets/`, `fragments/wan5b_i2v.json`, `blueprints/sg1_hero.yaml`, `scripts/`, `outputs/`) |
+| เครื่อง | RTX 5060 Ti 16 GB, ComfyUI local :8188, `comfy` CLI 1.19 — ไม่ได้ login Comfy Cloud จึงไม่ใช้ partner API (Kling/Veo/Seedance) |
+| โมเดล | **Wan 2.2 TI2V 5B fp16** (template `video_wan2_2_5B_ti2v` decompose เป็น fragment แล้วเพิ่ม input `start_image`) + umt5-xxl fp8 + wan2.2 VAE — ดาวน์โหลดด้วย `scripts/download_models.py` (~18 GB) |
+| เฟรมตั้งต้นร่วม | `assets/frame0_open_box_1280x704.png` crop จาก `FXD66-3-adcreative-v1.png` (ภาพ ad creative ที่ approve แล้ว) — ไม่ได้ generate ใหม่ จึง product-faithful ตาม PRODUCT.md |
+| Clip W (คนรับ → slot `videoRightUrl`) | มือในแขนเสื้อ charcoal เข้าจากขอบล่าง วางบนขอบกล่อง ยกทัมเบลอร์ขึ้นเล็กน้อย กล้อง tilt ลงช้า ๆ (seed 20260907) |
+| Clip E (ของ → slot `videoLeftUrl`) | กล้อง push-in ช้า ๆ แบบ linear มุม near top-down แสงหน้าต่างเคลื่อนช้า ของทั้ง 3 ชิ้นนิ่ง (seed 20260908) |
+| พารามิเตอร์ | 1280×704, 97 เฟรม @24 fps (4.0 s), 20 steps, cfg 5, uni_pc/simple, shift ตาม template — ทั้งสอง clip อยู่ใน graph เดียว (`sg1_hero.compiled.json`) |
+| Conform | `scripts/conform.py`: scale/crop 1920×1080, fps=30, `-t 4`, libx264 high crf 20, `-g 15 -keyint_min 15 -sc_threshold 0`, `-an`, `+faststart` แล้วตรวจ I-frame count และ mean abs diff ของเฟรมแรกทั้งสองคลิป (< 3.0) จากนั้น copy ไป `web-ui-smg/public/assets/videos/` |
+| Poster | `hero_frame0_poster.jpg` (1920×1080 จากภาพเดียวกัน) ใส่ใน `<video poster>` ทั้งสองแท็ก |
+
+### 9.1 สิ่งที่ต่างจาก storyboard §3 (จงใจ ไม่ใช่พลาด)
+
+- **เฟรมตั้งต้นเป็นกล่องเปิด ไม่ใช่กล่องปิด** — ไม่มีโมเดล image-edit ที่ปิดฝาได้อย่างซื่อสัตย์ต่อสินค้าบนเครื่องนี้ (มีแต่ Qwen-Image base) และการ edit ก่อน I2V เพิ่มความเสี่ยงที่ของในกล่องจะเพี้ยน จึงใช้ภาพ ad creative ที่ approve แล้วเป็นเฟรม 0 ตรง ๆ ผลคือ Clip E เปลี่ยนจาก "ฝาเลื่อนออกเผยของ" เป็น "push-in เข้าหาของที่เห็นอยู่แล้ว" และ Clip W เป็น "มือรับ/ยกทัมเบลอร์" แทน "ยกฝา"
+- **ความละเอียดต้นทาง 1280×704** (native ของ 5B) แล้ว upscale เป็น 1080p ใน conform — คมน้อยกว่าสเปก 1080p แท้ ยอมรับได้สำหรับ v1; **24 → 30 fps** ใช้ frame duplication ไม่ interpolate
+- ยังไม่มี **SG-2 / SG-3** และ theme B-roll ในรอบนี้
+
+### 9.2 ทางไป v2
+
+1. เฟรมปิดฝา: ใช้โมเดล edit (Qwen-Image-Edit หรือ Flux Kontext) ทำ targeted edit "ปิดฝา" จาก ad creative เดียวกัน แล้วรัน storyboard §3 เต็ม
+2. คุณภาพ: Wan 2.2 14B I2V (ต้อง VRAM มากกว่านี้หรือใช้ Comfy Cloud / partner API หลัง login) หรือ render 1080p แท้
+3. SG-3 Twin Orbit เมื่อ `.glb` ผ่าน owner_approved
+
 ## CHANGELOG
 
 | Version | Date | Summary | Agent |
 |---|---|---|---|
+| 1.1.0 | 2026-09-07 | Production log v1: SG-1 rendered locally with Wan 2.2 5B from the approved ad-creative frame; deviations and v2 path recorded | Claude |
 | 1.0.0 | 2026-09-07 | Brand analysis จาก 02_prepared + creative proof PDF; แนวคิด Giving Axis; storyboard SG-1; visual spec; pipeline product-faithful; prompt library SG-1/SG-2/SG-3 | Claude |
