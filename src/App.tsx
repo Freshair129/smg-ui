@@ -7,11 +7,15 @@ import { DEFAULT_MEDIA_CONFIG, MediaConfigState } from './config/mediaConfig'
 import { MediaConfigModal } from './components/MediaConfigModal'
 import { ResolutionOverlay, CardOverlay } from './components/ResolutionOverlay'
 import { BLineCatalogSection } from './components/BLineCatalogSection'
+import { CATALOG_ITEMS, SUPPLIER_LAYER_META } from './data/catalogItems'
 import { useDevMode } from './devMode'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const symbols = ['8', '$', '^^', '%', '/']
+// Hero ledger: what we actually sell, counted from the SSOT-generated pool (never typed by hand).
+const CORE_SINGLES = CATALOG_ITEMS.filter(item => item.kind === 'single').length
+const CORE_SETS = CATALOG_ITEMS.length - CORE_SINGLES
+const CATALOG_TOTAL = CATALOG_ITEMS.length + SUPPLIER_LAYER_META.count
 
 function useGalleryLayout(galleryLength: number) {
   const [columns, setColumns] = useState(4)
@@ -90,7 +94,6 @@ export default function App() {
   const [isConfigOpen, setIsConfigOpen] = useState(false)
   const [showOverlay, setShowOverlay] = useState(false)
   const [loaded, setLoaded] = useState(0)
-  const [symbol, setSymbol] = useState('8')
 
   const layout = useGalleryLayout(mediaConfig.galleryUrls.length)
 
@@ -121,7 +124,6 @@ export default function App() {
 
   useLayoutEffect(() => {
     let raf = 0
-    let lastSymbol = 0
     const update = () => {
       const y = scrollY
       const vh = innerHeight
@@ -147,7 +149,6 @@ export default function App() {
       if (info) info.style.transform = `translateY(${-166 * outro}px)`
       if (buy) buy.style.transform = `scale(${outro})`
       if (footer) footer.style.opacity = `${outro}`
-      if (y - lastSymbol > 80) { setSymbol(symbols[Math.floor(Math.random() * symbols.length)]); lastSymbol = y }
       raf = requestAnimationFrame(update)
     }
     raf = requestAnimationFrame(update)
@@ -192,7 +193,7 @@ export default function App() {
   if (currentView === 'catalog') {
     return (
       <div className={`bline-page-wrapper ${isConfigOpen ? 'modal-is-open' : ''}`}>
-        <BLineCatalogSection onBackToArchive={() => setView('archive')} />
+        <BLineCatalogSection onBackToArchive={() => setView('archive')} showPartner={devMode} />
         <MediaConfigModal
           isOpen={devMode && isConfigOpen}
           onClose={() => setIsConfigOpen(false)}
@@ -226,13 +227,13 @@ export default function App() {
             className="nav-link active"
             onClick={() => setView('archive')}
           >
-            ARCHIVE
+            HOME
           </button>
           <button
             className="nav-link"
             onClick={() => setView('catalog')}
           >
-            B—LINE CATALOG
+            CATALOG
           </button>
         </nav>
         <div className="header-tools">
@@ -247,16 +248,20 @@ export default function App() {
             </>
           )}
           <span className="hamburger" />
-          <span>[ CART ]</span>
+          <button className="header-quote-btn" onClick={() => setView('catalog')}>ขอใบเสนอราคา</button>
         </div>
       </motion.header>
 
       <motion.aside id="outro-info" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .6, delay: .45 }}>
         <div className="collection">
-          <div className="symbol-circle">{symbol}</div>
-          <span>ARCHIVE COLLECTION<br />&quot;SMARTGIFT&quot;</span>
+          <div className="symbol-circle">SG</div>
+          <span>CORPORATE GIFT PORTFOLIO<br />ของขวัญที่เริ่มจากผู้รับ</span>
         </div>
-        <strong>5,500 ฿</strong>
+        <strong>{CATALOG_TOTAL.toLocaleString('en-US')}</strong>
+        <small className="outro-count-label">
+          สินค้าและชุดของขวัญที่พร้อมเสนอ<br />
+          {CORE_SINGLES} สินค้าหลัก · {CORE_SETS} ชุด · {SUPPLIER_LAYER_META.count} จากแคตตาล็อกผู้ผลิต
+        </small>
       </motion.aside>
 
       <div id="black-panel">

@@ -32,6 +32,8 @@
 ## 2. Hard Invariants & Guardrails (DO NOT BREAK)
 
 ### ⚠️ RULE 1: Strict B—Line Layout Fidelity
+- "B—Line" is the **internal name of the layout reference** (an Italian furniture site whose page structure this catalog borrows). It is a code/CSS name only: `.bline-*` classes stay, but the word **must never appear in customer-facing copy** — nav, wordmark, footer, breadcrumbs say SmartGift. The B—Line design pieces live at `#bline` behind `showPartner` (dev mode only) and are labelled "Design reference (internal)"; there is no "A-line".
+- Colours and type are SmartGift's, not B—Line's: tokens in `src/index.css` `:root` (`--sg-orange #F26522`, `--sg-brass #C79A5B`, `--sg-ivory`, `--sg-stone #EFE9DE`, `--sg-charcoal #16130F`, `--sg-ink`; `--sg-accent` = orange with dark on-accent text; display font Anuphan, body IBM Plex Sans Thai, mono IBM Plex Mono). Never reintroduce the pink `#ff0055` or neutral `#000/#fff` grounds.
 - When working on the catalog surface, **NEVER** introduce foreign dashboard, portal, or generic e-commerce layouts.
 - **Always preserve**:
   - Class prefix: `.bline-*` ([`src/index.css`](file:///c:/Users/pc/workspace/web-ui-smg/src/index.css))

@@ -237,7 +237,16 @@ async function copyText(text: string): Promise<boolean> {
 // Component
 // ---------------------------------------------------------------------------
 
-export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({ onBackToArchive }) => {
+interface SectionProps {
+  onBackToArchive: () => void
+  /**
+   * Show the B—Line design-reference section (#bline). "B—Line" is the Italian furniture site whose
+   * layout this catalog borrows; its pieces are not SmartGift products, so the link is dev-only.
+   */
+  showPartner?: boolean
+}
+
+export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, showPartner = false }) => {
   const [dark, setDark] = useState(true)
   const [route, setRoute] = useState<UiRoute>(readRoute)
   const [supplierItems, setSupplierItems] = useState<CatalogItem[] | null>(null)
@@ -426,7 +435,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
   const containsFilter = (filters?.contains ?? '').split(',').filter(Boolean)
 
   const breadcrumb = useMemo(() => {
-    if (listRoute.partner) return 'B—Line / Italian design partner — Catalogo Completo'
+    if (listRoute.partner) return 'Design reference / B—Line (internal) — ไม่ใช่สินค้า SmartGift'
     if (lens === 'standard') {
       const cat = listRoute.value ? categoryLabel(listRoute.value) : null
       const fam = listRoute.family ? familyLabel(listRoute.family) : null
@@ -789,9 +798,9 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       <nav className="bline-nav">
         <div className="bline-nav-left">
           <button className="bline-back-btn" onClick={onBackToArchive}>
-            ← SMARTGIFT ARCHIVE
+            ← HOME
           </button>
-          <span className="bline-brand-sub">{listRoute.partner ? 'B—LINE / SMARTGIFT' : 'SMARTGIFT / B—LINE'}</span>
+          <span className="bline-brand-sub">{listRoute.partner ? 'DESIGN REFERENCE · B—LINE (INTERNAL)' : 'SMARTGIFT · CORPORATE GIFT PORTFOLIO'}</span>
           {listRoute.partner ? (
             <button className="bline-category-btn" onClick={() => navigate({ lens: 'recipient', partner: false })}>
               ← SmartGift catalog
@@ -807,10 +816,10 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
               </button>
             </li>
           ))}
-          {!listRoute.partner && (
+          {!listRoute.partner && showPartner && (
             <li>
-              <button className="bline-category-btn bline-partner-link" onClick={() => navigate({ lens: 'recipient', partner: true })}>
-                B—Line
+              <button className="bline-category-btn bline-partner-link" title="Design reference (dev only)" onClick={() => navigate({ lens: 'recipient', partner: true })}>
+                Design ref
               </button>
             </li>
           )}
@@ -1290,17 +1299,17 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       {/* Footer */}
       <footer className="bline-footer">
         <div className="bline-footer-top">
-          <span className="bline-footer-brand">SmartGift Corporate &amp; B—Line S.r.l.</span>
+          <span className="bline-footer-brand">SmartGift · The Right Gift. The Right Impact.</span>
           <ul className="bline-footer-links">
+            <li><a href="#catalog">เริ่มจากผู้รับ</a></li>
+            <li><a href="#catalog/category">หมวดหมู่สินค้า</a></li>
+            <li><a href="#catalog/bundle">จัดแพ็กเกจ</a></li>
             <li><a href="#privacy">Privacy Policy</a></li>
-            <li><a href="#cookie">Cookie Policy</a></li>
-            <li><a href="#legal">Note Legali</a></li>
-            <li><a href="#contact">Contatti</a></li>
-            <li><a href="#press">Area Stampa</a></li>
           </ul>
         </div>
         <p className="bline-footer-legal">
-          © 2026 SmartGift Corporate Portfolio (บริษัท เทราบิส จำกัด) &amp; B—Line S.r.l. &nbsp;·&nbsp; ราคาเป็นราคาอ้างอิงตามขั้นจำนวน ยืนยันในใบเสนอราคา · ภาพสร้างสรรค์ระบุสถานะรายรายการ
+          © 2026 SmartGift Thailand (บริษัท เทราบิส จำกัด) &nbsp;·&nbsp; ราคาเป็นราคาอ้างอิงตามขั้นจำนวน ยืนยันในใบเสนอราคา · ภาพสร้างสรรค์ระบุสถานะรายรายการ
+          {listRoute.partner ? ' · Design pieces shown on this page are by B—Line S.r.l. (Italy) and are not SmartGift products.' : ''}
         </p>
       </footer>
     </section>

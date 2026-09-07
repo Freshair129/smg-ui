@@ -108,7 +108,7 @@ This document serves as the canonical **Interface Inventory and UI Component Aud
 ## 6. Design System Tokens
 
 ### 6.1 Typography
-- **Primary Font Family:** `"Inter Tight", Arial, sans-serif`
+- **Display:** `Anuphan` (wordmark, headings) · **Body:** `IBM Plex Sans Thai` (catalog surface) · **Mono:** `IBM Plex Mono` (codes, labels) · `Inter Tight` remains on the landing page chrome
 - **Code & SKU Font:** `monospace` (Consolas, Menlo, Monaco)
 - **Weights Used:** `500` (Medium), `600` (SemiBold), `700` (Bold), `800` (ExtraBold), `900` (Black)
 
@@ -118,7 +118,9 @@ This document serves as the canonical **Interface Inventory and UI Component Aud
 | `--color-bg-dark` | `#090a0f` / `#111319` | SmartGift B2B Catalog & dark theme backgrounds |
 | `--color-card-bg` | `#111319` / `#13151f` | Product cards & pricing calculator card background |
 | `--color-accent-cyan` | `#00f2fe` | 3D badges, active category pills, total pricing value |
-| `--color-accent-pink` | `#ff0055` | Primary CTA, quotation request buttons & alert accents |
+| `--sg-accent` | `#F26522` (SmartGift orange, dark on-accent text) | Active pills, lens toggle, CTA `ขอใบเสนอราคา`, hover borders — replaced the B—Line pink `#ff0055` |
+| `--sg-brass` | `#C79A5B` | Tier chips, labels, secondary accents |
+| `--sg-charcoal` / `--sg-stone` | `#16130F` / `#EFE9DE` | Dark / light catalog grounds (replaced `#0a0a0a` / `#f8f8f8`) |
 | `--color-accent-emerald` | `#10b981` | Bulk price tags, savings chips, operational status indicator |
 | `--color-text-main` | `#ffffff` / `#f8fafc` | Primary titles & numeric figures |
 | `--color-text-muted` | `#94a3b8` / `#64748b` | Descriptions, secondary English titles, specifications |
