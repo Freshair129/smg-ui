@@ -148,7 +148,7 @@ ITEM POOL  src/data/catalogItems.ts  (CatalogItem[])
 Lens A  #catalog            เริ่มจากผู้รับ : gifting brief ?recipient=&occasion=&tier=&qty= (ให้ใคร→เพื่ออะไร→ระดับไหน→จำนวน) → recommended sets → singles by theme
 Lens B  #catalog/category   หมวดหมู่สินค้า : 7 standard categories (L1) → 35 product families (L2)
 Views   grid (default) · list (?view=list, spec table) · index (category / theme sections) · search (?q=, all layers)
-Deep link  #catalog/item/<code>   Partner  #bline
+Deep link  #catalog/item/<code>   Partner  #bline   Bundle builder  #catalog/bundle[/<PKG-code>]?g=tier:set:qty|…
 ```
 
 3D `.glb` twins exist for 9 PMs but all 16 are still `held` in the SSOT coverage report — the UI labels them **3D · DRAFT**. Client mockups are concept renders, labelled "ภาพจำลอง", never evidence of delivered work.
@@ -178,6 +178,11 @@ cmd /c "docker logs --tail 30 web-ui-smg"
 3. Media for a PM (plate, `.glb`, mockups, copy) lives in [`src/data/coreMedia.ts`](file:///c:/Users/pc/workspace/web-ui-smg/src/data/coreMedia.ts). Only use a plate that shows the same product type; otherwise leave `image` unset and the card renders a placeholder.
 4. New product family or standard category → edit [`src/data/catalogTaxonomy.ts`](file:///c:/Users/pc/workspace/web-ui-smg/src/data/catalogTaxonomy.ts) (`PRODUCT_FAMILIES`, `PM_FAMILY`) — the generator reads these tables.
 5. Rebuild: `cmd /c "npm run build" && cmd /c "docker compose up -d --build"`.
+
+### 6.2b Brief intake (P5)
+- The "ขอใบเสนอราคา" panel and the bundle builder send a `smartgift-brief/1` JSON (contract: [`docs/CATALOG-STRUCTURE-SPEC.md`](file:///c:/Users/pc/workspace/web-ui-smg/docs/CATALOG-STRUCTURE-SPEC.md) §11) through `src/data/briefSubmit.ts`: webhook → mailto → clipboard.
+- Configure at build time via `.env` (see `.env.example`): `VITE_BRIEF_ENDPOINT` (zuri-ai CRM intake, pending its CR), `VITE_SALES_EMAIL`, `VITE_LINE_OA_URL`. With none set the panel copies the summary to the clipboard and says so.
+- Never persist contact details in this app (localStorage, JSON, logs). The CRM is the store of record.
 
 ### 6.3 Updating Hero Videos
 - Refer strictly to [`docs/HERO-VIDEO-SPEC.md`](file:///c:/Users/pc/workspace/web-ui-smg/docs/HERO-VIDEO-SPEC.md).

@@ -35,6 +35,9 @@ import {
   SUPPLIER_LAYER_META
 } from '../data/catalogItems'
 import { BLINE_PRODUCTS, BLineProduct } from '../data/unifiedBLineCatalog'
+import { BriefContact, BriefPayload, PRICE_NOTE } from '../data/briefSubmit'
+import { BriefSubmitPanel } from './BriefSubmitPanel'
+import { BundleBuilder } from './BundleBuilder'
 
 export { BLINE_PRODUCTS }
 export type { BLineProduct }
@@ -242,7 +245,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
   const [selected, setSelected] = useState<CatalogItem | null>(null)
   const [modalMediaMode, setModalMediaMode] = useState<'3d' | 'image' | 'bom' | 'client'>('image')
   const [orderQty, setOrderQty] = useState<number>(100)
-  const [inquirySent, setInquirySent] = useState(false)
+  const [showSubmit, setShowSubmit] = useState(false)
   const [copied, setCopied] = useState<'idle' | 'ok' | 'fail'>('idle')
 
   // The list route stays put while an item deep link (#catalog/item/CODE) is open.
@@ -317,7 +320,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
         setSelected(found)
         setModalMediaMode(found.model3d_url ? '3d' : found.image ? 'image' : found.contains?.length ? 'bom' : 'image')
         setOrderQty(briefOf(route.filters).qty ?? 100)
-        setInquirySent(false)
+        setShowSubmit(false)
         setCopied('idle')
       }
     } else if (found === undefined && !supplierItems && !supplierLoading) {
@@ -337,7 +340,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       setSelected(item)
       setModalMediaMode(item.model3d_url ? '3d' : item.image ? 'image' : item.contains?.length ? 'bom' : 'image')
       setOrderQty(brief.qty ?? 100)
-      setInquirySent(false)
+      setShowSubmit(false)
       setCopied('idle')
       const briefFilters: Record<string, string> = {}
       for (const k of BRIEF_KEYS) if (filters?.[k]) briefFilters[k] = filters[k]
@@ -399,7 +402,8 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       ...INTEREST_THEMES.map(t => {
         const r: UiRoute = { lens: 'recipient', axis: 'theme', value: t.slug, partner: false, filters }
         return { label: t.short_en, route: r, active: listRoute.axis === 'theme' && listRoute.value === t.slug }
-      })
+      }),
+      { label: 'Bundle', route: { lens: 'recipient', axis: 'bundle', partner: false, filters }, active: listRoute.axis === 'bundle' }
     ]
   }, [lens, listRoute, filters])
 
@@ -428,6 +432,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       const fam = listRoute.family ? familyLabel(listRoute.family) : null
       return ['หมวดหมู่สินค้า', cat, fam].filter(Boolean).join(' / ')
     }
+    if (listRoute.axis === 'bundle') return 'เริ่มจากผู้รับ / จัดแพ็กเกจหลายระดับ'
     if (listRoute.axis === 'theme') return `เริ่มจากผู้รับ / ธีม: ${themeLabel(listRoute.value)}`
     if (listRoute.axis === 'tier') return `เริ่มจากผู้รับ / ระดับการดูแล: ${giftTier(listRoute.value ?? '')?.code ?? listRoute.value}`
     if (listRoute.axis === 'occasion') return `เริ่มจากผู้รับ / โอกาส: ${occasionDef(listRoute.value ?? '')?.name_th ?? listRoute.value}`
@@ -518,6 +523,31 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       ? `#bline/item/${item.code}`
       : buildCatalogHash({ lens: 'recipient', axis: 'item', value: item.code, filters: Object.keys(briefFilters).length ? briefFilters : undefined })
     return `${window.location.origin}${window.location.pathname}${hash}`
+  }
+
+  const itemPayload = (item: CatalogItem, contact: BriefContact): BriefPayload => {
+    const unit = unitPriceAt(item, orderQty)
+    return {
+      schema: 'smartgift-brief/1',
+      submitted_at: new Date().toISOString(),
+      source: 'web-ui-smg',
+      page_url: itemLink(item),
+      brief: { recipient: brief.recipient, occasion: brief.occasion, tier: brief.tier, qty: brief.qty },
+      lines: [
+        {
+          code: item.code,
+          name_th: item.name_th,
+          kind: item.kind,
+          tier: item.tier,
+          qty: orderQty,
+          unit_price: unit,
+          total: unit !== undefined ? unit * orderQty : undefined,
+          price_status: unit !== undefined ? 'reference' : 'ask_for_quote'
+        }
+      ],
+      contact,
+      notes: [PRICE_NOTE]
+    }
   }
 
   const copyBrief = async (item?: CatalogItem) => {
@@ -720,6 +750,9 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
           <button className="pill-btn" onClick={() => copyBrief()} disabled={briefIsEmpty(brief)}>
             {copied === 'ok' ? '✓ คัดลอกแล้ว' : copied === 'fail' ? 'คัดลอกไม่สำเร็จ' : 'คัดลอกสรุป brief'}
           </button>
+          <button className="pill-btn" onClick={() => navigate({ lens: 'recipient', axis: 'bundle', partner: false, filters })}>
+            จัดแพ็กเกจหลายระดับ →
+          </button>
         </div>
       </div>
     </section>
@@ -808,10 +841,11 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       {/* Section Label Bar */}
       <div className="bline-section-label">
         <span className="bline-breadcrumb">
-          {breadcrumb} &nbsp;·&nbsp; {visible.length} รายการ
+          {breadcrumb}
+          {listRoute.axis !== 'bundle' && <> &nbsp;·&nbsp; {visible.length} รายการ</>}
           {supplierLoading && <em className="bline-loading"> · กำลังโหลดแคตตาล็อกผู้ผลิต…</em>}
         </span>
-        <div className="bline-filter-pills">
+        {listRoute.axis !== 'bundle' && <div className="bline-filter-pills">
           {!listRoute.partner && (
             <span className="bline-search">
               <input
@@ -917,11 +951,23 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
               ☰
             </button>
           </span>
-        </div>
+        </div>}
       </div>
 
       {/* Body */}
       <main className="bline-main">
+        {listRoute.axis === 'bundle' ? (
+          <BundleBuilder
+            templateCode={listRoute.value}
+            encoded={filters?.g}
+            brief={brief}
+            pageUrl={`${window.location.origin}${window.location.pathname}${buildCatalogHash(listRoute)}`}
+            onEncodedChange={g => navigate(withFilter(listRoute, 'g', g))}
+            onSelectTemplate={code => navigate(withFilter({ ...listRoute, value: code ?? undefined }, 'g', null))}
+            onOpenItem={openItem}
+          />
+        ) : (
+          <>
         {lens === 'recipient' && isIndex && view === 'index' && renderBriefPanel()}
         {lens === 'recipient' && !isIndex && !briefIsEmpty(brief) && (
           <div className="bline-brief-strip">
@@ -992,6 +1038,8 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
           <>
             <div className="bline-grid">{visible.map(renderCard)}</div>
             {visible.length === 0 && renderEmpty()}
+          </>
+        )}
           </>
         )}
       </main>
@@ -1215,16 +1263,25 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                 </div>
               )}
 
-              <div className="bline-modal-actions">
-                <button className="bline-inquire-btn" onClick={() => setInquirySent(true)}>
-                  {inquirySent ? '✓ ส่งคำขอถึงฝ่ายขายแล้ว' : `ขอใบเสนอราคา${orderQty ? ` · ${orderQty.toLocaleString('en-US')} ชิ้น` : ''}`}
-                </button>
-                {selected.layer !== 'partner' && (
-                  <button className="bline-copy-btn" onClick={() => copyBrief(selected)}>
-                    {copied === 'ok' ? '✓ คัดลอกแล้ว' : copied === 'fail' ? 'คัดลอกไม่สำเร็จ' : 'คัดลอกสรุป brief + รายการ'}
+              {showSubmit && selected.layer !== 'partner' ? (
+                <BriefSubmitPanel
+                  compact
+                  buildPayload={contact => itemPayload(selected, contact)}
+                  buildText={() => briefText(brief, selected, orderQty, itemLink(selected))}
+                  onClose={() => setShowSubmit(false)}
+                />
+              ) : (
+                <div className="bline-modal-actions">
+                  <button className="bline-inquire-btn" onClick={() => setShowSubmit(true)} disabled={selected.layer === 'partner'}>
+                    {`ขอใบเสนอราคา${orderQty ? ` · ${orderQty.toLocaleString('en-US')} ชิ้น` : ''}`}
                   </button>
-                )}
-              </div>
+                  {selected.layer !== 'partner' && (
+                    <button className="bline-copy-btn" onClick={() => copyBrief(selected)}>
+                      {copied === 'ok' ? '✓ คัดลอกแล้ว' : copied === 'fail' ? 'คัดลอกไม่สำเร็จ' : 'คัดลอกสรุป brief + รายการ'}
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

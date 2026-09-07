@@ -4,3 +4,8 @@ dist
 *.log
 *.glb
 
+
+# local env (brief intake endpoint, sales email) — never commit
+.env
+.env.local
+.env.*.local

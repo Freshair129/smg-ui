@@ -2,7 +2,7 @@
 **Project:** SmartGift Web UI (`web-ui-smg`)  
 **Machine-readable companion:** [`src/data/catalogTaxonomy.ts`](../src/data/catalogTaxonomy.ts)  
 **Sources:** `business-01-smart-gift/data-pipeline/02_prepared/{smartgift_catalog_master, pricelist_master, ProductMaster, CatalogOffer, BundleOffer}.json`, `docs/business/SMARTGIFT-PRODUCT-TAXONOMY-OFFER-RULES-2026-08.md`, `docs/business/2026-09-07-catalog-listing.md`, `PRODUCT.md`  
-**Version:** `1.3.0` · **Date:** 2026-09-07 · **Status:** P0–P4 implemented (taxonomy, generator, lens toggle, routes, index/L1/L2, list view, gifting brief, set cards/BOM, supplier layer with search)
+**Version:** `1.4.0` · **Date:** 2026-09-07 · **Status:** P0–P5 implemented; brief intake endpoint on the zuri-ai side still pending (client falls back to mailto / clipboard)
 
 ---
 
@@ -285,7 +285,37 @@ src/data/catalogTaxonomy.ts (มือ, เขียนแล้ว)  +  catalog
 | **P2 ✅** | Lens toggle ใน `.bline-nav`, route prefix match ใน `App.tsx`, หน้า `#catalog/category` (index) และ L1/L2, view `list`, deep link `#catalog/item/<code>` | **ดูแบบหมวดหมู่มาตรฐานได้** |
 | **P3 ✅** | Gifting brief 4 ข้อบน Lens A index (ให้ใคร→เพื่ออะไร→ระดับไหน→จำนวน) เก็บใน hash, ชุดที่เข้ากับโจทย์เรียงก่อน, composition chips บนการ์ดชุด, BOM/reverse BOM ใน modal, brief แนบใน modal + คัดลอกสรุป | ขายเป็น "ชุด" ได้ |
 | **P4 ✅** | Supplier layer หลัง pill "แคตตาล็อกผู้ผลิต (216)" — lazy fetch, gate = ภาพต้นฉบับหรือราคาอ้างอิง (894 รายการยังไม่ผ่าน), banner แนะนำใน Lens B และตอนค้นหา, section "จากแคตตาล็อกผู้ผลิต" ใน Lens A, ช่องค้นหา `?q=` ครอบคลุมรหัส/ชื่อ/กลุ่มสินค้า/alias/สี/ส่วนประกอบ, ป้าย "ภาพสร้างสรรค์" บนการ์ด, สีจาก description, หมายเหตุราคาอ้างอิงยังไม่ยืนยันใน modal | ใช้ catalog 1,110 รายการที่มีอยู่ |
-| **P5** | Bundle builder จาก PKG (เมื่อ quote_ready) + brief form ส่งไป CRM ฝั่ง zuri-ai | ปิด loop ขอใบเสนอราคา |
+| **P5 ✅ (client side)** | Bundle builder ที่ `#catalog/bundle[/<PKG>]` ใช้ 11 PKG + 2 blueprint เป็น *แม่แบบโครงสร้าง* (ไม่มีราคาแพ็กเกจที่อนุมัติ จึงคิดราคาอ้างอิงจากขั้นจำนวนของชุด core สด ๆ), กลุ่มผู้รับเก็บใน `?g=`, BOM รวมทั้งแพ็กเกจ; brief form (ชื่อ/บริษัท/อีเมล/โทร/หมายเหตุ) ส่งผ่าน webhook `VITE_BRIEF_ENDPOINT` → mailto `VITE_SALES_EMAIL` → clipboard ตาม contract §11 | ปิด loop ขอใบเสนอราคาฝั่งเว็บ; ฝั่ง CRM ต้องเปิด endpoint ตาม CR |
+
+---
+
+## 11. Brief intake contract (P5) — `smartgift-brief/1`
+
+ฝั่งเว็บส่ง JSON นี้ไปยัง `VITE_BRIEF_ENDPOINT` (POST, `Content-Type: application/json`) ถ้าตั้งค่าไว้; ถ้าไม่ตั้งค่าหรือส่งไม่สำเร็จจะเปิดอีเมลถึง `VITE_SALES_EMAIL` แล้วจึงคัดลอกลง clipboard เป็นทางสุดท้าย (`src/data/briefSubmit.ts`) ข้อมูลติดต่อไม่ถูกเก็บในหน้าเว็บ (Zero-PII นอก CRM)
+
+```jsonc
+{
+  "schema": "smartgift-brief/1",
+  "submitted_at": "2026-09-07T12:00:00.000Z",
+  "source": "web-ui-smg",
+  "page_url": "https://…/#catalog/item/TGC06-4?recipient=TEAM&occasion=new-year&tier=select&qty=100",
+  "brief": { "recipient": "TEAM", "occasion": "new-year", "tier": "select", "qty": 100 },
+  "lines": [ { "code": "TGC06-4", "name_th": "…", "kind": "set", "tier": "Signature", "qty": 100, "unit_price": 820, "total": 82000, "price_status": "reference" } ],
+  "bundle": { "template": "PKG-NY-2027-CORP-MIX", "groups": [ /* BriefLine ต่อกลุ่มผู้รับ พร้อม label/tier/qty */ ], "recipients": 35, "total_reference": 46250 },
+  "contact": { "name": "…", "company": "…", "email": "…", "phone": "…", "note": "…" },
+  "notes": [ "ราคาเป็นราคาอ้างอิงตามขั้นจำนวน ยังไม่รวม VAT ค่าส่ง และงานพิมพ์ ยืนยันในใบเสนอราคา" ]
+}
+```
+
+| ฟิลด์ | ความหมาย | ที่มา |
+|---|---|---|
+| `brief.recipient` | รหัส Recipient Relationship (7 ค่า) — ผู้ซื้อเลือกเอง ไม่ใช่ SmartGift เดา | `RECIPIENT_RELATIONSHIPS` |
+| `brief.occasion` / `tier` / `qty` | คำตอบ brief อีก 3 ข้อ | hash filters |
+| `lines[]` | รายการเดี่ยว/ชุดที่ขอราคา พร้อมราคาอ้างอิง ณ จำนวนนั้น (`price_status: reference`) หรือ `ask_for_quote` | `unitPriceAt()` |
+| `bundle` | แพ็กเกจหลายระดับจาก builder: แม่แบบ (PKG/blueprint), กลุ่มผู้รับ, ผู้รับรวม, ราคาอ้างอิงรวม | `BundleBuilder` |
+| `contact` | ผู้ติดต่อ — ต้องมีชื่อ + อีเมลหรือโทร | ฟอร์มใน `BriefSubmitPanel` |
+
+**สิ่งที่ฝั่ง zuri-ai ต้องทำ (นอก repo นี้):** ประกาศ `FR-xxx` + CR สำหรับ route รับ brief (ตาม cross-repo protocol ใน AGENTS.md ของ business repo), map `brief.recipient` → `seg:` ของลูกค้าใน Campaign Recipient Matrix, และเก็บ `contact` ใน CRM domain ที่มี consent control เท่านั้น
 
 ---
 
@@ -306,6 +336,7 @@ src/data/catalogTaxonomy.ts (มือ, เขียนแล้ว)  +  catalog
 
 | Version | Date | Summary | Agent |
 |---|---|---|---|
+| 1.4.0 | 2026-09-07 | P5: bundle builder from PKG/blueprint templates, brief submit (webhook → mailto → clipboard), smartgift-brief/1 contract §11 | Claude |
 | 1.3.0 | 2026-09-07 | P4: supplier layer surfaced (banner, Lens A section, meta counts), search `?q=`, image tags, colors, reference-price note | Claude |
 | 1.2.0 | 2026-09-07 | P3: gifting brief (recipient/occasion/tier/qty in hash), recommended sets, set composition chips, brief handoff via clipboard | Claude |
 | 1.1.0 | 2026-09-07 | P1+P2 implemented: generator, item pool, lens toggle, routes, index/L1/L2, list view, deep links, supplier preview toggle | Claude |

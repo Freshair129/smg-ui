@@ -246,6 +246,57 @@ for (const o of pricelist.catalog_offers) {
 supplierItems.sort((a, b) => (a.image_status === 'missing') - (b.image_status === 'missing') || a.code.localeCompare(b.code))
 
 // ---------------------------------------------------------------------------
+// Bundle templates (public-safe): PKG structures + blueprint examples.
+// Never copies est_landed_cost, gross_profit, margin, bom_breakdown costs or stored totals —
+// the builder recomputes reference prices from the core set ladders.
+// ---------------------------------------------------------------------------
+const setCodeById = Object.fromEntries(coreSets.map(o => [o.id, o.code]))
+const setByCode = Object.fromEntries(coreSets.map(o => [o.code, o]))
+const SEGMENT_TH = { Operations: 'ทีมปฏิบัติการ', 'Mid-Management': 'หัวหน้าทีม', 'C-Level': 'ผู้บริหาร' }
+const occasionSlugOf = s => (/christmas|xmas/i.test(s ?? '') ? 'christmas' : /new[_-]?year/i.test(s ?? '') ? 'new-year' : /employee/i.test(s ?? '') ? 'new-employee-welcome' : undefined)
+const tierOf = id => { const t = String(id ?? '').replace(/^tier:/, ''); return ['Reach', 'Select', 'Signature', 'Bespoke'].includes(t) ? t : undefined }
+
+const bundleTemplates = pricelist.pkg.map(p => {
+  const optionByTier = new Map((p.options ?? []).map(o => [tierOf(o.gift_tier_id), o]))
+  const entries = Object.entries(p.tier_breakdown ?? {})
+  const groups = entries.length
+    ? entries.map(([segment, v]) => {
+        const tier = tierOf(v.tier_id)
+        const opt = optionByTier.get(tier)
+        const fromBreakdown = v.offer_id ? setCodeById[v.offer_id] ?? String(v.offer_id).replace(/^offer:/, '') : undefined
+        const offer = fromBreakdown ?? opt?.offer_code
+        return { label: SEGMENT_TH[segment] ?? segment, segment, tier, offer_code: offer && setByCode[offer] ? offer : undefined }
+      })
+    : (p.design_scope?.gift_tiers ?? []).map(t => ({ label: t, tier: tierOf(`tier:${t}`) }))
+  return {
+    code: p.code,
+    name_th: p.name,
+    source: 'pkg',
+    status: p.status,
+    occasion: occasionSlugOf(p.occasion),
+    design_scope_themes: (p.design_scope?.catalog_slugs ?? []).filter(s => themeSlugs.has(s)),
+    groups
+  }
+})
+for (const b of master.corporate_bundles ?? []) {
+  bundleTemplates.push({
+    code: b.bundle_code,
+    name_th: b.name,
+    source: 'blueprint',
+    status: 'blueprint_example',
+    description_th: b.description,
+    target_recipients: b.target_recipients,
+    design_scope_themes: [],
+    groups: (b.included_offers ?? []).map(o => ({
+      label: setByCode[o.offer_code]?.gift_tier ?? 'Set',
+      tier: tierOf(`tier:${setByCode[o.offer_code]?.gift_tier}`),
+      offer_code: setByCode[o.offer_code] ? o.offer_code : undefined,
+      qty: o.qty
+    }))
+  })
+}
+
+// ---------------------------------------------------------------------------
 // Write outputs
 // ---------------------------------------------------------------------------
 const stamp = new Date().toISOString()
@@ -268,11 +319,14 @@ const header = `/**
  * The supplier layer lives in public/catalog/data/supplier-items.json; its counts are exported here so the UI can
  * advertise it before loading it.
  */
-import type { CatalogItemSeed } from './catalogTaxonomy'
+import type { CatalogItemSeed, BundleTemplate } from './catalogTaxonomy'
 
 export const SUPPLIER_LAYER_META = ${JSON.stringify(supplierMeta, null, 2)} as const
 
 export const CORE_ITEMS: CatalogItemSeed[] = ${JSON.stringify(strip([...coreSingles, ...coreSetItems]), null, 2)}
+
+/** Package templates: ${pricelist.pkg.length} PKG structures (none quote-ready) + ${(master.corporate_bundles ?? []).length} blueprint examples. No prices stored. */
+export const BUNDLE_TEMPLATES: BundleTemplate[] = ${JSON.stringify(strip(bundleTemplates.map(t => ({ ...t, groups: strip(t.groups) }))), null, 2)}
 `
 await writeFile(OUT_CORE, header, 'utf8')
 
@@ -291,6 +345,7 @@ await writeFile(OUT_SUPPLIER, JSON.stringify({
   items: strip(supplierItems)
 }, null, 1), 'utf8')
 
+console.log(`bundle templates  ${bundleTemplates.length}  (pkg ${pricelist.pkg.length}, blueprint ${(master.corporate_bundles ?? []).length})`)
 console.log(`core singles      ${coreSingles.length}`)
 console.log(`core sets         ${coreSetItems.length}  (priced ${count(coreSetItems, i => i.price_status === 'tiered')})`)
 console.log(`supplier eligible ${supplierItems.length} / ${pricelist.catalog_offers.length}  (image ${count(supplierItems, i => i.image_status !== 'missing')}, priced ${count(supplierItems, i => i.price_status === 'tiered')}, skipped ${supplierSkippedNotPublic})`)

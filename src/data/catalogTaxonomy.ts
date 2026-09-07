@@ -194,6 +194,34 @@ export interface BomLine {
   name_th?: string
 }
 
+/** One recipient group inside a multi-tier package template. `qty` = number of recipients (sets), unknown until the brief. */
+export interface BundleTemplateGroup {
+  label: string
+  /** Segment name as written in the SSOT (Operations / Mid-Management / C-Level). */
+  segment?: string
+  tier?: GiftTier
+  /** Core set proposed for this group; undefined = choose in the builder (Bespoke never has one). */
+  offer_code?: string
+  qty?: number
+}
+
+/**
+ * Package template = the structure of a BundleOffer (`bundle:`) without any cost, margin or stored total.
+ * `pkg` rows come from pricelist_master.pkg (11, none quote-ready yet); `blueprint` rows are the two worked
+ * examples in the portfolio blueprint. Prices are always recomputed from the set ladders in the builder.
+ */
+export interface BundleTemplate {
+  code: string
+  name_th: string
+  source: 'pkg' | 'blueprint'
+  status: string
+  occasion?: OccasionSlug
+  description_th?: string
+  target_recipients?: number
+  design_scope_themes: ThemeSlug[]
+  groups: BundleTemplateGroup[]
+}
+
 /**
  * One row of the catalog item pool. Singles, sets and bundles share this shape so
  * both lenses can filter the same array. Values are generated from the SSOT —
@@ -610,7 +638,7 @@ export function unitPriceAt(item: Pick<CatalogItem, 'price_status' | 'price_tier
 
 export interface CatalogRoute {
   lens: CatalogLens
-  axis?: 'category' | 'theme' | 'tier' | 'occasion' | 'kind' | 'item'
+  axis?: 'category' | 'theme' | 'tier' | 'occasion' | 'kind' | 'item' | 'bundle'
   value?: string
   /** Level-2 family under a category. */
   family?: string
@@ -623,6 +651,8 @@ export function buildCatalogHash(route: CatalogRoute): string {
   if (route.axis && route.value) {
     parts.push(route.axis, route.value)
     if (route.family) parts.push(route.family)
+  } else if (route.axis === 'bundle') {
+    parts.push('bundle')
   } else if (route.lens === 'standard') {
     parts.push('category')
   }

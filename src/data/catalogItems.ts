@@ -16,11 +16,11 @@ import {
   productFamily,
   standardCategory
 } from './catalogTaxonomy'
-import { CORE_ITEMS, SUPPLIER_LAYER_META } from './catalogItems.generated'
+import { CORE_ITEMS, SUPPLIER_LAYER_META, BUNDLE_TEMPLATES } from './catalogItems.generated'
 import { CORE_MEDIA } from './coreMedia'
 import { BLINE_PRODUCTS } from './unifiedBLineCatalog'
 
-export { SUPPLIER_LAYER_META }
+export { SUPPLIER_LAYER_META, BUNDLE_TEMPLATES }
 
 function withMedia(seed: CatalogItemSeed): CatalogItemSeed {
   const media = CORE_MEDIA[seed.code]
@@ -43,6 +43,9 @@ export const CATALOG_ITEMS: CatalogItem[] = CORE_ITEMS.map(withMedia).map(finali
 export const CATALOG_ITEM_BY_CODE: Record<string, CatalogItem> = Object.fromEntries(
   CATALOG_ITEMS.map(item => [item.code, item])
 )
+
+/** Core sets only — the options a package group can pick from. */
+export const CORE_SETS: CatalogItem[] = CATALOG_ITEMS.filter(item => item.kind === 'set')
 
 /** B—Line design partner pieces, rendered with the same card/modal but kept out of #catalog pools. */
 export const PARTNER_ITEMS: CatalogItem[] = BLINE_PRODUCTS.map(p => ({

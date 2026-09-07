@@ -1,19 +1,19 @@
 /**
  * GENERATED FILE — do not edit by hand. Run: npm run build:catalog
  * Source: C:\Users\pc\workspace\business-01-smart-gift\data-pipeline\02_prepared\pricelist_master.json (schema 1.3.0b, run 2026-08-24T08-46-40-226Z)
- * Generated: 2026-09-07T12:20:59.534Z
+ * Generated: 2026-09-07T12:34:55.849Z
  * Core layer only: 16 PM singles + 6 core sets. Media is overlaid from coreMedia.ts.
  * The supplier layer lives in public/catalog/data/supplier-items.json; its counts are exported here so the UI can
  * advertise it before loading it.
  */
-import type { CatalogItemSeed } from './catalogTaxonomy'
+import type { CatalogItemSeed, BundleTemplate } from './catalogTaxonomy'
 
 export const SUPPLIER_LAYER_META = {
   "count": 216,
   "with_image": 152,
   "priced": 107,
   "source_total": 1110,
-  "generated_at": "2026-09-07T12:20:59.534Z"
+  "generated_at": "2026-09-07T12:34:55.849Z"
 } as const
 
 export const CORE_ITEMS: CatalogItemSeed[] = [
@@ -1311,5 +1311,300 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "source_file": "data-pipeline/02_prepared/pricelist_master.json",
       "source_key": "SG-OFFER-NY-2027-REACH-OPS"
     }
+  }
+]
+
+/** Package templates: 11 PKG structures (none quote-ready) + 2 blueprint examples. No prices stored. */
+export const BUNDLE_TEMPLATES: BundleTemplate[] = [
+  {
+    "code": "PKG-NEW-EMPLOYEE-WELCOME",
+    "name_th": "ชุดต้อนรับพนักงานใหม่",
+    "source": "pkg",
+    "status": "draft",
+    "occasion": "new-employee-welcome",
+    "design_scope_themes": [
+      "eco-friendly",
+      "classic-oriental",
+      "novelty-self-care",
+      "executive-smart-tech"
+    ],
+    "groups": [
+      {
+        "label": "Reach",
+        "tier": "Reach"
+      },
+      {
+        "label": "Select",
+        "tier": "Select"
+      },
+      {
+        "label": "Signature",
+        "tier": "Signature"
+      },
+      {
+        "label": "Bespoke",
+        "tier": "Bespoke"
+      }
+    ]
+  },
+  {
+    "code": "PKG-XMAS-2026-REACH-OPS",
+    "name_th": "ชุดส่งต่อความอบอุ่นสำหรับทีมปฏิบัติการ",
+    "source": "pkg",
+    "status": "mapping_pending",
+    "occasion": "christmas",
+    "design_scope_themes": [
+      "eco-friendly"
+    ],
+    "groups": [
+      {
+        "label": "ทีมปฏิบัติการ",
+        "segment": "Operations",
+        "tier": "Reach",
+        "offer_code": "SG-OFFER-XMAS-2026-REACH-OPS"
+      }
+    ]
+  },
+  {
+    "code": "PKG-XMAS-2026-SELECT-MID",
+    "name_th": "ชุดดูแลใจและโต๊ะทำงานสำหรับหัวหน้าทีม",
+    "source": "pkg",
+    "status": "missing_inputs",
+    "occasion": "christmas",
+    "design_scope_themes": [
+      "eco-friendly"
+    ],
+    "groups": [
+      {
+        "label": "หัวหน้าทีม",
+        "segment": "Mid-Management",
+        "tier": "Select",
+        "offer_code": "TDD03-2"
+      }
+    ]
+  },
+  {
+    "code": "PKG-XMAS-2026-SIGNATURE-CLEVEL",
+    "name_th": "ชุด Smart Executive สำหรับผู้บริหาร",
+    "source": "pkg",
+    "status": "cost_pending",
+    "occasion": "christmas",
+    "design_scope_themes": [
+      "classic-oriental",
+      "executive-smart-tech"
+    ],
+    "groups": [
+      {
+        "label": "ผู้บริหาร",
+        "segment": "C-Level",
+        "tier": "Signature",
+        "offer_code": "TGC06-4"
+      }
+    ]
+  },
+  {
+    "code": "PKG-XMAS-2026-BESPOKE",
+    "name_th": "ชุด Bespoke สำหรับผู้บริหารตาม brief",
+    "source": "pkg",
+    "status": "draft",
+    "occasion": "christmas",
+    "design_scope_themes": [],
+    "groups": [
+      {
+        "label": "ผู้บริหาร",
+        "segment": "C-Level",
+        "tier": "Bespoke"
+      }
+    ]
+  },
+  {
+    "code": "PKG-XMAS-2026-CORP-MIX",
+    "name_th": "แพ็กเกจองค์กร Christmas 2026 (Corporate Mix)",
+    "source": "pkg",
+    "status": "draft",
+    "occasion": "christmas",
+    "design_scope_themes": [
+      "eco-friendly",
+      "executive-smart-tech"
+    ],
+    "groups": [
+      {
+        "label": "ทีมปฏิบัติการ",
+        "segment": "Operations",
+        "tier": "Reach",
+        "offer_code": "SG-OFFER-XMAS-2026-REACH-OPS"
+      },
+      {
+        "label": "หัวหน้าทีม",
+        "segment": "Mid-Management",
+        "tier": "Select",
+        "offer_code": "TDD03-2"
+      },
+      {
+        "label": "ผู้บริหาร",
+        "segment": "C-Level",
+        "tier": "Signature",
+        "offer_code": "TGC06-4"
+      }
+    ]
+  },
+  {
+    "code": "PKG-NY-2027-REACH-OPS",
+    "name_th": "ชุด Fresh Start Essentials สำหรับทีมปฏิบัติการ",
+    "source": "pkg",
+    "status": "mapping_pending",
+    "occasion": "new-year",
+    "design_scope_themes": [
+      "eco-friendly"
+    ],
+    "groups": [
+      {
+        "label": "ทีมปฏิบัติการ",
+        "segment": "Operations",
+        "tier": "Reach",
+        "offer_code": "SG-OFFER-NY-2027-REACH-OPS"
+      }
+    ]
+  },
+  {
+    "code": "PKG-NY-2027-SELECT-MID",
+    "name_th": "ชุด Reset & Recharge สำหรับหัวหน้าทีม",
+    "source": "pkg",
+    "status": "cost_pending",
+    "occasion": "new-year",
+    "design_scope_themes": [
+      "novelty-self-care"
+    ],
+    "groups": [
+      {
+        "label": "หัวหน้าทีม",
+        "segment": "Mid-Management",
+        "tier": "Select",
+        "offer_code": "TWL01-8"
+      }
+    ]
+  },
+  {
+    "code": "PKG-NY-2027-SIGNATURE-CLEVEL",
+    "name_th": "ชุด Plan & Power สำหรับผู้บริหาร",
+    "source": "pkg",
+    "status": "cost_pending",
+    "occasion": "new-year",
+    "design_scope_themes": [
+      "classic-oriental"
+    ],
+    "groups": [
+      {
+        "label": "ผู้บริหาร",
+        "segment": "C-Level",
+        "tier": "Signature",
+        "offer_code": "TMK0215"
+      }
+    ]
+  },
+  {
+    "code": "PKG-NY-2027-BESPOKE",
+    "name_th": "ชุด Bespoke สำหรับผู้บริหารตาม brief",
+    "source": "pkg",
+    "status": "draft",
+    "occasion": "new-year",
+    "design_scope_themes": [],
+    "groups": [
+      {
+        "label": "ผู้บริหาร",
+        "segment": "C-Level",
+        "tier": "Bespoke"
+      }
+    ]
+  },
+  {
+    "code": "PKG-NY-2027-CORP-MIX",
+    "name_th": "แพ็กเกจองค์กร New Year 2027 (Corporate Mix)",
+    "source": "pkg",
+    "status": "draft",
+    "occasion": "new-year",
+    "design_scope_themes": [
+      "classic-oriental",
+      "eco-friendly",
+      "novelty-self-care"
+    ],
+    "groups": [
+      {
+        "label": "ทีมปฏิบัติการ",
+        "segment": "Operations",
+        "tier": "Reach",
+        "offer_code": "SG-OFFER-NY-2027-REACH-OPS"
+      },
+      {
+        "label": "หัวหน้าทีม",
+        "segment": "Mid-Management",
+        "tier": "Select",
+        "offer_code": "TWL01-8"
+      },
+      {
+        "label": "ผู้บริหาร",
+        "segment": "C-Level",
+        "tier": "Signature",
+        "offer_code": "TMK0215"
+      }
+    ]
+  },
+  {
+    "code": "PKG-SME-ELITE",
+    "name_th": "SME Elite Corporate Bundle (Package A)",
+    "source": "blueprint",
+    "status": "blueprint_example",
+    "description_th": "แพ็กเกจสำหรับบริษัทขนาดกลาง หรือ 1 แผนกใหญ่ ครอบคลุม 3 ระดับผู้รับ (VIP 5 ชุด, หัวหน้างาน 10 ชุด, ทีมงาน 20 ชุด)",
+    "target_recipients": 35,
+    "design_scope_themes": [],
+    "groups": [
+      {
+        "label": "Signature",
+        "tier": "Signature",
+        "offer_code": "TGC06-4",
+        "qty": 10
+      },
+      {
+        "label": "Select",
+        "tier": "Select",
+        "offer_code": "TDD03-2",
+        "qty": 5
+      },
+      {
+        "label": "Signature",
+        "tier": "Signature",
+        "offer_code": "TMK0215",
+        "qty": 20
+      }
+    ]
+  },
+  {
+    "code": "PKG-ENTERPRISE-160",
+    "name_th": "Enterprise Annual Gala Bundle (Package B)",
+    "source": "blueprint",
+    "status": "blueprint_example",
+    "description_th": "แพ็กเกจงานประชุมใหญ่หรือปีใหม่องค์กร ครอบคลุมบอร์ดบริหาร 10 ท่าน, ผู้จัดการ 30 ท่าน, และพนักงาน 120 ท่าน",
+    "target_recipients": 160,
+    "design_scope_themes": [],
+    "groups": [
+      {
+        "label": "Signature",
+        "tier": "Signature",
+        "offer_code": "TGC06-4",
+        "qty": 30
+      },
+      {
+        "label": "Select",
+        "tier": "Select",
+        "offer_code": "TDD03-2",
+        "qty": 10
+      },
+      {
+        "label": "Signature",
+        "tier": "Signature",
+        "offer_code": "TMK0215",
+        "qty": 120
+      }
+    ]
   }
 ]
