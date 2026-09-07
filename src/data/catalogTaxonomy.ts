@@ -166,6 +166,8 @@ export interface Occasion {
   name_en: string
   /** GTM beachhead archetype this occasion belongs to. */
   archetype: 'customer-member' | 'launch-event' | 'employee' | 'seasonal'
+  /** Recipient relationships that commonly appear in this occasion (Portfolio Architecture §10). Hint only. */
+  typical_recipients: RecipientRelationshipCode[]
 }
 
 export interface RecipientRelationship {
@@ -173,6 +175,12 @@ export interface RecipientRelationship {
   name_en: string
   name_th: string
   examples_th: string
+  /**
+   * Gift tiers this relationship is usually treated with (Portfolio Architecture §7 "เหมาะกับ" + §12.2).
+   * A starting point for the brief, never a rule — the client owns the mapping (P4) and Signature is
+   * not reserved for executives (P5).
+   */
+  typical_tiers: GiftTier[]
 }
 
 export interface PriceTier {
@@ -504,25 +512,37 @@ export const PM_FAMILY: Record<string, ProductFamilySlug> = {
 }
 
 export const OCCASIONS: Occasion[] = [
-  { slug: 'new-year', name_th: 'ปีใหม่', name_en: 'New Year', archetype: 'seasonal' },
-  { slug: 'christmas', name_th: 'คริสต์มาส', name_en: 'Christmas', archetype: 'seasonal' },
-  { slug: 'songkran', name_th: 'สงกรานต์', name_en: 'Songkran', archetype: 'seasonal' },
-  { slug: 'new-employee-welcome', name_th: 'ต้อนรับพนักงานใหม่', name_en: 'New employee welcome', archetype: 'employee' },
-  { slug: 'recognition', name_th: 'ยกย่องและขอบคุณพนักงาน', name_en: 'Recognition & service anniversary', archetype: 'employee' },
-  { slug: 'member-appreciation', name_th: 'ขอบคุณลูกค้าและสมาชิก', name_en: 'Customer & member appreciation', archetype: 'customer-member' },
-  { slug: 'launch-event', name_th: 'งานเปิดตัวและอีเวนต์', name_en: 'Launch / event with media', archetype: 'launch-event' },
-  { slug: 'csr-community', name_th: 'CSR และชุมชน', name_en: 'CSR & community', archetype: 'customer-member' }
+  { slug: 'new-year', name_th: 'ปีใหม่', name_en: 'New Year', archetype: 'seasonal', typical_recipients: ['CUSTOMER_MEMBER', 'TEAM', 'PARTNER_DEALER', 'LEADERSHIP'] },
+  { slug: 'christmas', name_th: 'คริสต์มาส', name_en: 'Christmas', archetype: 'seasonal', typical_recipients: ['CUSTOMER_MEMBER', 'TEAM', 'PARTNER_DEALER', 'LEADERSHIP'] },
+  { slug: 'songkran', name_th: 'สงกรานต์', name_en: 'Songkran', archetype: 'seasonal', typical_recipients: ['CUSTOMER_MEMBER', 'TEAM', 'PARTNER_DEALER', 'LEADERSHIP'] },
+  { slug: 'new-employee-welcome', name_th: 'ต้อนรับพนักงานใหม่', name_en: 'New employee welcome', archetype: 'employee', typical_recipients: ['TEAM'] },
+  { slug: 'recognition', name_th: 'ยกย่องและขอบคุณพนักงาน', name_en: 'Recognition & service anniversary', archetype: 'employee', typical_recipients: ['TEAM', 'LEADERSHIP'] },
+  { slug: 'member-appreciation', name_th: 'ขอบคุณลูกค้าและสมาชิก', name_en: 'Customer & member appreciation', archetype: 'customer-member', typical_recipients: ['CUSTOMER_MEMBER', 'PARTNER_DEALER'] },
+  { slug: 'launch-event', name_th: 'งานเปิดตัวและอีเวนต์', name_en: 'Launch / event with media', archetype: 'launch-event', typical_recipients: ['MEDIA_CREATOR', 'GUEST_PUBLIC', 'CUSTOMER_MEMBER', 'PARTNER_DEALER'] },
+  { slug: 'csr-community', name_th: 'CSR และชุมชน', name_en: 'CSR & community', archetype: 'customer-member', typical_recipients: ['COMMUNITY', 'GUEST_PUBLIC', 'PARTNER_DEALER'] }
 ]
 
 export const RECIPIENT_RELATIONSHIPS: RecipientRelationship[] = [
-  { code: 'LEADERSHIP', name_en: 'Leadership', name_th: 'ผู้บริหาร', examples_th: 'ผู้บริหาร กรรมการ ผู้ถือหุ้น' },
-  { code: 'TEAM', name_en: 'Team', name_th: 'ทีมงาน', examples_th: 'พนักงาน ผู้จัดการ พนักงานอายุงานสูง' },
-  { code: 'CUSTOMER_MEMBER', name_en: 'Customer & Member', name_th: 'ลูกค้าและสมาชิก', examples_th: 'Customer, Member, VIP Member' },
-  { code: 'PARTNER_DEALER', name_en: 'Partner & Dealer', name_th: 'คู่ค้าและตัวแทน', examples_th: 'คู่ค้า ตัวแทนจำหน่าย Sponsor' },
-  { code: 'MEDIA_CREATOR', name_en: 'Media & Creator', name_th: 'สื่อและครีเอเตอร์', examples_th: 'สื่อมวลชน KOL Influencer' },
-  { code: 'GUEST_PUBLIC', name_en: 'Guest & Public', name_th: 'แขกและบุคคลทั่วไป', examples_th: 'Event Guest, Booth Visitor' },
-  { code: 'COMMUNITY', name_en: 'Community', name_th: 'ชุมชน', examples_th: 'ผู้เข้าร่วม CSR หน่วยงานท้องถิ่น' }
+  { code: 'LEADERSHIP', name_en: 'Leadership', name_th: 'ผู้บริหาร', examples_th: 'ผู้บริหาร กรรมการ ผู้ถือหุ้น', typical_tiers: ['Signature', 'Bespoke'] },
+  { code: 'TEAM', name_en: 'Team', name_th: 'ทีมงาน', examples_th: 'พนักงาน ผู้จัดการ พนักงานอายุงานสูง', typical_tiers: ['Reach', 'Select'] },
+  { code: 'CUSTOMER_MEMBER', name_en: 'Customer & Member', name_th: 'ลูกค้าและสมาชิก', examples_th: 'Customer, Member, VIP Member', typical_tiers: ['Reach', 'Select', 'Signature', 'Bespoke'] },
+  { code: 'PARTNER_DEALER', name_en: 'Partner & Dealer', name_th: 'คู่ค้าและตัวแทน', examples_th: 'คู่ค้า ตัวแทนจำหน่าย Sponsor', typical_tiers: ['Select', 'Signature'] },
+  { code: 'MEDIA_CREATOR', name_en: 'Media & Creator', name_th: 'สื่อและครีเอเตอร์', examples_th: 'สื่อมวลชน KOL Influencer', typical_tiers: ['Select', 'Signature'] },
+  { code: 'GUEST_PUBLIC', name_en: 'Guest & Public', name_th: 'แขกและบุคคลทั่วไป', examples_th: 'Event Guest, Booth Visitor', typical_tiers: ['Reach'] },
+  { code: 'COMMUNITY', name_en: 'Community', name_th: 'ชุมชน', examples_th: 'ผู้เข้าร่วม CSR หน่วยงานท้องถิ่น', typical_tiers: ['Reach'] }
 ]
+
+export function recipientRelationship(code: string): RecipientRelationship | undefined {
+  return RECIPIENT_RELATIONSHIPS.find(r => r.code === code)
+}
+
+export function occasion(slug: string): Occasion | undefined {
+  return OCCASIONS.find(o => o.slug === slug)
+}
+
+export function giftTier(code: string): GiftTierDef | undefined {
+  return GIFT_TIERS.find(t => t.code.toLowerCase() === code.toLowerCase())
+}
 
 export const CATALOG_LENSES: { id: CatalogLens; label_th: string; label_en: string; axes: string[] }[] = [
   { id: 'recipient', label_th: 'เริ่มจากผู้รับ', label_en: 'Recipient-first', axes: ['occasion', 'tier', 'theme'] },

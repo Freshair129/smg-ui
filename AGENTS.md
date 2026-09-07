@@ -145,7 +145,7 @@ ITEM POOL  src/data/catalogItems.ts  (CatalogItem[])
 ├── supplier layer (public/catalog/data/supplier-items.json, lazy) — 216 public-eligible offers of 1,110
 └── partner layer  B—Line design pieces (unifiedBLineCatalog.ts) — shown only under #bline
 
-Lens A  #catalog            เริ่มจากผู้รับ : occasion → tier → theme (4 themes)
+Lens A  #catalog            เริ่มจากผู้รับ : gifting brief ?recipient=&occasion=&tier=&qty= (ให้ใคร→เพื่ออะไร→ระดับไหน→จำนวน) → recommended sets → singles by theme
 Lens B  #catalog/category   หมวดหมู่สินค้า : 7 standard categories (L1) → 35 product families (L2)
 Views   grid (default) · list (?view=list, spec table) · index (category / theme sections)
 Deep link  #catalog/item/<code>   Partner  #bline

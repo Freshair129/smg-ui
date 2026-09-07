@@ -2,7 +2,7 @@
 **Project:** SmartGift Web UI (`web-ui-smg`)  
 **Machine-readable companion:** [`src/data/catalogTaxonomy.ts`](../src/data/catalogTaxonomy.ts)  
 **Sources:** `business-01-smart-gift/data-pipeline/02_prepared/{smartgift_catalog_master, pricelist_master, ProductMaster, CatalogOffer, BundleOffer}.json`, `docs/business/SMARTGIFT-PRODUCT-TAXONOMY-OFFER-RULES-2026-08.md`, `docs/business/2026-09-07-catalog-listing.md`, `PRODUCT.md`  
-**Version:** `1.1.0` · **Date:** 2026-09-07 · **Status:** P0–P2 implemented (taxonomy, generator, lens toggle, routes, index/L1/L2, list view); supplier layer wired as a preview toggle
+**Version:** `1.2.0` · **Date:** 2026-09-07 · **Status:** P0–P3 implemented (taxonomy, generator, lens toggle, routes, index/L1/L2, list view, gifting brief, set cards/BOM); supplier layer wired as a preview toggle
 
 ---
 
@@ -72,7 +72,18 @@ VIEWS: grid (B—Line 4:3, default) · list (ตารางสเปก) · ind
 | ระดับการดูแล | Reach · Select · Signature · Bespoke (คำโปรยจาก PDF p.2: เข้าถึงผู้รับในวงกว้าง / คัดให้เหมาะกับกลุ่ม / ใส่ใจในรายละเอียด / ออกแบบตามบริบท) | `item.tier` หรือ `tier_eligibility` |
 | ธีมความสนใจ | รักษ์โลก · ศิลปะและวัฒนธรรม · ไลฟ์สไตล์และดูแลตัวเอง · เทคโนโลยีและการทำงาน | `item.theme` |
 
-หน้า index ของ lens นี้เรียงเป็นคำถาม 3 ข้อ (ตาม PDF p.11 "เริ่มคุยจากโจทย์ที่สำคัญ"): **ให้ใคร → เพื่ออะไร → ระดับไหน** แล้วจึงแสดงชุด core 6 ชุด และแพ็กเกจ PKG ที่ผ่าน gate
+หน้า index ของ lens นี้เรียงเป็นคำถาม 4 ข้อ (ตาม PDF p.11 "เริ่มคุยจากโจทย์ที่สำคัญ" และ Portfolio Architecture §13): **ให้ใคร → เพื่ออะไร → ระดับไหน → จำนวนเท่าไร** แล้วจึงแสดง "ชุดของขวัญที่เข้ากับโจทย์" (core sets เรียงตามโอกาส/ระดับ) ตามด้วยสินค้าเดี่ยวแยกตามธีม
+
+### 3.1 Gifting brief (implemented P3)
+
+| ข้อ | เก็บที่ | ผลต่อรายการ |
+|---|---|---|
+| ให้ใคร (`?recipient=TEAM`) | hash filter | **ไม่กรอง** — ไฮไลต์ระดับที่ "มักใช้" จาก `RECIPIENT_RELATIONSHIPS[].typical_tiers` (Portfolio §7/§12.2) และแนบไปใน brief เท่านั้น (P4: ลูกค้าเป็นเจ้าของ mapping) |
+| เพื่ออะไร (`?occasion=new-year`) | hash filter | กรองเฉพาะเมื่อมีรายการที่ผูกโอกาสนั้น (วันนี้มี 2 ชุด XMAS/NY) มิฉะนั้นแสดงทั้งหมดพร้อมหมายเหตุ |
+| ระดับไหน (`?tier=select`) | hash filter | กรอง **ชุด/แพ็กเกจ** ตาม tier; สินค้าเดี่ยวไม่ถูกกรอง (ยังไม่มี `tier_eligibility` ใน SSOT) |
+| จำนวนเท่าไร (`?qty=100`) | hash filter | ราคาบนการ์ดเปลี่ยนเป็นราคา @qty ผ่าน `unitPriceAt()` และเป็นค่าเริ่มต้นของ calculator ใน modal |
+
+คำตอบทั้งหมดอยู่ใน hash จึงแชร์ลิงก์ได้ ปุ่ม "คัดลอกสรุป brief" สร้างข้อความสรุป (ให้ใคร/เพื่ออะไร/ระดับ/จำนวน/รายการ/ลิงก์/หมายเหตุราคาอ้างอิง) ลง clipboard — เป็น handoff ชั่วคราวก่อน P5 ส่งเข้า CRM
 
 > Recipient relationship (7 ค่า) และ client-defined segment **ไม่เป็น filter สาธารณะ** — เป็นของลูกค้าตามหลัก P4 ใช้ในแบบฟอร์ม brief เท่านั้น
 
@@ -271,7 +282,7 @@ src/data/catalogTaxonomy.ts (มือ, เขียนแล้ว)  +  catalog
 | **P0 ✅** | `catalogTaxonomy.ts` + สเปกนี้ | vocabulary และ route contract ตกลงกันได้ |
 | **P1 ✅** | `scripts/build-catalog-items.mjs` (`npm run build:catalog`) → `src/data/catalogItems.generated.ts` (core) + `public/catalog/data/supplier-items.json` (supplier, public-eligible); `catalogItems.ts` = pool; media แยกไว้ใน `coreMedia.ts`; `smartGiftCatalogData.ts` กลายเป็น adapter ไม่มีราคาพิมพ์มือ | ข้อมูลถูกต้อง 16 + 6 |
 | **P2 ✅** | Lens toggle ใน `.bline-nav`, route prefix match ใน `App.tsx`, หน้า `#catalog/category` (index) และ L1/L2, view `list`, deep link `#catalog/item/<code>` | **ดูแบบหมวดหมู่มาตรฐานได้** |
-| **P3** | Card/modal สำหรับ set (BOM, reverse BOM, composition chips), Lens A index (ให้ใคร→เพื่ออะไร→ระดับไหน) | ขายเป็น "ชุด" ได้ |
+| **P3 ✅** | Gifting brief 4 ข้อบน Lens A index (ให้ใคร→เพื่ออะไร→ระดับไหน→จำนวน) เก็บใน hash, ชุดที่เข้ากับโจทย์เรียงก่อน, composition chips บนการ์ดชุด, BOM/reverse BOM ใน modal, brief แนบใน modal + คัดลอกสรุป | ขายเป็น "ชุด" ได้ |
 | **P4 (preview)** | Supplier layer หลัง pill "แคตตาล็อกผู้ผลิต" — lazy fetch, 216 รายการที่มีภาพต้นฉบับหรือราคาอ้างอิง, สถานะภาพ + "สอบถามราคา" | ใช้ catalog 1,110 รายการที่มีอยู่ (ที่เหลือ 894 ยังไม่ผ่าน gate) |
 | **P5** | Bundle builder จาก PKG (เมื่อ quote_ready) + brief form ส่งไป CRM ฝั่ง zuri-ai | ปิด loop ขอใบเสนอราคา |
 
@@ -294,5 +305,6 @@ src/data/catalogTaxonomy.ts (มือ, เขียนแล้ว)  +  catalog
 
 | Version | Date | Summary | Agent |
 |---|---|---|---|
+| 1.2.0 | 2026-09-07 | P3: gifting brief (recipient/occasion/tier/qty in hash), recommended sets, set composition chips, brief handoff via clipboard | Claude |
 | 1.1.0 | 2026-09-07 | P1+P2 implemented: generator, item pool, lens toggle, routes, index/L1/L2, list view, deep links, supplier preview toggle | Claude |
 | 1.0.0 | 2026-09-07 | โครงสร้าง two-lens; ตาราง L1/L2 พร้อมจำนวนจาก pricelist_master; กติกา derive; item model; routes/views; pipeline; migration + ความคลาดเคลื่อนราคา 8 รายการ | Claude |

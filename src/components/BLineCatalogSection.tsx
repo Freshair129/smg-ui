@@ -4,18 +4,23 @@ import {
   CatalogRoute,
   CatalogView,
   ProductFamilySlug,
-  StandardCategorySlug,
   OccasionSlug,
+  GiftTier,
   INTEREST_THEMES,
   GIFT_TIERS,
   STANDARD_CATEGORIES,
+  RECIPIENT_RELATIONSHIPS,
+  OCCASIONS,
   QTY_PRESETS,
   buildCatalogHash,
   parseCatalogHash,
   unitPriceAt,
   bestTierPrice,
   isPublicItem,
-  standardCategory
+  standardCategory,
+  recipientRelationship,
+  occasion as occasionDef,
+  giftTier
 } from '../data/catalogTaxonomy'
 import {
   CATALOG_ITEMS,
@@ -42,6 +47,16 @@ interface UiRoute extends CatalogRoute {
   partner: boolean
 }
 
+/** Brief answers live in the hash so a brief can be shared: ?recipient=TEAM&occasion=new-year&tier=select&qty=100 */
+interface Brief {
+  recipient?: string
+  occasion?: string
+  tier?: string
+  qty?: number
+}
+
+const BRIEF_KEYS = ['recipient', 'occasion', 'tier', 'qty'] as const
+
 function readRoute(): UiRoute {
   const hash = typeof window === 'undefined' ? '' : window.location.hash
   const partner = hash.toLowerCase().startsWith('#bline')
@@ -61,8 +76,18 @@ function withFilter(route: UiRoute, key: string, value: string | null): UiRoute 
   return { ...route, filters: Object.keys(filters).length ? filters : undefined }
 }
 
-function sameRoute(a: UiRoute, b: UiRoute): boolean {
-  return buildCatalogHash(a) === buildCatalogHash(b) && a.partner === b.partner
+function briefOf(filters?: Record<string, string>): Brief {
+  const qty = Number(filters?.qty)
+  return {
+    recipient: filters?.recipient,
+    occasion: filters?.occasion,
+    tier: filters?.tier,
+    qty: Number.isFinite(qty) && qty > 0 ? qty : undefined
+  }
+}
+
+function briefIsEmpty(b: Brief): boolean {
+  return !b.recipient && !b.occasion && !b.tier && !b.qty
 }
 
 // ---------------------------------------------------------------------------
@@ -98,7 +123,13 @@ function matchesRoute(item: CatalogItem, route: UiRoute): boolean {
   }
 }
 
-function matchesFilters(item: CatalogItem, filters: Record<string, string> | undefined): boolean {
+/**
+ * Facet filters. Brief answers apply softly:
+ *  - tier applies to sets and bundles only (singles carry no tier eligibility yet)
+ *  - occasion applies only when at least one item in the pool is tagged with it
+ *  - recipient never filters — it only highlights suggested tiers and rides along into the brief
+ */
+function matchesFilters(item: CatalogItem, filters: Record<string, string> | undefined, occasionActive: boolean): boolean {
   if (!filters) return true
   if (filters.kind === 'single' && item.kind !== 'single') return false
   if (filters.kind === 'set' && item.kind === 'single') return false
@@ -108,6 +139,8 @@ function matchesFilters(item: CatalogItem, filters: Record<string, string> | und
     const wanted = filters.contains.split(',').filter(Boolean)
     if (!wanted.every(f => item.families.includes(f as ProductFamilySlug))) return false
   }
+  if (filters.tier && item.kind !== 'single' && item.tier?.toLowerCase() !== filters.tier.toLowerCase()) return false
+  if (filters.occasion && occasionActive && !(item.occasions ?? []).includes(filters.occasion as OccasionSlug)) return false
   return true
 }
 
@@ -115,7 +148,12 @@ function matchesFilters(item: CatalogItem, filters: Record<string, string> | und
 // Presentation helpers
 // ---------------------------------------------------------------------------
 
-function priceLine(item: CatalogItem): string {
+function priceLine(item: CatalogItem, qty?: number): string {
+  if (qty) {
+    const at = unitPriceAt(item, qty)
+    if (at !== undefined) return `${formatBaht(at)} @${qty.toLocaleString('en-US')}`
+    if (item.price_status === 'tiered' && item.price_tiers?.length) return `ขั้นต่ำ ${item.price_tiers[0].min_qty} ชิ้น`
+  }
   const best = bestTierPrice(item)
   if (best === undefined || !item.price_tiers?.length) return 'สอบถามราคา'
   const tier = item.price_tiers.reduce((a, b) => (b.min_qty > a.min_qty ? b : a))
@@ -125,8 +163,8 @@ function priceLine(item: CatalogItem): string {
 function subtitle(item: CatalogItem): string {
   if (item.layer === 'partner') return `${item.designer ?? ''}${item.year ? `, ${item.year}` : ''}`
   if (item.kind === 'single') return familyLabel(item.families[0] ?? '') || categoryLabel(item.standard_category)
-  const parts = item.families.slice(0, 3).map(familyLabel)
-  return [item.tier, parts.join(' + ')].filter(Boolean).join(' · ')
+  const pieces = item.contains?.length ? `${item.contains.length} ชิ้น` : 'ชุดของขวัญ'
+  return [item.tier, pieces].filter(Boolean).join(' · ')
 }
 
 function dims(item: CatalogItem): string {
@@ -148,6 +186,47 @@ function breadcrumbFor(item: CatalogItem): string {
   return [a, b].filter(Boolean).join(' · ')
 }
 
+const TIER_ORDER: GiftTier[] = ['Reach', 'Select', 'Signature', 'Bespoke']
+
+function briefSummary(b: Brief): string {
+  const parts: string[] = []
+  if (b.recipient) parts.push(`ให้ใคร: ${recipientRelationship(b.recipient)?.name_th ?? b.recipient}`)
+  if (b.occasion) parts.push(`เพื่ออะไร: ${occasionDef(b.occasion)?.name_th ?? b.occasion}`)
+  if (b.tier) parts.push(`ระดับ: ${giftTier(b.tier)?.code ?? b.tier}`)
+  if (b.qty) parts.push(`จำนวน: ${b.qty.toLocaleString('en-US')} ชิ้น`)
+  return parts.join(' · ')
+}
+
+function briefText(b: Brief, item?: CatalogItem, qty?: number, link?: string): string {
+  const lines = ['สรุป brief SmartGift']
+  const rel = b.recipient ? recipientRelationship(b.recipient) : undefined
+  const occ = b.occasion ? occasionDef(b.occasion) : undefined
+  const tier = b.tier ? giftTier(b.tier) : undefined
+  lines.push(`ให้ใคร: ${rel ? `${rel.name_th} (${rel.name_en})` : 'ยังไม่ระบุ'}`)
+  lines.push(`เพื่ออะไร: ${occ ? occ.name_th : 'ยังไม่ระบุ'}`)
+  lines.push(`ระดับการดูแล: ${tier ? `${tier.code} — ${tier.tagline_th}` : 'ยังไม่ระบุ'}`)
+  const q = qty ?? b.qty
+  lines.push(`จำนวนโดยประมาณ: ${q ? `${q.toLocaleString('en-US')} ชิ้น` : 'ยังไม่ระบุ'}`)
+  if (item) {
+    const unit = q ? unitPriceAt(item, q) : undefined
+    const price = unit !== undefined && q ? ` — ราคาอ้างอิง ${formatBaht(unit)}/ชิ้น @${q.toLocaleString('en-US')} (รวม ≈ ${formatBaht(unit * q)})` : ' — สอบถามราคา'
+    lines.push(`รายการที่สนใจ: ${item.code} ${item.name_th}${price}`)
+    if (item.contains?.length) lines.push(`ในชุด: ${item.contains.map(c => `${c.name_th ?? c.product_code} × ${c.qty}`).join(', ')}`)
+  }
+  if (link) lines.push(`ลิงก์: ${link}`)
+  lines.push('หมายเหตุ: ราคาเป็นราคาอ้างอิงตามขั้นจำนวน ยืนยันในใบเสนอราคา')
+  return lines.join('\n')
+}
+
+async function copyText(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text)
+    return true
+  } catch {
+    return false
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
@@ -161,9 +240,12 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
   const [modalMediaMode, setModalMediaMode] = useState<'3d' | 'image' | 'bom' | 'client'>('image')
   const [orderQty, setOrderQty] = useState<number>(100)
   const [inquirySent, setInquirySent] = useState(false)
+  const [copied, setCopied] = useState<'idle' | 'ok' | 'fail'>('idle')
 
   // The list route stays put while an item deep link (#catalog/item/CODE) is open.
-  const listRouteRef = useRef<UiRoute>(route.axis === 'item' ? { lens: 'recipient', partner: route.partner } : route)
+  const listRouteRef = useRef<UiRoute>(
+    route.axis === 'item' ? { lens: route.lens, partner: route.partner, filters: route.filters } : route
+  )
   const openedFromListRef = useRef(false)
 
   useEffect(() => {
@@ -179,6 +261,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
   const listRoute = route.axis === 'item' ? listRouteRef.current : route
   const filters = listRoute.filters
   const supplierOn = filters?.supplier === '1'
+  const brief = useMemo(() => briefOf(filters), [filters])
 
   useEffect(() => {
     if (!supplierOn || supplierItems || supplierLoading) return
@@ -196,8 +279,13 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
     return supplierOn && supplierItems ? [...base, ...supplierItems.filter(isPublicItem)] : base
   }, [listRoute.partner, supplierOn, supplierItems])
 
+  const occasionActive = useMemo(
+    () => Boolean(brief.occasion) && pool.some(i => (i.occasions ?? []).includes(brief.occasion as OccasionSlug)),
+    [pool, brief.occasion]
+  )
+
   const routed = useMemo(() => pool.filter(item => matchesRoute(item, listRoute)), [pool, listRoute])
-  const visible = useMemo(() => routed.filter(item => matchesFilters(item, filters)), [routed, filters])
+  const visible = useMemo(() => routed.filter(item => matchesFilters(item, filters, occasionActive)), [routed, filters, occasionActive])
 
   const isIndex = !listRoute.partner && !listRoute.value && (listRoute.axis === undefined || listRoute.axis === 'category')
   const view: CatalogView = listRoute.view ?? (isIndex ? 'index' : 'grid')
@@ -215,8 +303,9 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       if (found !== selected) {
         setSelected(found)
         setModalMediaMode(found.model3d_url ? '3d' : found.image ? 'image' : found.contains?.length ? 'bom' : 'image')
-        setOrderQty(100)
+        setOrderQty(briefOf(route.filters).qty ?? 100)
         setInquirySent(false)
+        setCopied('idle')
       }
     } else if (found === undefined && !supplierItems && !supplierLoading) {
       // maybe a supplier code — load the layer once, then the effect re-runs
@@ -234,11 +323,16 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       openedFromListRef.current = true
       setSelected(item)
       setModalMediaMode(item.model3d_url ? '3d' : item.image ? 'image' : item.contains?.length ? 'bom' : 'image')
-      setOrderQty(100)
+      setOrderQty(brief.qty ?? 100)
       setInquirySent(false)
-      window.location.hash = `${listRoute.partner ? 'bline' : 'catalog'}/item/${item.code}`
+      setCopied('idle')
+      const briefFilters: Record<string, string> = {}
+      for (const k of BRIEF_KEYS) if (filters?.[k]) briefFilters[k] = filters[k]
+      window.location.hash = listRoute.partner
+        ? `bline/item/${item.code}`
+        : buildCatalogHash({ lens: listRoute.lens, axis: 'item', value: item.code, filters: Object.keys(briefFilters).length ? briefFilters : undefined })
     },
-    [listRoute.partner]
+    [listRoute.partner, listRoute.lens, filters, brief.qty]
   )
 
   const closeItem = useCallback(() => {
@@ -322,10 +416,10 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
       return ['หมวดหมู่สินค้า', cat, fam].filter(Boolean).join(' / ')
     }
     if (listRoute.axis === 'theme') return `เริ่มจากผู้รับ / ธีม: ${themeLabel(listRoute.value)}`
-    if (listRoute.axis === 'tier') return `เริ่มจากผู้รับ / ระดับการดูแล: ${listRoute.value}`
-    if (listRoute.axis === 'occasion') return `เริ่มจากผู้รับ / โอกาส: ${listRoute.value}`
+    if (listRoute.axis === 'tier') return `เริ่มจากผู้รับ / ระดับการดูแล: ${giftTier(listRoute.value ?? '')?.code ?? listRoute.value}`
+    if (listRoute.axis === 'occasion') return `เริ่มจากผู้รับ / โอกาส: ${occasionDef(listRoute.value ?? '')?.name_th ?? listRoute.value}`
     if (listRoute.axis === 'kind') return `เริ่มจากผู้รับ / ${listRoute.value === 'single' ? 'สินค้าเดี่ยว' : 'ชุดของขวัญ'}`
-    return 'เริ่มจากผู้รับ / ให้ใคร → เพื่ออะไร → ระดับไหน'
+    return 'เริ่มจากผู้รับ / ให้ใคร → เพื่ออะไร → ระดับไหน → จำนวนเท่าไร'
   }, [lens, listRoute])
 
   // ---- index groups --------------------------------------------------------------
@@ -342,23 +436,48 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
         }))
         .filter(g => g.items.length)
     }
+    // Lens A: singles by theme (sets are surfaced separately as recommendations)
     return INTEREST_THEMES.map(t => ({
       key: t.slug,
       title: t.short_th,
       subtitle: `${t.vibe} · ${t.target_recipient}`,
-      items: visible.filter(i => i.theme === t.slug),
+      items: visible.filter(i => i.theme === t.slug && i.kind === 'single'),
       route: { lens: 'recipient', axis: 'theme', value: t.slug, partner: false, filters } as UiRoute
     })).filter(g => g.items.length)
   }, [isIndex, view, lens, visible, filters])
+
+  const recommendedSets = useMemo(() => {
+    if (lens !== 'recipient' || !isIndex) return []
+    const occ = brief.occasion as OccasionSlug | undefined
+    return visible
+      .filter(i => i.kind !== 'single')
+      .sort((a, b) => {
+        const ao = occ && (a.occasions ?? []).includes(occ) ? 0 : 1
+        const bo = occ && (b.occasions ?? []).includes(occ) ? 0 : 1
+        if (ao !== bo) return ao - bo
+        return TIER_ORDER.indexOf(a.tier ?? 'Reach') - TIER_ORDER.indexOf(b.tier ?? 'Reach')
+      })
+  }, [lens, isIndex, visible, brief.occasion])
 
   const tierCounts = useMemo(
     () => GIFT_TIERS.map(t => ({ ...t, n: pool.filter(i => i.tier === t.code).length })),
     [pool]
   )
 
+  const suggestedTiers = useMemo<GiftTier[]>(
+    () => (brief.recipient ? recipientRelationship(brief.recipient)?.typical_tiers ?? [] : []),
+    [brief.recipient]
+  )
+
   // ---- handlers ------------------------------------------------------------------
   const setView = (v: CatalogView) => navigate({ ...listRoute, view: v === 'grid' ? undefined : v })
   const toggleFilter = (key: string, on: boolean, value = '1') => navigate(withFilter(listRoute, key, on ? value : null))
+  const setBrief = (key: (typeof BRIEF_KEYS)[number], value: string | null) => navigate(withFilter(listRoute, key, value))
+  const clearBrief = () => {
+    let r = listRoute
+    for (const k of BRIEF_KEYS) r = withFilter(r, k, null)
+    navigate(r)
+  }
   const toggleContains = (slug: string) => {
     const next = containsFilter.includes(slug) ? containsFilter.filter(f => f !== slug) : [...containsFilter, slug]
     navigate(withFilter(listRoute, 'contains', next.join(',') || null))
@@ -373,6 +492,21 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
 
   const usedInItems = (item: CatalogItem) =>
     (item.used_in ?? []).map(code => CATALOG_ITEM_BY_CODE[code]).filter((x): x is CatalogItem => Boolean(x))
+
+  const itemLink = (item: CatalogItem) => {
+    const briefFilters: Record<string, string> = {}
+    for (const k of BRIEF_KEYS) if (filters?.[k]) briefFilters[k] = filters[k]
+    const hash = item.layer === 'partner'
+      ? `#bline/item/${item.code}`
+      : buildCatalogHash({ lens: 'recipient', axis: 'item', value: item.code, filters: Object.keys(briefFilters).length ? briefFilters : undefined })
+    return `${window.location.origin}${window.location.pathname}${hash}`
+  }
+
+  const copyBrief = async (item?: CatalogItem) => {
+    const ok = await copyText(briefText(brief, item, item ? orderQty : undefined, item ? itemLink(item) : `${window.location.origin}${window.location.pathname}${buildCatalogHash(listRoute)}`))
+    setCopied(ok ? 'ok' : 'fail')
+    window.setTimeout(() => setCopied('idle'), 2500)
+  }
 
   // ---- render helpers ------------------------------------------------------------
   const renderCard = (item: CatalogItem) => (
@@ -413,9 +547,17 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
           <span className="bline-card-designer">{subtitle(item)}</span>
         </div>
         {item.layer !== 'partner' && (
-          <span className={`bline-card-price ${item.price_status === 'tiered' ? '' : 'is-quote'}`}>{priceLine(item)}</span>
+          <span className={`bline-card-price ${item.price_status === 'tiered' ? '' : 'is-quote'}`}>{priceLine(item, brief.qty)}</span>
         )}
       </div>
+      {item.kind !== 'single' && item.families.length > 0 && (
+        <div className="bline-card-chips" aria-label="ในชุดประกอบด้วย">
+          {item.families.slice(0, 4).map(f => (
+            <span key={f} className="bline-chip">{familyLabel(f)}</span>
+          ))}
+          {item.families.length > 4 && <span className="bline-chip">+{item.families.length - 4}</span>}
+        </div>
+      )}
     </article>
   )
 
@@ -465,6 +607,103 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
         </tbody>
       </table>
     </div>
+  )
+
+  const renderBriefPanel = () => (
+    <section className="bline-brief" aria-label="Gifting brief">
+      <div className="bline-brief-head">
+        <div>
+          <h3>เริ่มจากโจทย์ ไม่ใช่เริ่มจากของ</h3>
+          <p>ตอบ 4 ข้อนี้ แล้วแคตตาล็อกจะเรียงชุดที่เข้ากับโจทย์ให้ก่อน — คำตอบอยู่ในลิงก์ ส่งต่อให้ทีมได้</p>
+        </div>
+        {!briefIsEmpty(brief) && (
+          <button className="pill-btn" onClick={clearBrief}>ล้างคำตอบ</button>
+        )}
+      </div>
+
+      <div className="bline-brief-row">
+        <div className="bline-brief-q">01 ให้ใคร<small>กลุ่มผู้รับและบริบทการให้</small></div>
+        <div className="bline-brief-chips">
+          {RECIPIENT_RELATIONSHIPS.map(r => (
+            <button
+              key={r.code}
+              className={`pill-btn ${brief.recipient === r.code ? 'active' : ''}`}
+              title={r.examples_th}
+              onClick={() => setBrief('recipient', brief.recipient === r.code ? null : r.code)}
+            >
+              {r.name_th}
+            </button>
+          ))}
+          {brief.recipient && (
+            <span className="bline-brief-hint">
+              {recipientRelationship(brief.recipient)?.examples_th} · ระดับที่มักใช้: {suggestedTiers.join(' / ')} — ลูกค้าเป็นผู้กำหนดระดับจริงต่อกลุ่ม
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="bline-brief-row">
+        <div className="bline-brief-q">02 เพื่ออะไร<small>โอกาสและความรู้สึกที่อยากส่งต่อ</small></div>
+        <div className="bline-brief-chips">
+          {OCCASIONS.map(o => (
+            <button
+              key={o.slug}
+              className={`pill-btn ${brief.occasion === o.slug ? 'active' : ''} ${brief.recipient && o.typical_recipients.includes(brief.recipient as never) ? 'is-suggested' : ''}`}
+              onClick={() => setBrief('occasion', brief.occasion === o.slug ? null : o.slug)}
+            >
+              {o.name_th}
+            </button>
+          ))}
+          {brief.occasion && !occasionActive && (
+            <span className="bline-brief-hint">ยังไม่มีชุดที่ผูกกับโอกาสนี้ในระบบ — แสดงทุกชุด และบันทึกโอกาสไว้ใน brief</span>
+          )}
+        </div>
+      </div>
+
+      <div className="bline-brief-row">
+        <div className="bline-brief-q">03 ระดับไหน<small>ระดับการดูแล ไม่ใช่ราคา</small></div>
+        <div className="bline-brief-tiers">
+          {tierCounts.map(t => {
+            const active = brief.tier?.toLowerCase() === t.code.toLowerCase()
+            const suggested = suggestedTiers.includes(t.code)
+            return (
+              <button
+                key={t.code}
+                className={`bline-tier-card ${active ? 'active' : ''} ${suggested ? 'is-suggested' : ''}`}
+                aria-pressed={active}
+                onClick={() => setBrief('tier', active ? null : t.code.toLowerCase())}
+              >
+                <span className="bline-tier-code">{t.code}</span>
+                <span className="bline-tier-tag">{t.tagline_th}</span>
+                <span className="bline-tier-n">{t.n} ชุด{suggested ? ' · ' : ''}{suggested && <span className="bline-tier-suggest">มักใช้กับกลุ่มนี้</span>}</span>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      <div className="bline-brief-row">
+        <div className="bline-brief-q">04 จำนวนเท่าไร<small>จำนวนโดยประมาณ — ราคาบนการ์ดจะปรับตาม</small></div>
+        <div className="bline-brief-chips">
+          {QTY_PRESETS.map(q => (
+            <button key={q} className={`pill-btn ${brief.qty === q ? 'active' : ''}`} onClick={() => setBrief('qty', brief.qty === q ? null : String(q))}>
+              {q.toLocaleString('en-US')} ชิ้น
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="bline-brief-summary">
+        <span>
+          {briefIsEmpty(brief) ? <span className="muted">ยังไม่ได้ตอบ — เลือกได้ทีละข้อ ไม่ต้องครบ</span> : <><b>สรุป brief:</b> {briefSummary(brief)}</>}
+        </span>
+        <div className="bline-brief-actions">
+          <button className="pill-btn" onClick={() => copyBrief()} disabled={briefIsEmpty(brief)}>
+            {copied === 'ok' ? '✓ คัดลอกแล้ว' : copied === 'fail' ? 'คัดลอกไม่สำเร็จ' : 'คัดลอกสรุป brief'}
+          </button>
+        </div>
+      </div>
+    </section>
   )
 
   const supplierCount = supplierItems ? supplierItems.filter(isPublicItem).length : null
@@ -531,25 +770,28 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
           {supplierLoading && <em className="bline-loading"> · กำลังโหลดแคตตาล็อกผู้ผลิต…</em>}
         </span>
         <div className="bline-filter-pills">
-          {lens === 'recipient' && (
+          {lens === 'recipient' && !isIndex && (
             <>
               <span className="pill-label">ระดับ:</span>
-              {tierCounts.map(t => (
-                <button
-                  key={t.code}
-                  className={`pill-btn ${listRoute.axis === 'tier' && listRoute.value === t.code.toLowerCase() ? 'active' : ''}`}
-                  title={t.tagline_th}
-                  onClick={() =>
-                    navigate(
-                      listRoute.axis === 'tier' && listRoute.value === t.code.toLowerCase()
-                        ? { lens: 'recipient', partner: false, filters }
-                        : { lens: 'recipient', axis: 'tier', value: t.code.toLowerCase(), partner: false, filters }
-                    )
-                  }
-                >
-                  {t.code} ({t.n})
-                </button>
-              ))}
+              {tierCounts.map(t => {
+                const active = brief.tier?.toLowerCase() === t.code.toLowerCase() || (listRoute.axis === 'tier' && listRoute.value === t.code.toLowerCase())
+                return (
+                  <button
+                    key={t.code}
+                    className={`pill-btn ${active ? 'active' : ''}`}
+                    title={t.tagline_th}
+                    onClick={() => {
+                      if (listRoute.axis === 'tier') {
+                        navigate(listRoute.value === t.code.toLowerCase() ? { lens: 'recipient', partner: false, filters } : { ...listRoute, value: t.code.toLowerCase() })
+                      } else {
+                        setBrief('tier', active ? null : t.code.toLowerCase())
+                      }
+                    }}
+                  >
+                    {t.code} ({t.n})
+                  </button>
+                )
+              })}
             </>
           )}
           {lens === 'standard' && familyPills.length > 0 && (
@@ -622,17 +864,36 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
 
       {/* Body */}
       <main className="bline-main">
+        {lens === 'recipient' && isIndex && view === 'index' && renderBriefPanel()}
+        {lens === 'recipient' && !isIndex && !briefIsEmpty(brief) && (
+          <div className="bline-brief-strip">
+            <span><b>Brief:</b> {briefSummary(brief)}</span>
+            <span className="bline-brief-actions">
+              <button className="pill-btn" onClick={() => navigate({ lens: 'recipient', partner: false, filters })}>แก้ไข brief →</button>
+              <button className="pill-btn" onClick={clearBrief}>ล้าง</button>
+            </span>
+          </div>
+        )}
+
         {view === 'index' && isIndex ? (
           <>
             {lens === 'recipient' && (
-              <div className="bline-tier-strip" aria-label="ระดับการดูแล">
-                {tierCounts.map(t => (
-                  <button key={t.code} className="bline-tier-card" onClick={() => navigate({ lens: 'recipient', axis: 'tier', value: t.code.toLowerCase(), partner: false, filters })}>
-                    <span className="bline-tier-code">{t.code}</span>
-                    <span className="bline-tier-tag">{t.tagline_th}</span>
-                    <span className="bline-tier-n">{t.n} ชุด</span>
-                  </button>
-                ))}
+              <section className="bline-index-section">
+                <div className="bline-results-head">
+                  <h3>ชุดของขวัญที่เข้ากับโจทย์</h3>
+                  <span>{recommendedSets.length} ชุด{brief.tier ? ` · ระดับ ${giftTier(brief.tier)?.code ?? brief.tier}` : ' · ทุกระดับ'}</span>
+                </div>
+                {recommendedSets.length ? (
+                  <div className="bline-grid">{recommendedSets.map(renderCard)}</div>
+                ) : (
+                  <p className="bline-empty">ยังไม่มีชุดที่ตรงกับระดับหรือตัวกรองนี้ — ลองเปลี่ยนระดับ หรือเริ่มจากสินค้าเดี่ยวด้านล่างแล้วขอจัดชุดใหม่</p>
+                )}
+              </section>
+            )}
+            {lens === 'recipient' && indexGroups.length > 0 && (
+              <div className="bline-results-head">
+                <h3>หรือเริ่มจากสินค้าเดี่ยว</h3>
+                <span>ใช้ได้ทุกระดับ · เลือกชิ้นแล้วให้ทีมจัดชุดตาม brief</span>
               </div>
             )}
             {indexGroups.map(group => (
@@ -649,7 +910,7 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                 <div className="bline-grid">{group.items.slice(0, 4).map(renderCard)}</div>
               </section>
             ))}
-            {indexGroups.length === 0 && <p className="bline-empty">ไม่มีรายการที่ตรงกับตัวกรอง</p>}
+            {indexGroups.length === 0 && recommendedSets.length === 0 && <p className="bline-empty">ไม่มีรายการที่ตรงกับตัวกรอง</p>}
           </>
         ) : view === 'list' ? (
           visible.length ? renderList(visible) : <p className="bline-empty">ไม่มีรายการที่ตรงกับตัวกรอง</p>
@@ -758,6 +1019,9 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                 <span className="bline-chip mono">{selected.code}</span>
                 {selected.tier && <span className="bline-chip is-tier">{selected.tier}</span>}
                 <span className="bline-chip">{selected.kind === 'single' ? 'สินค้าเดี่ยว' : 'ชุดของขวัญ'}</span>
+                {selected.occasions?.map(o => (
+                  <span key={o} className="bline-chip">{occasionDef(o)?.name_th ?? o}</span>
+                ))}
                 {selected.layer === 'supplier' && <span className="bline-chip">แคตตาล็อกผู้ผลิต</span>}
               </div>
 
@@ -767,6 +1031,22 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                   {selected.layer === 'core' && selected.kind === 'single' && selected.description_th && (
                     <small className="bline-unverified"> · รายละเอียดเบื้องต้น ยังไม่ยืนยันสเปก</small>
                   )}
+                </p>
+              )}
+              {selected.kind !== 'single' && selected.contains && selected.contains.length > 0 && (
+                <p className="bline-modal-bom-line">
+                  ในชุดประกอบด้วย:{' '}
+                  {componentItems(selected).map(({ line, item }, i) => (
+                    <React.Fragment key={line.product_code}>
+                      {i > 0 && ', '}
+                      {item ? (
+                        <button onClick={() => openItem(item)}>{line.name_th ?? item.name_th}</button>
+                      ) : (
+                        <span>{line.name_th ?? line.product_code}</span>
+                      )}
+                      {line.qty > 1 ? ` × ${line.qty}` : ''}
+                    </React.Fragment>
+                  ))}
                 </p>
               )}
               {selected.branding && <p className="bline-modal-desc bline-modal-branding">วิธีใส่โลโก้: {selected.branding.replace(/,/g, ' · ')}</p>}
@@ -844,10 +1124,21 @@ export const BLineCatalogSection: React.FC<{ onBackToArchive: () => void }> = ({
                 </div>
               )}
 
+              {selected.layer !== 'partner' && !briefIsEmpty(brief) && (
+                <div className="bline-modal-brief">
+                  <b>Brief ที่แนบไป:</b> {briefSummary(brief)}
+                </div>
+              )}
+
               <div className="bline-modal-actions">
                 <button className="bline-inquire-btn" onClick={() => setInquirySent(true)}>
                   {inquirySent ? '✓ ส่งคำขอถึงฝ่ายขายแล้ว' : `ขอใบเสนอราคา${orderQty ? ` · ${orderQty.toLocaleString('en-US')} ชิ้น` : ''}`}
                 </button>
+                {selected.layer !== 'partner' && (
+                  <button className="bline-copy-btn" onClick={() => copyBrief(selected)}>
+                    {copied === 'ok' ? '✓ คัดลอกแล้ว' : copied === 'fail' ? 'คัดลอกไม่สำเร็จ' : 'คัดลอกสรุป brief + รายการ'}
+                  </button>
+                )}
               </div>
             </div>
           </div>
