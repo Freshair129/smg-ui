@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react'
 import { DEFAULT_MEDIA_CONFIG, MediaConfigState } from './config/mediaConfig'
 import { MediaConfigModal } from './components/MediaConfigModal'
 import { ResolutionOverlay, CardOverlay } from './components/ResolutionOverlay'
+import { useDevMode } from './devMode'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -51,6 +52,7 @@ export default function App() {
     return DEFAULT_MEDIA_CONFIG
   })
 
+  const devMode = useDevMode()
   const [isConfigOpen, setIsConfigOpen] = useState(false)
   const [showOverlay, setShowOverlay] = useState(false)
   const [loaded, setLoaded] = useState(0)
@@ -155,7 +157,7 @@ export default function App() {
 
   return (
     <div id="scroll-spacer" ref={root} className={`page-root ${isConfigOpen ? 'modal-is-open' : ''}`}>
-      <ResolutionOverlay show={showOverlay} />
+      <ResolutionOverlay show={devMode && showOverlay} />
 
       <div ref={cursor} className="cursor"><span>↗</span></div>
       
@@ -174,12 +176,16 @@ export default function App() {
           <a className="nav-link" href="/catalog/">CATALOG</a>
         </nav>
         <div className="header-tools">
-          <button className={`media-config-trigger-btn ${showOverlay ? 'active' : ''}`} onClick={() => setShowOverlay(!showOverlay)}>
-            📐 GRID OVERLAY: {showOverlay ? 'ON' : 'OFF'}
-          </button>
-          <button className="media-config-trigger-btn" onClick={() => setIsConfigOpen(true)}>
-            ⚙️ MEDIA CONFIG
-          </button>
+          {devMode && (
+            <>
+              <button className={`media-config-trigger-btn ${showOverlay ? 'active' : ''}`} onClick={() => setShowOverlay(!showOverlay)}>
+                📐 GRID OVERLAY: {showOverlay ? 'ON' : 'OFF'}
+              </button>
+              <button className="media-config-trigger-btn" onClick={() => setIsConfigOpen(true)}>
+                ⚙️ MEDIA CONFIG
+              </button>
+            </>
+          )}
           <span className="hamburger" />
           <span>[ CART ]</span>
         </div>
@@ -200,7 +206,7 @@ export default function App() {
               <div className="gallery-space" key={`space-${index}`} />
             ) : (
               <div className="bp-card" key={`item-${image}`} ref={node => { cards.current[index] = node }}>
-                <CardOverlay index={image} show={showOverlay} />
+                <CardOverlay index={image} show={devMode && showOverlay} />
                 <img src={mediaConfig.galleryUrls[image]} alt={`Archive collection garment ${image + 1}`} />
               </div>
             )
@@ -216,7 +222,7 @@ export default function App() {
       </footer>
 
       <MediaConfigModal
-        isOpen={isConfigOpen}
+        isOpen={devMode && isConfigOpen}
         onClose={() => setIsConfigOpen(false)}
         config={mediaConfig}
         onChangeConfig={handleConfigChange}
