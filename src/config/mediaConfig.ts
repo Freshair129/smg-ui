@@ -72,20 +72,35 @@ export const HERO_POSTER_URL = '/assets/videos/hero_frame0_poster.jpg?v=5'
 /** Template-era placeholder clips; a saved config still pointing here is migrated to the defaults. */
 export const LEGACY_VIDEO_HOST = 'd8j0ntlcm91z4.cloudfront.net'
 
+export const HOME_GALLERY = [
+  { url: '/assets/smartgift/plates/one31_nb_plate.png', alt: 'ภาพจำลองสมุดปกดำ' },
+  { url: '/assets/smartgift/plates/one31_tmb_plate.png', alt: 'ภาพจำลองทัมเบลอร์สีดำ' },
+  { url: '/assets/smartgift/plates/one31_tote_plate.png', alt: 'ภาพจำลองกระเป๋าผ้าสีดำ' },
+  { url: '/assets/smartgift/plates/ob_bottle_plate.png', alt: 'ภาพจำลองกระบอกน้ำสีดำ' },
+  { url: '/assets/smartgift/plates/ob_mug_plate.png', alt: 'ภาพจำลองแก้วพร้อมหูจับ' },
+  { url: '/assets/smartgift/plates/gmmtv_pb_plate.png', alt: 'ภาพจำลองพาวเวอร์แบงก์สีขาว' },
+  { url: '/assets/smartgift/story/open-gift-box-v5.png', alt: 'ภาพจำลองกล่อง SmartGift เปิดฝาพร้อมชุดของขวัญ' }
+]
+
+export const HOME_CHAPTERS = [
+  { title: 'BESPOKE', copy: 'ออกแบบให้เป็นแบรนด์คุณ' },
+  { title: 'EVERYDAY, ELEVATED', copy: 'ของใช้ประจำวัน ที่ให้ได้อย่างมีความหมาย' },
+  { title: 'THE ART OF GIVING', copy: 'ใส่ใจตั้งแต่ของขวัญถึงบรรจุภัณฑ์' }
+]
+
+/** Replace only exact template-era defaults, preserving individually customised slots. */
+export function migrateGallery(urls: unknown): string[] {
+  if (!Array.isArray(urls) || !urls.length) return HOME_GALLERY.map(item => item.url)
+  return urls.flatMap((url, index) => {
+    if (typeof url !== 'string') return HOME_GALLERY[index] ? [HOME_GALLERY[index].url] : []
+    const template = url.startsWith('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_')
+    return template ? (HOME_GALLERY[index] ? [HOME_GALLERY[index].url] : []) : [url]
+  })
+}
+
 export const DEFAULT_MEDIA_CONFIG: MediaConfigState = {
   logoUrl: '/logo-smg.jpg',
   videoLeftUrl: '/assets/videos/hero_east_discover.mp4?v=5',
   videoRightUrl: '/assets/videos/hero_west_receive.mp4?v=5',
-  galleryUrls: [
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_104530_521b2f85-c0f3-4d0e-9704-b578315b4cb9.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103711_76ccdb8b-5043-4f47-9c54-4379713393ea.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103728_394f6a1b-85e2-4386-a4f6-408472a0a5b7.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103739_86743e0e-16a7-4bee-bf38-dd67985344dc.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103748_b2215dc8-a3a7-470d-b19a-5b87fa7d0c37.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103758_e919ce72-5c9d-4b87-9be6-d7647b34825c.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103808_013583d0-3386-4547-9832-37c7d8edb3ac.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103937_a0c49d0a-33eb-4ead-aea6-c1baf241acbc.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_103956_d18ed8fd-7b6f-4b86-91f9-20010fe38670.png&w=1920&q=85',
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260629_104034_ba5a9963-87ff-4008-a545-6bd686c088b5.png&w=1920&q=85'
-  ]
+  galleryUrls: HOME_GALLERY.map(item => item.url)
 }

@@ -2766,5 +2766,25 @@ header,
 #main-canvas { background: #fff; }
 #main-canvas video { top: 50%; left: 50%; right: auto; bottom: auto; width: min(100%, 1016px); height: auto; max-height: 100%; aspect-ratio: 16 / 9; transform: translate(-50%, -50%); object-fit: contain; mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent), linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); mask-composite: intersect; }
 @media (max-width: 1023px) {
+  .page-root { background: #fff; }
   #main-canvas { top: 220px; bottom: 230px; height: auto; }
+  #main-canvas video { mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent), linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); }
+}
+
+/* Approved home product story; isolated from the catalog and opening hero. */
+#black-panel .gallery-wrap { display: block; padding: 22vh 5vw 45vh; }
+.home-story-chapter { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; max-width: 1400px; margin: 0 auto 22vh; }
+.home-story-heading { grid-column: 1 / -1; padding: 0 0 4vh; color: var(--sg-ivory); font-family: var(--sg-font-body); }
+.home-story-number { color: var(--sg-brass); font-family: var(--sg-font-mono); font-size: 12px; letter-spacing: .14em; }
+.home-story-heading h2 { font-family: var(--sg-font-display); font-size: clamp(40px, 6.5vw, 100px); font-weight: 500; line-height: 1.05; letter-spacing: -.045em; margin: 24px 0; overflow-wrap: anywhere; }
+.home-story-heading p { font-size: clamp(18px, 2vw, 26px); margin: 0 0 16px; }
+.home-story-heading small { color: #b6afa4; font-size: 12px; }
+.home-story-chapter .bp-card { aspect-ratio: 1; transform-origin: center center; }
+.home-story-chapter .bp-card img { object-fit: contain; filter: none; }
+.home-story-chapter .home-story-wide { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+@media (max-width: 639px) {
+  #black-panel .gallery-wrap { padding: 24vh 20px 45vh; }
+  .home-story-chapter { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 18vh; }
+  .home-story-heading { padding-bottom: 16px; }
+  .home-story-chapter .bp-card:last-child:nth-child(4) { grid-column: 1 / -1; width: 75%; justify-self: center; }
 }
