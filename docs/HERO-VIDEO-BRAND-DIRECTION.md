@@ -2,7 +2,7 @@
 **Project:** SmartGift Web UI (`web-ui-smg`)  
 **Companion to:** [`docs/HERO-VIDEO-SPEC.md`](HERO-VIDEO-SPEC.md) (กลไก scrub, encoding, ffmpeg) — เอกสารนี้เป็นชั้น *creative direction* ที่วางทับสเปกทางเทคนิค  
 **Sources analysed:** `business-01-smart-gift/data-pipeline/02_prepared/*.json`, `output/pdf/smartgift-catalog-adcreative-proof-v0.2.pdf`, `PRODUCT.md`, `docs/business/*`, `logo-smg.jpg`  
-**Version:** `1.8.0b` · **Date:** 2026-09-08 · **Status:** beta — v5 direction approved; implementation and verification in progress; v4 remains deployed (§12.14)
+**Version:** `1.9.1b` · **Date:** 2026-09-08 · **Status:** beta — v5 deployed with verified mobile background hotfix (§13.4)
 
 ---
 
@@ -673,10 +673,45 @@ Full-resolution proof inspection caught baked-photo brightness entering the tumb
 
 Depth-mask checks show frame18/0.6s still concealed; the rendered A sequence first exposes variant geometry at frame23/0.7667s. Final encoded parity and both complete sequences remain pending. Early frames use one common master sequence; after reveal, full independent renders retain actual global illumination and product-dependent reflections, instead of masking B back onto a flat insert region. Shared physical exterior geometry, materials and lights remain constant; natural indirect colour and sampling differences after reveal are not claimed to be pixel-identical.
 
+### 13.3 v5 delivery and local deployment
+
+Completed and deployed both v5 videos to the existing Docker site at `http://localhost:8080/?v=5#archive`. The3 public media files are byte-identical to `business-01-smart-gift/comfy-hero-video/outputs/v5/`. Default video/poster URLs now use `?v=5`; existing responsive fitting and mouse interaction code remain in use. Prior v4 media are preserved in `outputs/rollback-before-v5-deploy/`.
+
+| Verification | Result |
+|---|---|
+| Both videos |1920×1080,30fps CFR,120frames,4.000s,H.264 High,yuv420p,no audio,faststart |
+| A — UD Trucks / True |804,825 bytes; SHA256 `d10ff0e4f198189b32cdf1ad0c95e1b03c1824c7250a7dd5e51f3caef36a28df` |
+| B — ONE BANGKOK / ICONSIAM |832,990 bytes; SHA256 `88a2c0a46ee4a6b2a39229476529c6f819a0f39885a618662233deec80d8f921` |
+| Shared decoded prefix | Every RGB pixel equal in frames0–22; first variant visibility at23 /0.7667s |
+| Camera/scale |50° constant; camera position, rotation and orthographic width11.6 constant across120 poses |
+| Motion | Rear hinge0°→105° strictly linear; base and product transforms fixed |
+| Actual evaluated geometry | Six main components have physical depth and stay below the closed lid and inside base walls; no photographic product plane |
+| Encoding | Fixed QP18, GOP15 at frames0,15,…105; no B-frames or temporal lookahead |
+| HTTP |200 responses equal local hashes;206 returns exact requested byte ranges; HTML retains no-cache/no-store headers |
+| Browser |1920×1080,1366×768,390×844: left/right mapping, center reset, reverse seeks3.966→2→0.6→0s, zero different closed-frame canvas channels, no hero/logo/ledger overlap |
+| Runtime and build | TypeScript/Vite and Docker rebuild pass; browser media/page error logs empty; diff whitespace checks pass |
+| Saved media configuration | A saved v4 default upgrades to v5; a custom absolute video URL remains unchanged, verified after browser reload |
+
+The simple fixed composition encodes at approximately1.61/1.67Mbps, below the handbook target; QP18 preserves reviewed image quality without padding the files. Encoded contact sheets and native browser frames were visually inspected. This is a local Docker deployment, not a new public cloud release. Viewport emulation is not physical-device touch testing. The existing narrow header spacing and build chunk-size warning remain outside this change.
+
+Source/review artifacts: `scripts/hinged_v5.py`, `hinged_v5_products.py`, `finish_hinged_v5.py`, `audit_hinged_v5_geometry.py`, `audit_deployed_hero_v5.js`, `verify_v5_deployment.py`; packed `smartgift_hinged_v5.blend`, `scene_contract.json`, `geometry-audit.json`, `projection_bounds.json`, `verification.json`, `provenance.json`, `contact_A.jpg`, `contact_B.jpg`, `review.html`, `deploy-http.json`, `deploy-1920.json`, `deploy-1366.json`, `deploy-390.json` and corresponding screenshots under `outputs/v5/`.
+
+The common concealed prefix is reused by construction; B frame22 was also independently rendered and its visibility mask contained zero variant pixels. After reveal, full independent renders retain product-dependent indirect illumination. Exact all-pixel exterior parity after reveal is not claimed. Models remain reference-based approximations, and the selected pairings are not verified historical combined orders. No `data-pipeline/` changes or unrelated catalog changes were made for v5.
+
+**Version diff:** `1.8.0b → 1.9.0b`: approved fixed-view direction becomes two verified volumetric-product videos deployed locally, replacing the v4 zooming product plates. Only hero media and their revisioned default URLs change on the website in this turn.
+
+### 13.4 Mobile background hotfix
+
+The user requests removing the visible white logo/video rectangles on mobile. C-1 / LOW: unify the archive parent's mobile background with the existing white studio canvas. The previous stone-coloured parent became exposed by the mobile canvas's top/bottom spacing. Widen the mobile horizontal video-background feather to30%/70%, outside the fully opaque box/lid envelope. This corrects the approved white-studio integration without changing media, animation, layout or catalog theme tokens. RCA: `.brain/rca/2026-09-08-mobile-hero-background.md`.
+
+Built and deployed locally. Live390×844 and430×932 checks confirm both parent and canvas are white and the mobile feather is active;1366×768 retains the desktop mask. Catalog uses its separate wrapper. Screenshots visually reviewed; evidence is in `outputs/v5/mobile-bg-verification.json` and `mobile-bg-*.png`. **Version diff:** `1.9.0b → 1.9.1b`: mobile cream/white mismatch removed and empty video edges softened; v5 video files unchanged.
+
 ## CHANGELOG
 
 | Version | Date | Summary | Agent |
 |---|---|---|---|
+| 1.9.1b | 2026-09-08 | Mobile archive background matches white logo/video; soften empty video edges; build, mobile/desktop checks and local deployment complete | RWANG |
+| 1.9.0b | 2026-09-08 | Deliver and locally deploy v5: constant50° camera/scale, volumetric products, shared decoded frames0–22, linear hinge; media/geometry/HTTP/three viewport checks pass | RWANG |
 | 1.8.0b | 2026-09-08 | Draft v5: fixed50° view and scale, full product volume and insert cavities, physical material lighting; approval pending | RWANG |
 | 1.7.0b | 2026-09-08 | Deploy v4 locally on8080; revisioned media URLs, responsive hero fit and center reset; served hashes/ranges and three viewport browser checks pass | RWANG |
 | 1.6.0b | 2026-09-08 | Deliver v4 hinged gift-box A/B videos with shared decoded frames0–22, gold foil,80°→50° camera,120frames/4s, contact sheets and browser reverse-scrub verification; website unchanged | RWANG |

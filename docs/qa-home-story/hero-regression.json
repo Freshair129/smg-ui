@@ -1,0 +1,75 @@
+{
+  "bounds": {
+    "bottom": 635.2228275,
+    "left": 508.22170041666664,
+    "right": 857.7782995833334,
+    "top": 127.65150541666668
+  },
+  "center": [
+    {
+      "shown": true,
+      "src": "http://localhost:8080/assets/videos/hero_east_discover.mp4?v=5",
+      "time": 0
+    },
+    {
+      "shown": false,
+      "src": "http://localhost:8080/assets/videos/hero_west_receive.mp4?v=5",
+      "time": 0
+    }
+  ],
+  "closedDifferentChannels": 0,
+  "ledgerOverlap": false,
+  "left": [
+    {
+      "shown": false,
+      "src": "http://localhost:8080/assets/videos/hero_east_discover.mp4?v=5",
+      "time": 0
+    },
+    {
+      "shown": true,
+      "src": "http://localhost:8080/assets/videos/hero_west_receive.mp4?v=5",
+      "time": 3.993492
+    }
+  ],
+  "logoOverlap": false,
+  "mediaErrors": [
+    null,
+    null
+  ],
+  "reverse": [
+    [
+      3.966,
+      3.966
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      0.6,
+      0.6
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "right": [
+    {
+      "shown": true,
+      "src": "http://localhost:8080/assets/videos/hero_east_discover.mp4?v=5",
+      "time": 3.993492
+    },
+    {
+      "shown": false,
+      "src": "http://localhost:8080/assets/videos/hero_west_receive.mp4?v=5",
+      "time": 3.993492
+    }
+  ],
+  "status": "PASS",
+  "videoFit": "contain",
+  "viewport": [
+    1366,
+    768
+  ]
+}

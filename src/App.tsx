@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { DEFAULT_MEDIA_CONFIG, HERO_POSTER_URL, LEGACY_VIDEO_HOST, MediaConfigState } from './config/mediaConfig'
+import { DEFAULT_MEDIA_CONFIG, HERO_POSTER_URL, LEGACY_VIDEO_HOST, HOME_GALLERY, HOME_CHAPTERS, migrateGallery, MediaConfigState } from './config/mediaConfig'
 import { MediaConfigModal } from './components/MediaConfigModal'
 import { ResolutionOverlay, CardOverlay } from './components/ResolutionOverlay'
 import { BLineCatalogSection } from './components/BLineCatalogSection'
@@ -16,30 +16,6 @@ gsap.registerPlugin(ScrollTrigger)
 const CORE_SINGLES = CATALOG_ITEMS.filter(item => item.kind === 'single').length
 const CORE_SETS = CATALOG_ITEMS.length - CORE_SINGLES
 const CATALOG_TOTAL = CATALOG_ITEMS.length + SUPPLIER_LAYER_META.count
-
-function useGalleryLayout(galleryLength: number) {
-  const [columns, setColumns] = useState(4)
-  useEffect(() => {
-    const sync = () => setColumns(innerWidth < 640 ? 2 : innerWidth < 1024 ? 3 : 4)
-    sync(); addEventListener('resize', sync)
-    return () => removeEventListener('resize', sync)
-  }, [])
-  return useMemo(() => {
-    const rows: Array<Array<number>> = []
-    let image = 0
-    for (let row = 0; image < galleryLength; row++) {
-      const cells = Array(columns).fill(-1)
-      const a = (row * 2 + (row % 2)) % columns
-      cells[a] = image++
-      if (row % 3 === 0 && image < galleryLength) {
-        const b = (a + 2) % columns === a ? (a + 1) % columns : (a + 2) % columns
-        cells[b] = image++
-      }
-      rows.push(cells)
-    }
-    return rows.flat()
-  }, [columns, galleryLength])
-}
 
 export default function App() {
   const root = useRef<HTMLDivElement>(null)
@@ -94,7 +70,8 @@ export default function App() {
           ...DEFAULT_MEDIA_CONFIG,
           ...parsed,
           videoLeftUrl: legacy(parsed.videoLeftUrl) ? DEFAULT_MEDIA_CONFIG.videoLeftUrl : parsed.videoLeftUrl,
-          videoRightUrl: legacy(parsed.videoRightUrl) ? DEFAULT_MEDIA_CONFIG.videoRightUrl : parsed.videoRightUrl
+          videoRightUrl: legacy(parsed.videoRightUrl) ? DEFAULT_MEDIA_CONFIG.videoRightUrl : parsed.videoRightUrl,
+          galleryUrls: migrateGallery(parsed.galleryUrls)
         }
       } catch { /* ignore */ }
     }
@@ -106,7 +83,9 @@ export default function App() {
   const [showOverlay, setShowOverlay] = useState(false)
   const [loaded, setLoaded] = useState(0)
 
-  const layout = useGalleryLayout(mediaConfig.galleryUrls.length)
+  const layout = useMemo(() => HOME_CHAPTERS.map((chapter, index) => ({
+    ...chapter, images: mediaConfig.galleryUrls.map((url, image) => ({ url, image })).filter(({ image }) => index === 2 ? image >= 6 : image >= index * 3 && image < index * 3 + 3)
+  })), [mediaConfig.galleryUrls])
 
   const handleConfigChange = (newConfig: MediaConfigState) => {
     setMediaConfig(newConfig)
@@ -157,7 +136,10 @@ export default function App() {
       })
       const outro = Math.max(0, Math.min(1, (y - vh - maxScroll) / Math.max(1, vh - 100)))
       if (overlay) overlay.style.opacity = `${outro}`
-      if (info) info.style.transform = `translateY(${-166 * outro}px)`
+      if (info) {
+        info.style.transform = `translateY(${-166 * outro}px)`
+        info.style.opacity = `${Math.max(outro, 1 - y / (vh * .4), 0)}`
+      }
       if (buy) buy.style.transform = `scale(${outro})`
       if (footer) footer.style.opacity = `${outro}`
       raf = requestAnimationFrame(update)
@@ -281,16 +263,22 @@ export default function App() {
 
       <div id="black-panel">
         <div className="gallery-wrap" ref={wrap}>
-          {layout.map((image, index) =>
-            image < 0 ? (
-              <div className="gallery-space" key={`space-${index}`} />
-            ) : (
-              <div className="bp-card" key={`item-${image}`} ref={node => { cards.current[index] = node }}>
-                <CardOverlay index={image} show={devMode && showOverlay} />
-                <img src={mediaConfig.galleryUrls[image]} alt={`Archive collection garment ${image + 1}`} />
+          {layout.map((chapter, index) => (
+            <section className="home-story-chapter" key={chapter.title} aria-labelledby={`story-${index}`}>
+              <div className="home-story-heading">
+                <span className="home-story-number">0{index + 1} / SMARTGIFT</span>
+                <h2 id={`story-${index}`}>{chapter.title}</h2>
+                <p>{chapter.copy}</p>
+                <small>ภาพจำลองแนวทางการออกแบบ</small>
               </div>
-            )
-          )}
+              {chapter.images.map(({ url, image }) => (
+                <div className={`bp-card${image === 6 ? ' home-story-wide' : ''}`} key={image} ref={node => { cards.current[image] = node }}>
+                  <CardOverlay index={image} show={devMode && showOverlay} />
+                  <img src={url} alt={HOME_GALLERY.find(item => item.url === url)?.alt ?? 'ภาพที่เลือกสำหรับแกลเลอรี SmartGift'} />
+                </div>
+              ))}
+            </section>
+          ))}
         </div>
       </div>
 
