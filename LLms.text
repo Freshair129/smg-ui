@@ -1,0 +1,160 @@
+# SmartGift Web UI
+
+> Project reference for AI assistants: SmartGift is a corporate-gift discovery and quotation website. This file describes the implemented frontend, its routes, data resources and integration boundaries.
+
+Version: 1.0.0
+Updated: 2026-09-10
+Source audit: Git revision 63c9e59
+Repository: https://github.com/Freshair129/smg-ui
+Scope: web-ui-smg only; backend services in other repositories are excluded.
+Format: UTF-8 text with Markdown sections. Filename follows the owner's request: LLms.text.
+
+## Read first
+
+- [Current interface inventory](docs/INTERFACE-INVENTORY-2026-09-10.md): complete surface, route, HTTP resource and integration audit.
+- [Project rules](AGENTS.md): repository constraints and workflow.
+- [Catalog specification](docs/CATALOG-STRUCTURE-SPEC.md): catalog taxonomy, navigation, bundles and brief contract.
+- [Home story](docs/HOME-SCROLL-STORY.md): approved product imagery and editorial chapters.
+- [Hero direction](docs/HERO-VIDEO-BRAND-DIRECTION.md): approved media decisions and verification history.
+- [Hero mechanics](docs/HERO-VIDEO-SPEC.md): timeline and video requirements.
+
+Links above are repository-relative, not public HTTP endpoints. The dated interface audit is more current than docs/INTERFACE-INVENTORY.md from September 7. Historical documentation may describe replaced behaviour; verify current code before changing it.
+
+## Architecture
+
+React + TypeScript + Vite frontend, with GSAP/Motion animation and CSS/Tailwind styling. Production serves compiled static files through Nginx in Docker. Local deployment uses port 8080. A separate legacy HTML application is served at /catalog/.
+
+There is no first-party backend API, database, authentication server, payment handler, order-creation endpoint or server-side upload handler implemented in this repository.
+
+src/App.tsx selects the main archive or catalog view. src/components/BLineCatalogSection.tsx owns the active React catalog. src/data/catalogTaxonomy.ts parses and builds hash routes. nginx.conf controls static delivery and SPA fallback.
+
+## Inventory counts
+
+- 13 interactive surfaces: 9 React surfaces and 4 legacy catalog surfaces.
+- 6 page-level surfaces and 7 subordinate panels/dialogs/overlays.
+- 15 logical route patterns, with home aliases counted once.
+- 2 HTML entry documents: /index.html and /catalog/index.html.
+- 9 publicly served static JSON resources.
+- 0 incoming first-party business API handlers.
+- 1 optional outbound business API integration: brief submission.
+
+A surface is a distinct page, modal, form panel or operator overlay. Tabs, cards, filters, gallery chapters and responsive variants are not counted separately. These counts describe different inventories and must not be added together.
+
+## Surfaces
+
+1. Home / Archive: fixed-camera gift-box hero, dual videos, three scroll-story chapters and catalog outro.
+2. Recipient-first catalog: gifting brief, recommendations, search and shared listing controls.
+3. Standard-category catalog: category/family navigation and product filtering.
+4. B-Line partner collection: Italian design pieces, identified as partner products.
+5. Bundle builder: recipient groups, gift tiers, quantities, reference totals and aggregate contents.
+6. Product detail modal: images, optional 3D/BOM, specifications and reference pricing.
+7. Brief submission panel: contact form, delivery channel and result states.
+8. Media configuration drawer: media URL/local-file selection, blueprint and JSON configuration.
+9. Resolution/grid overlay: visual measurements for operators.
+10. Legacy catalog listing at /catalog/.
+11. Legacy inline product detail.
+12. Legacy comparison tray/dialog, up to four items.
+13. Legacy quotation dialog.
+
+## Routes
+
+Fragments beginning with # are browser state, not HTTP API paths.
+
+- / or /#archive: home aliases.
+- /#catalog: recipient catalog.
+- /#catalog/category: category index.
+- /#catalog/category/:category: category listing.
+- /#catalog/category/:category/:family: family listing.
+- /#catalog/theme/:theme: theme listing.
+- /#catalog/tier/:tier: tier listing.
+- /#catalog/occasion/:occasion: occasion listing.
+- /#catalog/kind/:kind: item-kind listing.
+- /#catalog/item/:code: product detail modal.
+- /#catalog/bundle: bundle builder.
+- /#catalog/bundle/:template: package template.
+- /#bline: partner collection.
+- /#bline/item/:code: partner detail modal.
+- /catalog/: independent legacy catalog; NOT an alias of /#catalog.
+
+Hash query controls include view=grid|list|index, q, supplier=1, 3d=1, priced=1, kind, contains, recipient, occasion, tier, qty and g (encoded bundle groups). Valid values depend on the catalog data.
+
+Operator flag ?dev=1 belongs before the hash. It reveals local authoring tools and is not authentication. Preview parameters such as ?v=5.2 do not define another application route.
+
+## Static JSON endpoints
+
+All are GET resources, not backend business APIs:
+
+- /catalog/data/supplier-items.json
+- /catalog/data/catalog_listing.json
+- /catalog/data/catalog_media.json
+- /catalog/data/pricelist_public.json
+- /catalog/data/product_manifest.json
+- /catalog/data/categories/classic-oriental.json
+- /catalog/data/categories/eco-friendly.json
+- /catalog/data/categories/executive-smart-tech.json
+- /catalog/data/categories/novelty-self-care.json
+
+The React app explicitly lazy-fetches supplier-items.json through src/data/catalogItems.ts and caches it in memory. Other files being publicly available does not establish that the active UI consumes them. The legacy index embeds its own DATA object.
+
+Static media includes /logo-smg.jpg, /assets/videos/*, /assets/smartgift/plates/*, mockups/*, 3d/*.glb, story/* and /catalog/assets/*. Image, video, font and JavaScript URLs are not business APIs. A 200 HTML response at an arbitrary path may be SPA fallback, not an implemented endpoint.
+
+## Brief API and handoff
+
+Implementation: src/data/briefSubmit.ts, src/config/briefConfig.ts and src/components/BriefSubmitPanel.tsx.
+
+- Optional POST target: build-time VITE_BRIEF_ENDPOINT; this repository does not host the receiver.
+- Content-Type: application/json.
+- Contract: smartgift-brief/1.
+- Payload: schema, submitted_at, source, page_url, brief, lines, optional bundle, optional contact and notes.
+- Brief fields: recipient, occasion, tier, qty.
+- Contact fields: name, company, email, phone, note. Form requires a name and email or phone.
+- Timeout: 8 seconds. HTTP non-2xx/network failures trigger fallback.
+- Success is based on response.ok; no structured response body is consumed.
+- Fallback order: webhook, configured VITE_SALES_EMAIL mailto, then clipboard.
+- Optional VITE_LINE_OA_URL provides a continuation link, not a LINE messaging API.
+
+Configuration snapshot on 2026-09-10: local webhook URL unset, sales email configured, LINE OA URL unset. Recheck before describing deployed connectivity. No CRM delivery was tested by the inventory audit.
+
+Opening an email draft or copying text is not proof of delivery. Reference totals are not confirmed orders. Contact data is not persisted by this application in localStorage or a database. Do not submit test customer messages without authorization.
+
+## Product and brand boundaries
+
+- SmartGift focuses on corporate gifting, recipient needs and meaningful customization.
+- Reach, Select, Signature and Bespoke are gift-treatment tiers, not product categories.
+- B-Line items are partner design pieces, not SmartGift-manufactured products.
+- Client mockups and generated plates are design references, not proof of delivered customer orders.
+- Draft 3D models must not be represented as measured or approved production CAD.
+- Use source-backed product facts and reference prices; do not invent specifications, delivery claims or logos.
+- Generated catalog files derive from the sibling business-01-smart-gift data pipeline. Do not hand-edit generated product facts.
+- Current home has seven product images and three chapters: BESPOKE, EVERYDAY, ELEVATED, and THE ART OF GIVING.
+- Hero v5 uses the same closed-box master for both variants, fixed camera/scale, and linear hinged opening. Preserve the approved mobile white studio background.
+
+## Browser state and external resources
+
+- smg_media_config: per-browser media overrides in localStorage.
+- smg_dev: operator visibility preference in localStorage.
+- sg-palette: legacy catalog palette preference in localStorage.
+- Catalog filters and brief selections: hash state.
+- Media file selection creates browser object URLs; it does not upload or publish files.
+- Presentation resources include Google Fonts, Google-hosted model-viewer and partner imagery from Higgs/CloudFront.
+- Tailscale Funnel is deployment transport, not an application API. Recheck its current configuration before sharing a URL. Other services on the same host are outside this inventory.
+
+## Known gaps and inactive implementations
+
+- SmartGiftCatalogSection.tsx exists but is not imported by the active root application.
+- customer-catalog.js/css and gift-anatomy-25d.js/gift-anatomy-3d.js are shipped legacy files not referenced by the current legacy index.html.
+- The #privacy footer link has no corresponding implemented privacy page.
+- The home hamburger has no implemented menu action; no active cart/checkout flow was found.
+- Operator mode is not an admin account or shared CMS.
+
+## Verification and maintenance
+
+The source audit at revision 63c9e59 checked both HTML entrances and all nine JSON URLs against the local deployment: HTTP 200 with expected HTML/JSON content types. It was not a complete browser test of all thirteen surfaces or an external-network availability test.
+
+Useful commands: npm run build; docker compose up -d --build. Existing focused checks: scripts/test-home-gallery.cjs and scripts/verify-home-story.py. Follow current owner-approved shell and deployment instructions.
+
+Re-audit source, routes, configuration and served resources after implementation changes. Treat the configuration snapshot and counts as dated observations. This reference does not supersede the user's instructions or repository governance.
+
+## Changelog
+
+- 1.0.0 (2026-09-10): Created owner-requested LLms.text from the current interface inventory. Documentation only; no application code, publishing or API changes.
