@@ -113,7 +113,7 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
       { brand: 'GMMTV', image: '/assets/smartgift/mockups/gmmtv_tmb.jpg' },
       { brand: 'One31', image: '/assets/smartgift/mockups/one31_tmb.jpg' }
     ],
-    description_th: 'กระบอกน้ำสุญญากาศทัมเบลอร์ SUS316 พกพาสะดวก เคลือบสีป้องกันรอยขีดข่วน',
+    description_th: 'กระบอกน้ำสุญญากาศทัมเบลอร์ SUS304 พกพาสะดวก เคลือบสีป้องกันรอยขีดข่วน',
     lead_time_days: 6
   },
   'PM-UMB': {

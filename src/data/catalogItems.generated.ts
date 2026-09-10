@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand. Run: npm run build:catalog
  * Source: C:\Users\pc\workspace\business-01-smart-gift\data-pipeline\02_prepared\pricelist_master.json (schema 1.3.0b, run 2026-08-24T08-46-40-226Z)
- * Generated: 2026-09-10T20:58:53.795Z
+ * Generated: 2026-09-10T22:37:39.828Z
  * Core layer only: 16 PM singles + 6 core sets. Media is overlaid from coreMedia.ts.
  * The supplier layer lives in public/catalog/data/supplier-items.json; its counts are exported here so the UI can
  * advertise it before loading it.
@@ -13,7 +13,7 @@ export const SUPPLIER_LAYER_META = {
   "with_image": 1013,
   "priced": 106,
   "source_total": 1110,
-  "generated_at": "2026-09-10T20:58:53.795Z"
+  "generated_at": "2026-09-10T22:37:39.828Z"
 } as const
 
 export const CORE_ITEMS: CatalogItemSeed[] = [
@@ -144,8 +144,8 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "factory_item_code": "BW00-0",
     "kind": "single",
     "layer": "core",
-    "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)",
-    "name_en": "Thermal Tumbler SUS316",
+    "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS304)",
+    "name_en": "Thermal Tumbler SUS304",
     "theme": "eco-friendly",
     "families": [
       "drinkware"
@@ -1025,7 +1025,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       {
         "product_code": "PM-TMB",
         "qty": 1,
-        "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)"
+        "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS304)"
       }
     ],
     "unboxing_th": "การคุมโทนสีฟ้าพาสเทลและสัมผัส Skin-touch อ่อนหวาน ละมุน บรรจุในกล่องฝาสวมพรีเมียม",
@@ -1231,7 +1231,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       {
         "product_code": "PM-TMB",
         "qty": 1,
-        "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)"
+        "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS304)"
       }
     ],
     "unboxing_th": "โทนอบอุ่น ใช้จริงในชีวิตประจำวัน พร้อมข้อความขอบคุณทีมงาน",
@@ -1261,7 +1261,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       {
         "product_code": "PM-TMB",
         "qty": 1,
-        "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)"
+        "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS304)"
       },
       {
         "product_code": "PM-BOTTLE-LED",
