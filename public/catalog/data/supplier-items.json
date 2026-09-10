@@ -1,45 +1,15 @@
 {
  "schema": "smartgift-catalog-items/1",
- "generated_at": "2026-09-10T19:35:49.563Z",
+ "generated_at": "2026-09-10T19:58:46.805Z",
  "source": {
   "file": "data-pipeline/02_prepared/pricelist_master.json",
   "schema_version": "1.3.0b",
   "run_id": "2026-08-24T08-46-40-226Z",
   "catalog_offers_total": 1110,
-  "public_eligible": 216
+  "public_eligible": 214
  },
  "disclaimer_th": "รายการจากแคตตาล็อกผู้ผลิต ยังไม่ผ่านการยืนยันเป็นสินค้า core ราคา (ถ้ามี) เป็นราคาอ้างอิงตามขั้นจำนวน โปรดยืนยันก่อนเสนอราคา",
  "items": [
-  {
-   "id": "offer:BW00-0",
-   "code": "BW00-0",
-   "kind": "single",
-   "layer": "supplier",
-   "name_th": "แก้วเก็บอุณหภูมิ in simple dark blue gift bag packing",
-   "name_en": "Vacuum cup in simple dark blue gift bag packing",
-   "families": [
-    "drinkware"
-   ],
-   "price_status": "ask_for_quote",
-   "image": "/catalog/assets/catalog-media/source-offer-BW00-0.jpg",
-   "image_status": "source_verified",
-   "description_th": "Vacuum cup: 450ml, 304 stainless steel liner, temperature display • Colors: Blue, silver, black, red, gold, pink, orange, light blue",
-   "colors": [
-    "Blue",
-    "silver",
-    "black",
-    "red",
-    "gold",
-    "pink",
-    "orange",
-    "light blue"
-   ],
-   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "BW00-0"
-   }
-  },
   {
    "id": "offer:FXD00-3",
    "code": "FXD00-3",
@@ -1094,7 +1064,7 @@
     "power_bank"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1117,10 +1087,11 @@
      "unit_price": 1750
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 2330
+     "package_code": "P-13",
+     "from_price": 2330,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1173,7 +1144,7 @@
     "smart_bracelet"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1196,10 +1167,11 @@
      "unit_price": 1650
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 2210
+     "package_code": "P-13",
+     "from_price": 2210,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1259,7 +1231,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1282,10 +1254,11 @@
      "unit_price": 770
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1030
+     "package_code": "P-02",
+     "from_price": 1030,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1325,7 +1298,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1348,10 +1321,11 @@
      "unit_price": 1150
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 1530
+     "package_code": "P-13",
+     "from_price": 1530,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1488,7 +1462,7 @@
     "earbuds"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1511,10 +1485,11 @@
      "unit_price": 530
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 710
+     "package_code": "P-02",
+     "from_price": 710,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1555,7 +1530,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1578,10 +1553,11 @@
      "unit_price": 1020
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1360
+     "package_code": "P-02",
+     "from_price": 1360,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1626,7 +1602,7 @@
     "umbrella"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1649,10 +1625,11 @@
      "unit_price": 530
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 780
+     "package_code": "P-02",
+     "from_price": 780,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1691,7 +1668,7 @@
     "umbrella"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1714,10 +1691,11 @@
      "unit_price": 530
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 710
+     "package_code": "P-02",
+     "from_price": 710,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1758,7 +1736,7 @@
     "charger"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1781,10 +1759,11 @@
      "unit_price": 610
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 810
+     "package_code": "P-02",
+     "from_price": 810,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1829,7 +1808,7 @@
     "umbrella"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1852,10 +1831,11 @@
      "unit_price": 730
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 970
+     "package_code": "P-02",
+     "from_price": 970,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1896,7 +1876,7 @@
     "earbuds"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1919,10 +1899,11 @@
      "unit_price": 870
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1160
+     "package_code": "P-02",
+     "from_price": 1160,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -1967,7 +1948,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -1990,10 +1971,11 @@
      "unit_price": 560
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-05",
-     "from_price": 750
+     "package_code": "P-05",
+     "from_price": 750,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2034,7 +2016,7 @@
     "umbrella"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2057,10 +2039,11 @@
      "unit_price": 580
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-05",
-     "from_price": 780
+     "package_code": "P-05",
+     "from_price": 780,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2101,7 +2084,7 @@
     "notebook"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2124,10 +2107,11 @@
      "unit_price": 570
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 760
+     "package_code": "P-02",
+     "from_price": 760,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2168,7 +2152,7 @@
     "notebook"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2191,10 +2175,11 @@
      "unit_price": 590
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 790
+     "package_code": "P-02",
+     "from_price": 790,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2237,7 +2222,7 @@
     "notebook"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2260,10 +2245,11 @@
      "unit_price": 610
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 820
+     "package_code": "P-02",
+     "from_price": 820,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2312,7 +2298,7 @@
     "notebook"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2335,10 +2321,11 @@
      "unit_price": 770
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1030
+     "package_code": "P-02",
+     "from_price": 1030,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2393,7 +2380,7 @@
     "usb_flash_drive"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2416,10 +2403,11 @@
      "unit_price": 970
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 1290
+     "package_code": "P-06",
+     "from_price": 1290,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2480,7 +2468,7 @@
     "notebook"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2503,10 +2491,11 @@
      "unit_price": 1060
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-03",
-     "from_price": 1410
+     "package_code": "P-03",
+     "from_price": 1410,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2613,7 +2602,7 @@
     "hair_dryer"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2636,10 +2625,11 @@
      "unit_price": 810
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1080
+     "package_code": "P-02",
+     "from_price": 1080,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2681,7 +2671,7 @@
     "hair_dryer"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2704,10 +2694,11 @@
      "unit_price": 790
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1050
+     "package_code": "P-02",
+     "from_price": 1050,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -2749,7 +2740,7 @@
     "hair_dryer"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -2772,10 +2763,11 @@
      "unit_price": 980
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 1310
+     "package_code": "P-06",
+     "from_price": 1310,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -3083,7 +3075,7 @@
     "hair_dryer"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -3106,10 +3098,11 @@
      "unit_price": 850
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1130
+     "package_code": "P-02",
+     "from_price": 1130,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -3149,7 +3142,7 @@
     "neck_massager"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -3172,10 +3165,11 @@
      "unit_price": 950
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1270
+     "package_code": "P-02",
+     "from_price": 1270,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -3218,7 +3212,7 @@
     "hair_dryer"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -3241,10 +3235,11 @@
      "unit_price": 1040
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 1390
+     "package_code": "P-06",
+     "from_price": 1390,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -3289,7 +3284,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -3312,10 +3307,11 @@
      "unit_price": 800
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1070
+     "package_code": "P-02",
+     "from_price": 1070,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -3358,7 +3354,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -3381,10 +3377,11 @@
      "unit_price": 1310
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 1740
+     "package_code": "P-06",
+     "from_price": 1740,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -3431,7 +3428,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -3454,14 +3451,16 @@
      "unit_price": 1150
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 1530
+     "package_code": "P-06",
+     "from_price": 1530,
+     "cost_included": true
     },
     {
-     "code": "P-02",
-     "from_price": 1530
+     "package_code": "P-02",
+     "from_price": 1530,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -3506,7 +3505,7 @@
    "name_en": "Electric toothbrush + Oral irrigator",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -3533,10 +3532,11 @@
      "unit_price": 1100
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1290
+     "package_code": "P-02",
+     "from_price": 1290,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -4022,7 +4022,7 @@
     "neck_massager"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -4045,10 +4045,11 @@
      "unit_price": 1020
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-20",
-     "from_price": 1360
+     "package_code": "P-20",
+     "from_price": 1360,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -4258,7 +4259,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -4281,10 +4282,11 @@
      "unit_price": 1180
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 1570
+     "package_code": "P-06",
+     "from_price": 1570,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -4402,7 +4404,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -4425,10 +4427,11 @@
      "unit_price": 990
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1320
+     "package_code": "P-02",
+     "from_price": 1320,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -4478,7 +4481,7 @@
     "notebook"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -4501,10 +4504,11 @@
      "unit_price": 1360
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-03",
-     "from_price": 1810
+     "package_code": "P-03",
+     "from_price": 1810,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -4560,7 +4564,7 @@
     "notebook"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -4583,10 +4587,11 @@
      "unit_price": 1230
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-03",
-     "from_price": 1640
+     "package_code": "P-03",
+     "from_price": 1640,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -5566,7 +5571,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -5593,10 +5598,11 @@
      "unit_price": 1180
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 1650
+     "package_code": "P-06",
+     "from_price": 1650,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -6697,7 +6703,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 1,
@@ -6831,7 +6837,7 @@
     "power_bank"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -6854,10 +6860,11 @@
      "unit_price": 1550
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 2070
+     "package_code": "P-06",
+     "from_price": 2070,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -6903,7 +6910,7 @@
     "power_bank"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -6926,10 +6933,11 @@
      "unit_price": 1640
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 2180
+     "package_code": "P-06",
+     "from_price": 2180,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -7018,7 +7026,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -7041,14 +7049,16 @@
      "unit_price": 1010
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1350
+     "package_code": "P-02",
+     "from_price": 1350,
+     "cost_included": true
     },
     {
-     "code": "P-06",
-     "from_price": 1350
+     "package_code": "P-06",
+     "from_price": 1350,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -7097,7 +7107,7 @@
     "umbrella"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -7120,14 +7130,16 @@
      "unit_price": 1210
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-16",
-     "from_price": 1620
+     "package_code": "P-16",
+     "from_price": 1620,
+     "cost_included": true
     },
     {
-     "code": "P-06",
-     "from_price": 1620
+     "package_code": "P-06",
+     "from_price": 1620,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -7884,7 +7896,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -7907,10 +7919,11 @@
      "unit_price": 850
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-2D",
-     "from_price": 1130
+     "package_code": "P-2D",
+     "from_price": 1130,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -7947,7 +7960,7 @@
    "name_en": "Portable clothes steamer + Neck massage",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -7986,10 +7999,11 @@
      "unit_price": 980
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-2D",
-     "from_price": 1310
+     "package_code": "P-2D",
+     "from_price": 1310,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8026,7 +8040,7 @@
    "name_en": "Portable clothes steamer + Neck massage+ Eye massager",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8049,10 +8063,11 @@
      "unit_price": 1380
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-2D",
-     "from_price": 1840
+     "package_code": "P-2D",
+     "from_price": 1840,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8093,7 +8108,7 @@
    "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8116,10 +8131,11 @@
      "unit_price": 590
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 870
+     "package_code": "P-09",
+     "from_price": 870,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8140,7 +8156,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8163,10 +8179,11 @@
      "unit_price": 470
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 690
+     "package_code": "P-09",
+     "from_price": 690,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8184,7 +8201,7 @@
    "name_th": "เครื่องประคบร้อนแก้ปวด",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8207,10 +8224,11 @@
      "unit_price": 690
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 1080
+     "package_code": "P-09",
+     "from_price": 1080,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8231,7 +8249,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8254,10 +8272,11 @@
      "unit_price": 440
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 650
+     "package_code": "P-09",
+     "from_price": 650,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8275,7 +8294,7 @@
    "name_th": "แปรงสีฟันไฟฟ้า",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8298,10 +8317,11 @@
      "unit_price": 560
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 830
+     "package_code": "P-09",
+     "from_price": 830,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8322,7 +8342,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8345,10 +8365,11 @@
      "unit_price": 530
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 770
+     "package_code": "P-09",
+     "from_price": 770,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8366,7 +8387,7 @@
    "name_th": "เครื่องรีดผ้าแบบพกพา",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8389,10 +8410,11 @@
      "unit_price": 590
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 850
+     "package_code": "P-09",
+     "from_price": 850,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8410,7 +8432,7 @@
    "name_th": "เครื่องทำความสะอาดภายในช่องปาก",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8433,10 +8455,11 @@
      "unit_price": 580
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 870
+     "package_code": "P-09",
+     "from_price": 870,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8457,7 +8480,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8480,10 +8503,11 @@
      "unit_price": 660
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 880
+     "package_code": "P-02",
+     "from_price": 880,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8505,7 +8529,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8528,10 +8552,11 @@
      "unit_price": 880
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-2D",
-     "from_price": 1170
+     "package_code": "P-2D",
+     "from_price": 1170,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8571,7 +8596,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8594,10 +8619,11 @@
      "unit_price": 1040
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-2D",
-     "from_price": 1380
+     "package_code": "P-2D",
+     "from_price": 1380,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8618,7 +8644,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8645,10 +8671,11 @@
      "unit_price": 980
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-2D",
-     "from_price": 1270
+     "package_code": "P-2D",
+     "from_price": 1270,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8671,7 +8698,7 @@
     "smart_bracelet"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8694,10 +8721,11 @@
      "unit_price": 1950
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 2610
+     "package_code": "P-13",
+     "from_price": 2610,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8754,7 +8782,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8777,10 +8805,11 @@
      "unit_price": 850
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1140
+     "package_code": "P-02",
+     "from_price": 1140,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8801,7 +8830,7 @@
     "neck_massager"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8824,10 +8853,11 @@
      "unit_price": 530
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 710
+     "package_code": "P-02",
+     "from_price": 710,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8866,7 +8896,7 @@
     "earbuds"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8889,10 +8919,11 @@
      "unit_price": 1210
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1620
+     "package_code": "P-02",
+     "from_price": 1620,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8935,7 +8966,7 @@
     "smart_bracelet"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -8958,10 +8989,11 @@
      "unit_price": 530
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 710
+     "package_code": "P-02",
+     "from_price": 710,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -8999,7 +9031,7 @@
     "umbrella"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9022,10 +9054,11 @@
      "unit_price": 620
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 820
+     "package_code": "P-02",
+     "from_price": 820,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9071,7 +9104,7 @@
     "pen"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9094,10 +9127,11 @@
      "unit_price": 810
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 1080
+     "package_code": "P-06",
+     "from_price": 1080,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9144,7 +9178,7 @@
    "name_th": "ชุดของขวัญในกล่องพรีเมี่ยม 2 ชิ้นพร้อมสกรีน",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 100,
@@ -9170,7 +9204,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9193,10 +9227,11 @@
      "unit_price": 770
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1030
+     "package_code": "P-02",
+     "from_price": 1030,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9217,7 +9252,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9240,10 +9275,11 @@
      "unit_price": 470
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-14",
-     "from_price": 690
+     "package_code": "P-14",
+     "from_price": 690,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9265,7 +9301,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9288,10 +9324,11 @@
      "unit_price": 1020
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1360
+     "package_code": "P-02",
+     "from_price": 1360,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9313,7 +9350,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9336,10 +9373,11 @@
      "unit_price": 1760
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 2350
+     "package_code": "P-02",
+     "from_price": 2350,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9361,7 +9399,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9384,10 +9422,11 @@
      "unit_price": 790
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1060
+     "package_code": "P-02",
+     "from_price": 1060,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9409,7 +9448,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9432,10 +9471,11 @@
      "unit_price": 1540
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 2050
+     "package_code": "P-02",
+     "from_price": 2050,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9457,7 +9497,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9480,10 +9520,11 @@
      "unit_price": 1510
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 2010
+     "package_code": "P-13",
+     "from_price": 2010,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9505,7 +9546,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9528,10 +9569,11 @@
      "unit_price": 1640
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 2180
+     "package_code": "P-13",
+     "from_price": 2180,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9554,7 +9596,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9577,10 +9619,11 @@
      "unit_price": 1760
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 2350
+     "package_code": "P-13",
+     "from_price": 2350,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9601,7 +9644,7 @@
     "hair_dryer"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9624,10 +9667,11 @@
      "unit_price": 840
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1120
+     "package_code": "P-02",
+     "from_price": 1120,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9667,7 +9711,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9690,10 +9734,11 @@
      "unit_price": 1300
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1730
+     "package_code": "P-02",
+     "from_price": 1730,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9737,7 +9782,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9760,10 +9805,11 @@
      "unit_price": 700
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 930
+     "package_code": "P-02",
+     "from_price": 930,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9784,7 +9830,7 @@
     "massage_gun"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9807,10 +9853,11 @@
      "unit_price": 980
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1310
+     "package_code": "P-02",
+     "from_price": 1310,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9851,7 +9898,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9874,10 +9921,11 @@
      "unit_price": 770
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1030
+     "package_code": "P-PT",
+     "from_price": 1030,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9899,7 +9947,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9922,10 +9970,11 @@
      "unit_price": 660
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 880
+     "package_code": "P-PT",
+     "from_price": 880,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9947,7 +9996,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -9970,10 +10019,11 @@
      "unit_price": 1070
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1430
+     "package_code": "P-PT",
+     "from_price": 1430,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -9981,39 +10031,6 @@
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
     "source_key": "TJS0163"
-   }
-  },
-  {
-   "id": "offer:TN00-2",
-   "code": "TN00-2",
-   "kind": "single",
-   "layer": "supplier",
-   "name_th": "55℃ Cup set",
-   "name_en": "55℃ Cup set",
-   "families": [
-    "drinkware"
-   ],
-   "price_status": "tiered",
-   "price_layer": "catalog_srp",
-   "price_tiers": [
-    {
-     "min_qty": 100,
-     "unit_price": 350
-    }
-   ],
-   "moq": 100,
-   "image_status": "missing",
-   "description_th": "Mug: Ceramic, 350ml, 8*8cm • Heating pad: Can heat to onstant temperature around 55℃, 220V, 50Hz, 16W, toughened glass panel • Colors: White, pink, red, green",
-   "colors": [
-    "White",
-    "pink",
-    "red",
-    "green"
-   ],
-   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TN00-2"
    }
   },
   {
@@ -10030,7 +10047,7 @@
     "power_bank"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10053,10 +10070,11 @@
      "unit_price": 1290
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-03",
-     "from_price": 1730
+     "package_code": "P-03",
+     "from_price": 1730,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10110,7 +10128,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10133,10 +10151,11 @@
      "unit_price": 860
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-BG",
-     "from_price": 1140
+     "package_code": "P-BG",
+     "from_price": 1140,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10154,7 +10173,7 @@
    "name_th": "เชือกกระโดด Digital",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10177,10 +10196,11 @@
      "unit_price": 410
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 590
+     "package_code": "P-09",
+     "from_price": 590,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10202,7 +10222,7 @@
     "power_bank"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10225,10 +10245,11 @@
      "unit_price": 1580
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 2110
+     "package_code": "P-06",
+     "from_price": 2110,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10273,7 +10294,7 @@
     "power_bank"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10296,10 +10317,11 @@
      "unit_price": 1580
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-06",
-     "from_price": 2110
+     "package_code": "P-06",
+     "from_price": 2110,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10347,7 +10369,7 @@
     "drinkware"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10370,16 +10392,16 @@
      "unit_price": 890
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1180
-    }
-   ],
-   "packaging_variants": [
+     "package_code": "P-02",
+     "from_price": 1180,
+     "cost_included": true
+    },
     {
-     "code": "P-05",
-     "from_price": 940
+     "package_code": "P-05",
+     "from_price": 940,
+     "cost_included": false
     }
    ],
    "moq": 10,
@@ -10421,7 +10443,7 @@
     "umbrella"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10444,10 +10466,11 @@
      "unit_price": 710
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-05",
-     "from_price": 940
+     "package_code": "P-05",
+     "from_price": 940,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10488,7 +10511,7 @@
     "humidifier"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10511,10 +10534,11 @@
      "unit_price": 1040
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1390
+     "package_code": "P-02",
+     "from_price": 1390,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10556,7 +10580,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10579,10 +10603,11 @@
      "unit_price": 1070
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1430
+     "package_code": "P-PT",
+     "from_price": 1430,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10600,7 +10625,7 @@
    "name_th": "Atmosphere Lamp + Rabbit pendant + เครื่องประคบร้อนแก้ปวด",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10623,10 +10648,11 @@
      "unit_price": 1300
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1730
+     "package_code": "P-PT",
+     "from_price": 1730,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10647,7 +10673,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10670,10 +10696,11 @@
      "unit_price": 900
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1210
+     "package_code": "P-PT",
+     "from_price": 1210,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10694,7 +10721,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10717,10 +10744,11 @@
      "unit_price": 790
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1050
+     "package_code": "P-PT",
+     "from_price": 1050,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10738,7 +10766,7 @@
    "name_th": "ถ้วยอุ่นพร้อมช้อน + ดอกไม้สบู่ + เครื่องนวดตา",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10765,10 +10793,11 @@
      "unit_price": 980
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1370
+     "package_code": "P-PT",
+     "from_price": 1370,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10786,7 +10815,7 @@
    "name_th": "ถ้วยอุ่นพร้อมช้อน + flower + เครื่องประคบร้อนแก้ปวด",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10809,10 +10838,11 @@
      "unit_price": 940
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1260
+     "package_code": "P-PT",
+     "from_price": 1260,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10834,7 +10864,7 @@
     "towel"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10857,10 +10887,11 @@
      "unit_price": 510
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-05",
-     "from_price": 680
+     "package_code": "P-05",
+     "from_price": 680,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10899,7 +10930,7 @@
     "massage_gun"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10922,10 +10953,11 @@
      "unit_price": 1150
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-2D",
-     "from_price": 1540
+     "package_code": "P-2D",
+     "from_price": 1540,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -10964,7 +10996,7 @@
     "hair_dryer"
    ],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -10987,10 +11019,11 @@
      "unit_price": 890
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-2D",
-     "from_price": 1180
+     "package_code": "P-2D",
+     "from_price": 1180,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11031,7 +11064,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11054,10 +11087,11 @@
      "unit_price": 840
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1120
+     "package_code": "P-PT",
+     "from_price": 1120,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11079,7 +11113,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11102,10 +11136,11 @@
      "unit_price": 890
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1190
+     "package_code": "P-PT",
+     "from_price": 1190,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11127,7 +11162,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11150,10 +11185,11 @@
      "unit_price": 810
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1080
+     "package_code": "P-PT",
+     "from_price": 1080,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11174,7 +11210,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11197,10 +11233,11 @@
      "unit_price": 940
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-PT",
-     "from_price": 1260
+     "package_code": "P-PT",
+     "from_price": 1260,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11222,7 +11259,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11245,10 +11282,11 @@
      "unit_price": 810
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1080
+     "package_code": "P-02",
+     "from_price": 1080,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11270,7 +11308,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11293,10 +11331,11 @@
      "unit_price": 1040
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-02",
-     "from_price": 1390
+     "package_code": "P-02",
+     "from_price": 1390,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11314,7 +11353,7 @@
    "name_th": "เครื่องตัดเล็บไฟฟ้า",
    "families": [],
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11337,10 +11376,11 @@
      "unit_price": 590
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-09",
-     "from_price": 870
+     "package_code": "P-09",
+     "from_price": 870,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11362,7 +11402,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11385,10 +11425,11 @@
      "unit_price": 1340
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 1790
+     "package_code": "P-13",
+     "from_price": 1790,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11410,7 +11451,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11433,10 +11474,11 @@
      "unit_price": 1470
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 1960
+     "package_code": "P-13",
+     "from_price": 1960,
+     "cost_included": true
     }
    ],
    "moq": 10,
@@ -11459,7 +11501,7 @@
    ],
    "families_derived": true,
    "price_status": "tiered",
-   "price_layer": "catalog_srp",
+   "price_layer": "standard",
    "price_tiers": [
     {
      "min_qty": 10,
@@ -11482,10 +11524,11 @@
      "unit_price": 1640
     }
    ],
-   "packaging": [
+   "packaging_options": [
     {
-     "code": "P-13",
-     "from_price": 2180
+     "package_code": "P-13",
+     "from_price": 2180,
+     "cost_included": true
     }
    ],
    "moq": 10,

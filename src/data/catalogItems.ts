@@ -126,6 +126,9 @@ export function searchHaystack(item: CatalogItem): string {
   const theme = INTEREST_THEMES.find(t => t.slug === item.theme)
   const text = [
     item.code,
+    // A merged supplier row keeps its factory code searchable — the code was on the site before
+    // the two records were collapsed, and buyers quote it.
+    item.factory_item_code,
     item.name_th,
     item.name_en,
     item.description_th,

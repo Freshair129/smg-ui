@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand. Run: npm run build:catalog
  * Source: C:\Users\pc\workspace\business-01-smart-gift\data-pipeline\02_prepared\pricelist_master.json (schema 1.3.0b, run 2026-08-24T08-46-40-226Z)
- * Generated: 2026-09-10T19:35:49.563Z
+ * Generated: 2026-09-10T19:58:46.805Z
  * Core layer only: 16 PM singles + 6 core sets. Media is overlaid from coreMedia.ts.
  * The supplier layer lives in public/catalog/data/supplier-items.json; its counts are exported here so the UI can
  * advertise it before loading it.
@@ -9,17 +9,18 @@
 import type { CatalogItemSeed, BundleTemplate } from './catalogTaxonomy'
 
 export const SUPPLIER_LAYER_META = {
-  "count": 216,
-  "with_image": 152,
-  "priced": 107,
+  "count": 214,
+  "with_image": 151,
+  "priced": 106,
   "source_total": 1110,
-  "generated_at": "2026-09-10T19:35:49.563Z"
+  "generated_at": "2026-09-10T19:58:46.805Z"
 } as const
 
 export const CORE_ITEMS: CatalogItemSeed[] = [
   {
     "id": "pm:PM-BOTTLE-LED",
     "code": "PM-BOTTLE-LED",
+    "factory_item_code": "TDK01-1",
     "kind": "single",
     "layer": "core",
     "name_th": "กระบอกน้ำสแตนเลสบอกอุณหภูมิหน้าจอ Smart LED",
@@ -29,7 +30,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 290,
     "price_tiers": [
       {
@@ -91,7 +92,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "fan"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 260,
     "price_tiers": [
       {
@@ -140,6 +141,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
   {
     "id": "pm:PM-TMB",
     "code": "PM-TMB",
+    "factory_item_code": "BW00-0",
     "kind": "single",
     "layer": "core",
     "name_th": "แก้วทัมเบลอร์เก็บอุณหภูมิ (Tumbler SUS316)",
@@ -149,7 +151,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 320,
     "price_tiers": [
       {
@@ -202,6 +204,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
   {
     "id": "pm:PM-UMB",
     "code": "PM-UMB",
+    "factory_item_code": "TYS01-1",
     "kind": "single",
     "layer": "core",
     "name_th": "ร่มพับออโต้ 6 ตอน เคลือบซิลิโคนกันแดด UPF50+",
@@ -211,7 +214,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "umbrella"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 250,
     "price_tiers": [
       {
@@ -272,7 +275,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "usb_flash_drive"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 220,
     "price_tiers": [
       {
@@ -332,7 +335,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "pen"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 190,
     "price_tiers": [
       {
@@ -393,7 +396,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 360,
     "price_tiers": [
       {
@@ -453,7 +456,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "aroma_diffuser"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 550,
     "price_tiers": [
       {
@@ -504,6 +507,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
   {
     "id": "pm:PM-CFMUG",
     "code": "PM-CFMUG",
+    "factory_item_code": "TJS00-1",
     "kind": "single",
     "layer": "core",
     "name_th": "แก้วกาแฟพกพาสแตนเลส 316 พร้อมฝา 3 ระบบ",
@@ -513,7 +517,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 299,
     "price_tiers": [
       {
@@ -573,7 +577,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "cutlery"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 165,
     "price_tiers": [
       {
@@ -622,6 +626,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
   {
     "id": "pm:PM-MSG",
     "code": "PM-MSG",
+    "factory_item_code": "TBY17-1",
     "kind": "single",
     "layer": "core",
     "name_th": "เครื่องนวดคอพกพาคลื่นความถี่ต่ำ Low Pulse & ประคบร้อน",
@@ -631,7 +636,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "neck_massager"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 850,
     "price_tiers": [
       {
@@ -682,6 +687,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
   {
     "id": "pm:PM-MUG-HEAT",
     "code": "PM-MUG-HEAT",
+    "factory_item_code": "TN00-2",
     "kind": "single",
     "layer": "core",
     "name_th": "ชุดแก้วเซรามิกพร้อมแท่นอุ่นอุณหภูมิคงที่ 55°C",
@@ -691,7 +697,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 350,
     "price_tiers": [
       {
@@ -749,7 +755,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "desk_mat"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 590,
     "price_tiers": [
       {
@@ -798,6 +804,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
   {
     "id": "pm:PM-NB",
     "code": "PM-NB",
+    "factory_item_code": "TNA0014",
     "kind": "single",
     "layer": "core",
     "name_th": "สมุดโน้ตหนัง PU อัจฉริยะฝังพาวเวอร์แบงก์ชาร์จไร้สาย",
@@ -807,7 +814,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "notebook"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 750,
     "price_tiers": [
       {
@@ -858,6 +865,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
   {
     "id": "pm:PM-PB10K",
     "code": "PM-PB10K",
+    "factory_item_code": "TZJ00-1",
     "kind": "single",
     "layer": "core",
     "name_th": "พาวเวอร์แบงก์แม่เหล็กไร้สาย 10,000mAh (MagSafe & Stand)",
@@ -867,7 +875,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "power_bank"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 690,
     "price_tiers": [
       {
@@ -927,7 +935,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "speaker"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "srp_price": 480,
     "price_tiers": [
       {
@@ -987,7 +995,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "price_tiers": [
       {
         "min_qty": 10,
@@ -1042,7 +1050,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "pen"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "price_tiers": [
       {
         "min_qty": 10,
@@ -1097,7 +1105,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "price_tiers": [
       {
         "min_qty": 10,
@@ -1152,7 +1160,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "neck_massager"
     ],
     "price_status": "tiered",
-    "price_layer": "catalog_srp",
+    "price_layer": "standard",
     "price_tiers": [
       {
         "min_qty": 10,

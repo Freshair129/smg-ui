@@ -189,26 +189,38 @@ export interface PriceTier {
 }
 
 /**
- * Which layer of the pricing taxonomy a displayed price comes from.
- * See business-01-smart-gift/.agent/price/AGENT.md — the four layers are
- * FACTORY_EXW_COST -> LANDED_COST_ESTIMATE -> CATALOG_SRP_PRICE -> INVOICE_SELLING_PRICE.
+ * Which of the two selling prices a ladder is.
  *
- * Only the two selling layers are ever public. NEVER subtract one from the other and call the
- * difference profit: both are selling prices, and the 2.5-7% gap between them is a packaging
- * upgrade or a sales discount. Gross margin is only ever (selling price - landed cost),
- * and landed cost never leaves the SSOT.
+ * SPEC-FULL-ENTERPRISE-SCHEMA-2026-09-10 §3 splits selling price into
+ * `standard_selling_price_thb` (retail SRP, 39-52% margin) and
+ * `corporate_selling_price_thb` (B2B, 20-35%). This site publishes the standard ladder.
+ *
+ * NEVER subtract one from the other and call the difference profit — both are selling prices.
+ * Gross margin is only ever (selling price - landed cost), and landed cost never leaves the SSOT.
+ * See business-01-smart-gift/.agent/price/AGENT.md for the full four-layer taxonomy.
  */
 export type PriceLayer =
-  /** Layer 3 — standard wholesale catalogue price incl. logo printing. What this site shows. */
-  | 'catalog_srp'
-  /** Layer 4 — price actually invoiced in FlowAccount, after packaging upgrade or discount. */
-  | 'invoice'
+  /** Retail / catalogue SRP incl. logo printing. What this site shows today. */
+  | 'standard'
+  /** Negotiated corporate B2B price. Lower than standard; not published yet. */
+  | 'corporate'
 
-/** Packaging a price ladder is quoted for. `P-06`, `P-20`, `P-PT` are box types, never new SKUs. */
-export interface PackagingRef {
+/**
+ * One packaging choice, after SPEC-FULL-ENTERPRISE-SCHEMA §3 `packaging_options[]`.
+ * `P-06`, `P-20`, `P-BAG` are box types, never new SKUs (AGENT.md rule 3) — but they carry their
+ * own price, and the SSOT's `flowaccount_product_code` is `Model-Count(Package)`.
+ *
+ * The spec also defines `additional_cost_thb`, a delta from the included box. We do not emit it:
+ * the SSOT gives absolute ladders per variant, and for at least one code the other variant is
+ * *cheaper* because its set contents differ — a derived "additional cost" would be negative and
+ * misleading. `from_price` carries the real number instead.
+ */
+export interface PackagingOption {
   /** Package code as written in the SSOT, e.g. `P-02`. */
-  code: string
-  /** Unit price at the ladder's first quantity step, when known — lets the UI show the spread. */
+  package_code: string
+  /** True when the published ladder already covers this box. */
+  cost_included: boolean
+  /** Unit price at the ladder's first quantity step, when the SSOT knows it. */
   from_price?: number
 }
 
@@ -255,6 +267,12 @@ export interface CatalogItem {
   /** Canonical id: `pm:PM-TMB`, `offer:TGC06-4`, `bundle:smartgift-…`. */
   id: string
   code: string
+  /**
+   * Factory model code for a core product, from the confirmed factory_cost_pm_mapping
+   * (SPEC-FULL-ENTERPRISE-SCHEMA §3 `codes_and_identification.factory_item_code`).
+   * Present when a supplier row for the same physical product was merged into this one.
+   */
+  factory_item_code?: string
   kind: OfferKind
   /** core = PM-confirmed (16 singles + 6 sets); supplier = factory catalog projection; partner = B—Line design pieces (not SmartGift SKUs). */
   layer: 'core' | 'supplier' | 'partner'
@@ -278,16 +296,14 @@ export interface CatalogItem {
   price_status: PriceStatus
   srp_price?: number
   price_tiers?: PriceTier[]
-  /** Which pricing layer `price_tiers` / `srp_price` came from. Absent when ask-for-quote. */
+  /** Which of the two selling prices `price_tiers` / `srp_price` is. Absent when ask-for-quote. */
   price_layer?: PriceLayer
-  /** Packaging the ladder above is quoted for. More than one = the same price covers each box. */
-  packaging?: PackagingRef[]
   /**
-   * Packaging variants of the same model that are priced DIFFERENTLY from `packaging`.
-   * Non-empty means the ladder shown covers only some boxes — quote the rest separately.
+   * Packaging choices for this product. Options with `cost_included: true` are covered by the
+   * published ladder; the rest are priced differently and must be quoted separately.
    * Populated only while pricelist_master collapses variants into one offer row.
    */
-  packaging_variants?: PackagingRef[]
+  packaging_options?: PackagingOption[]
   moq?: number
   lead_time_days?: number
   // Physical

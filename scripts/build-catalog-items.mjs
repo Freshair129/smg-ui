@@ -36,6 +36,7 @@ const PRICELIST = join(source, 'data-pipeline', '02_prepared', 'pricelist_master
 const MASTER = join(source, 'data-pipeline', '02_prepared', 'smartgift_catalog_master.json')
 const FLOWACCOUNT = join(source, 'data-pipeline', '02_prepared', 'flowaccount_catalog_normalized.json')
 const PRICING_RULES = join(source, 'config', 'pricing_rules_formula.yaml')
+const PM_MAPPING = join(source, 'data-pipeline', '02_prepared', 'factory_cost_pm_mapping.json')
 const MEDIA_JSON = join(source, 'public', 'data', 'catalog_media.json')
 const MEDIA_DIR = join(repo, 'public', 'catalog', 'assets', 'catalog-media')
 const TAXONOMY_TS = join(repo, 'src', 'data', 'catalogTaxonomy.ts')
@@ -149,6 +150,7 @@ const pricelist = await readJson(PRICELIST)
 const master = await readJson(MASTER)
 const mediaJson = existsSync(MEDIA_JSON) ? await readJson(MEDIA_JSON) : { sets: [], products: [] }
 const flowaccount = existsSync(FLOWACCOUNT) ? await readJson(FLOWACCOUNT) : { products: [] }
+const pmMapping = existsSync(PM_MAPPING) ? await readJson(PM_MAPPING) : { metadata: {}, mapping: [] }
 
 const canonicalByCode = Object.fromEntries(master.canonical_products.map(p => [p.code, p]))
 const themeSlugs = new Set(master.top_level_categories.map(c => c.slug))
@@ -237,6 +239,27 @@ for (const p of flowaccount.products ?? []) {
 }
 
 /**
+ * Factory model code -> SmartGift PM code, from the confirmed factory-cost mapping.
+ *
+ * The same physical product reaches us twice: once as a PM single with an SRP ladder, once as a
+ * factory catalogue offer. Listing both puts one product on the site under two codes at two
+ * prices. Only an explicitly confirmed mapping may collapse them.
+ */
+const pmByFactoryCode = new Map()
+if (pmMapping.metadata?.status === 'confirmed') {
+  for (const row of pmMapping.mapping ?? []) {
+    const factory = row.factory_product_code ?? row.factory_item_code
+    const pm = row.pm_code ?? row.product_code
+    if (factory && pm) pmByFactoryCode.set(factory, pm)
+  }
+} else {
+  console.warn(`factory_cost_pm_mapping status is ${pmMapping.metadata?.status ?? 'unknown'} — not merging duplicates`)
+}
+
+/** Supplier rows dropped as duplicates of a core product. Reported after the build. */
+const mergedDuplicates = []
+
+/**
  * `{ packaging, packaging_variants }` for a published ladder; `{}` when the SSOT names no box.
  *
  * A variant is covered by the ladder when it prices no quantity differently — a variant that simply
@@ -263,11 +286,13 @@ function resolvePackaging(code, tiers) {
   const first = tiers[0].min_qty
   const ref = ({ v }) => {
     const from_price = v.ladder.get(first)
-    return from_price === undefined ? { code: v.code } : { code: v.code, from_price }
+    return from_price === undefined ? { package_code: v.code } : { package_code: v.code, from_price }
   }
   return {
-    packaging: covered.map(ref),
-    packaging_variants: differing.length ? differing.map(ref) : undefined
+    packaging_options: [
+      ...covered.map(x => ({ ...ref(x), cost_included: true })),
+      ...differing.map(x => ({ ...ref(x), cost_included: false }))
+    ]
   }
 }
 
@@ -284,6 +309,7 @@ for (const set of coreSets) {
   }
 }
 
+const factoryCodeByPm = new Map([...pmByFactoryCode].map(([factory, pm]) => [pm, factory]))
 const coreSingles = pricelist.srp_reference_products.map(r => {
   const c = canonicalByCode[r.product_code]
   if (!c) throw new Error(`canonical product missing for ${r.product_code}`)
@@ -294,6 +320,7 @@ const coreSingles = pricelist.srp_reference_products.map(r => {
   return {
     id: `pm:${r.product_code}`,
     code: r.product_code,
+    factory_item_code: factoryCodeByPm.get(r.product_code),
     kind: 'single',
     layer: 'core',
     name_th: r.name_th,
@@ -301,7 +328,7 @@ const coreSingles = pricelist.srp_reference_products.map(r => {
     theme: r.category_slug,
     families: [family],
     price_status: tiers.length ? 'tiered' : 'ask_for_quote',
-    price_layer: tiers.length ? 'catalog_srp' : undefined,
+    price_layer: tiers.length ? 'standard' : undefined,
     srp_price: r.srp_price,
     price_tiers: tiers,
     ...resolvePackaging(r.product_code, tiers),
@@ -343,7 +370,7 @@ const coreSetItems = coreSets.map(o => {
     occasions: occasionsForCode(o.code),
     families,
     price_status: tiers.length ? 'tiered' : 'ask_for_quote',
-    price_layer: tiers.length ? 'catalog_srp' : undefined,
+    price_layer: tiers.length ? 'standard' : undefined,
     price_tiers: tiers,
     ...resolvePackaging(o.code, tiers),
     moq: tiers[0]?.min_qty,
@@ -374,6 +401,7 @@ const parseColors = s => {
   return list.length ? list : undefined
 }
 
+const coreSingleCodes = new Set(coreSingles.map(c => c.code))
 let supplierSkippedNotPublic = 0
 const supplierItems = []
 for (const o of pricelist.catalog_offers) {
@@ -398,6 +426,20 @@ for (const o of pricelist.catalog_offers) {
   const kind = o.offer_kind === 'single' ? 'single' : 'set'
   const eligible = image_status !== 'missing' || priceStatus === 'tiered'
   if (!eligible || (kind === 'single' && families.length === 0)) { supplierSkippedNotPublic++; continue }
+
+  // Same physical product as a core PM single (confirmed mapping). Listing both would put one
+  // product on the site under two codes at two prices — and the factory row's ladder is the
+  // weaker of the two, so the core ladder wins.
+  const duplicateOf = pmByFactoryCode.get(o.code)
+  if (duplicateOf && coreSingleCodes.has(duplicateOf)) {
+    mergedDuplicates.push({
+      code: o.code,
+      into: duplicateOf,
+      dropped_tiers: tiers.map(t => `@${t.min_qty} ฿${t.unit_price}`),
+      image_status
+    })
+    continue
+  }
   const description = clean(o.description)
   const item = {
     id: `offer:${o.code}`,
@@ -409,7 +451,7 @@ for (const o of pricelist.catalog_offers) {
     families,
     families_derived: familiesDerived || undefined,
     price_status: priceStatus,
-    price_layer: tiers.length ? 'catalog_srp' : undefined,
+    price_layer: tiers.length ? 'standard' : undefined,
     price_tiers: tiers.length ? tiers : undefined,
     ...resolvePackaging(o.code, tiers),
     moq: tiers[0]?.min_qty,
@@ -560,6 +602,18 @@ if (offBreakSupplier.length) {
   }
 }
 
+if (mergedDuplicates.length) {
+  console.log('')
+  console.log(`merged duplicates ${mergedDuplicates.length}  (factory row = same product as a core PM single)`)
+  for (const d of mergedDuplicates) {
+    const price = d.dropped_tiers.length ? d.dropped_tiers.join(' ') : 'ask-for-quote'
+    console.log(`  ${d.code} -> ${d.into}   dropped: ${price}`)
+    if (d.image_status === 'source_verified') {
+      console.log(`     note: ${d.code} had a source-verified photo; ${d.into} uses coreMedia.ts, which wins on merge`)
+    }
+  }
+}
+
 const derivedFamilies = supplierItems.filter(i => i.families_derived)
 const unclassified = supplierItems.filter(i => !i.families.length)
 if (derivedFamilies.length || unclassified.length) {
@@ -570,14 +624,16 @@ if (derivedFamilies.length || unclassified.length) {
   console.log('  fix upstream: add offer_product_links rows, or a family for these product types.')
 }
 
-const splitPricing = supplierItems.filter(i => i.packaging_variants?.length)
+const splitPricing = supplierItems.filter(i => i.packaging_options?.some(p => !p.cost_included))
 if (splitPricing.length) {
   console.log('')
   console.log(`split packaging   ${splitPricing.length}  (ladder shown covers some boxes only)`)
   for (const i of splitPricing) {
-    const shown = i.packaging.map(p => p.code).join('/')
-    const other = i.packaging_variants.map(p => `${p.code} ฿${p.from_price ?? '?'}`).join(', ')
-    console.log(`  ${i.code}  showing ${shown} ฿${i.packaging[0]?.from_price ?? '?'}  |  not shown: ${other}`)
+    const inc = i.packaging_options.filter(p => p.cost_included)
+    const out = i.packaging_options.filter(p => !p.cost_included)
+    const shown = inc.map(p => p.package_code).join('/')
+    const other = out.map(p => `${p.package_code} ฿${p.from_price ?? '?'}`).join(', ')
+    console.log(`  ${i.code}  showing ${shown} ฿${inc[0]?.from_price ?? '?'}  |  not shown: ${other}`)
   }
 }
 
