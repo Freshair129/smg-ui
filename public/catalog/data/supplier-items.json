@@ -1,6 +1,6 @@
 {
  "schema": "smartgift-catalog-items/1",
- "generated_at": "2026-09-10T19:18:12.461Z",
+ "generated_at": "2026-09-10T19:32:01.790Z",
  "source": {
   "file": "data-pipeline/02_prepared/pricelist_master.json",
   "schema_version": "1.3.0b",
@@ -956,7 +956,12 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "สมุด+ปากกา+แก้วน้ำดีไซน์สัญลักษณ์มังกร",
-   "families": [],
+   "families": [
+    "drinkware",
+    "notebook",
+    "pen"
+   ],
+   "families_derived": true,
    "price_status": "ask_for_quote",
    "image": "/catalog/assets/catalog-media/source-offer-TBC21-3.jpg",
    "image_status": "source_verified",
@@ -8130,7 +8135,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "พัดลมห้อยคอ / Hanging Neck Fan",
-   "families": [],
+   "families": [
+    "fan"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -8218,7 +8226,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องทำความชื้น(แมว)",
-   "families": [],
+   "families": [
+    "humidifier"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -8306,7 +8317,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องเพิ่มความชื้นในอากาศ",
-   "families": [],
+   "families": [
+    "humidifier"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -8438,7 +8452,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "แปรงสีฟันไฟฟ้า + ขวดน้ำสูญญากาศ มีหน้าจอแสดงอุณหภูมิ",
-   "families": [],
+   "families": [
+    "drinkware"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -8548,7 +8565,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "ขวดน้ำสูญญากาศ + เครื่องนวดคอ",
-   "families": [],
+   "families": [
+    "drinkware",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -8592,7 +8613,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "ขวดน้ำสูญญากาศ + neck brace",
-   "families": [],
+   "families": [
+    "drinkware"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -8722,7 +8746,13 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "ขวดน้ำสูญญากาศ มีหน้าจอแสดงอุณหภูมิ + เครื่องนวดคอ + หูฟังไร้สาย",
-   "families": [],
+   "families": [
+    "drinkware",
+    "earbuds",
+    "earphone",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9134,7 +9164,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องนวดคอ + ขวดน้ำสูญญากาศ มีหน้าจอแสดงอุณหภูมิ",
-   "families": [],
+   "families": [
+    "drinkware",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9178,7 +9212,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องนวดคอ",
-   "families": [],
+   "families": [
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9222,7 +9259,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องนวดคอพร้อมรีโมท+ ขวดน้ำสูญญากาศ + rose + greeting card",
-   "families": [],
+   "families": [
+    "drinkware",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9266,7 +9307,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องนวดคอพร้อมรีโมท+ ขวดน้ำสูญญากาศ + เครื่องโกนหนวดไฟฟ้า + rose + greeting card",
-   "families": [],
+   "families": [
+    "drinkware",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9310,7 +9355,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องนวดคอ + ขวดน้ำสูญญากาศ + rose + greeting card",
-   "families": [],
+   "families": [
+    "drinkware",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9354,7 +9403,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องนวดคอ + ขวดน้ำสูญญากาศ + เครื่องโกนหนวดไฟฟ้า + rose + greeting card",
-   "families": [],
+   "families": [
+    "drinkware",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9398,7 +9451,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ เครื่องนวดคอ + ปืนนวด",
-   "families": [],
+   "families": [
+    "neck_massager",
+    "massage_gun"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9442,7 +9499,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ พัดลม + เครื่องนวดคอ + เครื่องนวดตา",
-   "families": [],
+   "families": [
+    "neck_massager",
+    "fan"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9486,7 +9547,12 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ พัดลม + เครื่องนวดคอ + smart bracelet + เครื่องนวดตา",
-   "families": [],
+   "families": [
+    "smart_bracelet",
+    "neck_massager",
+    "fan"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9596,7 +9662,10 @@
    "layer": "supplier",
    "name_th": "Electric toothbrush พร้อม Electric Nail Clipper พร้อม Oral irrigator",
    "name_en": "Electric toothbrush + Electric Nail Clipper + Oral irrigator",
-   "families": [],
+   "families": [
+    "nail_clipper"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9663,7 +9732,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "Sport ขวด + hanging neck พัดลม",
-   "families": [],
+   "families": [
+    "fan"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9773,7 +9845,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องทำความชื้น with ambient light + เครื่องนวดคอ",
-   "families": [],
+   "families": [
+    "neck_massager",
+    "humidifier"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9817,7 +9893,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องทำความชื้น with ambient light + ขวดน้ำสูญญากาศ",
-   "families": [],
+   "families": [
+    "drinkware",
+    "humidifier"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -9861,7 +9941,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องทำความชื้น with ambient light + เครื่องนวดคอ พรัอมรีโมท",
-   "families": [],
+   "families": [
+    "neck_massager",
+    "humidifier"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -10018,7 +10102,13 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "Sports wash bag with Quick-dry towel+Skip Rope+Sports cup+พัดลม mini",
-   "families": [],
+   "families": [
+    "drinkware",
+    "bag",
+    "fan",
+    "towel"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -10459,7 +10549,12 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "ถ้วยอุ่นพร้อมช้อน + flower + ร่ม + พัดลม mini + เครื่องนวดคอ",
-   "families": [],
+   "families": [
+    "umbrella",
+    "neck_massager",
+    "fan"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -10547,7 +10642,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "Atmosphere Lamp + Rose+ เครื่องนวดคอ",
-   "families": [],
+   "families": [
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -10591,7 +10689,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "Atmosphere Lamp + Rose+ เครื่องทำความชื้น",
-   "families": [],
+   "families": [
+    "humidifier"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -10924,7 +11025,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "Hanging neck พัดลม+ที่ใส่ปากกา แบบถ้วยรางวัลเรืองแสง (Trophy Night Light)",
-   "families": [],
+   "families": [
+    "pen",
+    "fan"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -10968,7 +11073,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องนวดคอ+ที่ใส่ปากกา แบบถ้วยรางวัลเรืองแสง (Trophy Night)",
-   "families": [],
+   "families": [
+    "pen",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -11012,7 +11121,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องทำความชื้น+ที่ใส่ปากกา แบบถ้วยรางวัลเรืองแสง (Trophy Night Light)",
-   "families": [],
+   "families": [
+    "pen",
+    "humidifier"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -11056,7 +11169,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องรีดผ้าแบบพกพา+ที่ใส่ปากกา แบบถ้วยรางวัลเรืองแสง (Trophy Night Light)",
-   "families": [],
+   "families": [
+    "pen"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -11100,7 +11216,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "ผ้าปิดตา + เครื่องนวดคอ + ขวดน้ำสูญญากาศมีพร้อมมีหน้าจอแสดงอุณหภูมิ",
-   "families": [],
+   "families": [
+    "drinkware",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -11144,7 +11264,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "ผ้าปิดตา + เครื่องนวดคอพร้อมรีโมท+ ขวดน้ำสูญญากาศมีพร้อมมีหน้าจอแสดงอุณหภูมิ",
-   "families": [],
+   "families": [
+    "drinkware",
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -11232,7 +11356,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องปั่นแบบพกพา + เครื่องนวดคอ + ปืนนวด",
-   "families": [],
+   "families": [
+    "neck_massager",
+    "massage_gun"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -11276,7 +11404,11 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องปั่นแบบพกพา + พัดลม + เครื่องนวดคอ + เครื่องนวดตา",
-   "families": [],
+   "families": [
+    "neck_massager",
+    "fan"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [
@@ -11320,7 +11452,12 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องปั่นแบบพกพา + พัดลม + เครื่องนวดคอ + smart bracelet + เครื่องนวดตา",
-   "families": [],
+   "families": [
+    "smart_bracelet",
+    "neck_massager",
+    "fan"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "catalog_srp",
    "price_tiers": [

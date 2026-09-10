@@ -59,6 +59,56 @@ const pmBlock = taxonomySrc.match(/export const PM_FAMILY[^{]*\{([\s\S]*?)\n\}/)
 if (!pmBlock) throw new Error('PM_FAMILY table not found in catalogTaxonomy.ts')
 const PM_FAMILY = Object.fromEntries([...pmBlock[1].matchAll(/'(PM-[A-Z0-9-]+)':\s*'([a-z_]+)'/g)].map(m => [m[1], m[2]]))
 const FAMILY_SLUGS = new Set([...taxonomySrc.matchAll(/\{ slug: '([a-z_]+)', name_th: '[^']*', name_en: '[^']*', standard_category:/g)].map(m => m[1]))
+
+/**
+ * Every word the SSOT uses for a family (name + aliases, Thai and English), parsed from the same
+ * typed rows so the vocabulary has one home. Used to read families off a set's title when the
+ * SSOT's offer_product_links table has no rows for it.
+ */
+const FAMILY_TERMS = new Map()
+for (const m of taxonomySrc.matchAll(
+  /\{ slug: '([a-z_]+)', name_th: '([^']*)', name_en: '([^']*)', standard_category: '[a-z-]+', source_group: '[a-z_]+', aliases_th: \[([^\]]*)\], aliases_en: \[([^\]]*)\] \}/g
+)) {
+  const quoted = str => [...str.matchAll(/'([^']+)'/g)].map(q => q[1])
+  const terms = [m[2], m[3], ...quoted(m[4]), ...quoted(m[5])]
+    .map(t => t.trim().toLowerCase())
+    .filter(Boolean)
+  FAMILY_TERMS.set(m[1], [...new Set(terms)])
+}
+if (FAMILY_TERMS.size < FAMILY_SLUGS.size) throw new Error(`FAMILY_TERMS parsed ${FAMILY_TERMS.size} of ${FAMILY_SLUGS.size} family rows`)
+
+const THAI = /[฀-๿]/
+const SAFE_TERM = /^[\p{L}\p{N} .+-]+$/u
+const wordCache = new Map()
+/** Whole-word matcher for a Latin term. The family vocabulary is plain words — reject anything else. */
+function wordRe(term) {
+  let re = wordCache.get(term)
+  if (!re) {
+    if (!SAFE_TERM.test(term)) throw new Error(`family term is not a plain word: ${term}`)
+    re = new RegExp('\\b' + term + '\\b')
+    wordCache.set(term, re)
+  }
+  return re
+}
+
+/**
+ * Families named in a title. Thai has no word boundaries so its terms match as substrings;
+ * Latin terms are matched whole so `car` does not fire on `card`, nor `cup` on `cupboard`.
+ * Titles only — descriptions carry packaging blurbs ("in a gift bag") that misfile the item.
+ */
+function familiesFromTitle(text) {
+  const haystack = (text ?? '').toLowerCase()
+  if (!haystack) return []
+  const hits = []
+  for (const [slug, terms] of FAMILY_TERMS) {
+    if (!FAMILY_SLUGS.has(slug)) continue
+    const found = terms.some(term =>
+      THAI.test(term) ? haystack.includes(term) : wordRe(term).test(haystack)
+    )
+    if (found) hits.push(slug)
+  }
+  return hits
+}
 if (Object.keys(PM_FAMILY).length < 16) throw new Error(`PM_FAMILY has ${Object.keys(PM_FAMILY).length} rows, expected 16`)
 if (FAMILY_SLUGS.size < 32) throw new Error(`PRODUCT_FAMILIES has ${FAMILY_SLUGS.size} rows, expected >= 32`)
 
@@ -298,7 +348,15 @@ let supplierSkippedNotPublic = 0
 const supplierItems = []
 for (const o of pricelist.catalog_offers) {
   const linked = [...new Set(linksByOffer.get(o.code) ?? [])].map(c => pmByCode[c]).filter(Boolean)
-  const families = [...new Set(linked.map(p => p.product_family_id).filter(f => f && FAMILY_SLUGS.has(f)))]
+  let families = [...new Set(linked.map(p => p.product_family_id).filter(f => f && FAMILY_SLUGS.has(f)))]
+  // 50 of the supplier sets have no offer_product_links row at all and 4 more link to product
+  // masters with no product_family_id, so they would all land in `unclassified`. Fall back to the
+  // family vocabulary against the title. SSOT links always win; this only fills a hole.
+  let familiesDerived = false
+  if (!families.length) {
+    families = familiesFromTitle([o.name_th, o.name, o.name_en].filter(Boolean).join(' '))
+    familiesDerived = families.length > 0
+  }
   const tiers = dedupeTiers(
     (o.source_price_tiers ?? [])
       .filter(t => !t.priceMissing && Number(t.unitPrice) > 0 && Number(t.qtyTier) > 0)
@@ -319,6 +377,7 @@ for (const o of pricelist.catalog_offers) {
     name_th: clean(o.name_th || o.name || o.name_en || o.code),
     name_en: o.name_en ? clean(o.name_en) : undefined,
     families,
+    families_derived: familiesDerived || undefined,
     price_status: priceStatus,
     price_layer: tiers.length ? 'catalog_srp' : undefined,
     price_tiers: tiers.length ? tiers : undefined,
@@ -454,6 +513,16 @@ if (tierConflicts.length) {
     console.log(`  ${c.code}  ${detail}`)
   }
   console.log('  fix upstream: pricelist_master collapses package variants (P-xx) into one offer row.')
+}
+
+const derivedFamilies = supplierItems.filter(i => i.families_derived)
+const unclassified = supplierItems.filter(i => !i.families.length)
+if (derivedFamilies.length || unclassified.length) {
+  console.log('')
+  console.log(`derived families  ${derivedFamilies.length}  (read off the title; SSOT has no offer_product_links row)`)
+  console.log(`unclassified      ${unclassified.length}  (no family term in the title)`)
+  for (const i of unclassified) console.log(`  ${i.code}  ${i.name_th.slice(0, 54)}`)
+  console.log('  fix upstream: add offer_product_links rows, or a family for these product types.')
 }
 
 const splitPricing = supplierItems.filter(i => i.packaging_variants?.length)

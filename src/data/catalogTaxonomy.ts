@@ -267,6 +267,12 @@ export interface CatalogItem {
   occasions?: OccasionSlug[]
   // Lens B
   families: ProductFamilySlug[]
+  /**
+   * True when `families` was read off the item's own title instead of the SSOT's
+   * offer_product_links — weaker evidence, kept so QA can tell the two apart.
+   * The link table has no rows for 50 of the supplier sets; see the builder.
+   */
+  families_derived?: boolean
   standard_category: StandardCategorySlug
   // Commercial (public-safe only — no cost, no margin)
   price_status: PriceStatus
@@ -507,45 +513,45 @@ export const STANDARD_CATEGORIES: StandardCategory[] = [
 
 export const PRODUCT_FAMILIES: ProductFamily[] = [
   // drinkware
-  { slug: 'drinkware', name_th: 'แก้วน้ำ', name_en: 'Drinkware', standard_category: 'drinkware', source_group: 'home_travel', aliases_th: ['แก้วมัค', 'ทัมเบลอร์', 'กระบอกน้ำ', 'แก้วเก็บอุณหภูมิ', 'แก้วชงชา'], aliases_en: ['mug', 'cup', 'bottle', 'tumbler', 'flask', 'infuser'] },
+  { slug: 'drinkware', name_th: 'แก้วน้ำ', name_en: 'Drinkware', standard_category: 'drinkware', source_group: 'home_travel', aliases_th: ['แก้วมัค', 'ทัมเบลอร์', 'กระบอกน้ำ', 'แก้วเก็บอุณหภูมิ', 'แก้วชงชา', 'แก้ว', 'แก้วกาแฟ', 'ขวดน้ำ', 'กระติก', 'กระติกน้ำ'], aliases_en: ['mug', 'cup', 'bottle', 'tumbler', 'flask', 'infuser'] },
   // tech-gadgets
-  { slug: 'power_bank', name_th: 'พาวเวอร์แบงก์', name_en: 'Power bank', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['แบตสำรอง'], aliases_en: ['power bank', 'powerbank'] },
-  { slug: 'charger', name_th: 'ที่ชาร์จ', name_en: 'Charger', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['แท่นชาร์จ'], aliases_en: ['charger', 'charging'] },
-  { slug: 'usb_flash_drive', name_th: 'แฟลชไดรฟ์', name_en: 'USB flash drive', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['แฟลชไดร์ฟ'], aliases_en: ['flash drive', 'usb'] },
+  { slug: 'power_bank', name_th: 'พาวเวอร์แบงก์', name_en: 'Power bank', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['แบตสำรอง', 'พาวเวอร์แบงค์', 'แบตเตอรี่สำรอง'], aliases_en: ['power bank', 'powerbank'] },
+  { slug: 'charger', name_th: 'ที่ชาร์จ', name_en: 'Charger', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['แท่นชาร์จ', 'หัวชาร์จ', 'สายชาร์จ'], aliases_en: ['charger', 'charging'] },
+  { slug: 'usb_flash_drive', name_th: 'แฟลชไดรฟ์', name_en: 'USB flash drive', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['แฟลชไดร์ฟ', 'ยูเอสบี', 'แฟลชไดร์ฟ์'], aliases_en: ['flash drive', 'usb'] },
   { slug: 'speaker', name_th: 'ลำโพง', name_en: 'Speaker', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['ลำโพงบลูทูธ'], aliases_en: ['speaker'] },
-  { slug: 'earbuds', name_th: 'หูฟังไร้สาย', name_en: 'Earbuds', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: [], aliases_en: ['earbuds', 'tws'] },
-  { slug: 'earphone', name_th: 'หูฟัง', name_en: 'Earphone', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: [], aliases_en: ['earphone'] },
-  { slug: 'headset', name_th: 'เฮดเซ็ต', name_en: 'Headset', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: [], aliases_en: ['headset', 'headphone'] },
-  { slug: 'mouse', name_th: 'เมาส์', name_en: 'Mouse', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: [], aliases_en: ['mouse'] },
-  { slug: 'keyboard', name_th: 'คีย์บอร์ด', name_en: 'Keyboard', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: [], aliases_en: ['keyboard'] },
-  { slug: 'smart_bracelet', name_th: 'สายรัดข้อมืออัจฉริยะ', name_en: 'Smart bracelet', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: [], aliases_en: ['smart bracelet', 'smart band'] },
-  { slug: 'car_accessory', name_th: 'อุปกรณ์ในรถ', name_en: 'Car accessory', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: [], aliases_en: ['car'] },
+  { slug: 'earbuds', name_th: 'หูฟังไร้สาย', name_en: 'Earbuds', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['เอียร์บัด'], aliases_en: ['earbuds', 'tws'] },
+  { slug: 'earphone', name_th: 'หูฟัง', name_en: 'Earphone', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['หูฟังมีสาย'], aliases_en: ['earphone'] },
+  { slug: 'headset', name_th: 'เฮดเซ็ต', name_en: 'Headset', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['หูฟังครอบหู', 'ครอบหู', 'แบบครอบหู', 'หูฟังในตัว'], aliases_en: ['headset', 'headphone'] },
+  { slug: 'mouse', name_th: 'เมาส์', name_en: 'Mouse', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['เม้าส์'], aliases_en: ['mouse'] },
+  { slug: 'keyboard', name_th: 'คีย์บอร์ด', name_en: 'Keyboard', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['แป้นพิมพ์'], aliases_en: ['keyboard'] },
+  { slug: 'smart_bracelet', name_th: 'สายรัดข้อมืออัจฉริยะ', name_en: 'Smart bracelet', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['กำไลอัจฉริยะ', 'สมาร์ทวอทช์'], aliases_en: ['smart bracelet', 'smart band'] },
+  { slug: 'car_accessory', name_th: 'อุปกรณ์ในรถ', name_en: 'Car accessory', standard_category: 'tech-gadgets', source_group: 'smart_tech', aliases_th: ['ของใช้ในรถ'], aliases_en: ['car'] },
   // stationery-office
-  { slug: 'notebook', name_th: 'สมุดโน้ต', name_en: 'Notebook', standard_category: 'stationery-office', source_group: 'office', aliases_th: ['สมุด', 'ไดอารี่'], aliases_en: ['notebook', 'diary'] },
-  { slug: 'notebook_refill', name_th: 'ไส้สมุด', name_en: 'Notebook refill', standard_category: 'stationery-office', source_group: 'office', aliases_th: [], aliases_en: ['refill'] },
+  { slug: 'notebook', name_th: 'สมุดโน้ต', name_en: 'Notebook', standard_category: 'stationery-office', source_group: 'office', aliases_th: ['สมุด', 'ไดอารี่', 'สมุดโน๊ต'], aliases_en: ['notebook', 'diary'] },
+  { slug: 'notebook_refill', name_th: 'ไส้สมุด', name_en: 'Notebook refill', standard_category: 'stationery-office', source_group: 'office', aliases_th: ['ไส้ใน', 'แค่ไส้ใน', 'ไส้สมุดโน้ต'], aliases_en: ['refill'] },
   { slug: 'pen', name_th: 'ปากกา', name_en: 'Pen', standard_category: 'stationery-office', source_group: 'office', aliases_th: [], aliases_en: ['pen'] },
   { slug: 'bookmark', name_th: 'ที่คั่นหนังสือ', name_en: 'Bookmark', standard_category: 'stationery-office', source_group: 'office', aliases_th: [], aliases_en: ['bookmark'] },
-  { slug: 'name_card_holder', name_th: 'ที่ใส่นามบัตร', name_en: 'Name card holder', standard_category: 'stationery-office', source_group: 'office', aliases_th: [], aliases_en: ['card holder'] },
+  { slug: 'name_card_holder', name_th: 'ที่ใส่นามบัตร', name_en: 'Name card holder', standard_category: 'stationery-office', source_group: 'office', aliases_th: ['กล่องนามบัตร'], aliases_en: ['card holder'] },
   { slug: 'key_chain', name_th: 'พวงกุญแจ', name_en: 'Key chain', standard_category: 'stationery-office', source_group: 'office', aliases_th: [], aliases_en: ['keychain', 'key chain'] },
-  { slug: 'lighter', name_th: 'ไฟแช็ก', name_en: 'Lighter', standard_category: 'stationery-office', source_group: 'office', aliases_th: [], aliases_en: ['lighter'] },
+  { slug: 'lighter', name_th: 'ไฟแช็ก', name_en: 'Lighter', standard_category: 'stationery-office', source_group: 'office', aliases_th: ['ไฟแช็ค'], aliases_en: ['lighter'] },
   { slug: 'desk_mat', name_th: 'แผ่นรองโต๊ะ', name_en: 'Desk mat', standard_category: 'stationery-office', source_group: 'office', aliases_th: ['แผ่นรองเมาส์'], aliases_en: ['desk mat', 'desk pad'] },
   // bags-travel
-  { slug: 'bag', name_th: 'กระเป๋า', name_en: 'Bag', standard_category: 'bags-travel', source_group: 'home_travel', aliases_th: ['กระเป๋าผ้า', 'เป้', 'ล้อลาก'], aliases_en: ['bag', 'backpack', 'tote'] },
+  { slug: 'bag', name_th: 'กระเป๋า', name_en: 'Bag', standard_category: 'bags-travel', source_group: 'home_travel', aliases_th: ['กระเป๋าผ้า', 'เป้', 'ล้อลาก', 'มีล้อลาก', 'กระเป๋าล้อลาก'], aliases_en: ['bag', 'backpack', 'tote'] },
   { slug: 'briefcase', name_th: 'กระเป๋าเอกสาร', name_en: 'Briefcase', standard_category: 'bags-travel', source_group: 'office', aliases_th: [], aliases_en: ['briefcase'] },
   { slug: 'umbrella', name_th: 'ร่ม', name_en: 'Umbrella', standard_category: 'bags-travel', source_group: 'home_travel', aliases_th: ['ร่มพับ'], aliases_en: ['umbrella'] },
   // wellness-personal-care
-  { slug: 'neck_massager', name_th: 'เครื่องนวดคอ', name_en: 'Neck massager', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['neck massager'] },
+  { slug: 'neck_massager', name_th: 'เครื่องนวดคอ', name_en: 'Neck massager', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ที่นวดคอ'], aliases_en: ['neck massager'] },
   { slug: 'massage_gun', name_th: 'ปืนนวด', name_en: 'Massage gun', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['massage gun'] },
   { slug: 'massage_comb', name_th: 'หวีนวด', name_en: 'Massage comb', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['massage comb'] },
   { slug: 'fan', name_th: 'พัดลมพกพา', name_en: 'Fan', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['พัดลม'], aliases_en: ['fan'] },
-  { slug: 'hair_dryer', name_th: 'ไดร์เป่าผม', name_en: 'Hair dryer', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['hair dryer'] },
-  { slug: 'humidifier', name_th: 'เครื่องทำความชื้น', name_en: 'Humidifier', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['humidifier'] },
+  { slug: 'hair_dryer', name_th: 'ไดร์เป่าผม', name_en: 'Hair dryer', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ไดร์'], aliases_en: ['hair dryer'] },
+  { slug: 'humidifier', name_th: 'เครื่องทำความชื้น', name_en: 'Humidifier', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['เครื่องเพิ่มความชื้น'], aliases_en: ['humidifier'] },
   { slug: 'aroma_diffuser', name_th: 'เครื่องกระจายกลิ่น', name_en: 'Aroma diffuser', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['อโรมา'], aliases_en: ['aroma', 'diffuser'] },
-  { slug: 'nail_clipper', name_th: 'กรรไกรตัดเล็บ', name_en: 'Nail clipper', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['nail clipper'] },
-  { slug: 'towel', name_th: 'ผ้าเช็ดตัว', name_en: 'Towel', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['towel'] },
+  { slug: 'nail_clipper', name_th: 'กรรไกรตัดเล็บ', name_en: 'Nail clipper', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ที่ตัดเล็บ'], aliases_en: ['nail clipper'] },
+  { slug: 'towel', name_th: 'ผ้าเช็ดตัว', name_en: 'Towel', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ผ้าขนหนู'], aliases_en: ['towel'] },
   { slug: 'glove', name_th: 'ถุงมือ', name_en: 'Glove', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['glove'] },
   // home-living
-  { slug: 'coffee_maker', name_th: 'เครื่องชงกาแฟ', name_en: 'Coffee maker', standard_category: 'home-living', source_group: 'home_travel', aliases_th: ['ดริปกาแฟ'], aliases_en: ['coffee maker', 'pour-over'] },
+  { slug: 'coffee_maker', name_th: 'เครื่องชงกาแฟ', name_en: 'Coffee maker', standard_category: 'home-living', source_group: 'home_travel', aliases_th: ['ดริปกาแฟ', 'ชุดดริปกาแฟ', 'ที่ดริปกาแฟ'], aliases_en: ['coffee maker', 'pour-over'] },
   { slug: 'cutlery', name_th: 'ชุดช้อนส้อมพกพา', name_en: 'Cutlery set', standard_category: 'home-living', source_group: 'home_travel', aliases_th: ['ช้อนส้อม'], aliases_en: ['cutlery'] }
 ]
 
