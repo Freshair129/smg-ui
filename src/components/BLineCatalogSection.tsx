@@ -1239,6 +1239,18 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
                           </span>
                         ))}
                       </div>
+                      {selected.packaging && selected.packaging.length > 0 && (
+                        <div className="bline-calc-note">
+                          ราคานี้เป็นราคาแคตตาล็อกรวมสกรีนโลโก้ สำหรับกล่อง {selected.packaging.map(p => p.code).join(' / ')}
+                        </div>
+                      )}
+                      {selected.packaging_variants && selected.packaging_variants.length > 0 && (
+                        <div className="bline-calc-note bline-calc-note-warn">
+                          กล่องแบบอื่นราคาต่างออกไป — {selected.packaging_variants
+                            .map(p => (p.from_price === undefined ? p.code : `${p.code} เริ่ม ${formatBaht(p.from_price)}`))
+                            .join(', ')} · โปรดสอบถามก่อนยืนยัน
+                        </div>
+                      )}
                       {selected.layer === 'supplier' && (
                         <div className="bline-calc-note">ราคาอ้างอิงจากรายการราคาผู้ผลิต ยังไม่ผ่านการยืนยัน — ใบเสนอราคาจะยืนยันอีกครั้ง</div>
                       )}

@@ -34,6 +34,7 @@ const source = resolve(repo, fromArg > -1 ? process.argv[fromArg + 1] : '../busi
 
 const PRICELIST = join(source, 'data-pipeline', '02_prepared', 'pricelist_master.json')
 const MASTER = join(source, 'data-pipeline', '02_prepared', 'smartgift_catalog_master.json')
+const FLOWACCOUNT = join(source, 'data-pipeline', '02_prepared', 'flowaccount_catalog_normalized.json')
 const MEDIA_JSON = join(source, 'public', 'data', 'catalog_media.json')
 const MEDIA_DIR = join(repo, 'public', 'catalog', 'assets', 'catalog-media')
 const TAXONOMY_TS = join(repo, 'src', 'data', 'catalogTaxonomy.ts')
@@ -67,6 +68,7 @@ if (FAMILY_SLUGS.size < 32) throw new Error(`PRODUCT_FAMILIES has ${FAMILY_SLUGS
 const pricelist = await readJson(PRICELIST)
 const master = await readJson(MASTER)
 const mediaJson = existsSync(MEDIA_JSON) ? await readJson(MEDIA_JSON) : { sets: [], products: [] }
+const flowaccount = existsSync(FLOWACCOUNT) ? await readJson(FLOWACCOUNT) : { products: [] }
 
 const canonicalByCode = Object.fromEntries(master.canonical_products.map(p => [p.code, p]))
 const themeSlugs = new Set(master.top_level_categories.map(c => c.slug))
@@ -132,6 +134,63 @@ function dedupeTiers(tiers, code) {
     .sort((a, b) => a.min_qty - b.min_qty)
 }
 
+/**
+ * Packaging per model, recovered from the normalized FlowAccount catalogue.
+ *
+ * pricelist_master drops the package dimension: `TSQ01-2(P-02)` and `TSQ01-2(P-05)` arrive as one
+ * offer row with both ladders merged. The normalized catalogue still carries `package_code`, so we
+ * use it to label WHICH box the ladder we kept is quoted for. Only the label is taken from there —
+ * the prices we publish stay the Layer 3 catalogue ladder (AGENT.md: never mix the two selling
+ * layers arithmetically).
+ */
+const packagingByModel = new Map()
+for (const p of flowaccount.products ?? []) {
+  if (!p.package_code) continue
+  const tiers = (p.price_tiers ?? []).filter(t => Number(t.unit_price) > 0)
+  if (!tiers.length) continue
+  const key = p.model_code || p.code
+  if (!packagingByModel.has(key)) packagingByModel.set(key, [])
+  packagingByModel.get(key).push({
+    code: p.package_code,
+    ladder: new Map(tiers.map(t => [Number(t.min_qty), Number(t.unit_price)]))
+  })
+}
+
+/**
+ * `{ packaging, packaging_variants }` for a published ladder; `{}` when the SSOT names no box.
+ *
+ * A variant is covered by the ladder when it prices no quantity differently — a variant that simply
+ * stops earlier (no @500 step) still agrees on everything it does price, so it is covered, not split.
+ */
+function resolvePackaging(code, tiers) {
+  const variants = packagingByModel.get(code)
+  if (!variants?.length || !tiers.length) return {}
+  const compare = v => {
+    let agree = 0
+    let conflict = 0
+    for (const t of tiers) {
+      const price = v.ladder.get(t.min_qty)
+      if (price === undefined) continue
+      if (price === t.unit_price) agree++
+      else conflict++
+    }
+    return { agree, conflict }
+  }
+  const scored = variants.map(v => ({ v, ...compare(v) }))
+  const covered = scored.filter(x => x.conflict === 0 && x.agree > 0)
+  if (!covered.length) return {}
+  const differing = scored.filter(x => x.conflict > 0)
+  const first = tiers[0].min_qty
+  const ref = ({ v }) => {
+    const from_price = v.ladder.get(first)
+    return from_price === undefined ? { code: v.code } : { code: v.code, from_price }
+  }
+  return {
+    packaging: covered.map(ref),
+    packaging_variants: differing.length ? differing.map(ref) : undefined
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Core singles (16)
 // ---------------------------------------------------------------------------
@@ -162,8 +221,10 @@ const coreSingles = pricelist.srp_reference_products.map(r => {
     theme: r.category_slug,
     families: [family],
     price_status: tiers.length ? 'tiered' : 'ask_for_quote',
+    price_layer: tiers.length ? 'catalog_srp' : undefined,
     srp_price: r.srp_price,
     price_tiers: tiers,
+    ...resolvePackaging(r.product_code, tiers),
     moq: tiers[0]?.min_qty,
     dimensions_cm: c.dimensions_cm,
     unit_weight_kg: c.unit_weight_kg,
@@ -202,7 +263,9 @@ const coreSetItems = coreSets.map(o => {
     occasions: occasionsForCode(o.code),
     families,
     price_status: tiers.length ? 'tiered' : 'ask_for_quote',
+    price_layer: tiers.length ? 'catalog_srp' : undefined,
     price_tiers: tiers,
+    ...resolvePackaging(o.code, tiers),
     moq: tiers[0]?.min_qty,
     contains,
     unboxing_th: o.unboxing_experience ?? undefined,
@@ -257,7 +320,9 @@ for (const o of pricelist.catalog_offers) {
     name_en: o.name_en ? clean(o.name_en) : undefined,
     families,
     price_status: priceStatus,
+    price_layer: tiers.length ? 'catalog_srp' : undefined,
     price_tiers: tiers.length ? tiers : undefined,
+    ...resolvePackaging(o.code, tiers),
     moq: tiers[0]?.min_qty,
     contains: kind === 'set' && linked.length
       ? linked.slice(0, 8).map(p => ({ product_code: p.code, qty: 1, name_th: p.display_name || p.name_en || p.name_th || p.code }))
@@ -389,5 +454,16 @@ if (tierConflicts.length) {
     console.log(`  ${c.code}  ${detail}`)
   }
   console.log('  fix upstream: pricelist_master collapses package variants (P-xx) into one offer row.')
+}
+
+const splitPricing = supplierItems.filter(i => i.packaging_variants?.length)
+if (splitPricing.length) {
+  console.log('')
+  console.log(`split packaging   ${splitPricing.length}  (ladder shown covers some boxes only)`)
+  for (const i of splitPricing) {
+    const shown = i.packaging.map(p => p.code).join('/')
+    const other = i.packaging_variants.map(p => `${p.code} ฿${p.from_price ?? '?'}`).join(', ')
+    console.log(`  ${i.code}  showing ${shown} ฿${i.packaging[0]?.from_price ?? '?'}  |  not shown: ${other}`)
+  }
 }
 

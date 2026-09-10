@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand. Run: npm run build:catalog
  * Source: C:\Users\pc\workspace\business-01-smart-gift\data-pipeline\02_prepared\pricelist_master.json (schema 1.3.0b, run 2026-08-24T08-46-40-226Z)
- * Generated: 2026-09-10T19:13:28.779Z
+ * Generated: 2026-09-10T19:18:12.461Z
  * Core layer only: 16 PM singles + 6 core sets. Media is overlaid from coreMedia.ts.
  * The supplier layer lives in public/catalog/data/supplier-items.json; its counts are exported here so the UI can
  * advertise it before loading it.
@@ -13,7 +13,7 @@ export const SUPPLIER_LAYER_META = {
   "with_image": 152,
   "priced": 107,
   "source_total": 1110,
-  "generated_at": "2026-09-10T19:13:28.779Z"
+  "generated_at": "2026-09-10T19:18:12.461Z"
 } as const
 
 export const CORE_ITEMS: CatalogItemSeed[] = [
@@ -29,6 +29,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 290,
     "price_tiers": [
       {
@@ -94,6 +95,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "fan"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 260,
     "price_tiers": [
       {
@@ -155,6 +157,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 320,
     "price_tiers": [
       {
@@ -220,6 +223,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "umbrella"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 250,
     "price_tiers": [
       {
@@ -284,6 +288,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "usb_flash_drive"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 220,
     "price_tiers": [
       {
@@ -347,6 +352,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "pen"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 190,
     "price_tiers": [
       {
@@ -411,6 +417,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 360,
     "price_tiers": [
       {
@@ -474,6 +481,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "aroma_diffuser"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 550,
     "price_tiers": [
       {
@@ -537,6 +545,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 299,
     "price_tiers": [
       {
@@ -600,6 +609,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "cutlery"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 165,
     "price_tiers": [
       {
@@ -661,6 +671,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "neck_massager"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 850,
     "price_tiers": [
       {
@@ -724,6 +735,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 350,
     "price_tiers": [
       {
@@ -785,6 +797,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "desk_mat"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 590,
     "price_tiers": [
       {
@@ -846,6 +859,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "notebook"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 750,
     "price_tiers": [
       {
@@ -909,6 +923,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "power_bank"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 690,
     "price_tiers": [
       {
@@ -972,6 +987,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "speaker"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "srp_price": 480,
     "price_tiers": [
       {
@@ -1035,6 +1051,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "price_tiers": [
       {
         "min_qty": 10,
@@ -1089,6 +1106,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "pen"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "price_tiers": [
       {
         "min_qty": 10,
@@ -1143,6 +1161,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "drinkware"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "price_tiers": [
       {
         "min_qty": 10,
@@ -1197,6 +1216,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
       "neck_massager"
     ],
     "price_status": "tiered",
+    "price_layer": "catalog_srp",
     "price_tiers": [
       {
         "min_qty": 10,

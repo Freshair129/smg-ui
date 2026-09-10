@@ -188,6 +188,30 @@ export interface PriceTier {
   unit_price: number
 }
 
+/**
+ * Which layer of the pricing taxonomy a displayed price comes from.
+ * See business-01-smart-gift/.agent/price/AGENT.md — the four layers are
+ * FACTORY_EXW_COST -> LANDED_COST_ESTIMATE -> CATALOG_SRP_PRICE -> INVOICE_SELLING_PRICE.
+ *
+ * Only the two selling layers are ever public. NEVER subtract one from the other and call the
+ * difference profit: both are selling prices, and the 2.5-7% gap between them is a packaging
+ * upgrade or a sales discount. Gross margin is only ever (selling price - landed cost),
+ * and landed cost never leaves the SSOT.
+ */
+export type PriceLayer =
+  /** Layer 3 — standard wholesale catalogue price incl. logo printing. What this site shows. */
+  | 'catalog_srp'
+  /** Layer 4 — price actually invoiced in FlowAccount, after packaging upgrade or discount. */
+  | 'invoice'
+
+/** Packaging a price ladder is quoted for. `P-06`, `P-20`, `P-PT` are box types, never new SKUs. */
+export interface PackagingRef {
+  /** Package code as written in the SSOT, e.g. `P-02`. */
+  code: string
+  /** Unit price at the ladder's first quantity step, when known — lets the UI show the spread. */
+  from_price?: number
+}
+
 export interface BomLine {
   product_code: string
   qty: number
@@ -248,6 +272,16 @@ export interface CatalogItem {
   price_status: PriceStatus
   srp_price?: number
   price_tiers?: PriceTier[]
+  /** Which pricing layer `price_tiers` / `srp_price` came from. Absent when ask-for-quote. */
+  price_layer?: PriceLayer
+  /** Packaging the ladder above is quoted for. More than one = the same price covers each box. */
+  packaging?: PackagingRef[]
+  /**
+   * Packaging variants of the same model that are priced DIFFERENTLY from `packaging`.
+   * Non-empty means the ladder shown covers only some boxes — quote the rest separately.
+   * Populated only while pricelist_master collapses variants into one offer row.
+   */
+  packaging_variants?: PackagingRef[]
   moq?: number
   lead_time_days?: number
   // Physical
