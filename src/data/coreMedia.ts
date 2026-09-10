@@ -105,8 +105,12 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   'PM-TMB': {
     image: '/assets/smartgift/plates/one31_tmb_plate.png',
     image_status: 'generated_from_source',
-    model3d_url: '/assets/smartgift/3d/PM-TMB.glb',
-    model3d_status: 'draft',
+    // 3D withheld. The draft mesh is 1 : 0.78 : 0.21 — a flat slab — where the product measures
+    // 1 : 0.38 : 0.38, a round tumbler. TRELLIS was given a single photo of a near-featureless
+    // black cylinder, cropped at the base and still carrying the blue gift-box background, so it
+    // never saw the shape. The .glb stays on disk for whoever rebuilds it.
+    // model3d_url: '/assets/smartgift/3d/PM-TMB.glb',
+    // model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/one31_tmb.jpg',
     client_showcase: [
       { brand: 'Starbucks', image: '/assets/smartgift/mockups/sbux_tmb.jpg' },
