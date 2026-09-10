@@ -1,6 +1,6 @@
 {
  "schema": "smartgift-catalog-items/1",
- "generated_at": "2026-09-07T12:34:55.849Z",
+ "generated_at": "2026-09-10T19:13:28.779Z",
  "source": {
   "file": "data-pipeline/02_prepared/pricelist_master.json",
   "schema_version": "1.3.0b",
@@ -3243,14 +3243,6 @@
      "unit_price": 1530
     },
     {
-     "min_qty": 10,
-     "unit_price": 1530
-    },
-    {
-     "min_qty": 20,
-     "unit_price": 1380
-    },
-    {
      "min_qty": 20,
      "unit_price": 1380
     },
@@ -3259,20 +3251,8 @@
      "unit_price": 1300
     },
     {
-     "min_qty": 50,
-     "unit_price": 1300
-    },
-    {
      "min_qty": 100,
      "unit_price": 1220
-    },
-    {
-     "min_qty": 100,
-     "unit_price": 1220
-    },
-    {
-     "min_qty": 500,
-     "unit_price": 1150
     },
     {
      "min_qty": 500,
@@ -6775,14 +6755,6 @@
      "unit_price": 1350
     },
     {
-     "min_qty": 10,
-     "unit_price": 1350
-    },
-    {
-     "min_qty": 20,
-     "unit_price": 1220
-    },
-    {
      "min_qty": 20,
      "unit_price": 1220
     },
@@ -6791,20 +6763,8 @@
      "unit_price": 1150
     },
     {
-     "min_qty": 50,
-     "unit_price": 1150
-    },
-    {
      "min_qty": 100,
      "unit_price": 1080
-    },
-    {
-     "min_qty": 100,
-     "unit_price": 1080
-    },
-    {
-     "min_qty": 500,
-     "unit_price": 1010
     },
     {
      "min_qty": 500,
@@ -6863,28 +6823,12 @@
      "unit_price": 1620
     },
     {
-     "min_qty": 10,
-     "unit_price": 1620
-    },
-    {
-     "min_qty": 20,
-     "unit_price": 1460
-    },
-    {
      "min_qty": 20,
      "unit_price": 1460
     },
     {
      "min_qty": 50,
      "unit_price": 1380
-    },
-    {
-     "min_qty": 50,
-     "unit_price": 1380
-    },
-    {
-     "min_qty": 100,
-     "unit_price": 1300
     },
     {
      "min_qty": 100,
@@ -9730,40 +9674,20 @@
      "unit_price": 1180
     },
     {
-     "min_qty": 10,
-     "unit_price": 940
-    },
-    {
      "min_qty": 20,
      "unit_price": 1070
-    },
-    {
-     "min_qty": 20,
-     "unit_price": 850
     },
     {
      "min_qty": 50,
      "unit_price": 1010
     },
     {
-     "min_qty": 50,
-     "unit_price": 800
-    },
-    {
      "min_qty": 100,
      "unit_price": 950
     },
     {
-     "min_qty": 100,
-     "unit_price": 750
-    },
-    {
      "min_qty": 500,
      "unit_price": 890
-    },
-    {
-     "min_qty": 500,
-     "unit_price": 710
     }
    ],
    "moq": 10,

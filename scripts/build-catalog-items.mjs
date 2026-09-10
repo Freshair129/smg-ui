@@ -106,6 +106,33 @@ function resolveImage(code) {
 }
 
 // ---------------------------------------------------------------------------
+// Tier ladders
+// ---------------------------------------------------------------------------
+/** Codes whose source ladder carried two prices for the same quantity. Reported after the build. */
+const tierConflicts = []
+
+/**
+ * One price per quantity. The SSOT collapses package variants (P-02 / P-05 ...) into a single offer
+ * row, so their ladders arrive merged and a code can carry two prices for the same min_qty — the
+ * site then quotes both. Until the package dimension is restored upstream, keep the HIGHEST price
+ * so we never under-quote a variant, and report every code where the prices actually disagreed.
+ */
+function dedupeTiers(tiers, code) {
+  const byQty = new Map()
+  const disagreed = new Map()
+  for (const t of tiers) {
+    const prev = byQty.get(t.min_qty)
+    if (prev === undefined) { byQty.set(t.min_qty, t.unit_price); continue }
+    if (prev !== t.unit_price) disagreed.set(t.min_qty, [Math.min(prev, t.unit_price), Math.max(prev, t.unit_price)])
+    byQty.set(t.min_qty, Math.max(prev, t.unit_price))
+  }
+  if (disagreed.size) tierConflicts.push({ code, qtys: [...disagreed.entries()] })
+  return [...byQty.entries()]
+    .map(([min_qty, unit_price]) => ({ min_qty, unit_price }))
+    .sort((a, b) => a.min_qty - b.min_qty)
+}
+
+// ---------------------------------------------------------------------------
 // Core singles (16)
 // ---------------------------------------------------------------------------
 const themeOrder = [...themeSlugs]
@@ -124,7 +151,7 @@ const coreSingles = pricelist.srp_reference_products.map(r => {
   const family = PM_FAMILY[r.product_code]
   if (!family) throw new Error(`PM_FAMILY has no row for ${r.product_code} — add it to catalogTaxonomy.ts`)
   if (!themeSlugs.has(r.category_slug)) throw new Error(`unknown theme ${r.category_slug} on ${r.product_code}`)
-  const tiers = [...r.price_tiers].sort((a, b) => a.min_qty - b.min_qty)
+  const tiers = dedupeTiers(r.price_tiers, r.product_code)
   return {
     id: `pm:${r.product_code}`,
     code: r.product_code,
@@ -163,7 +190,7 @@ const coreSetItems = coreSets.map(o => {
     name_th: canonicalByCode[l.product_code]?.name_th
   }))
   const families = [...new Set(contains.map(l => PM_FAMILY[l.product_code]).filter(Boolean))]
-  const tiers = [...(o.price_tiers ?? [])].sort((a, b) => a.min_qty - b.min_qty)
+  const tiers = dedupeTiers(o.price_tiers ?? [], o.code)
   return {
     id: o.id,
     code: o.code,
@@ -209,10 +236,12 @@ const supplierItems = []
 for (const o of pricelist.catalog_offers) {
   const linked = [...new Set(linksByOffer.get(o.code) ?? [])].map(c => pmByCode[c]).filter(Boolean)
   const families = [...new Set(linked.map(p => p.product_family_id).filter(f => f && FAMILY_SLUGS.has(f)))]
-  const tiers = (o.source_price_tiers ?? [])
-    .filter(t => !t.priceMissing && Number(t.unitPrice) > 0 && Number(t.qtyTier) > 0)
-    .map(t => ({ min_qty: Number(t.qtyTier), unit_price: Number(t.unitPrice) }))
-    .sort((a, b) => a.min_qty - b.min_qty)
+  const tiers = dedupeTiers(
+    (o.source_price_tiers ?? [])
+      .filter(t => !t.priceMissing && Number(t.unitPrice) > 0 && Number(t.qtyTier) > 0)
+      .map(t => ({ min_qty: Number(t.qtyTier), unit_price: Number(t.unitPrice) })),
+    o.code
+  )
   const { image, image_status } = resolveImage(o.code)
   const priceStatus = tiers.length ? 'tiered' : 'ask_for_quote'
   const kind = o.offer_kind === 'single' ? 'single' : 'set'
@@ -351,3 +380,14 @@ console.log(`core sets         ${coreSetItems.length}  (priced ${count(coreSetIt
 console.log(`supplier eligible ${supplierItems.length} / ${pricelist.catalog_offers.length}  (image ${count(supplierItems, i => i.image_status !== 'missing')}, priced ${count(supplierItems, i => i.price_status === 'tiered')}, skipped ${supplierSkippedNotPublic})`)
 console.log(`wrote ${OUT_CORE}`)
 console.log(`wrote ${OUT_SUPPLIER}`)
+
+if (tierConflicts.length) {
+  console.log('')
+  console.log(`tier conflicts    ${tierConflicts.length}  (same qty, two prices in the SSOT — kept the higher)`)
+  for (const c of tierConflicts) {
+    const detail = c.qtys.map(([qty, [lo, hi]]) => `@${qty} ${lo}/${hi}→${hi}`).join('  ')
+    console.log(`  ${c.code}  ${detail}`)
+  }
+  console.log('  fix upstream: pricelist_master collapses package variants (P-xx) into one offer row.')
+}
+
