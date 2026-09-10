@@ -30,8 +30,9 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   'PM-BOTTLE-LED': {
     image: '/assets/smartgift/plates/ob_bottle_plate.png',
     image_status: 'generated_from_source',
-    model3d_url: '/assets/smartgift/3d/PM-BOTTLE-LED.glb',
-    model3d_status: 'draft',
+    // 3D withheld — mesh 1 : 0.73 : 0.62 vs product 1 : 0.30 : 0.30, 43% off. ป้อมกว่าของจริงมาก กระบอกน้ำเรียวสูง
+    // model3d_url: '/assets/smartgift/3d/PM-BOTTLE-LED.glb',
+    // model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/ob_bottle.jpg',
     client_showcase: [
       { brand: 'One Bangkok', image: '/assets/smartgift/mockups/ob_bottle.jpg' },
@@ -41,8 +42,9 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
     lead_time_days: 7
   },
   'PM-CFMUG': {
-    model3d_url: '/assets/smartgift/3d/PM-CFMUG.glb',
-    model3d_status: 'draft',
+    // 3D withheld — mesh 1 : 0.79 : 0.63 vs product 1 : 0.62 : 0.62, 17% off. หน้าตัดไม่กลม ทั้งที่แก้วเป็นทรงกระบอก
+    // model3d_url: '/assets/smartgift/3d/PM-CFMUG.glb',
+    // model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/gmmtv_mug.jpg',
     client_showcase: [
       { brand: 'GMMTV', image: '/assets/smartgift/mockups/gmmtv_mug.jpg' },
@@ -52,8 +54,9 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
     lead_time_days: 5
   },
   'PM-FLASH': {
-    model3d_url: '/assets/smartgift/3d/PM-FLASH.glb',
-    model3d_status: 'draft',
+    // 3D withheld — mesh 1 : 0.96 : 0.37 vs product 1 : 0.28 : 0.14, 68% off. เกือบเป็นแท่งจัตุรัส แต่แฟลชไดรฟ์จริงแบนบาง
+    // model3d_url: '/assets/smartgift/3d/PM-FLASH.glb',
+    // model3d_status: 'draft',
     description_th: 'แฟลชไดร์ฟโลหะหล่อลวดลายหยูอี้ความหมายมงคล รองรับทั้ง USB ปกติและพอร์ต Type-C ของสมาร์ตโฟน',
     lead_time_days: 5
   },
@@ -79,8 +82,9 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   'PM-NB': {
     image: '/assets/smartgift/plates/one31_nb_plate.png',
     image_status: 'generated_from_source',
-    model3d_url: '/assets/smartgift/3d/PM-NB.glb',
-    model3d_status: 'draft',
+    // 3D withheld — mesh 1 : 0.76 : 0.46 vs product 1 : 0.75 : 0.12, 34% off. หนาเกือบครึ่งของด้านยาว แต่สมุดหนาแค่ 3 ซม.
+    // model3d_url: '/assets/smartgift/3d/PM-NB.glb',
+    // model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/one31_nb.jpg',
     client_showcase: [
       { brand: 'One31', image: '/assets/smartgift/mockups/one31_nb.jpg' },
@@ -92,8 +96,9 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   'PM-PB10K': {
     image: '/assets/smartgift/plates/gmmtv_pb_plate.png',
     image_status: 'generated_from_source',
-    model3d_url: '/assets/smartgift/3d/PM-PB10K.glb',
-    model3d_status: 'draft',
+    // 3D withheld — mesh 1 : 0.85 : 0.40 vs product 1 : 0.65 : 0.15, 25% off. หนากว่าพาวเวอร์แบงก์จริง 2.7 เท่า
+    // model3d_url: '/assets/smartgift/3d/PM-PB10K.glb',
+    // model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/gmmtv_pb.jpg',
     client_showcase: [
       { brand: 'GMMTV', image: '/assets/smartgift/mockups/gmmtv_pb.jpg' },

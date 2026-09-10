@@ -1,6 +1,6 @@
 {
  "schema": "smartgift-catalog-items/1",
- "generated_at": "2026-09-10T22:41:48.388Z",
+ "generated_at": "2026-09-10T22:44:01.853Z",
  "source": {
   "file": "data-pipeline/02_prepared/pricelist_master.json",
   "schema_version": "1.3.0b",
