@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand. Run: npm run build:catalog
  * Source: C:\Users\pc\workspace\business-01-smart-gift\data-pipeline\02_prepared\pricelist_master.json (schema 1.3.0b, run 2026-08-24T08-46-40-226Z)
- * Generated: 2026-09-10T19:32:01.790Z
+ * Generated: 2026-09-10T19:35:49.563Z
  * Core layer only: 16 PM singles + 6 core sets. Media is overlaid from coreMedia.ts.
  * The supplier layer lives in public/catalog/data/supplier-items.json; its counts are exported here so the UI can
  * advertise it before loading it.
@@ -13,7 +13,7 @@ export const SUPPLIER_LAYER_META = {
   "with_image": 152,
   "priced": 107,
   "source_total": 1110,
-  "generated_at": "2026-09-10T19:32:01.790Z"
+  "generated_at": "2026-09-10T19:35:49.563Z"
 } as const
 
 export const CORE_ITEMS: CatalogItemSeed[] = [
@@ -32,10 +32,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "price_layer": "catalog_srp",
     "srp_price": 290,
     "price_tiers": [
-      {
-        "min_qty": 1,
-        "unit_price": 290
-      },
       {
         "min_qty": 10,
         "unit_price": 260
@@ -65,7 +61,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 155
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 7,
       "width": 7,
@@ -99,10 +95,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 260,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 260
-      },
-      {
         "min_qty": 10,
         "unit_price": 230
       },
@@ -131,7 +123,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 138
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 19.5,
       "width": 9,
@@ -161,10 +153,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 320,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 320
-      },
-      {
         "min_qty": 10,
         "unit_price": 290
       },
@@ -193,7 +181,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 185
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 8,
       "width": 8,
@@ -227,10 +215,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 250,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 250
-      },
-      {
         "min_qty": 10,
         "unit_price": 220
       },
@@ -259,7 +243,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 130
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 28,
       "width": 5.5,
@@ -292,10 +276,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 220,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 220
-      },
-      {
         "min_qty": 10,
         "unit_price": 190
       },
@@ -324,7 +304,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 115
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 6.5,
       "width": 1.8,
@@ -356,10 +336,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 190,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 190
-      },
-      {
         "min_qty": 10,
         "unit_price": 160
       },
@@ -388,7 +364,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 90
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 14.5,
       "width": 1.4,
@@ -421,10 +397,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 360,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 360
-      },
-      {
         "min_qty": 10,
         "unit_price": 320
       },
@@ -453,7 +425,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 205
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 7.5,
       "width": 7.5,
@@ -485,10 +457,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 550,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 550
-      },
-      {
         "min_qty": 10,
         "unit_price": 490
       },
@@ -517,7 +485,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 295
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 17.5,
       "width": 10.5,
@@ -549,10 +517,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 299,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 299
-      },
-      {
         "min_qty": 10,
         "unit_price": 270
       },
@@ -581,7 +545,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 165
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 9,
       "width": 9,
@@ -613,10 +577,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 165,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 165
-      },
-      {
         "min_qty": 10,
         "unit_price": 140
       },
@@ -645,7 +605,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 85
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 21,
       "width": 6,
@@ -675,10 +635,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 850,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 850
-      },
-      {
         "min_qty": 10,
         "unit_price": 780
       },
@@ -707,7 +663,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 460
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 18,
       "width": 16,
@@ -739,10 +695,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 350,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 350
-      },
-      {
         "min_qty": 10,
         "unit_price": 310
       },
@@ -771,7 +723,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 195
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 16,
       "width": 14,
@@ -801,10 +753,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 590,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 590
-      },
-      {
         "min_qty": 10,
         "unit_price": 530
       },
@@ -833,7 +781,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 320
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 80,
       "width": 40,
@@ -863,10 +811,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 750,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 750
-      },
-      {
         "min_qty": 10,
         "unit_price": 680
       },
@@ -895,7 +839,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 420
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 24,
       "width": 18,
@@ -927,10 +871,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 690,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 690
-      },
-      {
         "min_qty": 10,
         "unit_price": 620
       },
@@ -959,7 +899,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 390
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 10.5,
       "width": 6.8,
@@ -991,10 +931,6 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     "srp_price": 480,
     "price_tiers": [
       {
-        "min_qty": 1,
-        "unit_price": 480
-      },
-      {
         "min_qty": 10,
         "unit_price": 440
       },
@@ -1023,7 +959,7 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
         "unit_price": 275
       }
     ],
-    "moq": 1,
+    "moq": 10,
     "dimensions_cm": {
       "length": 12,
       "width": 8.5,

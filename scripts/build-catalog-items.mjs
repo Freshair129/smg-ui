@@ -35,6 +35,7 @@ const source = resolve(repo, fromArg > -1 ? process.argv[fromArg + 1] : '../busi
 const PRICELIST = join(source, 'data-pipeline', '02_prepared', 'pricelist_master.json')
 const MASTER = join(source, 'data-pipeline', '02_prepared', 'smartgift_catalog_master.json')
 const FLOWACCOUNT = join(source, 'data-pipeline', '02_prepared', 'flowaccount_catalog_normalized.json')
+const PRICING_RULES = join(source, 'config', 'pricing_rules_formula.yaml')
 const MEDIA_JSON = join(source, 'public', 'data', 'catalog_media.json')
 const MEDIA_DIR = join(repo, 'public', 'catalog', 'assets', 'catalog-media')
 const TAXONOMY_TS = join(repo, 'src', 'data', 'catalogTaxonomy.ts')
@@ -76,6 +77,35 @@ for (const m of taxonomySrc.matchAll(
   FAMILY_TERMS.set(m[1], [...new Set(terms)])
 }
 if (FAMILY_TERMS.size < FAMILY_SLUGS.size) throw new Error(`FAMILY_TERMS parsed ${FAMILY_TERMS.size} of ${FAMILY_SLUGS.size} family rows`)
+
+/**
+ * Quantities a public SRP ladder may use, from the SSOT's own pricing rules
+ * (config/pricing_rules_formula.yaml -> srp_benchmark_rules.moq_breaks).
+ * Read here rather than restated so the rule keeps one home.
+ */
+const rulesSrc = await readFile(PRICING_RULES, 'utf8')
+const breaks = /^\s*moq_breaks:\s*\[([\d,\s]+)\]/m.exec(rulesSrc)
+if (!breaks) throw new Error(`srp_benchmark_rules.moq_breaks not found in ${PRICING_RULES}`)
+const MOQ_BREAKS = new Set(breaks[1].split(',').map(n => Number(n.trim())).filter(Number.isFinite))
+if (MOQ_BREAKS.size < 2) throw new Error(`moq_breaks parsed as ${[...MOQ_BREAKS]}`)
+
+/** Rows dropped from an SRP ladder for sitting outside moq_breaks. Reported after the build. */
+const offBreakTiers = []
+
+/**
+ * An SRP ladder may only quote the authorised MOQ breaks.
+ *
+ * The blueprint extraction restates each product's SRP as a `min_qty: 1` row — for all 16 PM
+ * singles that row's price equals `srp_price` exactly, and 1 is not one of the breaks. Published
+ * as a tier it reads as "you may buy one", which the pricing rules do not allow. Drop it; the
+ * number itself is not lost, `srp_price` carries it.
+ */
+function onlyMoqBreaks(tiers, code) {
+  const kept = tiers.filter(t => MOQ_BREAKS.has(t.min_qty))
+  const dropped = tiers.filter(t => !MOQ_BREAKS.has(t.min_qty))
+  if (dropped.length) offBreakTiers.push({ code, dropped: dropped.map(t => `@${t.min_qty} ฿${t.unit_price}`) })
+  return kept.length ? kept : tiers
+}
 
 const THAI = /[฀-๿]/
 const SAFE_TERM = /^[\p{L}\p{N} .+-]+$/u
@@ -260,7 +290,7 @@ const coreSingles = pricelist.srp_reference_products.map(r => {
   const family = PM_FAMILY[r.product_code]
   if (!family) throw new Error(`PM_FAMILY has no row for ${r.product_code} — add it to catalogTaxonomy.ts`)
   if (!themeSlugs.has(r.category_slug)) throw new Error(`unknown theme ${r.category_slug} on ${r.product_code}`)
-  const tiers = dedupeTiers(r.price_tiers, r.product_code)
+  const tiers = onlyMoqBreaks(dedupeTiers(r.price_tiers, r.product_code), r.product_code)
   return {
     id: `pm:${r.product_code}`,
     code: r.product_code,
@@ -513,6 +543,21 @@ if (tierConflicts.length) {
     console.log(`  ${c.code}  ${detail}`)
   }
   console.log('  fix upstream: pricelist_master collapses package variants (P-xx) into one offer row.')
+}
+
+if (offBreakTiers.length) {
+  console.log('')
+  console.log(`off-break tiers   ${offBreakTiers.length}  (quantity not in moq_breaks ${[...MOQ_BREAKS].join('/')} — dropped)`)
+  for (const t of offBreakTiers) console.log(`  ${t.code}  ${t.dropped.join('  ')}`)
+}
+
+const offBreakSupplier = supplierItems.filter(i => (i.price_tiers ?? []).some(t => !MOQ_BREAKS.has(t.min_qty)))
+if (offBreakSupplier.length) {
+  console.log('')
+  console.log(`supplier off-break ${offBreakSupplier.length}  (kept as quoted — supplier ladders are not SRP benchmarks)`)
+  for (const i of offBreakSupplier) {
+    console.log(`  ${i.code}  ${i.price_tiers.map(t => `@${t.min_qty}`).join(' ')}`)
+  }
 }
 
 const derivedFamilies = supplierItems.filter(i => i.families_derived)
