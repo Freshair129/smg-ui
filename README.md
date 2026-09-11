@@ -37,6 +37,31 @@ or without Docker:
 npm run build && npx serve dist
 ```
 
+## Publish and monitor
+
+The container is published to the internet through Tailscale Funnel:
+
+```bash
+tailscale funnel --bg --https=8443 http://127.0.0.1:8080   # https://desktop-vetatmq.tail71c7d1.ts.net:8443/
+tailscale funnel status
+```
+
+That route has disappeared on its own before (`.brain/rca/2026-09-09-funnel-8443-missing.md`),
+so a scheduled task checks it every 5 minutes — the container on :8080, the Funnel route and the
+public URL — logging each run to `.monitor/funnel.log` and raising a Windows popup only when the
+state changes.
+
+```powershell
+powershell -File scripts/install-funnel-monitor.ps1               # detect and alert only
+powershell -File scripts/install-funnel-monitor.ps1 -AutoRestore  # also re-add a missing route
+powershell -File scripts/install-funnel-monitor.ps1 -Uninstall
+powershell -File scripts/monitor-funnel.ps1                       # one check by hand
+```
+
+`-AutoRestore` re-adds only the :8443 route, only while the container is healthy, and never resets
+other Funnel routes. It is off by default because it puts the site back on the public internet
+without anyone deciding to.
+
 ## Authoring tools
 
 The grid overlay and media config drawer are hidden from visitors. Add `?dev=1`

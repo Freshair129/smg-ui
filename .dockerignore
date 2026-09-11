@@ -5,3 +5,5 @@ dist
 *.log
 # withheld 3D drafts, kept locally for rebuilding; never shipped
 .drafts
+# funnel monitor state and log
+.monitor
