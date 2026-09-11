@@ -56,10 +56,10 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
     lead_time_days: 5
   },
   'PM-FLASH': {
-    // 3D withheld — mesh 1 : 0.96 : 0.37 vs product 1 : 0.28 : 0.14, 68% off. เกือบเป็นแท่งจัตุรัส แต่แฟลชไดรฟ์จริงแบนบาง
-    // Draft archived to .drafts/3d/, no longer served (original: business-01-smart-gift/comfy-3d-products/outputs/final/).
-    // model3d_url: '/assets/smartgift/3d/PM-FLASH.glb',
-    // model3d_status: 'draft',
+    // Procedural model, built from dimensions_cm (6.5 x 1.8 x 0.9 cm) by scripts/build-procedural-3d.mjs:
+    // overall size exact; fillets, details and finish schematic. The TRELLIS draft stays archived in .drafts/3d/ (mesh 1 : 0.96 : 0.37).
+    model3d_url: '/assets/smartgift/3d/procedural/PM-FLASH.glb',
+    model3d_status: 'draft',
     description_th: 'แฟลชไดร์ฟโลหะหล่อลวดลายหยูอี้ความหมายมงคล รองรับทั้ง USB ปกติและพอร์ต Type-C ของสมาร์ตโฟน',
     lead_time_days: 5
   },
@@ -85,10 +85,10 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   'PM-NB': {
     image: '/assets/smartgift/plates/one31_nb_plate.png',
     image_status: 'generated_from_source',
-    // 3D withheld — mesh 1 : 0.76 : 0.46 vs product 1 : 0.75 : 0.12, 34% off. หนาเกือบครึ่งของด้านยาว แต่สมุดหนาแค่ 3 ซม.
-    // Draft archived to .drafts/3d/, no longer served (original: business-01-smart-gift/comfy-3d-products/outputs/final/).
-    // model3d_url: '/assets/smartgift/3d/PM-NB.glb',
-    // model3d_status: 'draft',
+    // Procedural model, built from dimensions_cm (24 x 18 x 3 cm) by scripts/build-procedural-3d.mjs:
+    // overall size exact; fillets, details and finish schematic. The TRELLIS draft stays archived in .drafts/3d/ (mesh 1 : 0.76 : 0.46).
+    model3d_url: '/assets/smartgift/3d/procedural/PM-NB.glb',
+    model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/one31_nb.jpg',
     client_showcase: [
       { brand: 'One31', image: '/assets/smartgift/mockups/one31_nb.jpg' },
@@ -100,10 +100,10 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   'PM-PB10K': {
     image: '/assets/smartgift/plates/gmmtv_pb_plate.png',
     image_status: 'generated_from_source',
-    // 3D withheld — mesh 1 : 0.85 : 0.40 vs product 1 : 0.65 : 0.15, 25% off. หนากว่าพาวเวอร์แบงก์จริง 2.7 เท่า
-    // Draft archived to .drafts/3d/, no longer served (original: business-01-smart-gift/comfy-3d-products/outputs/final/).
-    // model3d_url: '/assets/smartgift/3d/PM-PB10K.glb',
-    // model3d_status: 'draft',
+    // Procedural model, built from dimensions_cm (10.5 x 6.8 x 1.6 cm) by scripts/build-procedural-3d.mjs:
+    // overall size exact; fillets, details and finish schematic. The TRELLIS draft stays archived in .drafts/3d/ (mesh 1 : 0.85 : 0.40).
+    model3d_url: '/assets/smartgift/3d/procedural/PM-PB10K.glb',
+    model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/gmmtv_pb.jpg',
     client_showcase: [
       { brand: 'GMMTV', image: '/assets/smartgift/mockups/gmmtv_pb.jpg' },

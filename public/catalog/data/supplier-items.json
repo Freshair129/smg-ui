@@ -1,12 +1,12 @@
 {
  "schema": "smartgift-catalog-items/1",
- "generated_at": "2026-09-11T03:31:38.204Z",
+ "generated_at": "2026-09-11T07:29:18.655Z",
  "source": {
   "file": "data-pipeline/02_prepared/pricelist_master.json",
   "schema_version": "1.3.0b",
   "run_id": "2026-08-24T08-46-40-226Z",
   "catalog_offers_total": 1110,
-  "public_eligible": 1057
+  "public_eligible": 1054
  },
  "disclaimer_th": "รายการจากแคตตาล็อกผู้ผลิต ยังไม่ผ่านการยืนยันเป็นสินค้า core ราคา (ถ้ามี) เป็นราคาอ้างอิงตามขั้นจำนวน โปรดยืนยันก่อนเสนอราคา",
  "items": [
@@ -14464,17 +14464,57 @@
    }
   },
   {
-   "id": "offer:TDR0--3",
-   "code": "TDR0--3",
+   "id": "offer:TDR0-3",
+   "code": "TDR0-3",
    "kind": "set",
    "layer": "supplier",
-   "name_th": "Portable electric kettle พร้อม เครื่องนวดคอ พร้อม ปืนนวด",
-   "name_en": "Portable electric kettle + neck massager + massage gun",
+   "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ เครื่องนวดคอ + ปืนนวด",
    "families": [
     "massage_gun",
     "neck_massager"
    ],
-   "price_status": "ask_for_quote",
+   "price_status": "tiered",
+   "price_layer": "standard",
+   "price_tiers": [
+    {
+     "min_qty": 10,
+     "unit_price": 2010
+    },
+    {
+     "min_qty": 20,
+     "unit_price": 1810
+    },
+    {
+     "min_qty": 50,
+     "unit_price": 1710
+    },
+    {
+     "min_qty": 100,
+     "unit_price": 1610
+    },
+    {
+     "min_qty": 500,
+     "unit_price": 1510
+    }
+   ],
+   "packaging_options": [
+    {
+     "package_code": "P-13",
+     "from_price": 2010,
+     "cost_included": true
+    }
+   ],
+   "moq": 10,
+   "image_status": "source_verified",
+   "provenance": {
+    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
+    "source_key": "TDR0-3",
+    "merged_codes": [
+     "TDR0--3"
+    ]
+   },
+   "image": "/catalog/assets/catalog-media/source-offer-TDR0--3.webp",
+   "name_en": "Portable electric kettle + neck massager + massage gun",
    "contains": [
     {
      "product_code": "PRODUCT_159A7CF4D274A9414218",
@@ -14492,31 +14532,65 @@
      "name_th": "Portable Electric Kettle"
     }
    ],
-   "image": "/catalog/assets/catalog-media/source-offer-TDR0--3.webp",
-   "image_status": "source_verified",
-   "description_th": "Massage gun: 132*134*50mm(excluding massage tool), four kinds of massage tools, 1800mAh, Type-C input port • Electric kettle: Portable, boil water, SUS304 material, 400ml, 205*75mm • Colors: Pink, white",
    "colors": [
     "Pink",
     "white"
    ],
-   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TDR0--3"
-   }
+   "description_th": "Massage gun: 132*134*50mm(excluding massage tool), four kinds of massage tools, 1800mAh, Type-C input port • Electric kettle: Portable, boil water, SUS304 material, 400ml, 205*75mm • Colors: Pink, white",
+   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ"
   },
   {
-   "id": "offer:TDR0--4",
-   "code": "TDR0--4",
+   "id": "offer:TDR0-4",
+   "code": "TDR0-4",
    "kind": "set",
    "layer": "supplier",
-   "name_th": "Portable electric kettle พร้อม fan พร้อม เครื่องนวดคอ พร้อม eye massager",
-   "name_en": "Portable electric kettle + fan + neck massager + eye massager",
+   "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ พัดลม + เครื่องนวดคอ + เครื่องนวดตา",
    "families": [
     "fan",
     "neck_massager"
    ],
-   "price_status": "ask_for_quote",
+   "price_status": "tiered",
+   "price_layer": "standard",
+   "price_tiers": [
+    {
+     "min_qty": 10,
+     "unit_price": 2180
+    },
+    {
+     "min_qty": 20,
+     "unit_price": 1960
+    },
+    {
+     "min_qty": 50,
+     "unit_price": 1860
+    },
+    {
+     "min_qty": 100,
+     "unit_price": 1750
+    },
+    {
+     "min_qty": 500,
+     "unit_price": 1640
+    }
+   ],
+   "packaging_options": [
+    {
+     "package_code": "P-13",
+     "from_price": 2180,
+     "cost_included": true
+    }
+   ],
+   "moq": 10,
+   "image_status": "source_verified",
+   "provenance": {
+    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
+    "source_key": "TDR0-4",
+    "merged_codes": [
+     "TDR0--4"
+    ]
+   },
+   "image": "/catalog/assets/catalog-media/source-offer-TDR0--4.webp",
+   "name_en": "Portable electric kettle + fan + neck massager + eye massager",
    "contains": [
     {
      "product_code": "PRODUCT_929CBFBFBC6D086E4422",
@@ -14539,32 +14613,66 @@
      "name_th": "Eye Massager"
     }
    ],
-   "image": "/catalog/assets/catalog-media/source-offer-TDR0--4.webp",
-   "image_status": "source_verified",
-   "description_th": "Electric kettle: Portable, boil water, SUS304 material, 400ml, 205*75mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Pink, white",
    "colors": [
     "Pink",
     "white"
    ],
-   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TDR0--4"
-   }
+   "description_th": "Electric kettle: Portable, boil water, SUS304 material, 400ml, 205*75mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Pink, white",
+   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ"
   },
   {
-   "id": "offer:TDR0--5",
-   "code": "TDR0--5",
+   "id": "offer:TDR0-5",
+   "code": "TDR0-5",
    "kind": "set",
    "layer": "supplier",
-   "name_th": "Portable electric kettle พร้อม fan พร้อม เครื่องนวดคอ พร้อม สมาร์ตแบนด์ พร้อม eye massager",
-   "name_en": "Portable electric kettle + fan + neck massager + smart bracelet + eye massager",
+   "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ พัดลม + เครื่องนวดคอ + smart bracelet + เครื่องนวดตา",
    "families": [
     "smart_bracelet",
     "fan",
     "neck_massager"
    ],
-   "price_status": "ask_for_quote",
+   "price_status": "tiered",
+   "price_layer": "standard",
+   "price_tiers": [
+    {
+     "min_qty": 10,
+     "unit_price": 2350
+    },
+    {
+     "min_qty": 20,
+     "unit_price": 2120
+    },
+    {
+     "min_qty": 50,
+     "unit_price": 2000
+    },
+    {
+     "min_qty": 100,
+     "unit_price": 1880
+    },
+    {
+     "min_qty": 500,
+     "unit_price": 1760
+    }
+   ],
+   "packaging_options": [
+    {
+     "package_code": "P-13",
+     "from_price": 2350,
+     "cost_included": true
+    }
+   ],
+   "moq": 10,
+   "image_status": "source_verified",
+   "provenance": {
+    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
+    "source_key": "TDR0-5",
+    "merged_codes": [
+     "TDR0--5"
+    ]
+   },
+   "image": "/catalog/assets/catalog-media/source-offer-TDR0--5.webp",
+   "name_en": "Portable electric kettle + fan + neck massager + smart bracelet + eye massager",
    "contains": [
     {
      "product_code": "PRODUCT_5B4C07B6FD826A9F99B8",
@@ -14592,18 +14700,12 @@
      "name_th": "Eye Massager"
     }
    ],
-   "image": "/catalog/assets/catalog-media/source-offer-TDR0--5.webp",
-   "image_status": "source_verified",
-   "description_th": "Electric kettle: Portable, boil water, SUS304 material, 400ml, 205*75mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Pink, white",
    "colors": [
     "Pink",
     "white"
    ],
-   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TDR0--5"
-   }
+   "description_th": "Electric kettle: Portable, boil water, SUS304 material, 400ml, 205*75mm • Neck massager: 4 massage modes & 15 levels, low pulse, constant temperature hot compress, 2.5W, 150*145*45mm • Colors: Pink, white",
+   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ"
   },
   {
    "id": "offer:TDS01-2",
@@ -47815,154 +47917,6 @@
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
     "source_key": "TDM0167"
-   }
-  },
-  {
-   "id": "offer:TDR0-3",
-   "code": "TDR0-3",
-   "kind": "set",
-   "layer": "supplier",
-   "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ เครื่องนวดคอ + ปืนนวด",
-   "families": [
-    "neck_massager",
-    "massage_gun"
-   ],
-   "families_derived": true,
-   "price_status": "tiered",
-   "price_layer": "standard",
-   "price_tiers": [
-    {
-     "min_qty": 10,
-     "unit_price": 2010
-    },
-    {
-     "min_qty": 20,
-     "unit_price": 1810
-    },
-    {
-     "min_qty": 50,
-     "unit_price": 1710
-    },
-    {
-     "min_qty": 100,
-     "unit_price": 1610
-    },
-    {
-     "min_qty": 500,
-     "unit_price": 1510
-    }
-   ],
-   "packaging_options": [
-    {
-     "package_code": "P-13",
-     "from_price": 2010,
-     "cost_included": true
-    }
-   ],
-   "moq": 10,
-   "image_status": "missing",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TDR0-3"
-   }
-  },
-  {
-   "id": "offer:TDR0-4",
-   "code": "TDR0-4",
-   "kind": "set",
-   "layer": "supplier",
-   "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ พัดลม + เครื่องนวดคอ + เครื่องนวดตา",
-   "families": [
-    "neck_massager",
-    "fan"
-   ],
-   "families_derived": true,
-   "price_status": "tiered",
-   "price_layer": "standard",
-   "price_tiers": [
-    {
-     "min_qty": 10,
-     "unit_price": 2180
-    },
-    {
-     "min_qty": 20,
-     "unit_price": 1960
-    },
-    {
-     "min_qty": 50,
-     "unit_price": 1860
-    },
-    {
-     "min_qty": 100,
-     "unit_price": 1750
-    },
-    {
-     "min_qty": 500,
-     "unit_price": 1640
-    }
-   ],
-   "packaging_options": [
-    {
-     "package_code": "P-13",
-     "from_price": 2180,
-     "cost_included": true
-    }
-   ],
-   "moq": 10,
-   "image_status": "missing",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TDR0-4"
-   }
-  },
-  {
-   "id": "offer:TDR0-5",
-   "code": "TDR0-5",
-   "kind": "set",
-   "layer": "supplier",
-   "name_th": "กาต้มน้ำไฟฟ้าแบบพกพา+ พัดลม + เครื่องนวดคอ + smart bracelet + เครื่องนวดตา",
-   "families": [
-    "smart_bracelet",
-    "neck_massager",
-    "fan"
-   ],
-   "families_derived": true,
-   "price_status": "tiered",
-   "price_layer": "standard",
-   "price_tiers": [
-    {
-     "min_qty": 10,
-     "unit_price": 2350
-    },
-    {
-     "min_qty": 20,
-     "unit_price": 2120
-    },
-    {
-     "min_qty": 50,
-     "unit_price": 2000
-    },
-    {
-     "min_qty": 100,
-     "unit_price": 1880
-    },
-    {
-     "min_qty": 500,
-     "unit_price": 1760
-    }
-   ],
-   "packaging_options": [
-    {
-     "package_code": "P-13",
-     "from_price": 2350,
-     "cost_included": true
-    }
-   ],
-   "moq": 10,
-   "image_status": "missing",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TDR0-5"
    }
   },
   {

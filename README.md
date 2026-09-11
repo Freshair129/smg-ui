@@ -78,12 +78,13 @@ The catalogue is built from the SmartGift pipeline repo (`../business-01-smart-g
 
 ```bash
 npm run build:catalog   # src/data/catalogItems.generated.ts + public/catalog/data/supplier-items.json
-npm run build:3d        # dimension-accurate models for the round products
+npm run build:3d        # dimension-accurate models: round products and rounded boxes
 npm run check:3d        # gate every published 3D model against its product's dimensions
 ```
 
 Review the diff before committing; both rewrite in place.
 
 The standalone customer catalogue that used to live at `/catalog/` was retired on 2026-09-11 in
-favour of `/#catalog`; `/catalog/` now forwards there. `npm run refresh:catalog` copied that page's
-data and nothing in the app reads it any more.
+favour of `/#catalog`; `/catalog/` now forwards there. Its old data files and the `refresh:catalog` script that
+copied them were removed on 2026-09-11: `public/catalog/data/` now holds only `supplier-items.json`,
+written by `build:catalog`.

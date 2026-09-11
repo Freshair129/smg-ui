@@ -468,6 +468,37 @@ for (const o of pricelist.catalog_offers) {
   for (const k of Object.keys(item)) if (item[k] === undefined) delete item[k]
   supplierItems.push(item)
 }
+
+// Two spellings of one offer code. The factory price file writes some codes with a doubled hyphen
+// (TDR0--3) where FlowAccount has TDR0-3: the same set listed twice, the FlowAccount row with the
+// price and the factory row with the photo. Keep the FlowAccount code, fill its gaps from the factory
+// row and drop the factory row. Only a doubled hyphen counts: a trailing letter (TBX-1-2A, FXD04-0N)
+// is often a different set or edition, so those stay separate. A row with its own ladder is never
+// merged away.
+const mergedSpellings = []
+{
+  const byCode = new Map(supplierItems.map(i => [i.code, i]))
+  const FILL = ['image', 'image_status', 'name_en', 'contains', 'colors', 'description_th', 'branding']
+  for (const typo of [...supplierItems]) {
+    const code = typo.code.replace(/-{2,}/g, '-')
+    const keep = code !== typo.code && byCode.get(code)
+    if (!keep || typo.price_tiers) continue
+    const filled = []
+    for (const k of FILL) {
+      const empty = keep[k] === undefined || (k === 'image_status' && keep[k] === 'missing')
+      if (empty && typo[k] !== undefined) { keep[k] = typo[k]; filled.push(k) }
+    }
+    // families linked in the SSOT beat families guessed from the title
+    if (keep.families_derived && typo.families.length && !typo.families_derived) {
+      keep.families = typo.families
+      delete keep.families_derived
+      filled.push('families')
+    }
+    keep.provenance = { ...keep.provenance, merged_codes: [...(keep.provenance.merged_codes ?? []), typo.code] }
+    supplierItems.splice(supplierItems.indexOf(typo), 1)
+    mergedSpellings.push({ code: typo.code, into: code, filled })
+  }
+}
 supplierItems.sort((a, b) => (a.image_status === 'missing') - (b.image_status === 'missing') || a.code.localeCompare(b.code))
 
 // ---------------------------------------------------------------------------
@@ -602,6 +633,10 @@ if (offBreakSupplier.length) {
   }
 }
 
+if (mergedSpellings.length) {
+  console.log(`merged spellings ${mergedSpellings.length}  (doubled hyphen = the same offer code)`)
+  for (const d of mergedSpellings) console.log(`  ${d.code} -> ${d.into}  filled: ${d.filled.join(', ') || '-'}`)
+}
 if (mergedDuplicates.length) {
   console.log('')
   console.log(`merged duplicates ${mergedDuplicates.length}  (factory row = same product as a core PM single)`)

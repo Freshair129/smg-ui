@@ -328,7 +328,8 @@ export interface CatalogItem {
   // Partner (B—Line) only
   designer?: string
   year?: number
-  provenance?: { source_file: string; source_key: string }
+  /** merged_codes: other spellings of this offer code merged into it at build time (e.g. TDR0--3 into TDR0-3) */
+  provenance?: { source_file: string; source_key: string; merged_codes?: string[] }
 }
 
 /** Shape emitted by scripts/build-catalog-items.mjs — the Level-1 category is derived at import time. */
