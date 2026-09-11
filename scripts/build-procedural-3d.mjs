@@ -32,7 +32,10 @@ const SEGMENTS = 72
 const PRODUCTS = {
   'PM-TMB': { profile: 'thermos', body: 'matte_black', display: true },
   'PM-BOTTLE-LED': { profile: 'thermos', body: 'matte_black', display: true },
-  'PM-CFMUG': { profile: 'travelMug', body: 'brushed_steel', display: false }
+  'PM-CFMUG': { profile: 'travelMug', body: 'brushed_steel', display: false },
+  'PM-FLASH': { shape: 'flashDrive', schematic: 'one metal body with filleted edges; the USB-A and Type-C ends and the cast pattern are not modelled' },
+  'PM-NB': { shape: 'notebook', schematic: 'cover boards, spine and page block; the built-in power bank, card and pen slots are not modelled; cover colour not verified' },
+  'PM-PB10K': { shape: 'powerbank', schematic: 'filleted slab; the MagSafe ring, stand and ports are not modelled; colour not verified' }
 }
 
 const MATERIALS = {
@@ -91,6 +94,77 @@ const PROFILES = {
       ] }
     ]
   }
+}
+
+// Box-shaped products. A flash drive, a notebook and a power bank are rounded boxes, not surfaces of
+// revolution: overall length x width x height come from dimensions_cm (x = length, y = height,
+// z = width); fillet radii, the notebook's boards / spine / page block and every finish are schematic.
+Object.assign(MATERIALS, {
+  pu_leather: { name: 'pu-leather', pbrMetallicRoughness: { baseColorFactor: [0.045, 0.042, 0.04, 1], metallicFactor: 0, roughnessFactor: 0.72 } },
+  paper: { name: 'paper-block', pbrMetallicRoughness: { baseColorFactor: [0.9, 0.88, 0.84, 1], metallicFactor: 0, roughnessFactor: 0.9 } }
+})
+
+// A box whose edges are rounded with `radius`: each face is a grid pushed out from an inner box, so
+// the normal is exact everywhere and neighbouring faces meet without a seam. Grid samples near an
+// edge are spaced by equal fillet angle (0-45 deg per face; the adjacent face covers the rest).
+function roundedBox(center, size, radius, material, steps = 6) {
+  const h = size.map(v => v / 2)
+  const r = Math.min(radius, 0.49 * Math.min(...h))
+  const inner = h.map(v => v - r)
+  const axis = k => {
+    const iv = inner[k], s = []
+    for (let i = steps; i >= 1; i--) s.push(-iv - r * Math.tan((i / steps) * Math.PI / 4))
+    s.push(-iv, 0, iv)
+    for (let i = 1; i <= steps; i++) s.push(iv + r * Math.tan((i / steps) * Math.PI / 4))
+    return s
+  }
+  const samples = [0, 1, 2].map(axis)
+  const out = { material, positions: [], normals: [], indices: [] }
+  for (let a = 0; a < 3; a++) {
+    const b = (a + 1) % 3, c = (a + 2) % 3
+    for (const sign of [-1, 1]) {
+      const base = out.positions.length / 3, nb = samples[b].length, nc = samples[c].length
+      for (const u of samples[b]) {
+        for (const v of samples[c]) {
+          const p = []
+          p[a] = sign * h[a]; p[b] = u; p[c] = v
+          const q = p.map((x, k) => Math.max(-inner[k], Math.min(inner[k], x)))
+          const d = p.map((x, k) => x - q[k]), len = Math.hypot(...d) || 1
+          const n = d.map(x => x / len)
+          out.positions.push(...q.map((x, k) => x + n[k] * r + center[k]))
+          out.normals.push(...n)
+        }
+      }
+      const P = k => out.positions.slice(k * 3, k * 3 + 3)
+      for (let i = 0; i < nb - 1; i++) {
+        for (let j = 0; j < nc - 1; j++) {
+          const i0 = base + i * nc + j, i1 = i0 + nc, i2 = i0 + 1, i3 = i1 + 1
+          const [p0, p1, p2] = [P(i0), P(i1), P(i2)]
+          const e1 = p1.map((x, k) => x - p0[k]), e2 = p2.map((x, k) => x - p0[k])
+          const cross = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]]
+          // counter-clockwise seen from outside, i.e. facing along sign * axis a
+          if (cross[a] * sign >= 0) out.indices.push(i0, i1, i2, i2, i1, i3)
+          else out.indices.push(i0, i2, i1, i2, i3, i1)
+        }
+      }
+    }
+  }
+  return out
+}
+
+const BOXES = {
+  flashDrive: (L, W, H) => [roundedBox([0, H / 2, 0], [L, H, W], H * 0.35, 'brushed_steel')],
+  // cover boards top and bottom, a spine along one long edge, the page block between them
+  notebook: (L, W, H) => {
+    const t = Math.min(0.004, H * 0.14), s = t * 1.2
+    return [
+      roundedBox([0, t / 2, 0], [L, t, W], t * 0.45, 'pu_leather'),
+      roundedBox([0, H - t / 2, 0], [L, t, W], t * 0.45, 'pu_leather'),
+      roundedBox([0, H / 2, -W / 2 + s / 2], [L, H, s], s * 0.45, 'pu_leather'),
+      roundedBox([0, H / 2, s / 2 - 0.0015], [L - 0.006, H - 2 * t + 0.0004, W - s - 0.003], 0.0006, 'paper')
+    ]
+  },
+  powerbank: (L, W, H) => [roundedBox([0, H / 2, 0], [L, H, W], H * 0.4, 'matte_black')]
 }
 
 function revolve(polyline) {
@@ -194,17 +268,21 @@ console.log(`${'code'.padEnd(16)}${'dimensions_cm'.padEnd(20)}${'verts'.padEnd(8
 for (const [code, spec] of Object.entries(PRODUCTS)) {
   const dim = byCode[code]?.dimensions_cm
   if (!dim) throw new Error(`${code}: no dimensions_cm in the SSOT`)
-  if (dim.length !== dim.width) throw new Error(`${code}: ${dim.length} x ${dim.width} footprint is not round, so not a surface of revolution`)
-  const D = dim.length / 100, H = dim.height / 100
-  const parts = PROFILES[spec.profile](D, H, spec).map(buildPart)
-  const glb = toGlb(code, parts, {
-    product_code: code,
-    dimensions_cm: dim,
-    source: 'business-01-smart-gift data-pipeline/02_prepared/smartgift_catalog_master.json dimensions_cm',
-    method: `surface of revolution, ${spec.profile} profile`,
-    measured: 'overall diameter and height',
-    schematic: 'lid/body proportions, fillets, taper, finishes'
-  })
+  let parts, method, measured, schematic
+  if (spec.shape) {
+    parts = BOXES[spec.shape](dim.length / 100, dim.width / 100, dim.height / 100)
+    method = `rounded box, ${spec.shape}`
+    measured = 'overall length, width and height'
+    schematic = spec.schematic
+  } else {
+    if (dim.length !== dim.width) throw new Error(`${code}: ${dim.length} x ${dim.width} footprint is not round, so not a surface of revolution`)
+    const D = dim.length / 100, H = dim.height / 100
+    parts = PROFILES[spec.profile](D, H, spec).map(buildPart)
+    method = `surface of revolution, ${spec.profile} profile`
+    measured = 'overall diameter and height'
+    schematic = 'lid/body proportions, fillets, taper, finishes'
+  }
+  const glb = toGlb(code, parts, { product_code: code, dimensions_cm: dim, source: 'business-01-smart-gift data-pipeline/02_prepared/smartgift_catalog_master.json dimensions_cm', method, measured, schematic })
   await writeFile(join(OUT_DIR, `${code}.glb`), glb)
   const verts = parts.reduce((s, p) => s + p.positions.length / 3, 0)
   const tris = parts.reduce((s, p) => s + p.indices.length / 3, 0)
