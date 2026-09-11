@@ -31,7 +31,7 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
     image: '/assets/smartgift/plates/ob_bottle_plate.png',
     image_status: 'generated_from_source',
     // Procedural model, built from dimensions_cm (7 x 7 x 23 cm) by scripts/build-procedural-3d.mjs:
-    // shape exact, lid proportions and finish schematic. Replaces the withheld TRELLIS draft (mesh 1 : 0.73 : 0.62 vs product 1 : 0.30 : 0.30).
+    // shape exact, lid proportions and finish schematic. Replaces the TRELLIS draft, archived in .drafts/3d/ (mesh 1 : 0.73 : 0.62 vs product 1 : 0.30 : 0.30).
     model3d_url: '/assets/smartgift/3d/procedural/PM-BOTTLE-LED.glb',
     model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/ob_bottle.jpg',
@@ -44,7 +44,7 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   },
   'PM-CFMUG': {
     // Procedural model, built from dimensions_cm (9 x 9 x 14.5 cm) by scripts/build-procedural-3d.mjs:
-    // shape exact, lid proportions and finish schematic. Replaces the withheld TRELLIS draft (mesh 1 : 0.79 : 0.63, cross-section not round).
+    // shape exact, lid proportions and finish schematic. Replaces the TRELLIS draft, archived in .drafts/3d/ (mesh 1 : 0.79 : 0.63, cross-section not round).
     model3d_url: '/assets/smartgift/3d/procedural/PM-CFMUG.glb',
     model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/gmmtv_mug.jpg',
@@ -57,6 +57,7 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   },
   'PM-FLASH': {
     // 3D withheld — mesh 1 : 0.96 : 0.37 vs product 1 : 0.28 : 0.14, 68% off. เกือบเป็นแท่งจัตุรัส แต่แฟลชไดรฟ์จริงแบนบาง
+    // Draft archived to .drafts/3d/, no longer served (original: business-01-smart-gift/comfy-3d-products/outputs/final/).
     // model3d_url: '/assets/smartgift/3d/PM-FLASH.glb',
     // model3d_status: 'draft',
     description_th: 'แฟลชไดร์ฟโลหะหล่อลวดลายหยูอี้ความหมายมงคล รองรับทั้ง USB ปกติและพอร์ต Type-C ของสมาร์ตโฟน',
@@ -85,6 +86,7 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
     image: '/assets/smartgift/plates/one31_nb_plate.png',
     image_status: 'generated_from_source',
     // 3D withheld — mesh 1 : 0.76 : 0.46 vs product 1 : 0.75 : 0.12, 34% off. หนาเกือบครึ่งของด้านยาว แต่สมุดหนาแค่ 3 ซม.
+    // Draft archived to .drafts/3d/, no longer served (original: business-01-smart-gift/comfy-3d-products/outputs/final/).
     // model3d_url: '/assets/smartgift/3d/PM-NB.glb',
     // model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/one31_nb.jpg',
@@ -99,6 +101,7 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
     image: '/assets/smartgift/plates/gmmtv_pb_plate.png',
     image_status: 'generated_from_source',
     // 3D withheld — mesh 1 : 0.85 : 0.40 vs product 1 : 0.65 : 0.15, 25% off. หนากว่าพาวเวอร์แบงก์จริง 2.7 เท่า
+    // Draft archived to .drafts/3d/, no longer served (original: business-01-smart-gift/comfy-3d-products/outputs/final/).
     // model3d_url: '/assets/smartgift/3d/PM-PB10K.glb',
     // model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/gmmtv_pb.jpg',
@@ -113,7 +116,7 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
     image: '/assets/smartgift/plates/one31_tmb_plate.png',
     image_status: 'generated_from_source',
     // Procedural model, built from dimensions_cm (6.5 x 6.5 x 23 cm) by scripts/build-procedural-3d.mjs:
-    // shape exact, lid proportions and finish schematic. Replaces the withheld TRELLIS draft (mesh 1 : 0.78 : 0.21, a flat slab).
+    // shape exact, lid proportions and finish schematic. Replaces the TRELLIS draft, archived in .drafts/3d/ (mesh 1 : 0.78 : 0.21, a flat slab).
     model3d_url: '/assets/smartgift/3d/procedural/PM-TMB.glb',
     model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/one31_tmb.jpg',
