@@ -3,6 +3,9 @@ dist
 .vercel
 *.log
 *.glb
+# Procedural models are ~100 KB, generated from SSOT dimensions by scripts/build-procedural-3d.mjs,
+# and must ship with the site — unlike the 38 MB TRELLIS drafts the rule above keeps out.
+!public/assets/smartgift/3d/procedural/*.glb
 
 
 # local env (brief intake endpoint, sales email) — never commit

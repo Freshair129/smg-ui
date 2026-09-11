@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand. Run: npm run build:catalog
  * Source: C:\Users\pc\workspace\business-01-smart-gift\data-pipeline\02_prepared\pricelist_master.json (schema 1.3.0b, run 2026-08-24T08-46-40-226Z)
- * Generated: 2026-09-10T22:44:01.853Z
+ * Generated: 2026-09-11T03:12:59.526Z
  * Core layer only: 16 PM singles + 6 core sets. Media is overlaid from coreMedia.ts.
  * The supplier layer lives in public/catalog/data/supplier-items.json; its counts are exported here so the UI can
  * advertise it before loading it.
@@ -13,7 +13,7 @@ export const SUPPLIER_LAYER_META = {
   "with_image": 1013,
   "priced": 106,
   "source_total": 1110,
-  "generated_at": "2026-09-10T22:44:01.853Z"
+  "generated_at": "2026-09-11T03:12:59.526Z"
 } as const
 
 export const CORE_ITEMS: CatalogItemSeed[] = [
@@ -185,9 +185,9 @@ export const CORE_ITEMS: CatalogItemSeed[] = [
     ],
     "moq": 10,
     "dimensions_cm": {
-      "length": 8,
-      "width": 8,
-      "height": 21
+      "length": 6.5,
+      "width": 6.5,
+      "height": 23
     },
     "unit_weight_kg": 0.35,
     "used_in": [

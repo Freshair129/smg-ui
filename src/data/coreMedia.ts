@@ -30,9 +30,10 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   'PM-BOTTLE-LED': {
     image: '/assets/smartgift/plates/ob_bottle_plate.png',
     image_status: 'generated_from_source',
-    // 3D withheld — mesh 1 : 0.73 : 0.62 vs product 1 : 0.30 : 0.30, 43% off. ป้อมกว่าของจริงมาก กระบอกน้ำเรียวสูง
-    // model3d_url: '/assets/smartgift/3d/PM-BOTTLE-LED.glb',
-    // model3d_status: 'draft',
+    // Procedural model, built from dimensions_cm (7 x 7 x 23 cm) by scripts/build-procedural-3d.mjs:
+    // shape exact, lid proportions and finish schematic. Replaces the withheld TRELLIS draft (mesh 1 : 0.73 : 0.62 vs product 1 : 0.30 : 0.30).
+    model3d_url: '/assets/smartgift/3d/procedural/PM-BOTTLE-LED.glb',
+    model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/ob_bottle.jpg',
     client_showcase: [
       { brand: 'One Bangkok', image: '/assets/smartgift/mockups/ob_bottle.jpg' },
@@ -42,9 +43,10 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
     lead_time_days: 7
   },
   'PM-CFMUG': {
-    // 3D withheld — mesh 1 : 0.79 : 0.63 vs product 1 : 0.62 : 0.62, 17% off. หน้าตัดไม่กลม ทั้งที่แก้วเป็นทรงกระบอก
-    // model3d_url: '/assets/smartgift/3d/PM-CFMUG.glb',
-    // model3d_status: 'draft',
+    // Procedural model, built from dimensions_cm (9 x 9 x 14.5 cm) by scripts/build-procedural-3d.mjs:
+    // shape exact, lid proportions and finish schematic. Replaces the withheld TRELLIS draft (mesh 1 : 0.79 : 0.63, cross-section not round).
+    model3d_url: '/assets/smartgift/3d/procedural/PM-CFMUG.glb',
+    model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/gmmtv_mug.jpg',
     client_showcase: [
       { brand: 'GMMTV', image: '/assets/smartgift/mockups/gmmtv_mug.jpg' },
@@ -110,12 +112,10 @@ export const CORE_MEDIA: Record<string, CoreMedia> = {
   'PM-TMB': {
     image: '/assets/smartgift/plates/one31_tmb_plate.png',
     image_status: 'generated_from_source',
-    // 3D withheld. The draft mesh is 1 : 0.78 : 0.21 — a flat slab — where the product measures
-    // 1 : 0.38 : 0.38, a round tumbler. TRELLIS was given a single photo of a near-featureless
-    // black cylinder, cropped at the base and still carrying the blue gift-box background, so it
-    // never saw the shape. The .glb stays on disk for whoever rebuilds it.
-    // model3d_url: '/assets/smartgift/3d/PM-TMB.glb',
-    // model3d_status: 'draft',
+    // Procedural model, built from dimensions_cm (6.5 x 6.5 x 23 cm) by scripts/build-procedural-3d.mjs:
+    // shape exact, lid proportions and finish schematic. Replaces the withheld TRELLIS draft (mesh 1 : 0.78 : 0.21, a flat slab).
+    model3d_url: '/assets/smartgift/3d/procedural/PM-TMB.glb',
+    model3d_status: 'draft',
     mockup_image: '/assets/smartgift/mockups/one31_tmb.jpg',
     client_showcase: [
       { brand: 'Starbucks', image: '/assets/smartgift/mockups/sbux_tmb.jpg' },
