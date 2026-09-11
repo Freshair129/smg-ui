@@ -276,7 +276,10 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
 
   const listRoute = route.axis === 'item' ? listRouteRef.current : route
   const filters = listRoute.filters
-  const supplierOn = filters?.supplier === '1'
+  // Supplier-catalogue items are shown by default (owner decision, 2026-09-11): with only the 20
+  // confirmed core items the catalogue looked empty. Their cards keep the "จากแคตตาล็อกผู้ผลิต"
+  // label; `?supplier=0` hides them.
+  const supplierOn = filters?.supplier !== '0'
   const brief = useMemo(() => briefOf(filters), [filters])
 
   // Search box: the draft is local; the committed query lives in the hash (?q=) after a short pause.
@@ -500,6 +503,8 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
   // ---- handlers ------------------------------------------------------------------
   const setView = (v: CatalogView) => navigate({ ...listRoute, view: v === 'grid' ? undefined : v })
   const toggleFilter = (key: string, on: boolean, value = '1') => navigate(withFilter(listRoute, key, on ? value : null))
+  // Supplier is on unless the hash says supplier=0, so "off" has to be written rather than removed.
+  const setSupplier = (on: boolean) => navigate(withFilter(listRoute, 'supplier', on ? null : '0'))
   const onQueryChange = (v: string) => {
     setQDraft(v)
     window.clearTimeout(qTimer.current)
@@ -776,7 +781,7 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
       {!supplierOn && !listRoute.partner && (
         <>
           {' — '}
-          <button className="bline-link-btn" onClick={() => toggleFilter('supplier', true)}>
+          <button className="bline-link-btn" onClick={() => setSupplier(true)}>
             ลองรวมแคตตาล็อกผู้ผลิต ({SUPPLIER_LAYER_META.count})
           </button>
         </>
@@ -789,7 +794,7 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
       <span>
         แคตตาล็อกผู้ผลิต: อีก <b>{SUPPLIER_LAYER_META.count}</b> รายการจาก {SUPPLIER_LAYER_META.source_total.toLocaleString('en-US')} (ภาพต้นฉบับ {SUPPLIER_LAYER_META.with_image} · ราคาอ้างอิง {SUPPLIER_LAYER_META.priced}) — ยังไม่ผ่านการยืนยันเป็นสินค้า core
       </span>
-      <button className="pill-btn" onClick={() => toggleFilter('supplier', true)}>แสดงรวม</button>
+      <button className="pill-btn" onClick={() => setSupplier(true)}>แสดงรวม</button>
     </div>
   )
 
@@ -941,7 +946,7 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
               </button>
               <button
                 className={`pill-btn ${supplierOn ? 'active' : ''}`}
-                onClick={() => toggleFilter('supplier', !supplierOn)}
+                onClick={() => setSupplier(!supplierOn)}
                 title="รวมรายการจากแคตตาล็อกผู้ผลิตที่มีภาพต้นฉบับหรือราคาอ้างอิง"
               >
                 แคตตาล็อกผู้ผลิต ({supplierCount})
