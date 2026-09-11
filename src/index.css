@@ -18,7 +18,70 @@
   --sg-font-body: "IBM Plex Sans Thai", "Inter Tight", Arial, sans-serif;
   --sg-font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 }
-.bline-section.light-theme { --sg-accent-ink: #BF4A10; --sg-accent-soft: rgba(226, 90, 25, 0.16); }
+/* ── Catalogue palette = SmartGift CI ──────────────────────────────────────────────────────────
+   Values come from src/ci-tokens.css, generated from the SSOT (business-01-smart-gift/tokens/
+   smartgift-color.tokens.json) by `npm run build:ci`. Scoped to .bline-section: the landing page keeps
+   the --sg-* values above for now. Owner decisions, 2026-09-11: catalogue + modal only, and the dark
+   ground is the CI's warm near-black (neutral.950) rather than its cocoa brown.
+   --sg-* are remapped so existing catalogue rules pick the CI up; --bl-* name the roles the modal and
+   cards need in both themes, so no rule has to hard-code a colour for one theme only. */
+.bline-section { --sg-orange: var(--ci-color-orange-500); }
+.bline-section.dark-theme {
+  --sg-charcoal: var(--ci-color-neutral-950);
+  --sg-charcoal-2: var(--ci-color-neutral-900);
+  --sg-ivory: var(--ci-color-neutral-100);
+  --sg-accent: var(--ci-color-orange-500);
+  --sg-on-accent: var(--ci-color-neutral-950);   /* white on orange.500 is only ~3:1 */
+  --sg-accent-ink: var(--ci-color-orange-400);
+  --sg-accent-soft: rgba(252, 98, 3, 0.16);      /* orange.500 */
+  --sg-brass: var(--ci-color-gold-400);
+  --sg-brass-dim: var(--ci-color-gold-600);
+  --bl-ground: var(--ci-color-neutral-950);
+  --bl-surface: var(--ci-color-neutral-900);
+  --bl-media: var(--ci-color-neutral-950);
+  --bl-glass: rgba(18, 16, 15, 0.86);            /* neutral.950 */
+  --bl-text: var(--ci-color-neutral-100);
+  --bl-text-2: var(--ci-color-neutral-300);
+  --bl-text-3: var(--ci-color-neutral-400);
+  --bl-line: rgba(249, 246, 243, 0.14);          /* neutral.100 */
+  --bl-line-strong: rgba(249, 246, 243, 0.28);
+  --bl-fill: rgba(249, 246, 243, 0.05);
+  --bl-fill-2: rgba(249, 246, 243, 0.1);
+  --bl-overlay: rgba(18, 16, 15, 0.72);
+  --bl-overlay-ink: var(--ci-color-neutral-100);
+  --bl-scrim: rgba(0, 0, 0, 0.8);
+  --bl-placeholder-a: var(--ci-color-neutral-900);
+  --bl-placeholder-b: var(--ci-color-neutral-950);
+  --bl-placeholder-ink: var(--ci-color-neutral-300);
+}
+.bline-section.light-theme {
+  --sg-stone: var(--ci-semantic-background-canvas);
+  --sg-ink: var(--ci-semantic-text-primary);
+  --sg-ivory: var(--ci-semantic-background-surface);
+  --sg-accent: var(--ci-semantic-action-primary-background);   /* orange.700, the CI's button orange */
+  --sg-on-accent: var(--ci-semantic-action-primary-foreground);
+  --sg-accent-ink: var(--ci-semantic-text-brand);
+  --sg-accent-soft: rgba(252, 98, 3, 0.12);
+  --sg-brass: var(--ci-semantic-brand-accent-strong);
+  --sg-brass-dim: var(--ci-color-gold-700);
+  --bl-ground: var(--ci-semantic-background-canvas);
+  --bl-surface: var(--ci-semantic-background-surface);
+  --bl-media: var(--ci-semantic-background-subtle);
+  --bl-glass: rgba(254, 254, 254, 0.9);          /* canvas */
+  --bl-text: var(--ci-semantic-text-primary);
+  --bl-text-2: var(--ci-semantic-text-secondary);
+  --bl-text-3: var(--ci-semantic-text-muted);
+  --bl-line: var(--ci-semantic-border-subtle);
+  --bl-line-strong: var(--ci-semantic-border-default);
+  --bl-fill: var(--ci-semantic-background-subtle);
+  --bl-fill-2: var(--ci-color-neutral-200);
+  --bl-overlay: rgba(255, 255, 255, 0.88);
+  --bl-overlay-ink: var(--ci-semantic-text-primary);
+  --bl-scrim: rgba(33, 30, 28, 0.45);            /* neutral.900 */
+  --bl-placeholder-a: var(--ci-color-neutral-100);
+  --bl-placeholder-b: var(--ci-color-neutral-200);
+  --bl-placeholder-ink: var(--ci-semantic-text-secondary);
+}
 
 :root { font-family: "Inter Tight", Arial, sans-serif; color: #fff; background: #fff; font-weight: 500; }
 * { box-sizing: border-box; }
@@ -535,7 +598,7 @@ header,
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background: #0a0a0a;
+  background: var(--ci-color-neutral-950);
   color: #fff;
   cursor: auto !important;
   overflow-x: hidden;
@@ -581,12 +644,12 @@ header,
   flex-wrap: wrap;
   gap: 16px;
   backdrop-filter: blur(16px);
-  background: rgba(22, 19, 15, 0.86);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bl-glass);
+  border-bottom: 1px solid var(--bl-line);
 }
 .light-theme .bline-nav {
-  background: rgba(239, 233, 222, 0.9);
-  border-bottom-color: rgba(0, 0, 0, 0.1);
+  background: var(--bl-glass);
+  border-bottom-color: var(--bl-line);
 }
 .bline-nav-left { display: flex; align-items: center; gap: 16px; }
 .bline-back-btn {
@@ -688,7 +751,7 @@ header,
   aspect-ratio: 4 / 3;
   width: 100%;
   overflow: hidden;
-  background: #0F0D0B;
+  background: var(--bl-media);
 }
 .bline-card-img {
   width: 100%;
@@ -712,7 +775,7 @@ header,
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(0,0,0,0.8);
+  background: var(--bl-scrim);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -722,10 +785,10 @@ header,
 .bline-modal-card {
   width: 100%;
   max-width: 800px;
-  background: #1D1812;
-  color: var(--sg-ivory);
+  background: var(--bl-surface);
+  color: var(--bl-text);
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid var(--bl-line);
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
@@ -737,9 +800,9 @@ header,
   top: 14px;
   right: 14px;
   z-index: 10;
-  background: rgba(255,255,255,0.1);
+  background: var(--bl-fill-2);
   border: none;
-  color: #fff;
+  color: var(--bl-text);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -764,7 +827,7 @@ header,
 .bline-modal-img-container {
   width: 100%;
   height: 100%;
-  background: #0F0D0B;
+  background: var(--bl-media);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -779,10 +842,10 @@ header,
   gap: 6px;
 }
 .bline-media-tab-btn {
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--bl-overlay);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ccc;
+  border: 1px solid var(--bl-line-strong);
+  color: var(--bl-overlay-ink);
   font-size: 10px;
   font-weight: 700;
   padding: 4px 10px;
@@ -793,7 +856,7 @@ header,
 .bline-media-tab-btn.active, .bline-media-tab-btn:hover {
   background: var(--sg-accent);
   border-color: var(--sg-accent);
-  color: #fff;
+  color: var(--sg-on-accent);
 }
 
 .bline-3d-wrapper {
@@ -807,12 +870,12 @@ header,
   bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--bl-overlay);
   backdrop-filter: blur(6px);
   padding: 4px 12px;
   border-radius: 12px;
   font-size: 10px;
-  color: #bbb;
+  color: var(--bl-text-2);
   pointer-events: none;
   white-space: nowrap;
 }
@@ -838,7 +901,7 @@ header,
 
 .bline-modal-th-name {
   font-size: 13px;
-  color: #94a3b8;
+  color: var(--bl-text-3);
   margin-top: -4px;
   margin-bottom: 10px;
   line-height: 1.4;
@@ -848,8 +911,8 @@ header,
   display: flex;
   gap: 12px;
   font-size: 11px;
-  color: #aaa;
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--bl-text-2);
+  background: var(--bl-fill);
   padding: 8px 12px;
   border-radius: 6px;
   margin-bottom: 16px;
@@ -858,8 +921,8 @@ header,
 
 /* B-Line Volume Pricing Calculator */
 .bline-calc-box {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bl-fill);
+  border: 1px solid var(--bl-line);
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 20px;
@@ -868,7 +931,7 @@ header,
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #888;
+  color: var(--bl-text-3);
   font-weight: 700;
   margin-bottom: 8px;
 }
@@ -879,9 +942,9 @@ header,
   margin-bottom: 12px;
 }
 .bline-calc-qty-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ddd;
+  background: var(--bl-fill-2);
+  border: 1px solid var(--bl-line-strong);
+  color: var(--bl-text-2);
   font-size: 11px;
   font-weight: 600;
   padding: 4px 10px;
@@ -890,31 +953,31 @@ header,
   transition: all 0.2s;
 }
 .bline-calc-qty-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: var(--bl-line-strong);
+  color: var(--bl-text);
 }
 .bline-calc-qty-btn.active {
   background: var(--sg-accent);
   border-color: var(--sg-accent);
-  color: #fff;
+  color: var(--sg-on-accent);
 }
 
 .bline-calc-result-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--bl-line);
   padding-top: 8px;
 }
 .bline-calc-sub {
   font-size: 10px;
-  color: #888;
+  color: var(--bl-text-3);
   display: block;
 }
 .bline-calc-unit {
   font-size: 14px;
   font-weight: 700;
-  color: #fff;
+  color: var(--bl-text);
 }
 .bline-calc-total {
   font-size: 16px;
@@ -923,9 +986,9 @@ header,
   margin-right: 6px;
 }
 .bline-calc-save-pill {
-  background: rgba(16, 185, 129, 0.2);
-  border: 1px solid #10b981;
-  color: #10b981;
+  background: var(--sg-accent-soft);
+  border: 1px solid var(--sg-accent);
+  color: var(--sg-accent-ink);
   font-size: 10px;
   font-weight: 800;
   padding: 1px 5px;
@@ -934,7 +997,7 @@ header,
 
 .bline-inquire-btn {
   background: var(--sg-accent);
-  color: #fff;
+  color: var(--sg-on-accent);
   border: none;
   padding: 12px 24px;
   border-radius: 8px;
@@ -2238,7 +2301,7 @@ header,
   cursor: pointer;
   transition: background 0.2s, opacity 0.2s;
 }
-.bline-lens-btn.active { background: var(--sg-accent); color: #fff; opacity: 1; }
+.bline-lens-btn.active { background: var(--sg-accent); color: var(--sg-on-accent); opacity: 1; }
 .bline-lens-btn:not(.active):hover { opacity: 1; }
 .bline-partner-link { font-style: italic; }
 .bline-nav-links { flex-wrap: wrap; }
@@ -2264,12 +2327,12 @@ header,
   align-items: center;
   justify-content: center;
   gap: 4px;
-  background: linear-gradient(160deg, #1d1a16, #0e0d0b);
-  color: #cfc6b8;
+  background: linear-gradient(160deg, var(--bl-placeholder-a), var(--bl-placeholder-b));
+  color: var(--bl-placeholder-ink);
   text-align: center;
   padding: 16px;
 }
-.light-theme .bline-card-placeholder { background: linear-gradient(160deg, #efe9de, #e0d8ca); color: #4a4238; }
+.light-theme .bline-card-placeholder { background: linear-gradient(160deg, var(--bl-placeholder-a), var(--bl-placeholder-b)); color: var(--bl-placeholder-ink); }
 .bline-card-placeholder span { font-size: 14px; font-weight: 600; }
 .bline-card-placeholder small { font-size: 11px; opacity: 0.6; }
 .bline-kind-tag, .bline-layer-tag {
@@ -2365,15 +2428,15 @@ header,
 .bline-modal-info { padding: 28px 26px; }
 .bline-modal-cat { font-size: 11px; letter-spacing: 0.4px; opacity: 0.65; display: block; margin-bottom: 8px; }
 .bline-modal-info h2 { margin: 0 0 6px; font-size: 22px; line-height: 1.25; }
-.bline-modal-desc { font-size: 13px; line-height: 1.6; color: #c8c8c8; margin: 0 0 14px; }
+.bline-modal-desc { font-size: 13px; line-height: 1.6; color: var(--bl-text-2); margin: 0 0 14px; }
 .bline-modal-branding { font-size: 12px; opacity: 0.8; }
-.bline-unverified { color: #94a3b8; font-size: 11px; }
+.bline-unverified { color: var(--bl-text-3); font-size: 11px; }
 .bline-chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .bline-chip {
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ddd;
+  border: 1px solid var(--bl-line-strong);
+  color: var(--bl-text-2);
   font-size: 11px;
   padding: 2px 8px;
   border-radius: 10px;
@@ -2382,9 +2445,9 @@ header,
 .bline-chip.mono { font-family: var(--sg-font-mono); }
 .bline-chip.is-tier { border-color: var(--sg-accent); color: var(--sg-accent-ink); }
 .bline-chip.is-link { cursor: pointer; }
-.bline-chip.is-link:hover { background: var(--sg-accent); border-color: var(--sg-accent); color: #fff; }
-.bline-calc-ladder { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 10px; font-size: 10px; color: #999; }
-.bline-calc-ladder b { color: #ddd; font-weight: 600; }
+.bline-chip.is-link:hover { background: var(--sg-accent); border-color: var(--sg-accent); color: var(--sg-on-accent); }
+.bline-calc-ladder { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 10px; font-size: 10px; color: var(--bl-text-3); }
+.bline-calc-ladder b { color: var(--bl-text); font-weight: 600; }
 .bline-used-in { margin-bottom: 16px; }
 .bline-img-caption {
   position: absolute;
@@ -2414,11 +2477,11 @@ header,
   grid-template-columns: 56px 1fr;
   gap: 12px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bl-fill);
+  border: 1px solid var(--bl-line);
   border-radius: 10px;
   padding: 8px;
-  color: #eee;
+  color: var(--bl-text);
   text-align: left;
   cursor: pointer;
 }
@@ -2429,12 +2492,12 @@ header,
   height: 56px;
   border-radius: 8px;
   object-fit: cover;
-  background: #1a1a1a;
+  background: var(--bl-media);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  color: #aaa;
+  color: var(--bl-text-3);
   text-align: center;
   padding: 4px;
 }
@@ -2519,21 +2582,21 @@ header,
 /* set composition chips on cards */
 .bline-card-chips { display: flex; flex-wrap: wrap; gap: 4px; padding: 0 16px 14px; margin-top: -6px; }
 .bline-card-chips .bline-chip { font-size: 10px; padding: 1px 7px; opacity: 0.85; }
-.light-theme .bline-chip { border-color: rgba(0, 0, 0, 0.2); color: #333; }
+.light-theme .bline-chip { border-color: var(--bl-line-strong); color: var(--bl-text-2); }
 .light-theme .bline-chip.is-tier { border-color: var(--sg-accent-ink); color: var(--sg-accent-ink); }
 
 /* modal: brief box + compact bom */
 .bline-modal-brief {
-  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border: 1px dashed var(--bl-line-strong);
   border-radius: 8px;
   padding: 10px 12px;
   margin-bottom: 14px;
   font-size: 12px;
   line-height: 1.6;
-  color: #ccc;
+  color: var(--bl-text-2);
 }
-.bline-modal-brief b { color: #fff; }
-.bline-modal-bom-line { font-size: 12px; color: #bbb; margin: -6px 0 14px; line-height: 1.6; }
+.bline-modal-brief b { color: var(--bl-text); }
+.bline-modal-bom-line { font-size: 12px; color: var(--bl-text-2); margin: -6px 0 14px; line-height: 1.6; }
 .bline-modal-bom-line button {
   background: none;
   border: 0;
@@ -2546,15 +2609,15 @@ header,
 .bline-modal-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .bline-copy-btn {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ddd;
+  border: 1px solid var(--bl-line-strong);
+  color: var(--bl-text-2);
   padding: 11px 16px;
   border-radius: 8px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
 }
-.bline-copy-btn:hover { border-color: #fff; color: #fff; }
+.bline-copy-btn:hover { border-color: var(--bl-text); color: var(--bl-text); }
 
 @media (max-width: 767px) {
   .bline-brief-row { grid-template-columns: 1fr; }
@@ -2609,8 +2672,8 @@ header,
   font-size: 12px;
 }
 .light-theme .bline-supplier-banner { border-color: rgba(0, 0, 0, 0.18); }
-.bline-calc-note { font-size: 10px; color: #999; margin-top: 8px; }
-.bline-calc-note-warn { color: #d98324; }
+.bline-calc-note { font-size: 10px; color: var(--bl-text-3); margin-top: 8px; }
+.bline-calc-note-warn { color: var(--sg-brass); }
 .bline-link-btn {
   background: none;
   border: 0;
@@ -2705,7 +2768,7 @@ header,
   font-size: 13px;
 }
 .light-theme .bline-submit { border-color: rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.02); }
-.bline-modal-info .bline-submit { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.15); color: #eee; }
+.bline-modal-info .bline-submit { background: var(--bl-fill); border-color: var(--bl-line-strong); color: var(--bl-text); }
 .bline-submit-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
 .bline-submit-channel { font-size: 11px; opacity: 0.65; }
 .bline-submit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -2789,3 +2852,7 @@ header,
   .home-story-heading { padding-bottom: 16px; }
   .home-story-chapter .bp-card:last-child:nth-child(4) { grid-column: 1 / -1; width: 75%; justify-self: center; }
 }
+
+/* The page wrapper sits outside .bline-section, so it cannot read the catalogue's variables; follow the
+   theme from here so no dark band shows under a light catalogue. */
+.bline-page-wrapper:has(.bline-section.light-theme) { background: var(--ci-semantic-background-canvas); }
