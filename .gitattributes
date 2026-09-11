@@ -1,0 +1,10 @@
+# Generated catalogue data is parsed by scripts/check-3d-proportions.mjs and
+# scripts/build-procedural-3d.mjs, and rebuilt by `npm run build:catalog`. Keep it LF in every
+# checkout whatever core.autocrlf says: a CRLF checkout on Windows once broke both scripts
+# (they now tolerate it, #5), and LF keeps rebuild diffs to real changes only.
+src/data/catalogItems.generated.ts       text eol=lf
+public/catalog/data/supplier-items.json  text eol=lf
+
+# Procedural 3D models are committed (public/assets/smartgift/3d/procedural/). Never convert or
+# text-diff them.
+*.glb binary
