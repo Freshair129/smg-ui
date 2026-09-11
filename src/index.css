@@ -56,7 +56,7 @@
 }
 .bline-section.light-theme {
   --sg-stone: var(--ci-semantic-background-canvas);
-  --sg-ink: var(--ci-semantic-text-primary);
+  --sg-ink: var(--ci-color-neutral-900);   /* owner 2026-09-11: neutral text, not cocoa */
   --sg-ivory: var(--ci-semantic-background-surface);
   --sg-accent: var(--ci-semantic-action-primary-background);   /* orange.700, the CI's button orange */
   --sg-on-accent: var(--ci-semantic-action-primary-foreground);
@@ -68,19 +68,19 @@
   --bl-surface: var(--ci-semantic-background-surface);
   --bl-media: var(--ci-semantic-background-subtle);
   --bl-glass: rgba(254, 254, 254, 0.9);          /* canvas */
-  --bl-text: var(--ci-semantic-text-primary);
-  --bl-text-2: var(--ci-semantic-text-secondary);
+  --bl-text: var(--ci-color-neutral-900);
+  --bl-text-2: var(--ci-color-neutral-600);
   --bl-text-3: var(--ci-semantic-text-muted);
   --bl-line: var(--ci-semantic-border-subtle);
   --bl-line-strong: var(--ci-semantic-border-default);
   --bl-fill: var(--ci-semantic-background-subtle);
   --bl-fill-2: var(--ci-color-neutral-200);
   --bl-overlay: rgba(255, 255, 255, 0.88);
-  --bl-overlay-ink: var(--ci-semantic-text-primary);
+  --bl-overlay-ink: var(--ci-color-neutral-900);
   --bl-scrim: rgba(33, 30, 28, 0.45);            /* neutral.900 */
   --bl-placeholder-a: var(--ci-color-neutral-100);
   --bl-placeholder-b: var(--ci-color-neutral-200);
-  --bl-placeholder-ink: var(--ci-semantic-text-secondary);
+  --bl-placeholder-ink: var(--ci-color-neutral-600);
 }
 
 :root { font-family: "Inter Tight", Arial, sans-serif; color: #fff; background: #fff; font-weight: 500; }
