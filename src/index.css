@@ -2610,6 +2610,7 @@ header,
 }
 .light-theme .bline-supplier-banner { border-color: rgba(0, 0, 0, 0.18); }
 .bline-calc-note { font-size: 10px; color: #999; margin-top: 8px; }
+.bline-calc-note-warn { color: #d98324; }
 .bline-link-btn {
   background: none;
   border: 0;

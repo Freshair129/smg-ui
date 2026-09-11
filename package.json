@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "refresh:catalog": "node scripts/refresh-catalog.mjs",
-    "build:catalog": "node scripts/build-catalog-items.mjs"
+    "build:catalog": "node scripts/build-catalog-items.mjs",
+    "check:3d": "node scripts/check-3d-proportions.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
