@@ -102,9 +102,13 @@ export default function App() {
   useGSAP(() => {
     if (!root.current || !wrap.current) return
     const refresh = () => {
+      // Runs again on every resize, long after the guard above — by then either ref can be null.
+      const wrapEl = wrap.current
+      const rootEl = root.current
+      if (!wrapEl || !rootEl) return
       const vh = innerHeight
-      const maxScroll = Math.max(0, wrap.current!.scrollHeight - vh)
-      root.current!.style.height = `${vh + maxScroll + 2 * vh}px`
+      const maxScroll = Math.max(0, wrapEl.scrollHeight - vh)
+      rootEl.style.height = `${vh + maxScroll + 2 * vh}px`
     }
     refresh()
     const resize = () => { refresh(); ScrollTrigger.refresh() }
