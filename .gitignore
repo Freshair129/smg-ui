@@ -12,3 +12,6 @@ dist
 .env
 .env.local
 .env.*.local
+
+# funnel monitor state and log (scripts/monitor-funnel.ps1)
+.monitor/
