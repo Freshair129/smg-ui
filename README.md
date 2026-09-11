@@ -4,17 +4,17 @@ The SmartGift web front end. Everything the site serves lives in this repo.
 
 ```
 src/                    Vite + React landing (hero, videos, archive gallery)
-public/catalog/         the customer catalog — a self-contained page, no build step
+public/catalog/         catalogue data and images the app loads; /catalog/ itself forwards to /#catalog
 public/logo-smg.jpg     brand mark
 Dockerfile              node build -> nginx, the way it is deployed
 ```
 
-Two pages, one container:
+Two views, one container:
 
 | path | what |
 |---|---|
 | `/` | landing |
-| `/catalog/` | catalog |
+| `/#catalog` | catalog (`/catalog/` forwards here) |
 
 ## Develop
 
@@ -23,7 +23,7 @@ npm install
 npm run dev            # authoring tools are on automatically
 ```
 
-`npm run dev` serves `public/` too, so `/catalog/` works the same as in production.
+`npm run dev` serves `public/` too, so `/catalog/data/` and `/catalog/assets/` work the same as in production.
 
 ## Build and run
 
@@ -74,14 +74,16 @@ static bundle a password would ship readable in the JavaScript anyway.
 
 ## Catalog data
 
-The catalog page is edited here like any other source. Only the JSON under
-`public/catalog/data/` has an upstream — the SmartGift pricing pipeline
-regenerates it — so pull a fresh copy when that runs:
+The catalogue is built from the SmartGift pipeline repo (`../business-01-smart-gift`):
 
 ```bash
-npm run refresh:catalog
-# or, if the pipeline repo is elsewhere:
-npm run refresh:catalog -- --from ../path/to/business-01-smart-gift
+npm run build:catalog   # src/data/catalogItems.generated.ts + public/catalog/data/supplier-items.json
+npm run build:3d        # dimension-accurate models for the round products
+npm run check:3d        # gate every published 3D model against its product's dimensions
 ```
 
-Review the diff before committing; it overwrites in place.
+Review the diff before committing; both rewrite in place.
+
+The standalone customer catalogue that used to live at `/catalog/` was retired on 2026-09-11 in
+favour of `/#catalog`; `/catalog/` now forwards there. `npm run refresh:catalog` copied that page's
+data and nothing in the app reads it any more.
