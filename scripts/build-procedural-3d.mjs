@@ -186,7 +186,7 @@ function toGlb(name, parts, extras) {
 }
 
 const generated = await readFile(GENERATED, 'utf8')
-const items = JSON.parse(generated.match(/export const CORE_ITEMS: CatalogItemSeed\[\] = (\[[\s\S]*?\n\])\n/)[1])
+const items = JSON.parse(generated.match(/export const CORE_ITEMS: CatalogItemSeed\[\] = (\[[\s\S]*?\r?\n\])\r?\n/)[1])
 const byCode = Object.fromEntries(items.map(i => [i.code, i]))
 await mkdir(OUT_DIR, { recursive: true })
 
