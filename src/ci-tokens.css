@@ -1,0 +1,86 @@
+/* GENERATED FILE — do not edit by hand. Run: npm run build:ci
+ * Source: business-01-smart-gift/tokens/smartgift-color.tokens.json (sha256 363e26a26747…)
+ * SmartGift CI colours, sampled from the logo. The catalogue (.bline-section) maps its palette onto
+ * these; the landing page keeps its own palette for now.
+ */
+:root {
+  --ci-color-orange-50: #FFF4EB;
+  --ci-color-orange-100: #FFE5D1;
+  --ci-color-orange-200: #FFC69E;
+  --ci-color-orange-300: #FFA161;
+  --ci-color-orange-400: #FF7B28;
+  --ci-color-orange-500: #FC6203;
+  --ci-color-orange-600: #D94E00;
+  --ci-color-orange-700: #AD3C00;
+  --ci-color-orange-800: #842F05;
+  --ci-color-orange-900: #642608;
+  --ci-color-orange-950: #361104;
+  --ci-color-gold-50: #FCF8EB;
+  --ci-color-gold-100: #F7EDC8;
+  --ci-color-gold-200: #EEDC92;
+  --ci-color-gold-300: #E4C65D;
+  --ci-color-gold-400: #D99F48;
+  --ci-color-gold-500: #C78A25;
+  --ci-color-gold-600: #A96B19;
+  --ci-color-gold-700: #875016;
+  --ci-color-gold-800: #6E4018;
+  --ci-color-gold-900: #5D3519;
+  --ci-color-gold-950: #351B0B;
+  --ci-color-cocoa-50: #F7F5F3;
+  --ci-color-cocoa-100: #ECE8E4;
+  --ci-color-cocoa-200: #D9D0C9;
+  --ci-color-cocoa-300: #BBAEA3;
+  --ci-color-cocoa-400: #968475;
+  --ci-color-cocoa-500: #786453;
+  --ci-color-cocoa-600: #685544;
+  --ci-color-cocoa-700: #574638;
+  --ci-color-cocoa-800: #493B30;
+  --ci-color-cocoa-900: #3E332A;
+  --ci-color-cocoa-950: #211A15;
+  --ci-color-neutral-0: #FFFFFF;
+  --ci-color-neutral-50: #FEFEFE;
+  --ci-color-neutral-100: #F9F6F3;
+  --ci-color-neutral-200: #EEE9E4;
+  --ci-color-neutral-300: #D9D2CC;
+  --ci-color-neutral-400: #AAA099;
+  --ci-color-neutral-500: #7A7069;
+  --ci-color-neutral-600: #5F5650;
+  --ci-color-neutral-700: #48413C;
+  --ci-color-neutral-800: #302C29;
+  --ci-color-neutral-900: #211E1C;
+  --ci-color-neutral-950: #12100F;
+  --ci-semantic-brand-primary: #FC6203;  /* {color.orange.500} */
+  --ci-semantic-brand-primary-hover: #D94E00;  /* {color.orange.600} */
+  --ci-semantic-brand-primary-active: #AD3C00;  /* {color.orange.700} */
+  --ci-semantic-brand-accent: #D99F48;  /* {color.gold.400} */
+  --ci-semantic-brand-accent-strong: #A96B19;  /* {color.gold.600} */
+  --ci-semantic-brand-signature-dark: #685544;  /* {color.cocoa.600} */
+  --ci-semantic-background-canvas: #FEFEFE;  /* {color.neutral.50} */
+  --ci-semantic-background-surface: #FFFFFF;  /* {color.neutral.0} */
+  --ci-semantic-background-subtle: #F9F6F3;  /* {color.neutral.100} */
+  --ci-semantic-background-brand-subtle: #FFF4EB;  /* {color.orange.50} */
+  --ci-semantic-background-inverse: #3E332A;  /* {color.cocoa.900} */
+  --ci-semantic-text-primary: #3E332A;  /* {color.cocoa.900} */
+  --ci-semantic-text-secondary: #685544;  /* {color.cocoa.600} */
+  --ci-semantic-text-muted: #7A7069;  /* {color.neutral.500} */
+  --ci-semantic-text-brand: #AD3C00;  /* {color.orange.700} */
+  --ci-semantic-text-on-brand: #FFFFFF;  /* {color.neutral.0} */
+  --ci-semantic-text-inverse: #FFFFFF;  /* {color.neutral.0} */
+  --ci-semantic-icon-default: #685544;  /* {color.cocoa.600} */
+  --ci-semantic-icon-brand: #FC6203;  /* {color.orange.500} */
+  --ci-semantic-icon-accent: #C78A25;  /* {color.gold.500} */
+  --ci-semantic-icon-on-brand: #FFFFFF;  /* {color.neutral.0} */
+  --ci-semantic-border-subtle: #EEE9E4;  /* {color.neutral.200} */
+  --ci-semantic-border-default: #D9D2CC;  /* {color.neutral.300} */
+  --ci-semantic-border-strong: #968475;  /* {color.cocoa.400} */
+  --ci-semantic-border-brand: #FC6203;  /* {color.orange.500} */
+  --ci-semantic-border-focus: #AD3C00;  /* {color.orange.700} */
+  --ci-semantic-action-primary-background: #AD3C00;  /* {color.orange.700} */
+  --ci-semantic-action-primary-background-hover: #842F05;  /* {color.orange.800} */
+  --ci-semantic-action-primary-foreground: #FFFFFF;  /* {color.neutral.0} */
+  --ci-semantic-action-secondary-background: #FFFFFF;  /* {color.neutral.0} */
+  --ci-semantic-action-secondary-foreground: #574638;  /* {color.cocoa.700} */
+  --ci-semantic-action-secondary-border: #968475;  /* {color.cocoa.400} */
+  --ci-semantic-action-disabled-background: #EEE9E4;  /* {color.neutral.200} */
+  --ci-semantic-action-disabled-foreground: #7A7069;  /* {color.neutral.500} */
+}

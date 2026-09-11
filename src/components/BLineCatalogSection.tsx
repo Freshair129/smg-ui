@@ -1102,7 +1102,7 @@ export const BLineCatalogSection: React.FC<SectionProps> = ({ onBackToArchive, s
                     shadow-intensity="1"
                     shadow-softness="0.8"
                     exposure="1.1"
-                    style={{ width: '100%', height: '100%', minHeight: '380px', backgroundColor: '#000' }}
+                    style={{ width: '100%', height: '100%', minHeight: '380px', backgroundColor: 'transparent' }}
                   />
                   <div className="bline-3d-hint">
                     {selected.model3d_status === 'draft' ? 'Digital twin (draft) · ' : ''}360° drag to rotate & scroll to zoom
