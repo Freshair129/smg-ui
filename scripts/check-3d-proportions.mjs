@@ -56,7 +56,7 @@ const ratios = sides => {
 }
 
 const generated = await readFile(GENERATED, 'utf8')
-const items = JSON.parse(generated.match(/export const CORE_ITEMS: CatalogItemSeed\[\] = (\[[\s\S]*?\n\])\n/)[1])
+const items = JSON.parse(generated.match(/export const CORE_ITEMS: CatalogItemSeed\[\] = (\[[\s\S]*?\r?\n\])\r?\n/)[1])
 const dims = Object.fromEntries(items.filter(i => i.dimensions_cm).map(i => [i.code, i.dimensions_cm]))
 
 // Which models the site publishes, by URL — a commented-out line is withheld. Keyed by URL, not
