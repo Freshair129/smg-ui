@@ -1,5 +1,5 @@
 /* GENERATED FILE — do not edit by hand. Run: npm run build:ci
- * Source: business-01-smart-gift/tokens/smartgift-color.tokens.json (sha256 363e26a26747…)
+ * Source: business-01-smart-gift/tokens/smartgift-color.tokens.json (sha256 bf9356d6cc81…)
  * SmartGift CI colours, sampled from the logo. The catalogue (.bline-section) maps its palette onto
  * these; the landing page keeps its own palette for now.
  */
@@ -60,8 +60,8 @@
   --ci-semantic-background-subtle: #F9F6F3;  /* {color.neutral.100} */
   --ci-semantic-background-brand-subtle: #FFF4EB;  /* {color.orange.50} */
   --ci-semantic-background-inverse: #3E332A;  /* {color.cocoa.900} */
-  --ci-semantic-text-primary: #3E332A;  /* {color.cocoa.900} */
-  --ci-semantic-text-secondary: #685544;  /* {color.cocoa.600} */
+  --ci-semantic-text-primary: #211E1C;  /* {color.neutral.900} */
+  --ci-semantic-text-secondary: #5F5650;  /* {color.neutral.600} */
   --ci-semantic-text-muted: #7A7069;  /* {color.neutral.500} */
   --ci-semantic-text-brand: #AD3C00;  /* {color.orange.700} */
   --ci-semantic-text-on-brand: #FFFFFF;  /* {color.neutral.0} */
