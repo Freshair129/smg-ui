@@ -3,3 +3,5 @@ dist
 .git
 .gitignore
 *.log
+# withheld 3D drafts, kept locally for rebuilding; never shipped
+.drafts

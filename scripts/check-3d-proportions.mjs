@@ -65,22 +65,26 @@ const dims = Object.fromEntries(items.filter(i => i.dimensions_cm).map(i => [i.c
 const media = await readFile(CORE_MEDIA, 'utf8')
 const published = new Set([...media.matchAll(/^\s*model3d_url:\s*'([^']+\.glb)'/gm)].map(m => m[1]))
 
-const listGlb = async (dir, prefix) => existsSync(dir)
+// Withheld drafts live outside public/ so they are never served or shipped; still reported here.
+const ARCHIVE_DIR = join(repo, '.drafts', '3d')
+
+const listGlb = async (dir, prefix, archived = false) => existsSync(dir)
   ? (await readdir(dir)).filter(f => f.endsWith('.glb'))
-      .map(f => ({ code: basename(f, '.glb'), file: join(dir, f), url: `${prefix}${f}` }))
+      .map(f => ({ code: basename(f, '.glb'), file: join(dir, f), url: prefix ? `${prefix}${f}` : null, archived }))
   : []
 
 const [argCode, argFile] = process.argv.slice(2)
 const targets = argCode && argFile
-  ? [{ code: argCode, file: argFile, url: null }]
+  ? [{ code: argCode, file: argFile, url: null, archived: false }]
   : [...await listGlb(MODEL_DIR, '/assets/smartgift/3d/'),
-     ...await listGlb(join(MODEL_DIR, 'procedural'), '/assets/smartgift/3d/procedural/')]
+     ...await listGlb(join(MODEL_DIR, 'procedural'), '/assets/smartgift/3d/procedural/'),
+     ...await listGlb(ARCHIVE_DIR, null, true)]
 
 const W = 26
 let failures = 0
 console.log(`${'model'.padEnd(W)}${'mesh'.padEnd(22)}${'product'.padEnd(22)}${'off'.padEnd(8)}status`)
-for (const { code, file, url } of targets) {
-  const label = url ? url.replace('/assets/smartgift/3d/', '').replace(/\.glb$/, '') : code
+for (const { code, file, url, archived } of targets) {
+  const label = archived ? `.drafts/${code}` : url ? url.replace('/assets/smartgift/3d/', '').replace(/\.glb$/, '') : code
   if (!existsSync(file)) { console.log(`${label.padEnd(W)}missing file`); failures++; continue }
   const dim = dims[code]
   if (!dim) { console.log(`${label.padEnd(W)}${'-'.padEnd(44)}${'-'.padEnd(8)}no dimensions in the SSOT — cannot check`); continue }
@@ -88,12 +92,24 @@ for (const { code, file, url } of targets) {
   const want = ratios([dim.length, dim.width, dim.height])
   const off = Math.max(...mesh.map((v, i) => Math.abs(v - want[i])))
   const ok = off <= TOLERANCE
-  const live = url === null ? null : published.has(url)
-  const state = live === null ? (ok ? 'pass (candidate)' : 'FAIL (candidate)')
+  const live = archived ? false : url === null ? null : published.has(url)
+  const state = archived ? (ok ? 'pass (archived)' : 'fail (archived)')
+    : live === null ? (ok ? 'pass (candidate)' : 'FAIL (candidate)')
     : live ? (ok ? 'PASS' : 'FAIL — published') : (ok ? 'pass (withheld)' : 'fail (withheld)')
   if (!ok && live !== false) failures++
   const fmt = r => r.map(v => v.toFixed(2)).join(' : ')
   console.log(`${label.padEnd(W)}${fmt(mesh).padEnd(22)}${fmt(want).padEnd(22)}${`${Math.round(off * 100)}%`.padEnd(8)}${state}`)
+}
+
+// A published URL must resolve to a file the site actually serves. Un-commenting an archived
+// draft without moving it back into public/ would otherwise 404 with nothing to say why.
+if (!argFile) {
+  for (const url of published) {
+    if (!existsSync(join(repo, 'public', ...url.split('/').filter(Boolean)))) {
+      console.log(`${url.padEnd(W)} published but not in public/ — would 404`)
+      failures++
+    }
+  }
 }
 console.log(`\ntolerance ${Math.round(TOLERANCE * 100)}% · failing (published or candidate): ${failures}`)
 process.exit(failures ? 1 : 0)
