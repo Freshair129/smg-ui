@@ -475,12 +475,17 @@ for (const o of pricelist.catalog_offers) {
 // row and drop the factory row. Only a doubled hyphen counts: a trailing letter (TBX-1-2A, FXD04-0N)
 // is often a different set or edition, so those stay separate. A row with its own ladder is never
 // merged away.
+// Pairs the owner confirmed by eye as one product, where the codes give no rule to go by: the
+// factory catalogue lists TBH02-3A (photo, no ladder) and FlowAccount TBH02-3 (ladder, no photo) with
+// the same three items. Confirmed 2026-09-12; the photo shows the red colourway.
+const CONFIRMED_SAME_OFFER = { 'TBH02-3A': 'TBH02-3' }
+
 const mergedSpellings = []
 {
   const byCode = new Map(supplierItems.map(i => [i.code, i]))
   const FILL = ['image', 'image_status', 'name_en', 'contains', 'colors', 'description_th', 'branding']
   for (const typo of [...supplierItems]) {
-    const code = typo.code.replace(/-{2,}/g, '-')
+    const code = CONFIRMED_SAME_OFFER[typo.code] ?? typo.code.replace(/-{2,}/g, '-')
     const keep = code !== typo.code && byCode.get(code)
     if (!keep || typo.price_tiers) continue
     const filled = []
@@ -634,7 +639,7 @@ if (offBreakSupplier.length) {
 }
 
 if (mergedSpellings.length) {
-  console.log(`merged spellings ${mergedSpellings.length}  (doubled hyphen = the same offer code)`)
+  console.log(`merged spellings ${mergedSpellings.length}  (doubled hyphen, or a pair the owner confirmed)`)
   for (const d of mergedSpellings) console.log(`  ${d.code} -> ${d.into}  filled: ${d.filled.join(', ') || '-'}`)
 }
 if (mergedDuplicates.length) {
