@@ -557,18 +557,18 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
   { slug: 'briefcase', name_th: 'กระเป๋าเอกสาร', name_en: 'Briefcase', standard_category: 'bags-travel', source_group: 'office', aliases_th: [], aliases_en: ['briefcase'] },
   { slug: 'umbrella', name_th: 'ร่ม', name_en: 'Umbrella', standard_category: 'bags-travel', source_group: 'home_travel', aliases_th: ['ร่มพับ'], aliases_en: ['umbrella'] },
   // wellness-personal-care
-  { slug: 'neck_massager', name_th: 'เครื่องนวดคอ', name_en: 'Neck massager', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ที่นวดคอ'], aliases_en: ['neck massager'] },
+  { slug: 'neck_massager', name_th: 'เครื่องนวดคอ', name_en: 'Neck massager', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ที่นวดคอ'], aliases_en: ['neck massager', 'neck massger'] }   // 'neck massger' is how the factory file spells it in TTT2162,
   { slug: 'massage_gun', name_th: 'ปืนนวด', name_en: 'Massage gun', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['massage gun'] },
   { slug: 'massage_comb', name_th: 'หวีนวด', name_en: 'Massage comb', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['massage comb'] },
   { slug: 'fan', name_th: 'พัดลมพกพา', name_en: 'Fan', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['พัดลม'], aliases_en: ['fan'] },
   { slug: 'hair_dryer', name_th: 'ไดร์เป่าผม', name_en: 'Hair dryer', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ไดร์'], aliases_en: ['hair dryer'] },
   { slug: 'humidifier', name_th: 'เครื่องทำความชื้น', name_en: 'Humidifier', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['เครื่องเพิ่มความชื้น'], aliases_en: ['humidifier'] },
   { slug: 'aroma_diffuser', name_th: 'เครื่องกระจายกลิ่น', name_en: 'Aroma diffuser', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['อโรมา'], aliases_en: ['aroma', 'diffuser'] },
-  { slug: 'nail_clipper', name_th: 'กรรไกรตัดเล็บ', name_en: 'Nail clipper', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ที่ตัดเล็บ'], aliases_en: ['nail clipper'] },
+  { slug: 'nail_clipper', name_th: 'กรรไกรตัดเล็บ', name_en: 'Nail clipper', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ที่ตัดเล็บ', 'เครื่องตัดเล็บ'], aliases_en: ['nail clipper'] },
   { slug: 'towel', name_th: 'ผ้าเช็ดตัว', name_en: 'Towel', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ผ้าขนหนู'], aliases_en: ['towel'] },
   { slug: 'glove', name_th: 'ถุงมือ', name_en: 'Glove', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['glove'] },
   // home-living
-  { slug: 'coffee_maker', name_th: 'เครื่องชงกาแฟ', name_en: 'Coffee maker', standard_category: 'home-living', source_group: 'home_travel', aliases_th: ['ดริปกาแฟ', 'ชุดดริปกาแฟ', 'ที่ดริปกาแฟ'], aliases_en: ['coffee maker', 'pour-over'] },
+  { slug: 'coffee_maker', name_th: 'เครื่องชงกาแฟ', name_en: 'Coffee maker', standard_category: 'home-living', source_group: 'home_travel', aliases_th: ['ดริปกาแฟ', 'ชุดดริปกาแฟ', 'ที่ดริปกาแฟ', 'หม้อต้มกาแฟ'], aliases_en: ['coffee maker', 'pour-over', 'moka pot'] },
   { slug: 'cutlery', name_th: 'ชุดช้อนส้อมพกพา', name_en: 'Cutlery set', standard_category: 'home-living', source_group: 'home_travel', aliases_th: ['ช้อนส้อม'], aliases_en: ['cutlery'] }
 ]
 
