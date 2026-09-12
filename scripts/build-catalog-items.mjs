@@ -481,8 +481,14 @@ for (const o of pricelist.catalog_offers) {
 //   TBH02-3A  vacuum cup + neck massager + earphones, photo is the red colourway
 //   TBJ03-3A  vacuum cup + neck massager + smart bracelet, orange cup against the black one
 //   TYG00-2A  humidifier + mug, red against blue/cream
-// TBT02-8 / TBT02-8A stay separate: same eight items listed, but the photos differ by more than colour.
-const CONFIRMED_SAME_OFFER = { 'TBH02-3A': 'TBH02-3', 'TBJ03-3A': 'TBJ03-3', 'TYG00-2A': 'TYG00-2' }
+//   TBT02-8A  the same eight-piece office set, shot as a flat lay where TBT02-8 is shot with its
+//             gift bag and box; confirmed one product by the owner on 2026-09-12
+const CONFIRMED_SAME_OFFER = {
+  'TBH02-3A': 'TBH02-3',
+  'TBJ03-3A': 'TBJ03-3',
+  'TYG00-2A': 'TYG00-2',
+  'TBT02-8A': 'TBT02-8'
+}
 
 const mergedSpellings = []
 {

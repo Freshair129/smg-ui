@@ -1,12 +1,12 @@
 {
  "schema": "smartgift-catalog-items/1",
- "generated_at": "2026-09-12T04:47:27.285Z",
+ "generated_at": "2026-09-12T06:26:33.027Z",
  "source": {
   "file": "data-pipeline/02_prepared/pricelist_master.json",
   "schema_version": "1.3.0b",
   "run_id": "2026-08-24T08-46-40-226Z",
   "catalog_offers_total": 1110,
-  "public_eligible": 1051
+  "public_eligible": 1050
  },
  "disclaimer_th": "รายการจากแคตตาล็อกผู้ผลิต ยังไม่ผ่านการยืนยันเป็นสินค้า core ราคา (ถ้ามี) เป็นราคาอ้างอิงตามขั้นจำนวน โปรดยืนยันก่อนเสนอราคา",
  "items": [
@@ -10819,82 +10819,10 @@
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TBT02-8"
-   }
-  },
-  {
-   "id": "offer:TBT02-8A",
-   "code": "TBT02-8A",
-   "kind": "set",
-   "layer": "supplier",
-   "name_th": "แก้วเก็บอุณหภูมิ พร้อม แฟลชไดรฟ์ USB พร้อม sign ปากกา พร้อม พาวเวอร์แบงก์ พร้อม bookmark พร้อม name card holder พร้อม key chain พร้อม mouse",
-   "name_en": "Vacuum cup + USB flash drive + sign pen + power bank + bookmark + name card holder + key chain + mouse",
-   "families": [
-    "name_card_holder",
-    "mouse",
-    "pen",
-    "usb_flash_drive",
-    "bookmark",
-    "power_bank",
-    "drinkware",
-    "key_chain"
-   ],
-   "price_status": "ask_for_quote",
-   "contains": [
-    {
-     "product_code": "PRODUCT_15A21FF02931F9E07A4F",
-     "qty": 1,
-     "name_th": "Name Card Holder"
-    },
-    {
-     "product_code": "PRODUCT_1BECFFA30224E01647D7",
-     "qty": 1,
-     "name_th": "Mouse"
-    },
-    {
-     "product_code": "PRODUCT_379C69ABBFADC1B8FB07",
-     "qty": 1,
-     "name_th": "Sign Pen"
-    },
-    {
-     "product_code": "PRODUCT_892DB5C2A389BBB8073C",
-     "qty": 1,
-     "name_th": "Usb Flash Drive"
-    },
-    {
-     "product_code": "PRODUCT_9D322A9AA11B83236BE4",
-     "qty": 1,
-     "name_th": "Bookmark"
-    },
-    {
-     "product_code": "PRODUCT_C33D650150BDCEFA1A3D",
-     "qty": 1,
-     "name_th": "Power Bank"
-    },
-    {
-     "product_code": "PRODUCT_FCCBC60BE023C516FD0B",
-     "qty": 1,
-     "name_th": "Vacuum Cup"
-    },
-    {
-     "product_code": "PRODUCT_FF840905A18A650B7FA5",
-     "qty": 1,
-     "name_th": "Key Chain"
-    }
-   ],
-   "image": "/catalog/assets/catalog-media/source-offer-TBT02-8A.jpg",
-   "image_status": "source_verified",
-   "description_th": "Vacuum cup: 450ml, 304 stainless steel liner, temperature display • USB flash drive: 32G, dual-use for Type-C phone and PC • Colors: Black, red, gold, blue",
-   "colors": [
-    "Black",
-    "red",
-    "gold",
-    "blue"
-   ],
-   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TBT02-8A"
+    "source_key": "TBT02-8",
+    "merged_codes": [
+     "TBT02-8A"
+    ]
    }
   },
   {
