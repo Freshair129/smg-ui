@@ -475,10 +475,14 @@ for (const o of pricelist.catalog_offers) {
 // row and drop the factory row. Only a doubled hyphen counts: a trailing letter (TBX-1-2A, FXD04-0N)
 // is often a different set or edition, so those stay separate. A row with its own ladder is never
 // merged away.
-// Pairs the owner confirmed by eye as one product, where the codes give no rule to go by: the
-// factory catalogue lists TBH02-3A (photo, no ladder) and FlowAccount TBH02-3 (ladder, no photo) with
-// the same three items. Confirmed 2026-09-12; the photo shows the red colourway.
-const CONFIRMED_SAME_OFFER = { 'TBH02-3A': 'TBH02-3' }
+// Pairs the owner confirmed by eye as one product, where the codes give no rule to go by. Each is a
+// factory row (photo, often no ladder) against the FlowAccount row for the same set; the trailing
+// letter turns out to be a colourway, not a different set. Confirmed 2026-09-12.
+//   TBH02-3A  vacuum cup + neck massager + earphones, photo is the red colourway
+//   TBJ03-3A  vacuum cup + neck massager + smart bracelet, orange cup against the black one
+//   TYG00-2A  humidifier + mug, red against blue/cream
+// TBT02-8 / TBT02-8A stay separate: same eight items listed, but the photos differ by more than colour.
+const CONFIRMED_SAME_OFFER = { 'TBH02-3A': 'TBH02-3', 'TBJ03-3A': 'TBJ03-3', 'TYG00-2A': 'TYG00-2' }
 
 const mergedSpellings = []
 {

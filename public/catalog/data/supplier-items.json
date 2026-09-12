@@ -1,12 +1,12 @@
 {
  "schema": "smartgift-catalog-items/1",
- "generated_at": "2026-09-12T04:28:44.776Z",
+ "generated_at": "2026-09-12T04:47:27.285Z",
  "source": {
   "file": "data-pipeline/02_prepared/pricelist_master.json",
   "schema_version": "1.3.0b",
   "run_id": "2026-08-24T08-46-40-226Z",
   "catalog_offers_total": 1110,
-  "public_eligible": 1053
+  "public_eligible": 1051
  },
  "disclaimer_th": "รายการจากแคตตาล็อกผู้ผลิต ยังไม่ผ่านการยืนยันเป็นสินค้า core ราคา (ถ้ามี) เป็นราคาอ้างอิงตามขั้นจำนวน โปรดยืนยันก่อนเสนอราคา",
  "items": [
@@ -8361,56 +8361,10 @@
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TBJ03-3"
-   }
-  },
-  {
-   "id": "offer:TBJ03-3A",
-   "code": "TBJ03-3A",
-   "kind": "set",
-   "layer": "supplier",
-   "name_th": "Temperature display แก้วเก็บอุณหภูมิ พร้อม เครื่องนวดคอ พร้อม สมาร์ตแบนด์",
-   "name_en": "Temperature display vacuum cup + Neck massager + Smart bracelet",
-   "families": [
-    "neck_massager",
-    "drinkware",
-    "smart_bracelet"
-   ],
-   "price_status": "ask_for_quote",
-   "contains": [
-    {
-     "product_code": "PRODUCT_5D905E45C0ACB349E81C",
-     "qty": 1,
-     "name_th": "Neck Massager"
-    },
-    {
-     "product_code": "PRODUCT_688B55E5290CF159E0EB",
-     "qty": 1,
-     "name_th": "Temperature Display Vacuum Cup"
-    },
-    {
-     "product_code": "PRODUCT_D8E7035C001605E908BA",
-     "qty": 1,
-     "name_th": "Smart Bracelet"
-    }
-   ],
-   "image": "/catalog/assets/catalog-media/source-offer-TBJ03-3A.jpg",
-   "image_status": "source_verified",
-   "description_th": "Vacuum cup: 304 stainless steel liner, 450ml, temperature display • Smart bracelet: Test health datas, 90mAh, message vibration reminder, IP65 waterproof • Colors: Red, blue, pink, green, black, gold, silver, light blue, orange (Neck massager is in white & red",
-   "colors": [
-    "Red",
-    "blue",
-    "pink",
-    "green",
-    "black",
-    "gold",
-    "silver",
-    "light blue"
-   ],
-   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TBJ03-3A"
+    "source_key": "TBJ03-3",
+    "merged_codes": [
+     "TBJ03-3A"
+    ]
    }
   },
   {
@@ -23627,7 +23581,10 @@
    "layer": "supplier",
    "name_th": "Moka Pot พร้อม Electric Stove พร้อม Single-spout Coffee Distributor พร้อม Scoop พร้อม Filter Paper",
    "name_en": "Moka Pot + Electric Stove + Single-spout Coffee Distributor + Scoop + Filter Paper",
-   "families": [],
+   "families": [
+    "coffee_maker"
+   ],
+   "families_derived": true,
    "price_status": "ask_for_quote",
    "contains": [
     {
@@ -23810,7 +23767,10 @@
    "layer": "supplier",
    "name_th": "Moka Pot พร้อม Single-spout Coffee Distributor พร้อม Manual Coffee Grinder พร้อม Filter Paper พร้อม Scoop",
    "name_en": "Moka Pot + Single-spout Coffee Distributor + Manual Coffee Grinder + Filter Paper + Scoop",
-   "families": [],
+   "families": [
+    "coffee_maker"
+   ],
+   "families_derived": true,
    "price_status": "ask_for_quote",
    "contains": [
     {
@@ -43251,7 +43211,10 @@
    "layer": "supplier",
    "name_th": "Phone holder พร้อม neck massger",
    "name_en": "Phone holder + neck massger",
-   "families": [],
+   "families": [
+    "neck_massager"
+   ],
+   "families_derived": true,
    "price_status": "ask_for_quote",
    "contains": [
     {
@@ -45198,46 +45161,10 @@
    "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
    "provenance": {
     "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TYG00-2"
-   }
-  },
-  {
-   "id": "offer:TYG00-2A",
-   "code": "TYG00-2A",
-   "kind": "set",
-   "layer": "supplier",
-   "name_th": "Light เครื่องเพิ่มความชื้น พร้อม แก้วมัค",
-   "name_en": "Light humidifier + Mug",
-   "families": [
-    "humidifier",
-    "drinkware"
-   ],
-   "price_status": "ask_for_quote",
-   "contains": [
-    {
-     "product_code": "PRODUCT_771D6F53B49379B38324",
-     "qty": 1,
-     "name_th": "Light Humidifier"
-    },
-    {
-     "product_code": "PRODUCT_970AC1B31FCF9677E886",
-     "qty": 1,
-     "name_th": "Mug"
-    }
-   ],
-   "image": "/catalog/assets/catalog-media/source-offer-TYG00-2A.jpg",
-   "image_status": "source_verified",
-   "description_th": "Light humidifier: 400ml, 7 colors LED light, Type-C charging port, Size: 172*68*68mm • Mug: 450ml, 316 + PP silicon material, temperature display, with sling, 160*79mm • Colors: Blue, red, orange, white",
-   "colors": [
-    "Blue",
-    "red",
-    "orange",
-    "white"
-   ],
-   "branding": "สกรีนโลโก้,เลเซอร์โลโก้,การ์ดข้อความ",
-   "provenance": {
-    "source_file": "data-pipeline/02_prepared/pricelist_master.json",
-    "source_key": "TYG00-2A"
+    "source_key": "TYG00-2",
+    "merged_codes": [
+     "TYG00-2A"
+    ]
    }
   },
   {
@@ -48777,7 +48704,10 @@
    "kind": "set",
    "layer": "supplier",
    "name_th": "เครื่องตัดเล็บไฟฟ้า",
-   "families": [],
+   "families": [
+    "nail_clipper"
+   ],
+   "families_derived": true,
    "price_status": "tiered",
    "price_layer": "standard",
    "price_tiers": [
