@@ -557,7 +557,8 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
   { slug: 'briefcase', name_th: 'กระเป๋าเอกสาร', name_en: 'Briefcase', standard_category: 'bags-travel', source_group: 'office', aliases_th: [], aliases_en: ['briefcase'] },
   { slug: 'umbrella', name_th: 'ร่ม', name_en: 'Umbrella', standard_category: 'bags-travel', source_group: 'home_travel', aliases_th: ['ร่มพับ'], aliases_en: ['umbrella'] },
   // wellness-personal-care
-  { slug: 'neck_massager', name_th: 'เครื่องนวดคอ', name_en: 'Neck massager', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ที่นวดคอ'], aliases_en: ['neck massager', 'neck massger'] }   // 'neck massger' is how the factory file spells it in TTT2162,
+  // 'neck massger' is how the factory price file spells it in TTT2162
+  { slug: 'neck_massager', name_th: 'เครื่องนวดคอ', name_en: 'Neck massager', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['ที่นวดคอ'], aliases_en: ['neck massager', 'neck massger'] },
   { slug: 'massage_gun', name_th: 'ปืนนวด', name_en: 'Massage gun', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['massage gun'] },
   { slug: 'massage_comb', name_th: 'หวีนวด', name_en: 'Massage comb', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: [], aliases_en: ['massage comb'] },
   { slug: 'fan', name_th: 'พัดลมพกพา', name_en: 'Fan', standard_category: 'wellness-personal-care', source_group: 'care_wellness', aliases_th: ['พัดลม'], aliases_en: ['fan'] },
